@@ -1,6 +1,7 @@
-import {FieldProps, UnionField, FieldConstructorFn} from './types'
-import {useCallback} from 'react'
+import {FieldProps, UnionFieldCaseProps, FieldConstructorFn} from './types'
+import {useCallback, useMemo} from 'react'
 import {IconType} from '../atoms/icon'
+import {ValueConstructor} from '@karma.run/react'
 
 export function useField<T>(
   fieldFn: (props: FieldProps<T>) => JSX.Element,
@@ -9,12 +10,24 @@ export function useField<T>(
   return useCallback(fieldFn, deps)
 }
 
-export function useUnionField<T extends string, P = any>(
-  type: T,
-  title: string,
-  icon: IconType,
-  fieldFn: FieldConstructorFn<P>,
+export interface UnionFieldOptions {
+  readonly title: string
+  readonly icon: IconType
+}
+
+export function useUnionField<T extends string, V = any>(
+  fieldFn: FieldConstructorFn<V>,
+  defaultValue: ValueConstructor<V>,
+  opts: UnionFieldOptions,
   deps: readonly any[] = []
-): UnionField<T, P> {
-  return {type, title, icon, fieldFn: useCallback(fieldFn, deps)}
+): UnionFieldCaseProps<V> {
+  return useMemo(
+    () => ({
+      title: opts.title,
+      icon: opts.icon,
+      defaultValue,
+      fieldFn: useCallback(fieldFn, deps)
+    }),
+    [opts.title, opts.icon, ...deps]
+  )
 }

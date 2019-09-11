@@ -1,4 +1,5 @@
 import {IconType} from '../atoms/icon'
+import {ValueConstructor} from '@karma.run/react'
 
 export interface FieldProps<V = any> {
   readonly value: V
@@ -7,9 +8,9 @@ export interface FieldProps<V = any> {
 
 export type FieldConstructorFn<V = any> = (props: FieldProps<V>) => JSX.Element
 
-export interface UnionFieldProps<T extends string, V = any> {
+export interface UnionFieldCaseProps<V = any> {
   readonly title: string
   readonly icon: IconType
-  readonly type: T
+  readonly defaultValue: ValueConstructor<V>
   readonly fieldFn: FieldConstructorFn<V>
 }
