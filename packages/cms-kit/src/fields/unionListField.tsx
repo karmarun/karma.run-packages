@@ -1,101 +1,120 @@
-import React, {memo, useCallback} from 'react'
+import React, {memo, useCallback, useState, Fragment} from 'react'
 import nanoid from 'nanoid'
 
-import {isFunctionalUpdate, isValueConstructor, ValueConstructor} from '@karma.run/react'
+import {isFunctionalUpdate, isValueConstructor} from '@karma.run/react'
 
-import {FieldProps, UnionFieldCaseProps} from './types'
+import {FieldProps, UnionListValue, UnionListCaseMapForValue, UnionFieldCaseMap} from './types'
+import {Icon} from '../atoms/icon'
 
-// export interface UnionListValue<T extends string, V = any> {
-//   readonly id: string
-//   readonly type: T
-//   readonly value: V
-// }
+export interface UnionListItemProps<T extends string = string, V = any> {
+  readonly index: number
+  readonly value: UnionListValue<T, V>
+  readonly onChange: (index: number, value: React.SetStateAction<UnionListValue<T, V>>) => void
+  readonly onRemove: (index: number) => void
+  readonly children: (props: FieldProps<V>) => JSX.Element
+}
 
-// export interface UnionListProps<T extends string, V = any> extends FieldProps<UnionListValue<V>[]> {
-//   readonly label?: string
-//   readonly children: {[K in T]: UnionFieldCaseProps<V>}
-// }
+function ListItem({index, value, onChange, onRemove, children}: UnionListItemProps) {
+  const handleValueChange = useCallback(
+    (fieldValue: React.SetStateAction<any>) => {
+      onChange(index, value => ({
+        ...value,
+        value: isFunctionalUpdate(fieldValue) ? fieldValue(value.value) : fieldValue
+      }))
+    },
+    [index]
+  )
 
-// export interface UnionListItemProps<T extends string, V = any> {
-//   readonly index: number
-//   readonly value: UnionListValue<T, V>
-//   readonly onChange: (index: number, value: React.SetStateAction<UnionListValue<V>>) => void
-//   readonly onRemove: (index: number) => void
-//   readonly children: (props: FieldProps<V>) => JSX.Element
-// }
+  const handleRemove = useCallback(() => {
+    onRemove(index)
+  }, [index])
 
-// export const ListItem = memo<UnionListItemProps>(function ListItem({
-//   index,
-//   value,
-//   onChange,
-//   onRemove,
-//   children
-// }) {
-//   const handleValueChange = useCallback(
-//     (fieldValue: React.SetStateAction<any>) => {
-//       onChange(index, value => ({
-//         ...value,
-//         value: isFunctionalUpdate(fieldValue) ? fieldValue(value.value) : fieldValue
-//       }))
-//     },
-//     [index]
-//   )
+  return (
+    <div>
+      {children({value: value.value, onChange: handleValueChange})}
+      <button onClick={handleRemove}>-</button>
+    </div>
+  )
+}
 
-//   const handleRemove = useCallback(() => {
-//     onRemove(index)
-//   }, [index])
+export interface UnionListFieldProps<V extends UnionListValue> extends FieldProps<V[]> {
+  readonly label?: string
+  readonly children: UnionListCaseMapForValue<V>
+}
 
-//   return (
-//     <div>
-//       {children({value: value.value, onChange: handleValueChange})}
-//       <button onClick={handleRemove}>-</button>
-//     </div>
-//   )
-// })
+export function UnionListField<V extends UnionListValue>({
+  value: values,
+  label,
+  children,
+  onChange
+}: UnionListFieldProps<V>) {
+  const [casePickerIndex, setCasePickerIndex] = useState<number | null>(null)
+  const unionFieldMap = children as UnionFieldCaseMap
 
-// export function UnionListField<T extends string>({
-//   value,
-//   label,
-//   defaultValue,
-//   children,
-//   onChange
-// }: UnionListProps<T>) {
-//   const handleItemChange = useCallback(
-//     (index: number, itemValue: React.SetStateAction<UnionListValue>) => {
-//       onChange(value =>
-//         Object.assign([], value, {
-//           [index]: isFunctionalUpdate(itemValue) ? itemValue(value[index]) : itemValue
-//         })
-//       )
-//     },
-//     []
-//   )
+  function handleItemChange(index: number, itemValue: React.SetStateAction<UnionListValue>) {
+    onChange(value =>
+      Object.assign([], value, {
+        [index]: isFunctionalUpdate(itemValue) ? itemValue(value[index]) : itemValue
+      })
+    )
+  }
 
-//   const handleAdd = useCallback(() => {
-//     onChange(value => [
-//       ...value,
-//       {id: nanoid(), value: isValueConstructor(defaultValue) ? defaultValue() : defaultValue}
-//     ])
-//   }, [])
+  function handleAdd(index: number, type: string) {
+    onChange(values => {
+      const {defaultValue} = unionFieldMap[type]
+      const valuesCopy = values.slice()
 
-//   const handleRemove = useCallback((itemIndex: number) => {
-//     onChange(value => value.filter((_, index) => index !== itemIndex))
-//   }, [])
+      valuesCopy.splice(index + 1, 0, {
+        id: nanoid(),
+        type,
+        value: isValueConstructor(defaultValue) ? defaultValue() : defaultValue
+      } as V)
 
-//   return (
-//     <div>
-//       {label && <label>{label}</label>}
-//       {value.map((value, index) => (
-//         <ListItem
-//           key={value.id}
-//           index={index}
-//           value={value}
-//           onChange={handleItemChange}
-//           onRemove={handleRemove}>
-//           {children}
-//         </ListItem>
-//       ))}
-//       <button onClick={handleAdd}>+</button>
-//     </div>
-//   )
-// }
+      return valuesCopy
+    })
+
+    setCasePickerIndex(null)
+  }
+
+  function handleRemove(itemIndex: number) {
+    onChange(value => value.filter((_, index) => index !== itemIndex))
+  }
+
+  function addButtonForIndex(index: number) {
+    return (
+      <>
+        <button
+          onClick={() => {
+            setCasePickerIndex(index)
+          }}>
+          +
+        </button>
+        <div>
+          {casePickerIndex === index &&
+            Object.entries(unionFieldMap).map(([type, value]) => (
+              <button key={type} onClick={() => handleAdd(index, type)}>
+                <Icon type={value.icon} />
+                {value.label}
+              </button>
+            ))}
+        </div>
+      </>
+    )
+  }
+
+  return (
+    <div>
+      {label && <label>{label}</label>}
+      {values.map((value, index) => (
+        <Fragment key={value.id}>
+          <ListItem index={index} value={value} onChange={handleItemChange} onRemove={handleRemove}>
+            {unionFieldMap[value.type].field}
+          </ListItem>
+          {addButtonForIndex(index)}
+        </Fragment>
+      ))}
+
+      {values.length === 0 && addButtonForIndex(values.length - 1)}
+    </div>
+  )
+}

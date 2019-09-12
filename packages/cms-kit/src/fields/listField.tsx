@@ -10,12 +10,6 @@ export interface ListValue<T = any> {
   readonly value: T
 }
 
-export interface ListProps<T = any> extends FieldProps<ListValue<T>[]> {
-  readonly label?: string
-  readonly defaultValue: T | (() => T)
-  readonly children: (props: FieldProps<T>) => JSX.Element
-}
-
 export interface ListItemProps<T = any> {
   readonly index: number
   readonly value: ListValue<T>
@@ -53,7 +47,13 @@ export const ListItem = memo<ListItemProps>(function ListItem({
   )
 })
 
-export function ListField<T>({value, label, defaultValue, children, onChange}: ListProps<T>) {
+export interface ListFieldProps<T = any> extends FieldProps<ListValue<T>[]> {
+  readonly label?: string
+  readonly defaultValue: T | (() => T)
+  readonly children: (props: FieldProps<T>) => JSX.Element
+}
+
+export function ListField<T>({value, label, defaultValue, children, onChange}: ListFieldProps<T>) {
   const handleItemChange = useCallback(
     (index: number, itemValue: React.SetStateAction<ListValue>) => {
       onChange(value =>

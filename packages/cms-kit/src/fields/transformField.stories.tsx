@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useCallback} from 'react'
 import {storiesOf} from '@storybook/react'
 
 import {TransformField} from './transformField'
-import {useField} from './hooks'
 import {TextField} from './textField'
+import {useField} from './hooks'
 
 function transformFromStringToNumber(value: string) {
   return parseInt(value)

@@ -1,30 +1,40 @@
 import React, {useState} from 'react'
 import {storiesOf} from '@storybook/react'
 
-import {UnionListField, UnionListValue} from './unionListField'
+import {UnionListField} from './unionListField'
 import {TextField} from './textField'
-import {useField, useUnionField} from './hooks'
 import {IconType} from '../atoms/icon'
 
-export type TextValue = UnionListValue<'text', string>
-export type NumberValue = UnionListValue<'number', number>
-export type WrapperValue = TextValue | NumberValue
+import {UnionListValue} from './types'
+import {ListField, ListValue} from './listField'
+
+export type StringValue = UnionListValue<'string', string>
+export type StringArrayValue = UnionListValue<'stringArray', ListValue<string>[]>
+export type WrapperValue = StringValue | StringArrayValue
 
 export function UnionListFieldWrapper() {
   const [values, setValues] = useState<WrapperValue[]>([])
 
   return (
-    <UnionListField value={values} onChange={setValues} defaultValue={''}>
+    <UnionListField value={values} onChange={setValues}>
       {{
-        text: useUnionField(props => <TextField {...props} />, '', {
-          title: 'Text',
+        string: {
+          field: props => <TextField {...props} />,
+          defaultValue: '',
+          label: 'String',
           icon: IconType.Replace
-        }),
+        },
 
-        number: useUnionField(props => <TextField {...props} />, '', {
-          title: 'Text',
-          icon: IconType.Replace
-        })
+        stringArray: {
+          field: props => (
+            <ListField {...props} defaultValue="">
+              {props => <TextField {...props} />}
+            </ListField>
+          ),
+          defaultValue: [],
+          label: 'String Array',
+          icon: IconType.DropHere
+        }
       }}
     </UnionListField>
   )

@@ -11,23 +11,23 @@ export function useField<T>(
 }
 
 export interface UnionFieldOptions {
-  readonly title: string
+  readonly label: string
   readonly icon: IconType
 }
 
-export function useUnionField<T extends string, V = any>(
-  fieldFn: FieldConstructorFn<V>,
+export function useUnionField<V = any>(
+  field: FieldConstructorFn<V>,
   defaultValue: ValueConstructor<V>,
-  opts: UnionFieldOptions,
+  {label, icon}: UnionFieldOptions,
   deps: readonly any[] = []
 ): UnionFieldCaseProps<V> {
   return useMemo(
     () => ({
-      title: opts.title,
-      icon: opts.icon,
+      label,
+      icon,
       defaultValue,
-      fieldFn: useCallback(fieldFn, deps)
+      field
     }),
-    [opts.title, opts.icon, ...deps]
+    [label, icon, ...deps]
   )
 }
