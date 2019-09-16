@@ -10,8 +10,8 @@ export interface SelectChangeEvent {
   event: React.ChangeEvent<HTMLInputElement>
 }
 
-export function Select({id, type, value, onSelectChange, ...rest}: SelectProps) {
-  return <input id={id} type={type} value={value} onInput={onChange} {...rest} />
+export function Select({id, type, checked, onSelectChange, ...rest}: SelectProps) {
+  return <input id={id} type={type} checked={checked} onInput={onChange} {...rest} />
 
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     if (id) {
