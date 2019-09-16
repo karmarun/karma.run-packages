@@ -102,7 +102,6 @@ export function InfoBox({fontSize = 12, elementSize = 24, infoText, children}: I
 
   return (
     <div className={css(InfoBoxStyle)}>
-      <div className="test"></div>
       <div className={css(InfoBoxContentStyle)}>{children}</div>
       <div className={css(InfoBoxTextStyle)}>
         <FontSize fontSize={fontSize}>{infoText}</FontSize>
