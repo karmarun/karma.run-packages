@@ -1,11 +1,12 @@
 import React from 'react'
-import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
+import {SelectValue} from './checkbox'
+import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 
-const CheckboxStyle = cssRuleWithTheme(({theme}) => ({}))
+const RadioButtonStyle = cssRuleWithTheme(({theme}) => ({}))
 
 const LabelStyle = cssRuleWithTheme(({theme}) => ({}))
 
-export interface CheckboxProps {
+export interface RadioButtonProps {
   readonly id: string
   readonly label: string
   readonly isChecked: boolean
@@ -13,22 +14,11 @@ export interface CheckboxProps {
   readonly className?: string
 }
 
-export interface SelectValue {
-  id: string
-  checked: boolean
-}
-
-export function Checkbox(props: CheckboxProps) {
+export function RadioButton(props: RadioButtonProps) {
   const {css} = useThemeStyle()
   return (
     <div className={props.className}>
-      <input
-        id={props.id}
-        className={css(CheckboxStyle)}
-        type="checkbox"
-        defaultChecked={props.isChecked}
-        onInput={onChange}
-      />
+      <input className={css(RadioButtonStyle)} id={props.id} type="radio" onInput={onChange} />
       <label className={css(LabelStyle)}>{props.label}</label>
     </div>
   )
