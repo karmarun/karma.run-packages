@@ -23,7 +23,7 @@ export interface InputProps {
   readonly icon?: IconType
   readonly errorText?: string
   readonly className?: string
-  onValueChange(value: React.ChangeEvent<HTMLInputElement>): void
+  onValueChange(value: string, event: React.ChangeEvent<HTMLInputElement>): void
 }
 
 export function Input({
@@ -44,7 +44,7 @@ export function Input({
       placeholder={placeholder}
       value={value}
       onChange={event => {
-        onValueChange(event)
+        onValueChange(event.target.value, event)
       }}
     />
   )

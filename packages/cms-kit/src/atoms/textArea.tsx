@@ -21,7 +21,7 @@ export interface TextAreaProps {
   readonly placeholder: string
   readonly description?: string
   readonly className?: string
-  onValueChange(value: React.ChangeEvent<HTMLTextAreaElement>): void
+  onValueChange(value: string, event: React.ChangeEvent<HTMLTextAreaElement>): void
 }
 
 export function TextArea({
@@ -42,7 +42,7 @@ export function TextArea({
           placeholder={placeholder}
           value={value}
           onChange={event => {
-            onValueChange(event)
+            onValueChange(event.target.value, event)
           }}
         />
       </div>

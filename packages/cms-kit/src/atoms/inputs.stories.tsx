@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import {storiesOf} from '@storybook/react'
 import {Input} from './input'
@@ -7,26 +7,25 @@ import {IconType} from './icon'
 import {TextArea} from './textArea'
 import {FilterTag} from './filterTag'
 
+export function TextInputWrapper() {
+  const [value, setValue] = useState('')
+
+  return (
+    <Input
+      label={'Label'}
+      value={value}
+      placeholder={'Placeholder-Label'}
+      description={'Description Text'}
+      onValueChange={value => {
+        setValue(value)
+      }}
+    />
+  )
+}
+
 storiesOf('Atoms|Input/Single', module)
   .addDecorator(centerLayoutDecorator())
-  .add('default placeholder', () => (
-    <Input
-      label={'Label'}
-      value={''}
-      placeholder={'Placeholder-Label'}
-      description={'Description Text'}
-      onValueChange={value => {}}
-    />
-  ))
-  .add('default text', () => (
-    <Input
-      label={'Label'}
-      value={'Value'}
-      placeholder={'Placeholder-Label'}
-      description={'Description Text'}
-      onValueChange={value => {}}
-    />
-  ))
+  .add('default', () => <TextInputWrapper />)
   .add('no label', () => (
     <Input
       value={''}

@@ -7,14 +7,23 @@ import {Checkbox} from './checkbox'
 import {RadioButton} from './radioButton'
 import {ToggleWithLabel} from '../molecules/toggleWithLabel'
 
+export function SelectWrapper() {
+  const [checked, setChecked] = useState(false)
+
+  return (
+    <Toggle
+      isChecked={checked}
+      onChange={event => {
+        setChecked(event.isChecked)
+      }}
+      id={'1'}
+    />
+  )
+}
+
 storiesOf('Atoms|Selects', module)
   .addDecorator(centerLayoutDecorator())
-  .add('Toggle', () => (
-    <div>
-      <Toggle isChecked={true} onChange={checked => {}} id={'1'} />
-      <Toggle isChecked={false} onChange={checked => {}} id={'6'} />
-    </div>
-  ))
+  .add('Toggle', () => <SelectWrapper />)
   .add('ToggleWithLabel', () => {
     return (
       <div>
