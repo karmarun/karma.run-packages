@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useState, Fragment} from 'react'
+import React, {useState, Fragment} from 'react'
 import nanoid from 'nanoid'
 
 import {isFunctionalUpdate, isValueConstructor} from '@karma.run/react'
@@ -14,20 +14,17 @@ export interface UnionListItemProps<T extends string = string, V = any> {
   readonly children: (props: FieldProps<V>) => JSX.Element
 }
 
-function ListItem({index, value, onChange, onRemove, children}: UnionListItemProps) {
-  const handleValueChange = useCallback(
-    (fieldValue: React.SetStateAction<any>) => {
-      onChange(index, value => ({
-        ...value,
-        value: isFunctionalUpdate(fieldValue) ? fieldValue(value.value) : fieldValue
-      }))
-    },
-    [index]
-  )
+function UnionListItem({index, value, onChange, onRemove, children}: UnionListItemProps) {
+  function handleValueChange(fieldValue: React.SetStateAction<any>) {
+    onChange(index, value => ({
+      ...value,
+      value: isFunctionalUpdate(fieldValue) ? fieldValue(value.value) : fieldValue
+    }))
+  }
 
-  const handleRemove = useCallback(() => {
+  function handleRemove() {
     onRemove(index)
-  }, [index])
+  }
 
   return (
     <div>
@@ -77,18 +74,34 @@ export function UnionListField<V extends UnionListValue>({
   }
 
   function handleRemove(itemIndex: number) {
-    onChange(value => value.filter((_, index) => index !== itemIndex))
+    onChange(value => value.filter((_value, index) => index !== itemIndex))
+  }
+
+  function moveIndex(from: number, to: number) {
+    onChange(values => {
+      const valuesCopy = values.slice()
+      const [value] = valuesCopy.splice(from, 1)
+
+      valuesCopy.splice(to, 0, value)
+
+      return valuesCopy
+    })
   }
 
   function addButtonForIndex(index: number) {
+    const prevIndex = index - 1
+    const nextIndex = index + 1
+
+    const hasPrevIndex = prevIndex >= 0
+    const hasNextIndex = nextIndex < values.length
+
     return (
       <>
-        <button
-          onClick={() => {
-            setCasePickerIndex(index)
-          }}>
-          +
-        </button>
+        <button onClick={() => setCasePickerIndex(index)}>+</button>
+
+        {hasPrevIndex && <button onClick={() => moveIndex(index, prevIndex)}>UP</button>}
+        {hasNextIndex && <button onClick={() => moveIndex(index, nextIndex)}>DOWN</button>}
+
         <div>
           {casePickerIndex === index &&
             Object.entries(unionFieldMap).map(([type, value]) => (
@@ -107,9 +120,13 @@ export function UnionListField<V extends UnionListValue>({
       {label && <label>{label}</label>}
       {values.map((value, index) => (
         <Fragment key={value.id}>
-          <ListItem index={index} value={value} onChange={handleItemChange} onRemove={handleRemove}>
+          <UnionListItem
+            index={index}
+            value={value}
+            onChange={handleItemChange}
+            onRemove={handleRemove}>
             {unionFieldMap[value.type].field}
-          </ListItem>
+          </UnionListItem>
           {addButtonForIndex(index)}
         </Fragment>
       ))}

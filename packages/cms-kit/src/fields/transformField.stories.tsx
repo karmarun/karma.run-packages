@@ -1,9 +1,8 @@
-import React, {useState, useCallback} from 'react'
+import React, {useState} from 'react'
 import {storiesOf} from '@storybook/react'
 
 import {TransformField} from './transformField'
 import {TextField} from './textField'
-import {useField} from './hooks'
 
 function transformFromStringToNumber(value: string) {
   return parseInt(value)
@@ -22,9 +21,7 @@ export function TransformFieldWrapper() {
       onChange={value => setValue(value)}
       transformFrom={transformFromStringToNumber}
       transformTo={transformFromNumberToString}>
-      {useField(props => (
-        <TextField {...props} />
-      ))}
+      {props => <TextField {...props} />}
     </TransformField>
   )
 }
