@@ -7,7 +7,7 @@ import {IconType} from './icon'
 import {TextArea} from './textArea'
 import {FilterTag} from './filterTag'
 
-storiesOf('Atoms|Inputs', module)
+storiesOf('Atoms|Input/Single', module)
   .addDecorator(centerLayoutDecorator())
   .add('default placeholder', () => (
     <Input
@@ -55,7 +55,7 @@ storiesOf('Atoms|Inputs', module)
     />
   ))
 
-storiesOf('Atoms|TextArea', module)
+storiesOf('Atoms|Input/TextArea', module)
   .addDecorator(centerLayoutDecorator())
   .add('default', () => (
     <TextArea
