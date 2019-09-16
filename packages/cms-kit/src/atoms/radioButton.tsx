@@ -18,8 +18,16 @@ export function RadioButton(props: RadioButtonProps) {
   const {css} = useThemeStyle()
   return (
     <div className={props.className}>
-      <input className={css(RadioButtonStyle)} id={props.id} type="radio" onInput={onChange} />
-      <label className={css(LabelStyle)}>{props.label}</label>
+      <input
+        className={css(RadioButtonStyle)}
+        id={props.id}
+        type="radio"
+        defaultChecked={props.isChecked}
+        onInput={onChange}
+      />
+      <label className={css(LabelStyle)} htmlFor={props.id}>
+        {props.label}
+      </label>
     </div>
   )
 

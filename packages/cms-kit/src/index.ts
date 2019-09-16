@@ -15,6 +15,7 @@ export * from './molecules/textOnlyButton'
 export * from './molecules/roundIconButton'
 export * from './molecules/optionButton'
 export * from './molecules/optionButtonShadow'
+export * from './molecules/toggleWithLabel'
 
 // Fields
 export * from './fields/hooks'

@@ -29,7 +29,9 @@ export function Checkbox(props: CheckboxProps) {
         defaultChecked={props.isChecked}
         onInput={onChange}
       />
-      <label className={css(LabelStyle)}>{props.label}</label>
+      <label className={css(LabelStyle)} htmlFor={props.id}>
+        {props.label}
+      </label>
     </div>
   )
 
