@@ -57,15 +57,7 @@ export function Toggle(props: ToggleProps) {
       className={joinClassNames(css(ToggleStyle), props.className)}
       checked={props.isChecked}
       type="checkbox"
-      onInput={onChange}
+      onSelectChange={props.onChange}
     />
   )
-
-  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
-    props.onChange({
-      id: props.id,
-      isChecked: event.target.checked,
-      event: event
-    })
-  }
 }

@@ -23,19 +23,11 @@ export function Checkbox(props: CheckboxProps) {
         className={css(CheckboxStyle)}
         type="checkbox"
         checked={props.isChecked}
-        onInput={onChange}
+        onSelectChange={props.onChange}
       />
       <label className={css(LabelStyle)} htmlFor={props.id}>
         {props.label}
       </label>
     </div>
   )
-
-  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
-    props.onChange({
-      id: props.id,
-      isChecked: event.target.checked,
-      event: event
-    })
-  }
 }
