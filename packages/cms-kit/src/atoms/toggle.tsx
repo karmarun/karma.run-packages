@@ -2,7 +2,7 @@ import React from 'react'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {joinClassNames} from '@karma.run/react'
 import {pxToRem} from '../style/helpers'
-import {SelectValue} from './checkbox'
+import {Select, SelectChangeEvent} from './select'
 
 const ToggleStyle = cssRuleWithTheme(({theme}) => ({
   position: 'relative',
@@ -45,17 +45,17 @@ const ToggleStyle = cssRuleWithTheme(({theme}) => ({
 export interface ToggleProps {
   readonly id: string
   readonly isChecked: boolean
-  onChange(value: SelectValue): void
+  onChange(value: SelectChangeEvent): void
   readonly className?: string
 }
 
 export function Toggle(props: ToggleProps) {
   const {css} = useThemeStyle()
   return (
-    <input
+    <Select
       id={props.id}
       className={joinClassNames(css(ToggleStyle), props.className)}
-      defaultChecked={props.isChecked}
+      checked={props.isChecked}
       type="checkbox"
       onInput={onChange}
     />
@@ -64,7 +64,8 @@ export function Toggle(props: ToggleProps) {
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     props.onChange({
       id: props.id,
-      checked: event.target.checked
+      isChecked: event.target.checked,
+      event: event
     })
   }
 }

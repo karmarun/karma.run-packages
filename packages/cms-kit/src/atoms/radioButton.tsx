@@ -1,6 +1,6 @@
 import React from 'react'
-import {SelectValue} from './checkbox'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
+import {SelectChangeEvent, Select} from './select'
 
 const RadioButtonStyle = cssRuleWithTheme(({theme}) => ({}))
 
@@ -10,7 +10,7 @@ export interface RadioButtonProps {
   readonly id: string
   readonly label: string
   readonly isChecked: boolean
-  onChange(value: SelectValue): void
+  onChange(value: SelectChangeEvent): void
   readonly className?: string
 }
 
@@ -18,11 +18,11 @@ export function RadioButton(props: RadioButtonProps) {
   const {css} = useThemeStyle()
   return (
     <div className={props.className}>
-      <input
+      <Select
         className={css(RadioButtonStyle)}
         id={props.id}
         type="radio"
-        defaultChecked={props.isChecked}
+        checked={props.isChecked}
         onInput={onChange}
       />
       <label className={css(LabelStyle)} htmlFor={props.id}>
@@ -34,7 +34,8 @@ export function RadioButton(props: RadioButtonProps) {
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     props.onChange({
       id: props.id,
-      checked: event.target.checked
+      isChecked: event.target.checked,
+      event: event
     })
   }
 }

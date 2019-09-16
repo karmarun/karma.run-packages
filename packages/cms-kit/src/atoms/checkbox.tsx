@@ -1,5 +1,6 @@
 import React from 'react'
 import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
+import {SelectChangeEvent, Select} from './select'
 
 const CheckboxStyle = cssRuleWithTheme(({theme}) => ({}))
 
@@ -9,24 +10,19 @@ export interface CheckboxProps {
   readonly id: string
   readonly label: string
   readonly isChecked: boolean
-  onChange(value: SelectValue): void
+  onChange(value: SelectChangeEvent): void
   readonly className?: string
-}
-
-export interface SelectValue {
-  id: string
-  checked: boolean
 }
 
 export function Checkbox(props: CheckboxProps) {
   const {css} = useThemeStyle()
   return (
     <div className={props.className}>
-      <input
+      <Select
         id={props.id}
         className={css(CheckboxStyle)}
         type="checkbox"
-        defaultChecked={props.isChecked}
+        checked={props.isChecked}
         onInput={onChange}
       />
       <label className={css(LabelStyle)} htmlFor={props.id}>
@@ -38,7 +34,8 @@ export function Checkbox(props: CheckboxProps) {
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     props.onChange({
       id: props.id,
-      checked: event.target.checked
+      isChecked: event.target.checked,
+      event: event
     })
   }
 }
