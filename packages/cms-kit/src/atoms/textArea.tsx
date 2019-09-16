@@ -17,14 +17,16 @@ const DescriptionStyle = cssRuleWithTheme<{hasError: boolean}>(({hasError, theme
 
 export interface TextAreaProps {
   readonly label?: string
+  readonly value: string
   readonly placeholder: string
-  readonly description: string
+  readonly description?: string
   readonly className?: string
   onValueChange(value: React.ChangeEvent<HTMLTextAreaElement>): void
 }
 
 export function TextArea({
   label,
+  value,
   placeholder,
   description,
   onValueChange,
@@ -38,6 +40,7 @@ export function TextArea({
       <div>
         <textarea
           placeholder={placeholder}
+          value={value}
           onChange={event => {
             onValueChange(event)
           }}
