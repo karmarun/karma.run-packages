@@ -5,6 +5,7 @@ export * from './atoms/input'
 export * from './atoms/textArea'
 export * from './atoms/filterTag'
 export * from './atoms/toggle'
+export * from './atoms/checkbox'
 
 // Molecules
 export * from './molecules/iconLabelButton'

@@ -52,7 +52,7 @@ export function Toggle(props: ToggleProps) {
   return (
     <input
       className={joinClassNames(css(ToggleStyle), props.className)}
-      checked={props.isChecked}
+      defaultChecked={props.isChecked}
       type="checkbox"
       onChange={onChange}
     />
