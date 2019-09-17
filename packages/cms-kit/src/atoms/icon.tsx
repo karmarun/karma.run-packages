@@ -132,9 +132,6 @@ export enum IconType {
 }
 
 export const IconStyle = cssRuleWithTheme(({theme}) => ({
-  //display: 'inline-block',
-  //height: '1em',
-
   '> svg': {height: 'inherit'}
 }))
 
