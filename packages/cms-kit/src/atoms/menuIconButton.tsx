@@ -1,5 +1,5 @@
 import React from 'react'
-import {ButtonProps, Button} from '../atoms/button'
+import {BaseButton, BaseButtonProps} from '../atoms/baseButton'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {pxToRem} from '../style/helpers'
 import {IconType, Icon, IconSize} from '../atoms/icon'
@@ -32,20 +32,19 @@ const IconStyle = cssRuleWithTheme<{iconSize: IconSize}>(({iconSize, theme}) => 
 
 const LabelStyle = cssRuleWithTheme(({theme}) => ({}))
 
-export interface MenuIconButtonProps extends ButtonProps {
+export interface MenuIconButtonProps extends BaseButtonProps {
   readonly icon: IconType
   readonly iconSize: IconSize
-  readonly label?: string
 }
 
-export function MenuIconButton({label, icon, iconSize, href, onClick}: MenuIconButtonProps) {
+export function MenuIconButton({title, icon, iconSize, href, onClick}: MenuIconButtonProps) {
   const {css} = useThemeStyle({iconSize: iconSize})
   return (
-    <Button href={href} onClick={onClick} className={css(MenuIconButtonStyle)}>
+    <BaseButton href={href} onClick={onClick} style={MenuIconButtonStyle}>
       <>
-        <Icon type={icon} className={css(IconStyle)} />
-        <span className={css(LabelStyle)}>{label}</span>
+        <Icon type={icon} style={IconStyle} styleProps={{iconSize: iconSize}} />
+        <span className={css(LabelStyle)}>{title}</span>
       </>
-    </Button>
+    </BaseButton>
   )
 }

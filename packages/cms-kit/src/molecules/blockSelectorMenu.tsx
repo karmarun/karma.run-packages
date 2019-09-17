@@ -1,8 +1,8 @@
 import React from 'react'
 
 import {IconType} from '../atoms/icon'
-import {IconLabelButton} from './iconLabelButton'
-import {OptionButtonShadow} from './optionButtonShadow'
+import {IconLabelButton} from '../atoms/iconLabelButton'
+import {OptionButtonSmall} from '../atoms/optionButtonSmall'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 
 const SelectorMenuStyle = cssRuleWithTheme<{isOpen: boolean}>(({isOpen, theme}) => ({}))
@@ -41,17 +41,11 @@ export function BlockSelectorMenu({isOpen, menuItems, onAddClick}: BlockSelector
   return (
     <div className={css(SelectorMenuStyle)}>
       <div className={css(AddButtonStyle)}>
-        <OptionButtonShadow icon={IconType.Add} onClick={onAddClick} />
+        <OptionButtonSmall icon={IconType.Add} onClick={onAddClick} />
       </div>
       {isOpen &&
         menuItems.map((item, index) => (
-          <IconLabelButton
-            key={index}
-            id={item.id}
-            label={item.label}
-            icon={item.icon}
-            href={item.href}
-          />
+          <IconLabelButton key={index} label={item.label} icon={item.icon} href={item.href} />
         ))}
     </div>
   )

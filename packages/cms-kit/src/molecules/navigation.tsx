@@ -3,9 +3,8 @@ import {MenuItem} from './blockSelectorMenu'
 import {MenuIconButton} from '../atoms/menuIconButton'
 import {IconSize, Icon, IconType} from '../atoms/icon'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {Button} from '../atoms/button'
-import {IconButton} from '../atoms/iconButton'
 import {pxToRem} from '../style/helpers'
+import {BaseButton} from '../atoms/baseButton'
 
 export const NavigationStyle = cssRuleWithTheme(({theme}) => ({
   borderRight: `${pxToRem(1)} solid ${theme.colors.gray}`,
@@ -28,15 +27,20 @@ export function Navigation({isOpen, onChange, menuItems}: NavigationProps) {
         <MenuIconButton
           icon={item.icon}
           iconSize={IconSize.Default}
-          label={isOpen ? item.label : undefined}
+          title={isOpen ? item.label : undefined}
         />
       ))}
     </div>
   )
 }
 
-export const NavigationButtonStyle = cssRuleWithTheme(({theme}) => ({
-  backgroundColor: theme.colors.light,
+const NavigationButtonStyle = cssRuleWithTheme<{iconSize: IconSize}>(({iconSize, theme}) => ({
+  border: 'none',
+  height: pxToRem(iconSize)
+}))
+
+const IconStyle = cssRuleWithTheme<{iconSize: IconSize}>(({iconSize, theme}) => ({
+  height: pxToRem(iconSize),
 
   '& path': {
     fill: theme.colors.gray
@@ -50,12 +54,15 @@ export interface NavigationButtonProps {
 
 export function NavigationButton({isOpen, onChange}: NavigationButtonProps) {
   const {css} = useThemeStyle()
+  const iconSize = IconSize.Small
+
   return (
-    <IconButton
-      className={css(NavigationButtonStyle)}
-      icon={isOpen ? IconType.ChevronLeft : IconType.ChevronRight}
-      onClick={onChange}
-      iconSize={IconSize.Small}
-    />
+    <BaseButton onClick={onChange} style={NavigationButtonStyle} styleProps={{iconSize: iconSize}}>
+      <Icon
+        type={isOpen ? IconType.ChevronLeft : IconType.ChevronRight}
+        style={IconStyle}
+        styleProps={{iconSize: iconSize}}
+      />
+    </BaseButton>
   )
 }
