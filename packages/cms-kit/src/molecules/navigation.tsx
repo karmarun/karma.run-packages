@@ -6,9 +6,17 @@ import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {pxToRem} from '../style/helpers'
 import {BaseButton} from '../atoms/baseButton'
 
-export const NavigationStyle = cssRuleWithTheme(({theme}) => ({
+export const NavigationStyle = cssRuleWithTheme<{isOpen: boolean}>(({isOpen, theme}) => ({
   borderRight: `${pxToRem(1)} solid ${theme.colors.gray}`,
-  backgroundColor: theme.colors.light
+  backgroundColor: theme.colors.light,
+  width: isOpen ? pxToRem(280) : pxToRem(60),
+  height: '100vh',
+  float: 'left',
+  transition: '200ms'
+}))
+
+const NavigationItems = cssRuleWithTheme(({theme}) => ({
+  marginTop: pxToRem(85)
 }))
 
 export interface NavigationProps {
@@ -18,18 +26,20 @@ export interface NavigationProps {
 }
 
 export function Navigation({isOpen, onChange, menuItems}: NavigationProps) {
-  const {css} = useThemeStyle()
+  const {css} = useThemeStyle({isOpen: isOpen})
 
   return (
     <div className={css(NavigationStyle)}>
       <NavigationButton isOpen={isOpen} onChange={onChange} />
-      {menuItems.map(item => (
-        <MenuIconButton
-          icon={item.icon}
-          iconSize={IconSize.Default}
-          title={isOpen ? item.label : undefined}
-        />
-      ))}
+      <div className={css(NavigationItems)}>
+        {menuItems.map(item => (
+          <MenuIconButton
+            icon={item.icon}
+            iconSize={IconSize.Default}
+            title={isOpen ? item.label : undefined}
+          />
+        ))}
+      </div>
     </div>
   )
 }

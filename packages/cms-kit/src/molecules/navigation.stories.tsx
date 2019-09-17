@@ -19,9 +19,28 @@ export function NavigationWrapper() {
   )
 }
 
+export function LayoutWrapper() {
+  const [isOpen, setOpen] = useState(true)
+
+  return (
+    <div>
+      <Navigation
+        isOpen={isOpen}
+        onChange={() => {
+          setOpen(!isOpen)
+        }}
+        menuItems={mockNaviItems}
+      />
+      <div>content</div>
+    </div>
+  )
+}
+
 storiesOf('Molecules|Navigation', module)
   .addDecorator(centerLayoutDecorator())
   .add('default', () => <NavigationWrapper />)
+
+storiesOf('Molecules|Navigation', module).add('in layout', () => <LayoutWrapper />)
 
 const mockNaviItems = [
   {id: 'article', icon: IconType.Article, label: 'Article'},
