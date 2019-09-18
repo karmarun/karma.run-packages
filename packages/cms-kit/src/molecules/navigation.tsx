@@ -10,11 +10,13 @@ export const NavigationStyle = cssRuleWithTheme<{isOpen: boolean}>(({isOpen, the
   width: isOpen ? pxToRem(280) : pxToRem(60),
   height: '100vh',
   float: 'left',
-  transition: '200ms'
+  transition: '200ms',
+  overflow: 'hidden'
 }))
 
 const NavigationItems = cssRuleWithTheme(({theme}) => ({
-  marginTop: pxToRem(85)
+  marginTop: pxToRem(85),
+  clear: 'both'
 }))
 
 export interface NavigationProps {

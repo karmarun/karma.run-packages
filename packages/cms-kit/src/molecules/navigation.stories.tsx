@@ -8,7 +8,7 @@ import {MenuIconButton} from '../atoms/menuIconButton'
 import {pxToRem} from '../style/helpers'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 
-const MenuItemSpaceStyle = cssRuleWithTheme(({theme}) => ({
+const MenuItemStyle = cssRuleWithTheme(({theme}) => ({
   paddingTop: pxToRem(12),
   paddingBottom: pxToRem(12),
   paddingLeft: pxToRem(18)
@@ -23,18 +23,16 @@ export function NavigationWrapper() {
       isOpen={isOpen}
       onChange={() => {
         setOpen(!isOpen)
-      }}
-      menuItems={mockNaviItems}>
+      }}>
       {mockNaviItems.map((item, index) => (
-        <div className={css(MenuItemSpaceStyle)}>
-          <MenuIconButton
-            style={MenuItemSpaceStyle}
-            key={index}
-            icon={item.icon}
-            iconSize={IconSize.Default}
-            title={isOpen ? item.label : undefined}
-          />
-        </div>
+        <MenuIconButton
+          style={MenuItemStyle}
+          key={index}
+          icon={item.icon}
+          iconSize={IconSize.Default}
+          title={item.label}
+          showTitle={isOpen}
+        />
       ))}
     </Navigation>
   )
@@ -50,18 +48,16 @@ export function LayoutWrapper() {
         isOpen={isOpen}
         onChange={() => {
           setOpen(!isOpen)
-        }}
-        menuItems={mockNaviItems}>
+        }}>
         {mockNaviItems.map((item, index) => (
-          <div className={css(MenuItemSpaceStyle)}>
-            <MenuIconButton
-              style={MenuItemSpaceStyle}
-              key={index}
-              icon={item.icon}
-              iconSize={IconSize.Default}
-              title={isOpen ? item.label : undefined}
-            />
-          </div>
+          <MenuIconButton
+            style={MenuItemStyle}
+            key={index}
+            icon={item.icon}
+            iconSize={IconSize.Default}
+            title={item.label}
+            showTitle={isOpen}
+          />
         ))}
       </Navigation>
       <div>content</div>
