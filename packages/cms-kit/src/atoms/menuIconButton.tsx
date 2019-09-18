@@ -30,7 +30,10 @@ const IconStyle = cssRuleWithTheme<{iconSize: IconSize}>(({iconSize, theme}) => 
   height: pxToRem(iconSize)
 }))
 
-const LabelStyle = cssRuleWithTheme(({theme}) => ({}))
+const LabelStyle = cssRuleWithTheme(({theme}) => ({
+  verticalAlign: 'middle',
+  paddingLeft: '5px'
+}))
 
 export interface MenuIconButtonProps extends BaseButtonProps {
   readonly icon: IconType

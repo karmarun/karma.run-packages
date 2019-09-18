@@ -5,9 +5,18 @@ import {centerLayoutDecorator} from '../.storybook/decorators'
 import {IconType, IconSize} from '../atoms/icon'
 import {Navigation} from './navigation'
 import {MenuIconButton} from '../atoms/menuIconButton'
+import {cssRuleWithTheme} from '../style/themeContext'
+import {cssRule, useStyle} from '@karma.run/react'
+import {pxToRem} from '../style/helpers'
+
+const MenuItemSpaceStyle = cssRule(() => ({
+  paddingTop: pxToRem(12),
+  paddingBottom: pxToRem(12)
+}))
 
 export function NavigationWrapper() {
   const [isOpen, setOpen] = useState(true)
+  const {css} = useStyle()
 
   return (
     <Navigation
@@ -17,12 +26,14 @@ export function NavigationWrapper() {
       }}
       menuItems={mockNaviItems}>
       {mockNaviItems.map((item, index) => (
-        <MenuIconButton
-          key={index}
-          icon={item.icon}
-          iconSize={IconSize.Default}
-          title={isOpen ? item.label : undefined}
-        />
+        <div className={css(MenuItemSpaceStyle)}>
+          <MenuIconButton
+            key={index}
+            icon={item.icon}
+            iconSize={IconSize.Default}
+            title={isOpen ? item.label : undefined}
+          />
+        </div>
       ))}
     </Navigation>
   )
@@ -30,6 +41,7 @@ export function NavigationWrapper() {
 
 export function LayoutWrapper() {
   const [isOpen, setOpen] = useState(true)
+  const {css} = useStyle()
 
   return (
     <div>
@@ -40,12 +52,14 @@ export function LayoutWrapper() {
         }}
         menuItems={mockNaviItems}>
         {mockNaviItems.map((item, index) => (
-          <MenuIconButton
-            key={index}
-            icon={item.icon}
-            iconSize={IconSize.Default}
-            title={isOpen ? item.label : undefined}
-          />
+          <div className={css(MenuItemSpaceStyle)}>
+            <MenuIconButton
+              key={index}
+              icon={item.icon}
+              iconSize={IconSize.Default}
+              title={isOpen ? item.label : undefined}
+            />
+          </div>
         ))}
       </Navigation>
       <div>content</div>

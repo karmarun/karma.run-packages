@@ -15,7 +15,8 @@ export const NavigationStyle = cssRuleWithTheme<{isOpen: boolean}>(({isOpen, the
 }))
 
 const NavigationItems = cssRuleWithTheme(({theme}) => ({
-  marginTop: pxToRem(85)
+  marginTop: pxToRem(85),
+  marginLeft: pxToRem(18)
 }))
 
 export interface NavigationProps {
@@ -38,7 +39,9 @@ export function Navigation({isOpen, onChange, children}: NavigationProps) {
 
 const NavigationButtonStyle = cssRuleWithTheme<{iconSize: IconSize}>(({iconSize, theme}) => ({
   border: 'none',
-  height: pxToRem(iconSize)
+  float: 'right',
+  padding: pxToRem(4),
+  margin: pxToRem(10)
 }))
 
 const IconStyle = cssRuleWithTheme<{iconSize: IconSize}>(({iconSize, theme}) => ({
