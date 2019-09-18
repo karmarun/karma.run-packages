@@ -1,30 +1,45 @@
 import React from 'react'
-import {IconType, Icon} from '../atoms/icon'
-import {cssRuleWithTheme, useThemeStyle, CSSRuleWithTheme} from '../style/themeContext'
-import {ImageThumbProps, ImageThumb} from '../atoms/imageThumb'
+import {IconType, Icon, IconSize} from '../atoms/icon'
+import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {OptionButtonSmall} from '../atoms/optionButtonSmall'
+import {pxToRem, pxToEm} from '../style/helpers'
+import {FontSize} from '../style/fontSize'
+
+export const ImageUploadStyle = cssRuleWithTheme(({theme}) => ({
+  display: 'flex',
+  borderRadius: pxToRem(3),
+  border: `1px dashed ${theme.colors.actionDark}`
+}))
+
+const ThumbStyle = cssRuleWithTheme<{inProcess: boolean}>(({inProcess}) => ({
+  opacity: inProcess ? 0.4 : 1
+}))
 
 export interface ImageUploadProps {
-  images: ImageThumbProps[]
-  isProcessing: boolean
+  readonly images: ImageThumbProps[]
+  readonly isProcessing: boolean
+  onDeleteImage(id: string): void
 }
 
-export function ImageUpload(props: ImageUploadProps) {
-  const info = {
-    initial: 'drop image here or click to upload',
-    upload: 'upload all',
-    processing: 'in process'
+export function ImageUpload({images, isProcessing, onDeleteImage}: ImageUploadProps) {
+  const {css} = useThemeStyle({inProcess: isProcessing})
+
+  function getState() {
+    if (images.length == 0) return UploadState.Empty
+    else if (isProcessing) return UploadState.InProcess
+    else return UploadState.Upload
   }
 
   return (
-    <div>
-      <ImageUploadIcon icon={IconType.Upload} text={info.initial} color={'action'} />
-      {props.images.map(img => (
-        <div>
+    <div className={css(ImageUploadStyle)}>
+      <ImageUploadIcon state={getState()} />
+      {images.map(img => (
+        <div className={css(ThumbStyle)}>
           <OptionButtonSmall
+            disabled={isProcessing}
             icon={IconType.Close}
             onClick={() => {
-              'click'
+              onDeleteImage(img.name)
             }}
           />
           <ImageThumb src={img.src} size={img.size} name={img.name} />
@@ -34,23 +49,70 @@ export function ImageUpload(props: ImageUploadProps) {
   )
 }
 
-const ImageUploadIconStyle = cssRuleWithTheme<{color: string}>(({color, theme}) => ({
-  color: color,
-  fill: color
+/**
+ *
+ * upload icon and info text component
+ */
+const UploadInfoStyle = cssRuleWithTheme<{inProcess: boolean}>(({inProcess, theme}) => ({
+  color: inProcess ? theme.colors.primary : theme.colors.action,
+  fill: inProcess ? theme.colors.primary : theme.colors.action,
+  fontSize: pxToRem(IconSize.Default),
+  textAlign: 'center'
 }))
 
-export interface ImageUploadIconProps {
-  icon: IconType
-  text: string
-  color: string
+const UploadInfoLabelStyle = cssRuleWithTheme<{inProcess: boolean}>(({inProcess, theme}) => ({
+  fontSize: pxToRem(FontSize.Small)
+}))
+
+export enum UploadState {
+  Empty,
+  Upload,
+  InProcess
 }
 
-export function ImageUploadIcon({icon, text, color}: ImageUploadIconProps) {
-  const {css} = useThemeStyle({color: color})
+export interface ImageUploadIconProps {
+  state: UploadState
+}
+
+export function ImageUploadIcon({state}: ImageUploadIconProps) {
+  const isInProcess = state == UploadState.InProcess
+  const {css} = useThemeStyle({inProcess: isInProcess})
+
+  function getInfoText() {
+    switch (state) {
+      case UploadState.Empty:
+        return 'drop image here or click to upload'
+      case UploadState.Upload:
+        return 'upload all'
+      case UploadState.InProcess:
+        return 'in process'
+    }
+  }
+
   return (
-    <div className={css(ImageUploadIconStyle)}>
-      <Icon type={icon} />
-      <div>{text}</div>
+    <div className={css(UploadInfoStyle)}>
+      <Icon type={isInProcess ? IconType.Created : IconType.Upload} />
+      <div className={css(UploadInfoLabelStyle)}>{getInfoText()}</div>
+    </div>
+  )
+}
+
+/**
+ *
+ * image thumb
+ */
+export interface ImageThumbProps {
+  src: string
+  size: string
+  name: string
+}
+
+export function ImageThumb({src, size, name}: ImageThumbProps) {
+  return (
+    <div>
+      <img src={src} />
+      <div>{size}</div>
+      <div>{name}</div>
     </div>
   )
 }
