@@ -2,23 +2,23 @@ import React, {useState} from 'react'
 
 import {storiesOf} from '@storybook/react'
 import {centerLayoutDecorator} from '../.storybook/decorators'
-import {AddBlockMenu} from './addBlockMenu'
-import {mockArticleBlockSelectors} from './overlayMenu.stories'
+import {mockArticleBlockSelectors, mockOptionMenuItems} from './overlayMenu.stories'
+import {OptionMenu} from './optionMenu'
 
-export function BlockSelectorMenuWrapper() {
+export function OptionMenuWrapper() {
   const [isOpen, setOpen] = useState(false)
 
   return (
-    <AddBlockMenu
+    <OptionMenu
       isOpen={isOpen}
       onAddClick={() => {
         setOpen(!isOpen)
       }}
-      menuItems={mockArticleBlockSelectors}
+      menuItems={mockOptionMenuItems}
     />
   )
 }
 
-storiesOf('Molecules|AddBlock', module)
+storiesOf('Molecules|MoreOptions', module)
   .addDecorator(centerLayoutDecorator(0.8))
-  .add('AddBlockMenu', () => <BlockSelectorMenuWrapper />)
+  .add('OptionMenu', () => <OptionMenuWrapper />)
