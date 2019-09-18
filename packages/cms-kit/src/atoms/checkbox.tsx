@@ -20,7 +20,7 @@ export function Checkbox(props: CheckboxProps) {
     <div className={props.className}>
       <Select
         id={props.id}
-        className={css(CheckboxStyle)}
+        style={CheckboxStyle}
         type="checkbox"
         checked={props.isChecked}
         onSelectChange={props.onChange}

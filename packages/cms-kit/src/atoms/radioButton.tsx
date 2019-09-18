@@ -19,7 +19,7 @@ export function RadioButton(props: RadioButtonProps) {
   return (
     <div className={props.className}>
       <Select
-        className={css(RadioButtonStyle)}
+        style={RadioButtonStyle}
         id={props.id}
         type="radio"
         checked={props.isChecked}
