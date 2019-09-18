@@ -5,18 +5,18 @@ import {centerLayoutDecorator} from '../.storybook/decorators'
 import {IconType, IconSize} from '../atoms/icon'
 import {Navigation} from './navigation'
 import {MenuIconButton} from '../atoms/menuIconButton'
-import {cssRuleWithTheme} from '../style/themeContext'
-import {cssRule, useStyle} from '@karma.run/react'
 import {pxToRem} from '../style/helpers'
+import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 
-const MenuItemSpaceStyle = cssRule(() => ({
+const MenuItemSpaceStyle = cssRuleWithTheme(({theme}) => ({
   paddingTop: pxToRem(12),
-  paddingBottom: pxToRem(12)
+  paddingBottom: pxToRem(12),
+  paddingLeft: pxToRem(18)
 }))
 
 export function NavigationWrapper() {
   const [isOpen, setOpen] = useState(true)
-  const {css} = useStyle()
+  const {css} = useThemeStyle()
 
   return (
     <Navigation
@@ -28,6 +28,7 @@ export function NavigationWrapper() {
       {mockNaviItems.map((item, index) => (
         <div className={css(MenuItemSpaceStyle)}>
           <MenuIconButton
+            style={MenuItemSpaceStyle}
             key={index}
             icon={item.icon}
             iconSize={IconSize.Default}
@@ -41,7 +42,7 @@ export function NavigationWrapper() {
 
 export function LayoutWrapper() {
   const [isOpen, setOpen] = useState(true)
-  const {css} = useStyle()
+  const {css} = useThemeStyle()
 
   return (
     <div>
@@ -54,6 +55,7 @@ export function LayoutWrapper() {
         {mockNaviItems.map((item, index) => (
           <div className={css(MenuItemSpaceStyle)}>
             <MenuIconButton
+              style={MenuItemSpaceStyle}
               key={index}
               icon={item.icon}
               iconSize={IconSize.Default}

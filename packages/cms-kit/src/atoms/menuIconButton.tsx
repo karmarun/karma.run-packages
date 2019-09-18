@@ -1,12 +1,12 @@
 import React from 'react'
 import {BaseButton, BaseButtonProps} from '../atoms/baseButton'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem} from '../style/helpers'
+import {pxToEm} from '../style/helpers'
 import {IconType, Icon, IconSize} from '../atoms/icon'
+import {FontSize} from '../style/fontSizes'
 
 export const MenuIconButtonStyle = cssRuleWithTheme(({theme}) => ({
   display: 'block',
-  backgroundColor: theme.colors.light,
   border: 'none',
 
   '& path': {
@@ -18,21 +18,22 @@ export const MenuIconButtonStyle = cssRuleWithTheme(({theme}) => ({
   '&:hover:enabled path': {
     fill: theme.colors.dark
   },
-  '&:active': {
+  '&:active:enabled': {
     backgroundColor: theme.colors.white
   },
-  '&:active path': {
+  '&:active:enabled path': {
     fill: theme.colors.primary
   }
 }))
 
 const IconStyle = cssRuleWithTheme<{iconSize: IconSize}>(({iconSize, theme}) => ({
-  height: pxToRem(iconSize)
+  fontSize: pxToEm(iconSize)
 }))
 
 const LabelStyle = cssRuleWithTheme(({theme}) => ({
   verticalAlign: 'middle',
-  paddingLeft: '5px'
+  paddingLeft: '5px',
+  fontSize: pxToEm(FontSize.Default)
 }))
 
 export interface MenuIconButtonProps extends BaseButtonProps {
@@ -40,8 +41,9 @@ export interface MenuIconButtonProps extends BaseButtonProps {
   readonly iconSize: IconSize
 }
 
-export function MenuIconButton({title, icon, iconSize, href, onClick}: MenuIconButtonProps) {
+export function MenuIconButton({title, icon, iconSize, href, onClick, style}: MenuIconButtonProps) {
   const {css} = useThemeStyle({iconSize: iconSize})
+  // TODO how to use style? how to use either item or array?
   return (
     <BaseButton href={href} onClick={onClick} style={MenuIconButtonStyle}>
       <>

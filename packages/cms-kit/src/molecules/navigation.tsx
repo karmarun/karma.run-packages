@@ -1,8 +1,7 @@
 import React, {ReactNode} from 'react'
-import {MenuItem} from './blockSelectorMenu'
 import {IconSize, Icon, IconType} from '../atoms/icon'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem} from '../style/helpers'
+import {pxToRem, pxToEm} from '../style/helpers'
 import {BaseButton} from '../atoms/baseButton'
 
 export const NavigationStyle = cssRuleWithTheme<{isOpen: boolean}>(({isOpen, theme}) => ({
@@ -15,15 +14,13 @@ export const NavigationStyle = cssRuleWithTheme<{isOpen: boolean}>(({isOpen, the
 }))
 
 const NavigationItems = cssRuleWithTheme(({theme}) => ({
-  marginTop: pxToRem(85),
-  marginLeft: pxToRem(18)
+  marginTop: pxToRem(85)
 }))
 
 export interface NavigationProps {
   isOpen: boolean
   onChange(): void
   children: ReactNode
-  menuItems: Array<MenuItem>
 }
 
 export function Navigation({isOpen, onChange, children}: NavigationProps) {
@@ -37,7 +34,7 @@ export function Navigation({isOpen, onChange, children}: NavigationProps) {
   )
 }
 
-const NavigationButtonStyle = cssRuleWithTheme<{iconSize: IconSize}>(({iconSize, theme}) => ({
+const NavigationButtonStyle = cssRuleWithTheme(({theme}) => ({
   border: 'none',
   float: 'right',
   padding: pxToRem(4),
@@ -45,7 +42,7 @@ const NavigationButtonStyle = cssRuleWithTheme<{iconSize: IconSize}>(({iconSize,
 }))
 
 const IconStyle = cssRuleWithTheme<{iconSize: IconSize}>(({iconSize, theme}) => ({
-  height: pxToRem(iconSize),
+  fontSize: pxToEm(iconSize),
   fill: theme.colors.gray
 }))
 
@@ -55,15 +52,12 @@ export interface NavigationButtonProps {
 }
 
 export function NavigationButton({isOpen, onChange}: NavigationButtonProps) {
-  const {css} = useThemeStyle()
-  const iconSize = IconSize.Small
-
   return (
-    <BaseButton onClick={onChange} style={NavigationButtonStyle} styleProps={{iconSize: iconSize}}>
+    <BaseButton onClick={onChange} style={NavigationButtonStyle}>
       <Icon
         type={isOpen ? IconType.ChevronLeft : IconType.ChevronRight}
         style={IconStyle}
-        styleProps={{iconSize: iconSize}}
+        styleProps={{iconSize: IconSize.Small}}
       />
     </BaseButton>
   )
