@@ -1,6 +1,5 @@
-import React from 'react'
+import React, {ReactNode} from 'react'
 import {MenuItem} from './blockSelectorMenu'
-import {MenuIconButton} from '../atoms/menuIconButton'
 import {IconSize, Icon, IconType} from '../atoms/icon'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {pxToRem} from '../style/helpers'
@@ -22,24 +21,17 @@ const NavigationItems = cssRuleWithTheme(({theme}) => ({
 export interface NavigationProps {
   isOpen: boolean
   onChange(): void
+  children: ReactNode
   menuItems: Array<MenuItem>
 }
 
-export function Navigation({isOpen, onChange, menuItems}: NavigationProps) {
+export function Navigation({isOpen, onChange, children}: NavigationProps) {
   const {css} = useThemeStyle({isOpen: isOpen})
 
   return (
     <div className={css(NavigationStyle)}>
       <NavigationButton isOpen={isOpen} onChange={onChange} />
-      <div className={css(NavigationItems)}>
-        {menuItems.map(item => (
-          <MenuIconButton
-            icon={item.icon}
-            iconSize={IconSize.Default}
-            title={isOpen ? item.label : undefined}
-          />
-        ))}
-      </div>
+      <div className={css(NavigationItems)}>{children}</div>
     </div>
   )
 }
@@ -51,10 +43,7 @@ const NavigationButtonStyle = cssRuleWithTheme<{iconSize: IconSize}>(({iconSize,
 
 const IconStyle = cssRuleWithTheme<{iconSize: IconSize}>(({iconSize, theme}) => ({
   height: pxToRem(iconSize),
-
-  '& path': {
-    fill: theme.colors.gray
-  }
+  fill: theme.colors.gray
 }))
 
 export interface NavigationButtonProps {

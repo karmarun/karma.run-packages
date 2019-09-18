@@ -2,8 +2,9 @@ import React, {useState} from 'react'
 
 import {storiesOf} from '@storybook/react'
 import {centerLayoutDecorator} from '../.storybook/decorators'
-import {IconType} from '../atoms/icon'
+import {IconType, IconSize} from '../atoms/icon'
 import {Navigation} from './navigation'
+import {MenuIconButton} from '../atoms/menuIconButton'
 
 export function NavigationWrapper() {
   const [isOpen, setOpen] = useState(true)
@@ -14,8 +15,16 @@ export function NavigationWrapper() {
       onChange={() => {
         setOpen(!isOpen)
       }}
-      menuItems={mockNaviItems}
-    />
+      menuItems={mockNaviItems}>
+      {mockNaviItems.map((item, index) => (
+        <MenuIconButton
+          key={index}
+          icon={item.icon}
+          iconSize={IconSize.Default}
+          title={isOpen ? item.label : undefined}
+        />
+      ))}
+    </Navigation>
   )
 }
 
@@ -29,8 +38,16 @@ export function LayoutWrapper() {
         onChange={() => {
           setOpen(!isOpen)
         }}
-        menuItems={mockNaviItems}
-      />
+        menuItems={mockNaviItems}>
+        {mockNaviItems.map((item, index) => (
+          <MenuIconButton
+            key={index}
+            icon={item.icon}
+            iconSize={IconSize.Default}
+            title={isOpen ? item.label : undefined}
+          />
+        ))}
+      </Navigation>
       <div>content</div>
     </div>
   )
