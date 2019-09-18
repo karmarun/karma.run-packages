@@ -39,7 +39,8 @@ storiesOf('Atoms|Input/Single', module)
       label={'Label'}
       value={''}
       placeholder={'Placeholder-Label'}
-      errorText={'Error text'}
+      description={'Description Text'}
+      errorDescription={'Error text'}
       onValueChange={value => {}}
     />
   ))

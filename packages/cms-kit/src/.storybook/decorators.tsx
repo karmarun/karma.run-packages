@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react'
 import {useStyle, cssRule} from '@karma.run/react'
-import {RenderFunction} from '@storybook/react'
+import {StoryFn} from '@storybook/addons'
 
 import {pxToRem} from '../style/helpers'
 
@@ -13,8 +13,8 @@ export const CenterLayoutStyle = cssRule({
   justifyContent: 'center',
   alignItems: 'center',
 
-  minWidth: '100vw',
-  minHeight: '100vh'
+  width: '100%',
+  height: '100%'
 })
 
 export const CenterLayoutContentStyle = cssRule(({scale}: CenterLayoutStyleProps) => ({
@@ -40,7 +40,7 @@ export function CenterLayout({minWidthFactor: scale, children}: CenterLayoutProp
 }
 
 export function centerLayoutDecorator(minWidthFactor: number = 0) {
-  return (story: RenderFunction) => {
+  return (story: StoryFn<ReactNode>) => {
     return <CenterLayout minWidthFactor={minWidthFactor}>{story()}</CenterLayout>
   }
 }
@@ -65,7 +65,7 @@ export function FontSize({fontSize, children}: FontSizeProps) {
 }
 
 export function fontSizeDecorator(fontSize: number = 24) {
-  return (story: RenderFunction) => {
+  return (story: StoryFn<ReactNode>) => {
     return <FontSize fontSize={fontSize}>{story()}</FontSize>
   }
 }
@@ -82,11 +82,11 @@ export const InfoBoxStyle = cssRule(() => ({
 
 export const InfoBoxTextStyle = cssRule(() => ({
   paddingBottom: pxToRem(5),
-  paddingTop: pxToRem(5)
+  paddingTop: pxToRem(5),
+  fontSize: '1.2rem'
 }))
 
-export const InfoBoxContentStyle = cssRule((elementSize: number) => ({
-  width: pxToRem(elementSize),
+export const InfoBoxContentStyle = cssRule(() => ({
   display: 'inline-block'
 }))
 
@@ -97,21 +97,19 @@ export interface InfoBoxProps {
   elementSize?: number
 }
 
-export function InfoBox({fontSize = 12, elementSize = 24, infoText, children}: InfoBoxProps) {
-  const {css} = useStyle(elementSize)
+export function InfoBox({infoText, children}: InfoBoxProps) {
+  const {css} = useStyle()
 
   return (
     <div className={css(InfoBoxStyle)}>
       <div className={css(InfoBoxContentStyle)}>{children}</div>
-      <div className={css(InfoBoxTextStyle)}>
-        <FontSize fontSize={fontSize}>{infoText}</FontSize>
-      </div>
+      <div className={css(InfoBoxTextStyle)}>{infoText}</div>
     </div>
   )
 }
 
 export function infoBoxDecorator(infoText: string, fontSize: number = 12) {
-  return (story: RenderFunction) => {
+  return (story: StoryFn<ReactNode>) => {
     return (
       <InfoBox infoText={infoText} fontSize={fontSize}>
         {story()}
