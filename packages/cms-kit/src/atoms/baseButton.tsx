@@ -46,6 +46,9 @@ export const BaseButtonStyle = cssRule({
 
   '&:disabled': {
     cursor: 'default'
+  },
+  '&:focus': {
+    outline: 'none'
   }
 })
 
