@@ -15,6 +15,6 @@ storiesOf('Molecules|ImageUpload', module)
   ))
 
 export const mockThumbImages = [
-  {src: 'https://dummyimage.com/100x68/000/fff', size: '1.1MB', name: 'Banana.jpg'},
-  {src: 'https://dummyimage.com/100x68/ba37ba/fff', size: '1.5MB', name: 'flower.jpg'}
+  {id: 'banana', src: 'https://dummyimage.com/100x68/000/fff', size: '1.1MB', name: 'Banana.jpg'},
+  {id: 'flower', src: 'https://dummyimage.com/100x68/ba37ba/fff', size: '1.5MB', name: 'flower.jpg'}
 ]

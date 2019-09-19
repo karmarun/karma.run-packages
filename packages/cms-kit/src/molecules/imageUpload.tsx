@@ -16,7 +16,7 @@ const ThumbStyle = cssRuleWithTheme<{inProcess: boolean}>(({inProcess}) => ({
 }))
 
 export interface ImageUploadProps {
-  readonly images: ImageThumbProps[]
+  readonly images: ImageUploadThumbProps[]
   readonly isProcessing: boolean
   onDeleteImage(id: string): void
 }
@@ -38,11 +38,9 @@ export function ImageUpload({images, isProcessing, onDeleteImage}: ImageUploadPr
           <OptionButtonSmall
             disabled={isProcessing}
             icon={IconType.Close}
-            onClick={() => {
-              onDeleteImage(img.name)
-            }}
+            onClick={() => onDeleteImage(img.id)}
           />
-          <ImageThumb src={img.src} size={img.size} name={img.name} />
+          <ImageUploadThumb id={img.id} src={img.src} size={img.size} name={img.name} />
         </div>
       ))}
     </div>
@@ -101,13 +99,14 @@ export function ImageUploadIcon({state}: ImageUploadIconProps) {
  *
  * image thumb
  */
-export interface ImageThumbProps {
-  src: string
-  size: string
-  name: string
+export interface ImageUploadThumbProps {
+  readonly id: string
+  readonly src: string
+  readonly size: string
+  readonly name: string
 }
 
-export function ImageThumb({src, size, name}: ImageThumbProps) {
+export function ImageUploadThumb({src, size, name}: ImageUploadThumbProps) {
   return (
     <div>
       <img src={src} />
