@@ -6,7 +6,7 @@ import {FontSize} from '../style/fontSize'
 import {TransitionDuration} from '../style/transition'
 
 export const OutlineButtonStyle = cssRuleWithTheme(({theme}) => ({
-  border: '1px ' + theme.colors.action + ' solid',
+  border: `1px ${theme.colors.action}  solid`,
   borderRadius: pxToRem(10),
   padding: pxToRem(10),
   color: theme.colors.action,
