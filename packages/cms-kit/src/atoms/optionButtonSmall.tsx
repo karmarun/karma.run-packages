@@ -4,6 +4,7 @@ import {BaseButton, ButtonProps} from './baseButton'
 import {cssRuleWithTheme} from '../style/themeContext'
 import {IconType, Icon} from './icon'
 import {pxToEm} from '../style/helpers'
+import {TransitionDuration} from '../style/transition'
 
 export const OptionButtonSmallStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
@@ -24,6 +25,9 @@ export const OptionButtonSmallStyle = cssRuleWithTheme(({theme}) => ({
 
   fill: theme.colors.dark,
 
+  transition: 'box-shadow ease-in',
+  transitionDuration: TransitionDuration.Fast,
+
   '> *': {
     fontSize: pxToEm(14)
   },
@@ -33,17 +37,13 @@ export const OptionButtonSmallStyle = cssRuleWithTheme(({theme}) => ({
   },
 
   '&:active:enabled': {
-    backgroundColor: theme.colors.light
+    backgroundColor: theme.colors.light,
+    fill: theme.colors.action,
+    boxShadow: 'none'
   },
 
   '&:disabled': {
     fill: theme.colors.gray
-  },
-
-  '&:focus': {
-    outline: 'none',
-    fill: theme.colors.action,
-    border: `solid 1px ${theme.colors.action}`
   }
 }))
 

@@ -5,30 +5,32 @@ import {IconType, Icon, IconSize} from './icon'
 import {cssRuleWithTheme} from '../style/themeContext'
 import {pxToRem} from '../style/helpers'
 import {Spacing} from '../style/spacing'
+import {TransitionDuration} from '../style/transition'
+import {FontSize} from '../style/fontSize'
 
 export const IconLabelButtonStyle = cssRuleWithTheme(({theme}) => ({
-  width: pxToRem(70),
+  minWidth: pxToRem(70),
   borderRadius: pxToRem(2),
 
-  padding: pxToRem(Spacing.ExtraSmall),
+  fontSize: pxToRem(FontSize.Small),
+
+  padding: pxToRem(Spacing.Tiny),
+
+  transition: 'fill ease-in, background-color ease-in',
+  transitionDuration: TransitionDuration.Fast,
 
   '&:hover:enabled': {
     fill: theme.colors.action
   },
 
-  '&:active': {
-    fill: theme.colors.action,
+  '&:active:enabled': {
+    fill: theme.colors.actionDark,
     backgroundColor: theme.colors.light
   },
 
   '&:disabled': {
     fill: theme.colors.gray,
     color: theme.colors.gray
-  },
-
-  '&:focus': {
-    outline: 'none',
-    fill: theme.colors.action
   }
 }))
 
