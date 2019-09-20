@@ -12,7 +12,7 @@ export const OutlineButtonStyle = cssRuleWithTheme(({theme}) => ({
   color: theme.colors.action,
   fontSize: pxToRem(FontSize.Medium),
   minWidth: pxToRem(140),
-  transition: 'background-color ease-in',
+  transition: 'background-color ease-in, box-shadow ease-in',
   transitionDuration: TransitionDuration.Fast,
 
   ':hover:enabled': {
