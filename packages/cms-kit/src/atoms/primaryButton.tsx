@@ -16,23 +16,19 @@ export const PrimaryButtonStyle = cssRuleWithTheme(({theme}) => ({
   transition: 'background-color ease-in',
   transitionDuration: TransitionDuration.Fast,
 
-  '&:hover': {
+  '&:hover:enabled': {
     backgroundColor: theme.colors.primaryDark,
     color: theme.colors.light
   },
 
-  '&:active': {
+  ':active:enabled': {
     backgroundColor: theme.colors.primaryDark,
     color: theme.colors.grayLight
   },
 
-  '&:disabled': {
+  ':disabled': {
     backgroundColor: theme.colors.grayLight,
-    color: theme.colors.gray,
-    ':hover': {
-      backgroundColor: theme.colors.grayLight,
-      color: theme.colors.gray
-    }
+    color: theme.colors.gray
   }
 }))
 

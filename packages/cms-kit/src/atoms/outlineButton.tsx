@@ -15,23 +15,18 @@ export const OutlineButtonStyle = cssRuleWithTheme(({theme}) => ({
   transition: 'background-color ease-in',
   transitionDuration: TransitionDuration.Fast,
 
-  '&:hover': {
+  ':hover:enabled': {
     backgroundColor: theme.colors.light
   },
 
-  '&:active': {
+  ':active:enabled': {
     backgroundColor: theme.colors.actionDark
   },
 
-  '&:disabled': {
+  ':disabled': {
     backgroundColor: theme.colors.light,
     borderColor: theme.colors.grayLight,
-    color: theme.colors.gray,
-    ':hover': {
-      backgroundColor: theme.colors.light,
-      borderColor: theme.colors.grayLight,
-      color: theme.colors.gray
-    }
+    color: theme.colors.gray
   }
 }))
 
