@@ -25,7 +25,7 @@ export const OptionButtonSmallStyle = cssRuleWithTheme(({theme}) => ({
 
   fill: theme.colors.dark,
 
-  transition: 'box-shadow ease-in',
+  transition: 'background-color ease-in, border ease-in',
   transitionDuration: TransitionDuration.Fast,
 
   '> *': {
@@ -33,13 +33,13 @@ export const OptionButtonSmallStyle = cssRuleWithTheme(({theme}) => ({
   },
 
   '&:hover:enabled': {
-    boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.5)'
+    backgroundColor: theme.colors.light,
+    borderColor: theme.colors.action
   },
 
   '&:active:enabled': {
-    backgroundColor: theme.colors.light,
-    fill: theme.colors.action,
-    boxShadow: 'none'
+    backgroundColor: theme.colors.actionDark,
+    fill: theme.colors.action
   },
 
   '&:disabled': {
