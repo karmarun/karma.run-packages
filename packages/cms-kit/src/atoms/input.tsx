@@ -23,7 +23,7 @@ export interface InputProps {
   readonly label?: string
   readonly value: string
   readonly placeholder: string
-  readonly description: string
+  readonly description?: string
   readonly errorDescription?: string
   readonly icon?: IconType
   readonly className?: string
@@ -40,7 +40,8 @@ export function Input({
   onValueChange,
   className
 }: InputProps) {
-  const {css} = useThemeStyle<InputStyleProps>({hasError: errorDescription != null})
+  const hasError = errorDescription != null
+  const {css} = useThemeStyle<InputStyleProps>({hasError: hasError})
 
   const Input = (
     <input
@@ -64,7 +65,7 @@ export function Input({
           Input
         )}
       </div>
-      <div className={css(DescriptionStyle)}>{errorDescription && description}</div>
+      <div className={css(DescriptionStyle)}>{hasError ? errorDescription : description}</div>
     </div>
   )
 }
