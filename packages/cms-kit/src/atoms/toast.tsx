@@ -10,9 +10,9 @@ export const ToastStyle = cssRuleWithTheme<{type: ToastType}>(({type, theme}) =>
       case ToastType.Action:
         return theme.colors.action
       case ToastType.Success:
-        return theme.colors.success
+        return `${theme.colors.success}80`
       case ToastType.Error:
-        return theme.colors.alert
+        return `${theme.colors.alert}80`
     }
   }
 
