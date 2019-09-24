@@ -13,7 +13,7 @@ export const InputContainerStyle = cssRuleWithTheme(({theme}) => ({
   paddingTop: pxToRem(16)
 }))
 
-export const InputStyle = cssRuleWithTheme(({hasError, theme}) => ({
+export const InputStyle = cssRuleWithTheme<InputStyleProps>(({hasError, theme}) => ({
   position: 'relative',
 
   '> input': {

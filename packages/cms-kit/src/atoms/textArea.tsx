@@ -12,12 +12,11 @@ export const TextAreaContainerStyle = cssRuleWithTheme(({theme}) => ({
   paddingTop: pxToRem(16)
 }))
 
-export const TextAreaStyle = cssRuleWithTheme(({hasError, theme}) => ({
+export const TextAreaStyle = cssRuleWithTheme<TextAreaStyleProps>(({hasError, theme}) => ({
   position: 'relative',
 
   '> textarea': {
     width: '100%',
-    //minHeight: pxToRem(60),
     border: 'none',
     borderBottom: '1px solid',
     borderColor: hasError ? theme.colors.alert : theme.colors.gray,
