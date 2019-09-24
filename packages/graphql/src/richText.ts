@@ -1,266 +1,366 @@
-import {GraphQLScalarType, Kind, valueFromASTUntyped, ASTNode, GraphQLError} from 'graphql'
-import {DocumentJSON, NodeJSON, BlockJSON, TextJSON, MarkJSON} from 'slate'
-import Maybe from 'graphql/tsutils/Maybe'
-import {isObject} from '@karma.run/utility'
+import {GraphQLScalarType, valueFromASTUntyped} from 'graphql'
+import {DocumentJSON, NodeJSON, BlockJSON, TextJSON, MarkJSON, InlineJSON} from 'slate'
+import {isObject, isArray, isString} from '@karma.run/utility'
 
-export function parseLiteral(ast: ASTNode, variables: Maybe<{[key: string]: any}>): any {
-  switch (ast.kind) {
-    case Kind.STRING:
-    case Kind.BOOLEAN:
-      return ast.value
+export interface KeyGeneratorClass {
+  new (): KeyGenerator
+}
 
-    case Kind.INT:
-      return parseInt(ast.value)
+export interface KeyGenerator {
+  generateKey(): string
+}
 
-    case Kind.FLOAT:
-      return parseFloat(ast.value)
+export interface CreateRichTextScalarOptions {
+  validation: ValidationOptions
+  keyGeneratorClass?: KeyGeneratorClass
+}
 
-    case Kind.OBJECT:
-      return ast.fields.reduce(
-        (obj, value) => {
-          obj[value.name.value] = parseLiteral(value.value, variables)
-          return obj
-        },
-        {} as Record<string, any>
-      )
+export class IncrementalKeyGenerator implements KeyGenerator {
+  private _currentKey: number = 0
 
-    case Kind.LIST:
-      return ast.values.map(value => parseLiteral(value, variables))
-
-    case Kind.NULL:
-      return null
-
-    case Kind.VARIABLE:
-      return variables ? variables[ast.name.value] : undefined
-
-    default:
-      return undefined
+  generateKey(): string {
+    return (this._currentKey++).toString()
   }
 }
 
-export const GraphQLRichText = new GraphQLScalarType({
-  name: 'GraphQLRichText',
-  serialize(value: DocumentJSON) {
-    return value
-  },
+export function createRichTextScalar({
+  validation,
+  keyGeneratorClass = IncrementalKeyGenerator
+}: CreateRichTextScalarOptions) {
+  return new GraphQLScalarType({
+    name: 'GraphQLRichText',
+    serialize(value: DocumentJSON) {
+      const keyGenerator = new keyGeneratorClass()
+      const opts = {validation, keyGenerator}
+      const node = validateNodeJSON(value, opts)
 
-  parseValue(value: unknown) {
-    if (typeof value !== 'object' || value == null || Array.isArray(value)) {
-      throw new TypeError(
-        `GraphQLRichText cannot represent non string type ${JSON.stringify(value)}.`
-      )
+      if (node.object !== 'document') throw new TypeError(`Top-level node must be a document node.`)
+      return node
+    },
+
+    parseValue(value: unknown) {
+      const keyGenerator = new keyGeneratorClass()
+      const opts = {validation, keyGenerator}
+      const node = validateNodeJSON(value, opts)
+
+      if (node.object !== 'document') throw new TypeError(`Top-level node must be a document node.`)
+      return node
+    },
+
+    parseLiteral(ast, variables) {
+      const keyGenerator = new keyGeneratorClass()
+      const opts = {validation, keyGenerator}
+      const node = validateNodeJSON(valueFromASTUntyped(ast, variables), opts)
+
+      if (node.object !== 'document') throw new TypeError(`Top-level node must be a document node.`)
+      return node
     }
-
-    const node = validateDocumentJSON(value, [])
-
-    // TODO: Check document
-
-    return node
-  },
-
-  parseLiteral(ast, variables) {
-    if (ast.kind !== Kind.OBJECT) {
-      throw new GraphQLError(
-        `GraphQLRichText cannot represent non object type ${JSON.stringify(
-          valueFromASTUntyped(ast)
-        )}.`,
-        ast
-      )
-    }
-
-    const node = validateNodeJSON(parseLiteral(ast, variables), [])
-
-    // TODO: Check document
-
-    return node
-  }
-})
+  })
+}
 
 export type PathArray = readonly (string | number)[]
-export type UnknownNode = Record<string, {type: string}>
+export type UnknownNode = Readonly<Record<string, {type: string}>>
 
-export function validateNodeJSON(node: unknown, path: PathArray): NodeJSON {
-  if (!isObject(node)) {
-    throw new GraphQLError(
-      `Cannot represent a RichText node as non-object.`,
-      undefined,
-      undefined,
-      undefined,
-      path
+export type DataValidationFn<T extends Readonly<Record<string, any>> = {}> = (
+  data: Readonly<Record<string, unknown> | undefined>
+) => T
+
+export type DataValidationMap = Record<string, DataValidationFn | null>
+
+export interface ValidationOptions {
+  block: DataValidationMap
+  inline: DataValidationMap
+  marks: DataValidationMap
+}
+
+export interface NodeValidationOptions {
+  validation: ValidationOptions
+  keyGenerator: KeyGenerator
+}
+
+export const validNodeTypes: NodeJSON['object'][] = ['document', 'block', 'inline', 'text']
+
+export function validateNodeJSON(
+  unknown: unknown,
+  opts: NodeValidationOptions,
+  path: PathArray = []
+): NodeJSON {
+  if (!isObject(unknown)) {
+    throw new TypeError(
+      `Value at path ${JSON.stringify(path)} must be of type object found ${typeof unknown}.`
     )
   }
-}
 
-// export function validateBlockNode(node: unknown): BlockJSON {}
+  const node = unknown as NodeJSON
 
-// export function validateTextNode(node: unknown): TextJSON {}
-
-// export function validateMarkNode(node: unknown): MarkJSON {}
-
-export function validateDocumentJSON(node: NodeJSON, path: PathArray): DocumentJSON {
-  if (!isObject(node)) {
-    throw new GraphQLError(`Cannot represent slate `, undefined, undefined, undefined, path)
+  if (!validNodeTypes.includes(node.object)) {
+    throw new TypeError(
+      `Value at path ${JSON.stringify([...path, 'object'])} must be one of ${JSON.stringify(
+        validNodeTypes
+      )} found ${JSON.stringify(node.object)}.`
+    )
   }
 
-  return {}
+  switch (node.object) {
+    case 'document':
+      return validateDocumentJSON(node, opts, path)
+
+    case 'block':
+      return validateBlockNode(node, opts, path)
+
+    case 'inline':
+      return validateInlineNode(node, opts, path)
+
+    case 'text':
+      return validateTextNode(node, opts, path)
+  }
+
+  throw new TypeError(`Couldn't parse ${unknown} as RichText`)
 }
 
-const mockRichTextValue: DocumentJSON = {
-  object: 'document',
-  nodes: [
-    {
-      object: 'block',
-      key: '0',
-      type: 'heading-two',
-      nodes: [
-        {
-          object: 'text',
-          key: '0',
-          text: 'This is a H2 '
-        }
-      ]
-    },
-    {
-      object: 'block',
-      key: '1',
-      type: 'heading-three',
-      nodes: [
-        {
-          object: 'text',
-          key: '0',
-          text: 'This is a H3'
-        }
-      ]
-    },
-    {
-      object: 'block',
-      key: '2',
-      type: 'paragraph',
-      nodes: [
-        {
-          object: 'text',
-          key: '0',
-          text: "Since it's rich text, you can do things like turn a selection of text "
-        },
-        {
-          object: 'text',
-          key: '1',
-          text: 'bold',
-          marks: [{type: 'bold'}]
-        },
-        {
-          object: 'text',
-          key: '2',
-          text: ', or '
-        },
-        {
-          object: 'text',
-          key: '3',
-          text: 'italic',
-          marks: [{type: 'italic'}]
-        },
-        {
-          object: 'text',
-          key: '4',
-          text: '!'
-        }
-      ]
-    },
-    {
-      object: 'block',
-      key: '3',
-      type: 'paragraph',
-      nodes: [
-        {
-          object: 'text',
-          key: '0',
-          text: 'In addition to block nodes, you can create inline nodes, like '
-        },
-        {
-          object: 'inline',
-          key: '1',
-          type: 'link',
-          data: {
-            href: 'https://en.wikipedia.org/wiki/Hypertext'
-          },
-          nodes: [
-            {
-              object: 'text',
-              key: '0',
-              text: 'hyperlinks'
-            }
-          ]
-        },
-        {
-          object: 'text',
-          key: '2',
-          text: '!'
-        }
-      ]
-    },
-    {
-      object: 'block',
-      key: '4',
-      type: 'bulleted-list',
-      nodes: [
-        {
-          object: 'block',
-          key: '0',
-          type: 'list-item',
-          nodes: [
-            {
-              object: 'text',
-              key: '0',
-              text: 'bullet one'
-            }
-          ]
-        },
-        {
-          object: 'block',
-          key: '1',
-          type: 'list-item',
-          nodes: [
-            {
-              object: 'text',
-              key: '0',
-              text: 'bullet two',
-              marks: [{type: 'bold'}, {type: 'italic'}]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      object: 'block',
-      key: '5',
-      type: 'numbered-list',
-      nodes: [
-        {
-          object: 'block',
-          key: '0',
-          type: 'list-item',
-          nodes: [
-            {
-              object: 'text',
-              key: '20',
-              text: 'nubmer one'
-            }
-          ]
-        },
-        {
-          object: 'block',
-          key: '1',
-          type: 'list-item',
-          nodes: [
-            {
-              object: 'text',
-              key: '0',
-              text: 'number two',
-              marks: [{type: 'italic'}]
-            }
-          ]
-        }
-      ]
+function validateDocumentJSON(
+  node: DocumentJSON,
+  opts: NodeValidationOptions,
+  path: PathArray
+): DocumentJSON {
+  if (!isArray(node.nodes)) {
+    throw new TypeError(
+      `Value at path ${JSON.stringify([
+        ...path,
+        'nodes'
+      ])} must be an array found ${typeof node.nodes}.`
+    )
+  }
+
+  const key = opts.keyGenerator.generateKey()
+  const validatedNodes = node.nodes.map((node, index) =>
+    validateNodeJSON(node, opts, [...path, 'nodes', index])
+  )
+
+  const childObjectTypes = validatedNodes.map(node => node.object)
+
+  if (
+    childObjectTypes.includes('document') ||
+    childObjectTypes.includes('inline') ||
+    childObjectTypes.includes('text')
+  ) {
+    throw new TypeError(
+      `Document child nodes at path ${JSON.stringify([
+        ...path,
+        'nodes'
+      ])} should only include block nodes.`
+    )
+  }
+
+  return {
+    key,
+    object: 'document',
+    nodes: validatedNodes
+  }
+}
+
+function validateBlockNode(
+  node: BlockJSON,
+  opts: NodeValidationOptions,
+  path: PathArray
+): BlockJSON {
+  if (node.nodes && !isArray(node.nodes)) {
+    throw new TypeError(
+      `Value at path ${JSON.stringify([
+        ...path,
+        'nodes'
+      ])} must be an array found ${typeof node.nodes}.`
+    )
+  }
+
+  if (!isString(node.type)) {
+    throw new TypeError(
+      `Value at path ${JSON.stringify([
+        ...path,
+        'type'
+      ])} must be of type string found ${typeof node.type}.`
+    )
+  }
+
+  const validationFn = opts.validation.block[node.type]
+
+  if (validationFn === undefined) {
+    throw new TypeError(
+      `Error at path ${JSON.stringify([
+        ...path,
+        'type'
+      ])}, couldn't find a validation entry for block of type "${node.type}".`
+    )
+  }
+
+  const key = opts.keyGenerator.generateKey()
+  const validatedData = wrapDataValidation(node.data, validationFn, [...path, 'data'])
+  const validatedNodes = node.nodes
+    ? node.nodes.map((node, index) => validateNodeJSON(node, opts, [...path, 'nodes', index]))
+    : []
+
+  const childObjectTypes = validatedNodes.map(node => node.object)
+
+  if (
+    childObjectTypes.includes('document') ||
+    (childObjectTypes.includes('block') && childObjectTypes.includes('inline')) ||
+    (childObjectTypes.includes('block') && childObjectTypes.includes('text'))
+  ) {
+    throw new TypeError(
+      `Block child nodes at path ${JSON.stringify([
+        ...path,
+        'nodes'
+      ])} should either include only block nodes or inline and text nodes.`
+    )
+  }
+
+  return {
+    key,
+    object: 'block',
+    type: node.type,
+    data: validatedData,
+    nodes: validatedNodes as (BlockJSON | InlineJSON | TextJSON)[]
+  }
+}
+
+function validateInlineNode(
+  node: InlineJSON,
+  opts: NodeValidationOptions,
+  path: PathArray
+): InlineJSON {
+  if (node.nodes && !isArray(node.nodes)) {
+    throw new TypeError(
+      `Value at path ${JSON.stringify([
+        ...path,
+        'nodes'
+      ])} must be an array found ${typeof node.nodes}.`
+    )
+  }
+
+  if (!isString(node.type)) {
+    throw new TypeError(
+      `Value at path ${JSON.stringify([
+        ...path,
+        'type'
+      ])} must be of type string found ${typeof node.type}.`
+    )
+  }
+
+  const validationFn = opts.validation.inline[node.type]
+
+  if (validationFn === undefined) {
+    throw new TypeError(
+      `Error at path ${JSON.stringify([
+        ...path,
+        'type'
+      ])}, couldn't find a validation entry for inline of type "${node.type}".`
+    )
+  }
+
+  const key = opts.keyGenerator.generateKey()
+  const validatedData = wrapDataValidation(node.data, validationFn, [...path, 'data'])
+  const validatedNodes = node.nodes
+    ? node.nodes.map((node, index) => validateNodeJSON(node, opts, [...path, 'nodes', index]))
+    : []
+
+  const childObjectTypes = validatedNodes.map(node => node.object)
+
+  if (childObjectTypes.includes('document') || childObjectTypes.includes('block')) {
+    throw new TypeError(
+      `Inline child nodes at path ${JSON.stringify([
+        ...path,
+        'nodes'
+      ])} should only include inline or text nodes.`
+    )
+  }
+
+  return {
+    key,
+    object: 'inline',
+    type: node.type,
+    data: validatedData,
+    nodes: validatedNodes as (InlineJSON | TextJSON)[]
+  }
+}
+
+function validateTextNode(node: TextJSON, opts: NodeValidationOptions, path: PathArray): TextJSON {
+  if (node.marks && !isArray(node.marks)) {
+    throw new TypeError(
+      `Value at path ${JSON.stringify([
+        ...path,
+        'marks'
+      ])} must be an array found ${typeof node.marks}.`
+    )
+  }
+
+  if (!isString(node.text)) {
+    throw new TypeError(
+      `Value at path ${JSON.stringify([
+        ...path,
+        'text'
+      ])} must be of type string found ${typeof node.text}.`
+    )
+  }
+
+  const key = opts.keyGenerator.generateKey()
+  const validatedMarks = node.marks
+    ? node.marks.map((mark, index) => validateMarkNode(mark, opts, [...path, 'marks', index]))
+    : []
+
+  return {
+    key,
+    object: 'text',
+    text: node.text,
+    marks: validatedMarks
+  }
+}
+
+function validateMarkNode(node: MarkJSON, opts: NodeValidationOptions, path: PathArray): MarkJSON {
+  if (!isString(node.type)) {
+    throw new TypeError(
+      `Value at path ${JSON.stringify([
+        ...path,
+        'type'
+      ])} must be of type string found ${typeof node.type}.`
+    )
+  }
+
+  const validationFn = opts.validation.marks[node.type]
+
+  if (validationFn === undefined) {
+    throw new TypeError(
+      `Error at path ${JSON.stringify([
+        ...path,
+        'type'
+      ])}, couldn't find a validation entry for mark of type "${node.type}".`
+    )
+  }
+
+  const validatedData = wrapDataValidation(node.data, validationFn, [...path, 'data'])
+
+  return {
+    object: 'mark',
+    type: node.type,
+    data: validatedData
+  }
+}
+
+function wrapDataValidation<T extends Readonly<Record<string, any>> = {}>(
+  data: Record<string, unknown> | undefined,
+  validationFn: DataValidationFn<T> | null,
+  path: PathArray
+) {
+  let validatedData = {}
+
+  if (validationFn) {
+    try {
+      validatedData = validationFn(data)
+    } catch (err) {
+      throw new Error(
+        `Data validation error at path ${JSON.stringify(path)}: ${err ? err.message : err}`
+      )
     }
-  ]
+  }
+
+  return validatedData
 }

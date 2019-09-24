@@ -3,14 +3,70 @@ import {createServer} from 'http'
 import {GraphQLSchema, GraphQLObjectType, GraphQLNonNull} from 'graphql'
 import graphqlHTTP from 'express-graphql'
 
-import {GraphQLRichText} from '@karma.run/graphql'
+import {createRichTextScalar} from '@karma.run/graphql'
+import {URL} from 'url'
+
+const GraphQLRichText = createRichTextScalar({
+  validation: {
+    block: {
+      paragraph: null,
+      header1: null
+    },
+    inline: {
+      link: (value: any) => {
+        return {url: new URL(value.url).toString()}
+      }
+    },
+    marks: {
+      strong: null
+    }
+  }
+})
 
 const GraphQLQuery = new GraphQLObjectType({
   name: 'Query',
   fields: {
     richText: {
       type: GraphQLNonNull(GraphQLRichText),
-      resolve() {}
+      resolve() {
+        return {
+          object: 'document',
+          nodes: [
+            {object: 'block', type: 'paragraph'},
+            {object: 'block', type: 'paragraph'},
+            {
+              object: 'block',
+              type: 'paragraph',
+              nodes: [
+                {
+                  object: 'inline',
+                  type: 'link',
+                  data: {url: 'http://foo.bar'},
+                  nodes: [
+                    {
+                      object: 'text',
+                      text: 'Test',
+                      marks: [{object: 'mark', type: 'strong'}]
+                    }
+                  ]
+                },
+                {
+                  object: 'inline',
+                  type: 'link',
+                  data: {url: 'http://foo.bar'},
+                  nodes: [
+                    {
+                      object: 'text',
+                      text: 'Test',
+                      marks: [{object: 'mark', type: 'strong'}]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
     }
   }
 })
@@ -26,7 +82,9 @@ const GraphQLMutation = new GraphQLObjectType({
           description: 'RichText to create.'
         }
       },
-      resolve() {}
+      resolve(_root, args) {
+        return args.richText
+      }
     }
   }
 })
