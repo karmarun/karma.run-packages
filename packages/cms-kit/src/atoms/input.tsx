@@ -2,13 +2,13 @@ import React from 'react'
 import {IconType, Icon, IconScale} from './icon'
 import {cssRuleWithTheme, useThemeStyle, ThemeContext} from '../style/themeContext'
 import {joinClassNames} from '@karma.run/react'
-import {pxToRem, FontSize, TransitionDuration} from '../style/helpers'
+import {pxToRem, FontSize, TransitionDuration, Spacing} from '../style/helpers'
 
 export interface InputStyleProps {
   hasError: boolean
 }
 
-export const InputFieldStyle = cssRuleWithTheme(({theme}) => ({
+export const InputContainerStyle = cssRuleWithTheme(({theme}) => ({
   minHeight: pxToRem(54),
   paddingTop: pxToRem(16)
 }))
@@ -69,12 +69,12 @@ export const InputStyle = cssRuleWithTheme(({hasError, theme}) => ({
   },
   '> span': {
     position: 'absolute',
-    left: '0',
+    left: '1px',
     top: '1px',
     fill: theme.colors.dark
   },
   '> span + input': {
-    paddingLeft: pxToRem(20)
+    paddingLeft: pxToRem(Spacing.Medium)
   }
 }))
 
@@ -129,7 +129,7 @@ export function Input({
   )
 
   return (
-    <div className={joinClassNames(css(InputFieldStyle), className)}>
+    <div className={joinClassNames(css(InputContainerStyle), className)}>
       <div className={joinClassNames(css(InputStyle))}>
         {icon ? (
           <>
