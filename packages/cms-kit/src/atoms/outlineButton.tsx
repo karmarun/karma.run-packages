@@ -1,11 +1,9 @@
 import React from 'react'
 import {BaseButton, ButtonProps} from './baseButton'
 import {cssRuleWithTheme} from '../style/themeContext'
-import {pxToRem} from '../style/helpers'
-import {FontSize} from '../style/fontSize'
-import {TransitionDuration} from '../style/transition'
+import {pxToRem, FontSize, TransitionDuration} from '../style/helpers'
 
-export const OutlineButtonStyle = cssRuleWithTheme(({theme}) => ({
+export const OutlineButtonStyle = cssRuleWithTheme<{invert: boolean}>(({invert, theme}) => ({
   border: `1px ${theme.colors.action}  solid`,
   borderRadius: pxToRem(10),
   padding: pxToRem(10),
@@ -15,8 +13,8 @@ export const OutlineButtonStyle = cssRuleWithTheme(({theme}) => ({
   transition: 'background-color ease-in, box-shadow ease-in',
   transitionDuration: TransitionDuration.Fast,
 
-  ':hover:enabled': {
-    backgroundColor: theme.colors.light
+  ':hover': {
+    backgroundColor: invert ? theme.colors.grayDark : theme.colors.light
   },
 
   ':active:enabled': {
@@ -24,7 +22,7 @@ export const OutlineButtonStyle = cssRuleWithTheme(({theme}) => ({
   },
 
   ':disabled': {
-    backgroundColor: theme.colors.light,
+    backgroundColor: invert ? 'transparent' : theme.colors.light,
     borderColor: theme.colors.grayLight,
     color: theme.colors.gray
   }
@@ -32,11 +30,13 @@ export const OutlineButtonStyle = cssRuleWithTheme(({theme}) => ({
 
 export interface OutlineButtonProps extends ButtonProps {
   readonly label: string
+  readonly isInvert?: boolean
 }
 
-export function OutlineButton({label, ...rest}: OutlineButtonProps) {
+export function OutlineButton({label, isInvert, ...rest}: OutlineButtonProps) {
+  const invert = isInvert != undefined && isInvert
   return (
-    <BaseButton {...rest} style={OutlineButtonStyle}>
+    <BaseButton {...rest} style={OutlineButtonStyle} styleProps={{invert: invert}}>
       {label}
     </BaseButton>
   )

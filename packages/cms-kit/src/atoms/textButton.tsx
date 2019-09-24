@@ -1,10 +1,7 @@
 import React from 'react'
 import {BaseButtonProps, BaseButton} from './baseButton'
 import {cssRuleWithTheme} from '../style/themeContext'
-import {pxToRem} from '../style/helpers'
-import {Spacing} from '../style/spacing'
-import {FontSize} from '../style/fontSize'
-import {TransitionDuration} from '../style/transition'
+import {pxToRem, FontSize, TransitionDuration, Spacing} from '../style/helpers'
 
 export const TextButtonStyle = cssRuleWithTheme(({theme}) => ({
   border: 'none',

@@ -3,8 +3,7 @@ import React from 'react'
 import {BaseButton, ButtonProps} from './baseButton'
 import {cssRuleWithTheme} from '../style/themeContext'
 import {IconType, Icon} from './icon'
-import {pxToEm} from '../style/helpers'
-import {TransitionDuration} from '../style/transition'
+import {pxToEm, TransitionDuration} from '../style/helpers'
 
 export const OptionButtonSmallStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',

@@ -33,6 +33,7 @@ export const BaseButtonStyle = cssRule({
 
   cursor: 'pointer',
   fontSize: 'inherit',
+  fontFamily: 'inherit',
 
   padding: 0,
   margin: 0,
@@ -44,10 +45,11 @@ export const BaseButtonStyle = cssRule({
   MozAppearance: 'none',
   WebkitAppearance: 'none',
 
-  '&:disabled': {
+  ':disabled': {
     cursor: 'default'
   },
-  '&:focus': {
+
+  ':focus': {
     outline: 'none'
   }
 })

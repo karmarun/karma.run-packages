@@ -1,9 +1,7 @@
 import React from 'react'
 import {BaseButton, ButtonProps} from './baseButton'
 import {cssRuleWithTheme} from '../style/themeContext'
-import {pxToRem} from '../style/helpers'
-import {FontSize} from '../style/fontSize'
-import {TransitionDuration} from '../style/transition'
+import {pxToRem, FontSize, TransitionDuration} from '../style/helpers'
 
 export const PrimaryButtonStyle = cssRuleWithTheme(({theme}) => ({
   backgroundColor: theme.colors.primary,

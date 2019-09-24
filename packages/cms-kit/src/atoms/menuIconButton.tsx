@@ -1,18 +1,15 @@
 import React from 'react'
 import {BaseButton, BaseButtonProps} from '../atoms/baseButton'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem} from '../style/helpers'
-import {IconType, Icon, IconSize, IconScale} from '../atoms/icon'
-import {FontSize} from '../style/fontSize'
+import {pxToRem, FontSize, Spacing, TransitionDuration} from '../style/helpers'
+import {IconType, Icon, IconScale} from '../atoms/icon'
 import {toArray} from '../utility'
-import {TransitionDuration} from '../style/transition'
-import {Spacing} from '../style/spacing'
 
-export interface MenuIconButtonStyleProps {
-  hideLabel: boolean
+interface MenuIconButtonStyleProps {
+  readonly hideLabel: boolean
 }
 
-export const MenuIconButtonStyle = cssRuleWithTheme<{iconSize: IconSize}>(({theme}) => ({
+const MenuIconButtonStyle = cssRuleWithTheme<MenuIconButtonStyleProps>(({theme}) => ({
   display: 'flex',
   flexWrap: 'nowrap',
   alignItems: 'center',
@@ -41,10 +38,11 @@ export const MenuIconButtonStyle = cssRuleWithTheme<{iconSize: IconSize}>(({them
 }))
 
 const LabelStyle = cssRuleWithTheme<MenuIconButtonStyleProps>(({hideLabel, theme}) => ({
-  paddingLeft: pxToRem(Spacing.Tiny),
+  marginLeft: pxToRem(Spacing.ExtraSmall),
   whiteSpace: 'nowrap',
   opacity: hideLabel ? 0 : 1,
-  transition: `opacity ${TransitionDuration.Fast}`
+  transition: 'opacity',
+  transitionDuration: TransitionDuration.Fast
 }))
 
 export interface MenuIconButtonProps extends BaseButtonProps {

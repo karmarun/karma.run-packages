@@ -1,12 +1,9 @@
 import React from 'react'
 
 import {BaseButton, ButtonProps} from './baseButton'
-import {IconType, Icon, IconSize} from './icon'
+import {IconType, Icon, IconScale} from './icon'
 import {cssRuleWithTheme} from '../style/themeContext'
-import {pxToRem} from '../style/helpers'
-import {Spacing} from '../style/spacing'
-import {TransitionDuration} from '../style/transition'
-import {FontSize} from '../style/fontSize'
+import {pxToRem, FontSize, Spacing, TransitionDuration} from '../style/helpers'
 
 export const IconLabelButtonStyle = cssRuleWithTheme(({theme}) => ({
   minWidth: pxToRem(70),
@@ -34,10 +31,6 @@ export const IconLabelButtonStyle = cssRuleWithTheme(({theme}) => ({
   }
 }))
 
-export const IconLabelIconStyle = cssRuleWithTheme(({theme}) => ({
-  height: pxToRem(IconSize.Medium)
-}))
-
 export interface IconLabelButtonProps extends ButtonProps {
   readonly icon: IconType
   readonly label: string
@@ -46,10 +39,8 @@ export interface IconLabelButtonProps extends ButtonProps {
 export function IconLabelButton({label, icon, ...rest}: IconLabelButtonProps) {
   return (
     <BaseButton {...rest} style={IconLabelButtonStyle}>
-      <>
-        <Icon type={icon} style={IconLabelIconStyle} />
-        <div>{label}</div>
-      </>
+      <Icon type={icon} scale={IconScale.Double} />
+      <div>{label}</div>
     </BaseButton>
   )
 }
