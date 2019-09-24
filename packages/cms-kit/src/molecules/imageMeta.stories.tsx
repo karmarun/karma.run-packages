@@ -1,12 +1,26 @@
 import React from 'react'
 
-import {centerLayoutDecorator, darkBackgroundDecorator} from '../.storybook/decorators'
-import {FocalPoint} from './imageMeta'
+import {centerLayoutDecorator} from '../.storybook/decorators'
+import {FocalPointSetter, ImageMeta, File} from './imageMeta'
 
 export default {
-  component: FocalPoint,
+  component: ImageMeta,
   title: 'Molecules|ImageMeta',
-  decorators: [darkBackgroundDecorator(), centerLayoutDecorator()]
+  decorators: [centerLayoutDecorator()]
 }
 
-export const Standard = () => <FocalPoint />
+export const Standard = () => <ImageMeta file={mockImage} />
+
+export const Draggable = () => (
+  <FocalPointSetter imgSrc={'https://dummyimage.com/440x290/ba37ba/fff'} width={440} height={290} />
+)
+
+const mockImage: File = {
+  src: 'https://dummyimage.com/440x290/ba37ba/fff',
+  width: 440,
+  height: 290,
+  name: 'forest.jpg',
+  date: '01.08',
+  size: 1400,
+  link: 'sldkfjsldkf'
+}
