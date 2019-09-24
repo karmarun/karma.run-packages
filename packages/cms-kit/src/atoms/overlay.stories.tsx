@@ -1,11 +1,8 @@
 import React from 'react'
 
-import {centerLayoutDecorator} from '../.storybook/decorators'
-
 import {Overlay} from './overlay'
 import {Input} from './input'
 import {InfoListingItem} from './infoListingItem'
-import {OutlineButton} from './outlineButton'
 
 export default {
   component: Overlay,
@@ -13,8 +10,7 @@ export default {
 }
 
 export const PublishArticle = () => (
-  <Overlay>
-    <h3>Publish Article</h3>
+  <Overlay title={'Publish Article'} onConfirm={() => {}}>
     <Input
       label={'Publish state'}
       value={''}
@@ -29,6 +25,5 @@ export const PublishArticle = () => (
     <InfoListingItem label={'Hasthags'} value={'Tag1, Tag2, Tag3'} />
     <InfoListingItem label={'Publish date'} value={'08.08.2019'} />
     <InfoListingItem label={'Expire date'} value={'None'} />
-    <OutlineButton label={'Confirm'} />
   </Overlay>
 )
