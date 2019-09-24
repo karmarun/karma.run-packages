@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import {Icon, IconType, IconScale} from '../atoms/icon'
 import {pxToRem} from '../style/helpers'
@@ -70,7 +70,6 @@ export function ImageMetaItem({label, value}: ImageMetaItemProps) {
 /**
  *
  * Focal Point Setter
- * TODO use React DnD ?
  */
 const DragContainerStyle = cssRule({
   position: 'relative'
@@ -98,29 +97,51 @@ export function FocalPointSetter({
   focalPoint: position = {x: 440 / 2, y: 290 / 2},
   onFocalPointChange
 }: FocalPointSetterProps) {
-  const [pos, setPos] = useState(position)
-  const {css} = useThemeStyle(pos)
+  const init = {
+    relativePosition: {x: 0, y: 0},
+    dragging: false
+  }
+  const [draggingState, setDraggingState] = useState(init)
+  const [dragPosition, setPosition] = useState(position)
 
-  function handleDrop(e: React.DragEvent<HTMLDivElement>) {
-    let data = e.dataTransfer.getData('startPos').split(',')
-    setPos({x: pos.x - (parseInt(data[0]) - e.clientX), y: pos.y - (parseInt(data[1]) - e.clientY)})
+  const {css} = useThemeStyle(dragPosition)
 
-    if (onFocalPointChange) {
-      onFocalPointChange(pos)
+  function handleStart(relativeStart: Point2D) {
+    draggingState.relativePosition = relativeStart
+    draggingState.dragging = true
+    setDraggingState(draggingState)
+  }
+
+  function handleDrag(relativePosition: Point2D) {
+    if (draggingState.dragging) {
+      setPosition({
+        x: dragPosition.x - (draggingState.relativePosition.x - relativePosition.x),
+        y: dragPosition.y - (draggingState.relativePosition.y - relativePosition.y)
+      })
+      draggingState.relativePosition = relativePosition
+      setDraggingState(draggingState)
     }
   }
 
-  function handleDragStart(e: React.DragEvent<HTMLDivElement>) {
-    e.dataTransfer.setData('startPos', `${e.clientX},${e.clientY}`)
+  function handleDrop() {
+    draggingState.dragging = false
+    setDraggingState(draggingState)
+    if (onFocalPointChange) {
+      onFocalPointChange(dragPosition)
+    }
   }
 
   return (
-    <div
-      className={css(DragContainerStyle)}
-      onDragOver={e => e.preventDefault()}
-      onDrop={e => handleDrop(e)}>
+    <div className={css(DragContainerStyle)}>
       <img src={imgSrc} width={width} height={height} />
-      <div draggable className={css(DraggableFocalPointStyle)} onDragStart={handleDragStart}>
+      <div
+        className={css(DraggableFocalPointStyle)}
+        onMouseDown={e => handleStart({x: e.clientX, y: e.clientY})}
+        onMouseMove={e => handleDrag({x: e.clientX, y: e.clientY})}
+        onMouseUp={e => handleDrop()}
+        onTouchStart={e => handleStart({x: e.touches[0].clientX, y: e.touches[0].clientY})}
+        onTouchMove={e => handleDrag({x: e.touches[0].clientX, y: e.touches[0].clientY})}
+        onTouchEnd={e => handleDrop()}>
         <FocalPoint />
       </div>
     </div>
