@@ -35,7 +35,7 @@ export const TextAreaStyle = cssRuleWithTheme<TextAreaStyleProps>(({hasError, th
     },
 
     ':placeholder-shown + label': {
-      opacity: '0',
+      opacity: 0,
       transform: 'translateY(30%)'
     },
 
@@ -49,9 +49,9 @@ const LabelStyle = cssRuleWithTheme<TextAreaStyleProps>(({hasError, theme}) => (
   color: hasError ? theme.colors.alert : theme.colors.gray,
   position: 'absolute',
   top: '-1.6rem',
-  left: '0',
+  left: 0,
   fontSize: pxToRem(FontSize.Small),
-  opacity: '1',
+  opacity: 1,
   transform: 'translateY(0%)',
   transition: 'transform ease-in-out, opacity ease-in-out, color ease-in-out',
   transitionDuration: TransitionDuration.Fast
