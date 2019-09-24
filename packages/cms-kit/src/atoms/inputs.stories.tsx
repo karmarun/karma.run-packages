@@ -26,14 +26,6 @@ export function TextInputWrapper() {
 storiesOf('Atoms|Input/Single', module)
   .addDecorator(centerLayoutDecorator())
   .add('default', () => <TextInputWrapper />)
-  .add('no label', () => (
-    <Input
-      value={''}
-      placeholder={'Placeholder-Label'}
-      description={'Description Text'}
-      onValueChange={value => {}}
-    />
-  ))
   .add('error', () => (
     <Input
       label={'Label'}

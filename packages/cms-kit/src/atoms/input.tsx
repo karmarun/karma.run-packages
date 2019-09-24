@@ -1,5 +1,5 @@
 import React from 'react'
-import {IconType, Icon} from './icon'
+import {IconType, Icon, IconScale} from './icon'
 import {cssRuleWithTheme, useThemeStyle, ThemeContext} from '../style/themeContext'
 import {joinClassNames} from '@karma.run/react'
 import {pxToRem, FontSize, TransitionDuration} from '../style/helpers'
@@ -8,16 +8,19 @@ export interface InputStyleProps {
   hasError: boolean
 }
 
-export const InputFieldStyle = cssRuleWithTheme(({theme}) => ({}))
+export const InputFieldStyle = cssRuleWithTheme(({theme}) => ({
+  minHeight: pxToRem(54),
+  paddingTop: pxToRem(16)
+}))
 
-export const InputStyle = cssRuleWithTheme(({theme}) => ({
+export const InputStyle = cssRuleWithTheme(({hasError, theme}) => ({
   position: 'relative',
-  marginTop: '1.6rem',
 
-  '& input': {
+  '> input': {
     width: '100%',
     border: 'none',
-    borderBottom: `1px solid ${theme.colors.gray}`,
+    borderBottom: '1px solid',
+    borderColor: hasError ? theme.colors.alert : theme.colors.gray,
     transition: `border-color ease-in ${TransitionDuration.Slow}`,
 
     fontSize: pxToRem(FontSize.Medium),
@@ -31,15 +34,52 @@ export const InputStyle = cssRuleWithTheme(({theme}) => ({
       borderColor: theme.colors.action
     },
 
+    ':required:focus:valid': {
+      borderColor: theme.colors.success
+    },
+
+    ':required:focus:valid + label': {
+      color: theme.colors.success
+    },
+
+    ':required:focus:invalid': {
+      borderColor: theme.colors.alert
+    },
+
+    ':required:focus:invalid + label': {
+      color: theme.colors.alert
+    },
+
+    ':required:invalid': {
+      borderColor: theme.colors.alert
+    },
+
+    ':required:invalid + label': {
+      color: theme.colors.alert
+    },
+
     ':placeholder-shown + label': {
       opacity: '0',
       transform: 'translateY(30%)'
+    },
+
+    ':focus + label': {
+      color: theme.colors.action
     }
+  },
+  '> span': {
+    position: 'absolute',
+    left: '0',
+    top: '1px',
+    fill: theme.colors.dark
+  },
+  '> span + input': {
+    paddingLeft: pxToRem(20)
   }
 }))
 
 const LabelStyle = cssRuleWithTheme<InputStyleProps>(({hasError, theme}) => ({
-  color: hasError ? theme.colors.alert : theme.colors.action,
+  color: hasError ? theme.colors.alert : theme.colors.gray,
   position: 'absolute',
   top: '-1.6rem',
   left: '0',
@@ -51,7 +91,8 @@ const LabelStyle = cssRuleWithTheme<InputStyleProps>(({hasError, theme}) => ({
 }))
 
 const DescriptionStyle = cssRuleWithTheme<InputStyleProps>(({hasError, theme}) => ({
-  color: hasError ? theme.colors.alert : theme.colors.action
+  color: hasError ? theme.colors.alert : theme.colors.gray,
+  fontSize: pxToRem(FontSize.Small)
 }))
 
 export interface InputProps {
@@ -92,7 +133,7 @@ export function Input({
       <div className={joinClassNames(css(InputStyle))}>
         {icon ? (
           <>
-            <Icon type={icon} /> {Input}
+            <Icon type={icon} scale={IconScale.Larger} /> {Input}
           </>
         ) : (
           Input
