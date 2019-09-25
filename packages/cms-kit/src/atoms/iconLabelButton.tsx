@@ -1,10 +1,10 @@
 import React from 'react'
 
-import {BaseButton, ButtonProps} from './baseButton'
-import {IconType, Icon, IconScale} from './icon'
+import {pxToRem, Spacing, TransitionDuration} from '../style/helpers'
+import {FontSmall} from '../style/textStyles'
 import {cssRuleWithTheme} from '../style/themeContext'
-import {pxToRem, FontSize, Spacing, TransitionDuration} from '../style/helpers'
-import {FontSmall, FontInlineSmall, FontFace, Align} from '../style/textStyles'
+import {BaseButton, ButtonProps} from './baseButton'
+import {Icon, IconScale, IconType} from './icon'
 
 export const IconLabelButtonStyle = cssRuleWithTheme(({theme}) => ({
   minWidth: pxToRem(70),
@@ -12,7 +12,8 @@ export const IconLabelButtonStyle = cssRuleWithTheme(({theme}) => ({
 
   padding: pxToRem(Spacing.Tiny),
 
-  transition: 'fill ease-in, background-color ease-in',
+  transitionProperty: 'fill, background-color',
+  transitionTimingFunction: 'ease-in',
   transitionDuration: TransitionDuration.Fast,
 
   '&:hover:enabled': {

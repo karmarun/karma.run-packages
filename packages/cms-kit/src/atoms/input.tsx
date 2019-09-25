@@ -98,8 +98,7 @@ const DescriptionStyle = cssRuleWithTheme<InputStyleProps>(({hasError, theme}) =
 export interface InputProps {
   readonly label?: string
   readonly value: string
-  readonly placeholder: string
-  readonly description: string
+  readonly description?: string
   readonly errorDescription?: string
   readonly icon?: IconType
   readonly className?: string
@@ -108,7 +107,6 @@ export interface InputProps {
 
 export function Input({
   label,
-  placeholder,
   value,
   description,
   errorDescription,
@@ -120,7 +118,7 @@ export function Input({
 
   const Input = (
     <input
-      placeholder={placeholder}
+      placeholder={label}
       value={value}
       onChange={event => {
         onValueChange(event.target.value, event)
