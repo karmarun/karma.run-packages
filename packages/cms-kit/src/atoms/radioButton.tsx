@@ -1,9 +1,9 @@
 import React from 'react'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {SelectChangeEvent, Select} from './select'
-import {pxToRem, FontSize, TransitionDuration, Spacing} from '../style/helpers'
+import {pxToRem, FontSize, Spacing} from '../style/helpers'
 
-const RadioBtnContainerStyle = cssRuleWithTheme(({theme}) => ({
+const RadioBtnContainerStyle = cssRuleWithTheme(() => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
