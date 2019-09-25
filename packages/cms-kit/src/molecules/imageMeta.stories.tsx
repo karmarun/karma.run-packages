@@ -11,10 +11,6 @@ export default {
 
 export const Standard = () => <ImageMeta file={mockImage} />
 
-export const Draggable = () => (
-  <FocalPointSetter imgSrc={'https://dummyimage.com/440x290/ba37ba/fff'} width={440} height={290} />
-)
-
 const mockImage: File = {
   src: 'https://dummyimage.com/440x290/ba37ba/fff',
   width: 440,

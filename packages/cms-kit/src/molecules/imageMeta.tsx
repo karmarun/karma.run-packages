@@ -3,8 +3,9 @@ import React, {useState, useEffect} from 'react'
 import {Icon, IconType, IconScale} from '../atoms/icon'
 import {pxToRem} from '../style/helpers'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {cssRule} from '@karma.run/react'
 import {Spacing} from '../style/helpers'
+import {Draggable} from '../atoms/draggable'
+import {DragContainer} from '../atoms/dragContainer'
 
 export const ImageMetaStyle = cssRuleWithTheme(({theme}) => ({
   backgroundColor: theme.colors.dark,
@@ -71,15 +72,6 @@ export function ImageMetaItem({label, value}: ImageMetaItemProps) {
  *
  * Focal Point Setter
  */
-const DragContainerStyle = cssRule({
-  position: 'relative'
-})
-const DraggableFocalPointStyle = cssRuleWithTheme<Point2D>(({x, y, theme}) => ({
-  position: 'absolute',
-  top: pxToRem(y - FocalPointSize / 2),
-  left: pxToRem(x - FocalPointSize / 2)
-}))
-
 export type Point2D = {x: number; y: number}
 
 export interface FocalPointSetterProps {
@@ -94,57 +86,21 @@ export function FocalPointSetter({
   imgSrc,
   width,
   height,
-  focalPoint: position = {x: 440 / 2, y: 290 / 2},
+  focalPoint = {x: 440 / 2, y: 290 / 2},
   onFocalPointChange
 }: FocalPointSetterProps) {
-  const init = {
-    relativePosition: {x: 0, y: 0},
-    dragging: false
-  }
-  const [draggingState, setDraggingState] = useState(init)
-  const [dragPosition, setPosition] = useState(position)
-
-  const {css} = useThemeStyle(dragPosition)
-
-  function handleStart(relativeStart: Point2D) {
-    draggingState.relativePosition = relativeStart
-    draggingState.dragging = true
-    setDraggingState(draggingState)
-  }
-
-  function handleDrag(relativePosition: Point2D) {
-    if (draggingState.dragging) {
-      setPosition({
-        x: dragPosition.x - (draggingState.relativePosition.x - relativePosition.x),
-        y: dragPosition.y - (draggingState.relativePosition.y - relativePosition.y)
-      })
-      draggingState.relativePosition = relativePosition
-      setDraggingState(draggingState)
-    }
-  }
-
-  function handleDrop() {
-    draggingState.dragging = false
-    setDraggingState(draggingState)
-    if (onFocalPointChange) {
-      onFocalPointChange(dragPosition)
-    }
-  }
+  const {css} = useThemeStyle()
 
   return (
-    <div className={css(DragContainerStyle)}>
+    <DragContainer>
       <img src={imgSrc} width={width} height={height} />
-      <div
-        className={css(DraggableFocalPointStyle)}
-        onMouseDown={e => handleStart({x: e.clientX, y: e.clientY})}
-        onMouseMove={e => handleDrag({x: e.clientX, y: e.clientY})}
-        onMouseUp={e => handleDrop()}
-        onTouchStart={e => handleStart({x: e.touches[0].clientX, y: e.touches[0].clientY})}
-        onTouchMove={e => handleDrag({x: e.touches[0].clientX, y: e.touches[0].clientY})}
-        onTouchEnd={e => handleDrop()}>
+      <Draggable
+        position={focalPoint}
+        onPositionChange={onFocalPointChange}
+        halfSize={FocalPointSize / 2}>
         <FocalPoint />
-      </div>
-    </div>
+      </Draggable>
+    </DragContainer>
   )
 }
 
