@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {ReactNode} from 'react'
 
-import {cssRule, useStyle} from '@karma.run/react'
+import {cssRule} from '@karma.run/react'
 import {pxToRem, FontSize} from './helpers'
 import {cssRuleWithTheme, useThemeStyle} from './themeContext'
 
@@ -11,7 +11,7 @@ export enum FontFace {
 }
 
 export enum Align {
-  Regular = 'initial',
+  Regular = 'regular',
   Center = 'center',
   Left = 'left',
   Right = 'right'
@@ -32,14 +32,20 @@ export function getFontStyle(fontFace: FontFace) {
   else return 'normal'
 }
 
-export const TextStyle = cssRuleWithTheme<TextStyleProps>(({fontFace, align, theme}) => ({
-  textAlign: align,
+export const FontStyle = cssRuleWithTheme<TextStyleProps>(({fontFace, align, theme}) => ({
+  textAlign: align === Align.Regular ? undefined : align,
   fontWeight: getFontWeight(fontFace),
   fontStyle: getFontStyle(fontFace)
 }))
 
+export const FontInlineStyle = cssRule({
+  display: 'flex',
+  flexWrap: 'nowrap',
+  alignItems: 'center'
+})
+
 export interface TextProps {
-  readonly children: string
+  readonly children?: ReactNode
   readonly fontFace?: FontFace
   readonly align?: Align
 }
@@ -51,24 +57,24 @@ export const TextSmallStyle = cssRule({
 
 export interface TextSmallProps extends TextProps {}
 
-export function TextSmall({
+export function FontSmall({
   children,
   fontFace = FontFace.Regular,
   align = Align.Regular
 }: TextSmallProps) {
   const style = {fontFace: fontFace, align: align}
   const {css} = useThemeStyle(style)
-  return <div className={css(TextStyle, TextSmallStyle)}>{children}</div>
+  return <div className={css(FontStyle, TextSmallStyle)}>{children}</div>
 }
 
-export function TextInlineSmall({
+export function FontInlineSmall({
   children,
   fontFace = FontFace.Regular,
   align = Align.Regular
 }: TextSmallProps) {
   const style = {fontFace: fontFace, align: align}
   const {css} = useThemeStyle(style)
-  return <span className={css(TextStyle, TextSmallStyle)}>{children}</span>
+  return <span className={css(FontInlineStyle, FontStyle)}>{children}</span>
 }
 
 // Label
@@ -83,7 +89,7 @@ export function Label({
 }: TextSmallProps) {
   const style = {fontFace: fontFace, align: align}
   const {css} = useThemeStyle(style)
-  return <span className={css(LabelStyle, TextStyle, TextSmallStyle)}>{children}</span>
+  return <span className={css(LabelStyle, FontStyle, TextSmallStyle)}>{children}</span>
 }
 
 // Description
@@ -98,7 +104,7 @@ export function Description({
 }: TextSmallProps) {
   const style = {fontFace: fontFace, align: align}
   const {css} = useThemeStyle(style)
-  return <span className={css(DescriptionStyle, TextStyle, TextSmallStyle)}>{children}</span>
+  return <span className={css(DescriptionStyle, FontStyle, TextSmallStyle)}>{children}</span>
 }
 
 // MEDIUM = 16px
@@ -108,24 +114,24 @@ export const TextMediumStyle = cssRule({
 
 export interface TextMediumProps extends TextProps {}
 
-export function TextMedium({
+export function FontMedium({
   children,
   fontFace = FontFace.Regular,
   align = Align.Regular
 }: TextMediumProps) {
   const style = {fontFace: fontFace, align: align}
   const {css} = useThemeStyle(style)
-  return <div className={css(TextStyle, TextMediumStyle)}>{children}</div>
+  return <div className={css(FontStyle, TextMediumStyle)}>{children}</div>
 }
 
-export function TextInlineMedium({
+export function FontInlineMedium({
   children,
   fontFace = FontFace.Regular,
   align = Align.Regular
 }: TextMediumProps) {
   const style = {fontFace: fontFace, align: align}
   const {css} = useThemeStyle(style)
-  return <span className={css(TextStyle, TextMediumStyle)}>{children}</span>
+  return <span className={css(FontInlineStyle, FontStyle, TextMediumStyle)}>{children}</span>
 }
 
 // Hint
@@ -140,7 +146,7 @@ export function Hint({
 }: TextMediumProps) {
   const style = {fontFace: fontFace, align: align}
   const {css} = useThemeStyle(style)
-  return <span className={css(HintStyle, TextStyle, TextMediumStyle)}>{children}</span>
+  return <span className={css(HintStyle, FontStyle, TextMediumStyle)}>{children}</span>
 }
 
 // HEADING3 = 20px
@@ -157,7 +163,7 @@ export function Heading3({
 }: Heading3Props) {
   const style = {fontFace: fontFace, align: align}
   const {css} = useThemeStyle(style)
-  return <div className={css(TextStyle, Heading3Style)}>{children}</div>
+  return <div className={css(FontStyle, Heading3Style)}>{children}</div>
 }
 
 export function InlineHeading3({
@@ -167,7 +173,7 @@ export function InlineHeading3({
 }: Heading3Props) {
   const style = {fontFace: fontFace, align: align}
   const {css} = useThemeStyle(style)
-  return <span className={css(TextStyle, Heading3Style)}>{children}</span>
+  return <span className={css(FontInlineStyle, FontStyle, Heading3Style)}>{children}</span>
 }
 
 // HEADING2 = 24px
@@ -184,7 +190,7 @@ export function Heading2({
 }: Heading2Props) {
   const style = {fontFace: fontFace, align: align}
   const {css} = useThemeStyle(style)
-  return <div className={css(TextStyle, Heading2Style)}>{children}</div>
+  return <div className={css(FontStyle, Heading2Style)}>{children}</div>
 }
 
 export function InlineHeading2({
@@ -194,7 +200,7 @@ export function InlineHeading2({
 }: Heading2Props) {
   const style = {fontFace: fontFace, align: align}
   const {css} = useThemeStyle(style)
-  return <span className={css(TextStyle, Heading2Style)}>{children}</span>
+  return <span className={css(FontInlineStyle, FontStyle, Heading2Style)}>{children}</span>
 }
 
 // HEADING1 = 28px
@@ -211,7 +217,7 @@ export function Heading1({
 }: Heading1Props) {
   const style = {fontFace: fontFace, align: align}
   const {css} = useThemeStyle(style)
-  return <div className={css(TextStyle, Heading1Style)}>{children}</div>
+  return <div className={css(FontStyle, Heading1Style)}>{children}</div>
 }
 
 export function InlineHeading1({
@@ -221,7 +227,7 @@ export function InlineHeading1({
 }: Heading1Props) {
   const style = {fontFace: fontFace, align: align}
   const {css} = useThemeStyle(style)
-  return <span className={css(TextStyle, Heading1Style)}>{children}</span>
+  return <span className={css(FontInlineStyle, FontStyle, Heading1Style)}>{children}</span>
 }
 
 // EXTRALARGE = 60px
@@ -231,22 +237,22 @@ export const TextExtraLargeStyle = cssRule({
 
 export interface TextExtraLargeProps extends TextProps {}
 
-export function TextExtraLarge({
+export function FontExtraLarge({
   children,
   fontFace = FontFace.Bold,
   align = Align.Regular
 }: TextExtraLargeProps) {
   const style = {fontFace: fontFace, align: align}
   const {css} = useThemeStyle(style)
-  return <div className={css(TextStyle, TextExtraLargeStyle)}>{children}</div>
+  return <div className={css(FontStyle, TextExtraLargeStyle)}>{children}</div>
 }
 
-export function TextInlineExtraLarge({
+export function FontInlineExtraLarge({
   children,
   fontFace = FontFace.Bold,
   align = Align.Regular
 }: TextExtraLargeProps) {
   const style = {fontFace: fontFace, align: align}
   const {css} = useThemeStyle(style)
-  return <span className={css(TextStyle, TextExtraLargeStyle)}>{children}</span>
+  return <span className={css(FontInlineStyle, FontStyle, TextExtraLargeStyle)}>{children}</span>
 }

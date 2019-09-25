@@ -2,13 +2,13 @@ import React from 'react'
 
 import {centerLayoutDecorator, InfoBox} from '../.storybook/decorators'
 import {
-  TextSmall,
-  TextMedium,
+  FontSmall,
+  FontMedium,
   FontFace,
   Heading1,
   Heading2,
   Heading3,
-  TextExtraLarge,
+  FontExtraLarge,
   Label,
   Hint,
   Description
@@ -24,13 +24,13 @@ export const Standard = () => (
   <>
     <div>
       <InfoBox infoText={'Small regular'} padding={10}>
-        <TextSmall>{mockText}</TextSmall>
+        <FontSmall>{mockText}</FontSmall>
       </InfoBox>
       <InfoBox infoText={'Small italic'} padding={10}>
-        <TextSmall fontFace={FontFace.Italic}>{mockText}</TextSmall>
+        <FontSmall fontFace={FontFace.Italic}>{mockText}</FontSmall>
       </InfoBox>
       <InfoBox infoText={'Small bold'} padding={10}>
-        <TextSmall fontFace={FontFace.Bold}>{mockText}</TextSmall>
+        <FontSmall fontFace={FontFace.Bold}>{mockText}</FontSmall>
       </InfoBox>
       <InfoBox infoText={'Label'} padding={10}>
         <Label>{mockText}</Label>
@@ -44,10 +44,10 @@ export const Standard = () => (
     </div>
     <div>
       <InfoBox infoText={'Medium regular'} padding={10}>
-        <TextMedium>{mockText}</TextMedium>
+        <FontMedium>{mockText}</FontMedium>
       </InfoBox>
       <InfoBox infoText={'Medium bold'} padding={10}>
-        <TextMedium fontFace={FontFace.Bold}>{mockText}</TextMedium>
+        <FontMedium fontFace={FontFace.Bold}>{mockText}</FontMedium>
       </InfoBox>
       <InfoBox infoText={'Hint'} padding={10}>
         <Hint>{mockText}</Hint>
@@ -66,7 +66,7 @@ export const Standard = () => (
     </div>
     <div>
       <InfoBox infoText={'ExtraLarge'} padding={10}>
-        <TextExtraLarge>{mockText}</TextExtraLarge>
+        <FontExtraLarge>{mockText}</FontExtraLarge>
       </InfoBox>
     </div>
   </>
