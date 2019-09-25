@@ -1,9 +1,10 @@
 import React from 'react'
 
-import {BaseButton, ButtonProps} from './baseButton'
+import {BaseButton, ButtonProps, BaseButtonProps} from './baseButton'
 import {cssRuleWithTheme} from '../style/themeContext'
 import {IconType, Icon} from './icon'
 import {pxToEm, TransitionDuration} from '../style/helpers'
+import {toArray} from '../utility'
 
 export const OptionButtonSmallStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
