@@ -1,7 +1,10 @@
 import React from 'react'
-import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
+
 import {SelectChangeEvent, Select} from './select'
+
 import {pxToRem, FontSize, Spacing} from '../style/helpers'
+import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
+import {BaseInput, InputType} from './baseInput'
 
 const RadioBtnContainerStyle = cssRuleWithTheme(() => ({
   display: 'flex',
@@ -56,27 +59,31 @@ const LabelStyle = cssRuleWithTheme(({theme}) => ({
 }))
 
 export interface RadioButtonProps {
-  readonly id: string
+  readonly id?: string
   readonly label: string
-  readonly isChecked: boolean
-  onChange(value: SelectChangeEvent): void
-  readonly className?: string
+  readonly name: string
+  readonly value: boolean
+  readonly disabled?: boolean
+
+  onChange(value: boolean): void
 }
 
-export function RadioButton(props: RadioButtonProps) {
+export function RadioButton({id, label, value, disabled, onChange}: RadioButtonProps) {
   const {css} = useThemeStyle()
+
   return (
     <div className={css(RadioBtnContainerStyle)}>
-      <Select
-        style={RadioButtonStyle}
-        id={props.id}
-        type="radio"
-        checked={props.isChecked}
-        onSelectChange={props.onChange}
-      />
-      <span className={css(CheckMarkStyle)} />
-      <label className={css(LabelStyle)} htmlFor={props.id}>
-        {props.label}
+      <label className={css(LabelStyle)} htmlFor={id}>
+        <BaseInput
+          style={RadioButtonStyle}
+          type={InputType.Radio}
+          id={id}
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+        />
+        <span className={css(CheckMarkStyle)} />
+        {label}
       </label>
     </div>
   )

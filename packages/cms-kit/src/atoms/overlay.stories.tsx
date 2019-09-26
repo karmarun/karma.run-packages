@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {Overlay} from './overlay'
-import {Input} from './input'
+import {TextInput} from './textInput'
 import {InfoListingItem} from './infoListingItem'
 
 export default {
@@ -11,12 +11,11 @@ export default {
 
 export const PublishArticle = () => (
   <Overlay title={'Publish Article'} onConfirm={() => {}}>
-    <Input
+    <TextInput
       label={'Publish state'}
       value={''}
-      placeholder={''}
       description={'Set state to Proofreading or Live'}
-      onValueChange={() => {}}
+      onChange={() => {}}
     />
     <InfoListingItem label={'Teaser type'} value={'image & Title'} />
     <InfoListingItem label={'Title'} value={'Massenpanik am New Yorker Times Square'} />

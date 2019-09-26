@@ -1,6 +1,8 @@
 import React from 'react'
+
 import {LoginTemplate} from './loginTemplate'
-import {Input} from '../atoms/input'
+
+import {TextInput} from '../atoms/textInput'
 import {PrimaryButton} from '../atoms/primaryButton'
 
 export default {
@@ -11,8 +13,8 @@ export default {
 export const Standard = () => {
   return (
     <LoginTemplate>
-      <Input label="Username" value={''} onValueChange={() => {}} />
-      <Input label="Password" value={''} onValueChange={() => {}} />
+      <TextInput label="Username" value={''} onChange={() => {}} />
+      <TextInput label="Password" value={''} onChange={() => {}} />
       <PrimaryButton label="Login" />
     </LoginTemplate>
   )

@@ -1,8 +1,8 @@
 import React, {ReactNode, MouseEventHandler} from 'react'
-
-import {useThemeStyle, CSSRuleWithTheme} from '../style/themeContext'
-import {toArray} from '../utility'
 import {cssRule} from '@karma.run/react'
+
+import {toArray} from '../utility'
+import {useThemeStyle, CSSRuleWithTheme} from '../style/themeContext'
 
 export interface ButtonProps {
   readonly href?: string
@@ -27,7 +27,7 @@ export interface BaseButtonPropsWithStyleProps<P = undefined> extends ButtonProp
   readonly styleProps: P
 }
 
-export const BaseButtonStyle = cssRule({
+const BaseButtonStyle = cssRule({
   display: 'inline-block',
   overflow: 'hidden',
 
@@ -58,25 +58,16 @@ export function BaseButton(props: BaseButtonPropsWithoutStyleProps): JSX.Element
 export function BaseButton<P = undefined>(props: BaseButtonPropsWithStyleProps<P>): JSX.Element
 export function BaseButton<P = undefined>({
   href,
-  rel,
-  title,
-  onClick,
-  styleProps,
   style,
+  styleProps,
   children,
-  disabled
+  ...props
 }: BaseButtonProps<P>): JSX.Element {
   const {css} = useThemeStyle(styleProps)
   const Element = href ? 'a' : 'button'
 
   return (
-    <Element
-      href={href}
-      rel={rel}
-      title={title}
-      onClick={onClick}
-      disabled={disabled}
-      className={css(BaseButtonStyle, ...toArray(style))}>
+    <Element {...props} href={href} className={css(BaseButtonStyle, ...toArray(style))}>
       {children}
     </Element>
   )

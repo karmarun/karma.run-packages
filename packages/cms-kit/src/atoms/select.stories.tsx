@@ -3,8 +3,6 @@ import React, {useState} from 'react'
 import {storiesOf} from '@storybook/react'
 import {centerLayoutDecorator} from '../.storybook/decorators'
 import {Toggle} from './toggle'
-import {Checkbox} from './checkbox'
-import {RadioButton} from './radioButton'
 import {ToggleWithLabel} from '../molecules/toggleWithLabel'
 
 export function SelectWrapper() {
@@ -43,15 +41,3 @@ storiesOf('Atoms|Selects', module)
       </div>
     )
   })
-  .add('Checkbox', () => (
-    <React.Fragment>
-      <Checkbox isChecked={true} onChange={checked => {}} label={'Checkbox label'} id={'2'} />
-      <Checkbox isChecked={false} onChange={checked => {}} label={'Checkbox label'} id={'7'} />
-    </React.Fragment>
-  ))
-  .add('RadioButton', () => (
-    <React.Fragment>
-      <RadioButton isChecked={true} onChange={checked => {}} label={'Radio label'} id={'3'} />
-      <RadioButton isChecked={false} onChange={checked => {}} label={'Radio label'} id={'8'} />
-    </React.Fragment>
-  ))

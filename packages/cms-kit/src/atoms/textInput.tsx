@@ -1,19 +1,21 @@
 import React from 'react'
+
 import {IconType, Icon, IconScale} from './icon'
-import {cssRuleWithTheme, useThemeStyle, ThemeContext} from '../style/themeContext'
-import {joinClassNames} from '@karma.run/react'
+import {BaseInput, InputType} from './baseInput'
+
+import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {pxToRem, FontSize, TransitionDuration, Spacing} from '../style/helpers'
 
-export interface InputStyleProps {
+interface TextInputStyleProps {
   hasError: boolean
 }
 
-export const InputContainerStyle = cssRuleWithTheme(({theme}) => ({
+const TextInputContainerStyle = cssRuleWithTheme(() => ({
   minHeight: pxToRem(54),
   paddingTop: pxToRem(16)
 }))
 
-export const InputStyle = cssRuleWithTheme<InputStyleProps>(({hasError, theme}) => ({
+const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme}) => ({
   position: 'relative',
 
   '> input': {
@@ -78,7 +80,7 @@ export const InputStyle = cssRuleWithTheme<InputStyleProps>(({hasError, theme}) 
   }
 }))
 
-const LabelStyle = cssRuleWithTheme<InputStyleProps>(({hasError, theme}) => ({
+const LabelStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme}) => ({
   color: hasError ? theme.colors.alert : theme.colors.gray,
   position: 'absolute',
   top: '-1.6rem',
@@ -90,48 +92,52 @@ const LabelStyle = cssRuleWithTheme<InputStyleProps>(({hasError, theme}) => ({
   transitionDuration: TransitionDuration.Fast
 }))
 
-const DescriptionStyle = cssRuleWithTheme<InputStyleProps>(({hasError, theme}) => ({
+const DescriptionStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme}) => ({
   color: hasError ? theme.colors.alert : theme.colors.gray,
   fontSize: pxToRem(FontSize.Small)
 }))
 
-export interface InputProps {
+export interface TextInputProps {
   readonly label?: string
   readonly value: string
   readonly description?: string
   readonly errorDescription?: string
   readonly icon?: IconType
-  readonly className?: string
-  onValueChange(value: string, event: React.ChangeEvent<HTMLInputElement>): void
+  readonly disabled?: boolean
+
+  onChange(value: string, event: React.ChangeEvent<HTMLInputElement>): void
 }
 
-export function Input({
+export function TextInput({
   label,
   value,
   description,
   errorDescription,
   icon,
-  onValueChange,
-  className
-}: InputProps) {
-  const {css} = useThemeStyle<InputStyleProps>({hasError: errorDescription != null})
+  onChange,
+  disabled
+}: TextInputProps) {
+  const {css} = useThemeStyle<TextInputStyleProps>({hasError: errorDescription != null})
 
   const Input = (
-    <input
+    <BaseInput
+      type={InputType.Text}
       placeholder={label}
       value={value}
-      onChange={event => {
-        onValueChange(event.target.value, event)
+      onChange={(value, event) => {
+        onChange(value, event)
       }}
+      disabled={disabled}
     />
   )
 
   return (
-    <div className={joinClassNames(css(InputContainerStyle), className)}>
-      <div className={joinClassNames(css(InputStyle))}>
+    <div className={css(TextInputContainerStyle)}>
+      <div className={css(TextInputStyle)}>
         {icon ? (
           <>
-            <Icon type={icon} scale={IconScale.Larger} /> {Input}
+            <Icon type={icon} scale={IconScale.Larger} />
+            {Input}
           </>
         ) : (
           Input
@@ -139,7 +145,7 @@ export function Input({
         <label className={css(LabelStyle)}>{label}</label>
       </div>
 
-      <div className={css(DescriptionStyle)}>{errorDescription && description}</div>
+      <div className={css(DescriptionStyle)}>{errorDescription || description}</div>
     </div>
   )
 }
