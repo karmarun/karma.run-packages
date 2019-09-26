@@ -3,16 +3,13 @@ import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {cssRule, useStyle} from '@karma.run/react'
 import {pxToRem, FontSize} from '../style/helpers'
 import {FieldProps} from '../fields/types'
+import {BaseInput} from '../atoms/baseInput'
+import {BaseTextArea} from '../atoms/baseTextArea'
 
 export const HeaderBlockStyle = cssRuleWithTheme(({theme}) => ({
   '& > *': {
     display: 'block',
-    textAlign: 'center',
-    width: '100%',
-    border: 'none',
-    '&::placeholder': {
-      color: theme.colors.gray
-    }
+    textAlign: 'center'
   }
 }))
 
@@ -21,10 +18,10 @@ const HeaderBlockTitleStyle = cssRule({
   fontWeight: 'bold'
 })
 
-const HeaderBlockLeadStyle = cssRule({
+const HeaderBlockLeadStyle = cssRuleWithTheme(({theme}) => ({
   fontSize: pxToRem(FontSize.Medium),
   minHeight: '60px'
-})
+}))
 
 export function HeaderBlock({value, onChange}: FieldProps<{title: string; lead: string}>) {
   const {css} = useThemeStyle()
@@ -34,17 +31,17 @@ export function HeaderBlock({value, onChange}: FieldProps<{title: string; lead: 
 
   return (
     <div className={css(HeaderBlockStyle)}>
-      <input
+      <BaseInput
         placeholder={'Article title'}
-        className={css(HeaderBlockTitleStyle)}
+        style={HeaderBlockTitleStyle}
         value={value.title}
-        onChange={e => onChange({title: e.currentTarget.value, lead: value.lead})}
+        onChange={inputVal => onChange({title: inputVal, lead: value.lead})}
       />
-      <textarea
+      <BaseTextArea
         placeholder={placeholderLead}
-        className={css(HeaderBlockLeadStyle)}
+        style={HeaderBlockLeadStyle}
         value={value.lead}
-        onChange={e => onChange({title: value.title, lead: e.currentTarget.value})}
+        onChange={textVal => onChange({title: value.title, lead: textVal})}
       />
     </div>
   )
