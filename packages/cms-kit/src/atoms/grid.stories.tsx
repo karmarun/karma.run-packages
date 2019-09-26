@@ -4,7 +4,6 @@ import {centerLayoutDecorator} from '../.storybook/decorators'
 
 import {Grid} from './grid'
 import {Placeholder} from './placeholder'
-import {Card} from './card'
 
 export default {
   component: Grid,
@@ -13,15 +12,12 @@ export default {
 }
 
 export const Standard = () => (
-  <Grid numColumns={3}>
-    <Card>
-      <Placeholder />
-    </Card>
-    <Card>
-      <Placeholder />
-    </Card>
-    <Card>
-      <Placeholder />
-    </Card>
+  <Grid numColumns={6}>
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
   </Grid>
 )

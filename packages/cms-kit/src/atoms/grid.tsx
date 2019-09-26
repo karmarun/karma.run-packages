@@ -1,13 +1,17 @@
 import React, {ReactNode, Children} from 'react'
 import {useStyle, cssRule} from '@karma.run/react'
-import {pxToRem, whenDesktop, Spacing} from '../style/helpers'
+import {pxToRem, Spacing} from '../style/helpers'
+import {cssRuleWithTheme, useThemeStyle, ThemeContext} from '../style/themeContext'
 
 export interface GridStyleProps {
   numColumns: number
 }
 
 export const GridStyle = cssRule((props: GridStyleProps) => ({
-  width: '100%'
+  width: '100%',
+  height: '100%',
+  display: 'flex',
+  flexWrap: 'wrap'
 }))
 
 export interface GridProps {
@@ -51,11 +55,11 @@ export function Grid({numColumns, children}: GridProps) {
   )
 }
 
-export const RowStyle = cssRule(() => ({
+export const RowStyle = cssRuleWithTheme(({theme}) => ({
+  width: '100%',
+  height: '100%',
   display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  width: '100%'
+  flexWrap: 'wrap'
 }))
 
 export interface RowProps {
@@ -63,21 +67,15 @@ export interface RowProps {
 }
 
 export function Row({children}: RowProps) {
-  const {css} = useStyle()
+  const {css} = useThemeStyle()
+
   return <div className={css(RowStyle)}>{children}</div>
 }
 
 export const ColumnStyle = cssRule(() => ({
-  display: 'flex',
-  flexDirection: 'column',
-  flexBasis: '100%',
-
-  overflow: 'hidden',
-  padding: pxToRem(Spacing.ExtraSmall),
-
-  ...whenDesktop({
-    flex: 1
-  })
+  boxSizing: 'border-box',
+  flex: '1 1 auto',
+  margin: pxToRem(Spacing.Tiny)
 }))
 
 export interface ColumnProp {
