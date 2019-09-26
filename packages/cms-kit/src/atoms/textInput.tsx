@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {ChangeEvent} from 'react'
 
 import {IconType, Icon, IconScale} from './icon'
 import {BaseInput, InputType} from './baseInput'
@@ -105,31 +105,12 @@ export interface TextInputProps {
   readonly icon?: IconType
   readonly disabled?: boolean
 
-  onChange(value: string, event: React.ChangeEvent<HTMLInputElement>): void
+  onChange(event: ChangeEvent<HTMLInputElement>): void
 }
 
-export function TextInput({
-  label,
-  value,
-  description,
-  errorDescription,
-  icon,
-  onChange,
-  disabled
-}: TextInputProps) {
+export function TextInput({label, description, errorDescription, icon, ...props}: TextInputProps) {
   const {css} = useThemeStyle<TextInputStyleProps>({hasError: errorDescription != null})
-
-  const Input = (
-    <BaseInput
-      type={InputType.Text}
-      placeholder={label}
-      value={value}
-      onChange={(value, event) => {
-        onChange(value, event)
-      }}
-      disabled={disabled}
-    />
-  )
+  const Input = <BaseInput type={InputType.Text} placeholder={label} {...props} />
 
   return (
     <div className={css(TextInputContainerStyle)}>

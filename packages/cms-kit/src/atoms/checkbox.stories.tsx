@@ -9,18 +9,24 @@ export default {
   decorators: [centerLayoutDecorator()]
 }
 
-export const Standard = () => <Checkbox label={'Label'} value={false} onChange={() => {}} />
-export const Checked = () => <Checkbox label={'Label'} value={true} onChange={() => {}} />
+export const Standard = () => <Checkbox label={'Label'} checked={false} onChange={() => {}} />
+export const Checked = () => <Checkbox label={'Label'} checked={true} onChange={() => {}} />
 
 export const Disabled = () => (
-  <Checkbox label={'Label'} value={false} onChange={() => {}} disabled />
+  <Checkbox label={'Label'} checked={false} onChange={() => {}} disabled />
 )
 
 export const DisabledAndChecked = () => (
-  <Checkbox label={'Label'} value={true} onChange={() => {}} disabled />
+  <Checkbox label={'Label'} checked={true} onChange={() => {}} disabled />
 )
 
 export const Interactive = () => {
-  const [value, setValue] = useState(false)
-  return <Checkbox label={'Label'} value={value} onChange={value => setValue(value)} />
+  const [isChecked, setChecked] = useState(false)
+  return (
+    <Checkbox
+      label={'Label'}
+      checked={isChecked}
+      onChange={event => setChecked(event.currentTarget.checked)}
+    />
+  )
 }

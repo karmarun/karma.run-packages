@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {ChangeEvent} from 'react'
 
 import {pxToRem, FontSize, Spacing} from '../style/helpers'
 import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
@@ -67,20 +67,21 @@ const LabelStyle = cssRuleWithTheme(({theme}) => ({
 }))
 
 export interface CheckboxProps {
-  readonly id?: string
   readonly label: string
-  readonly value: boolean
+  readonly checked: boolean
+
+  readonly value?: string
   readonly disabled?: boolean
 
-  onChange(value: boolean, event: React.ChangeEvent<HTMLInputElement>): void
+  onChange(event: ChangeEvent<HTMLInputElement>): void
 }
 
-export function Checkbox({id, label, ...props}: CheckboxProps) {
+export function Checkbox({label, ...props}: CheckboxProps) {
   const {css} = useThemeStyle()
 
   return (
-    <label className={css(CheckboxContainerStyle)} htmlFor={id}>
-      <BaseInput id={id} type={InputType.Checkbox} style={CheckboxStyle} {...props} />
+    <label className={css(CheckboxContainerStyle)}>
+      <BaseInput {...props} type={InputType.Checkbox} style={CheckboxStyle} />
       <span className={css(CheckMarkStyle)} />
       <span className={css(LabelStyle)}>
         <FontInlineSmall>{label}</FontInlineSmall>

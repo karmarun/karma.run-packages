@@ -28,6 +28,10 @@ export enum FontSize {
   ExtraLarge = 60
 }
 
+export enum BorderWidth {
+  Small = '1px'
+}
+
 export enum TransitionDuration {
   Fast = '200ms',
   Slow = '500ms'
