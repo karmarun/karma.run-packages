@@ -22,6 +22,7 @@ export interface TextAreaProps {
   readonly placeholder?: string
   readonly type?: string
   onChange?(value: string, event: React.ChangeEvent<HTMLTextAreaElement>): void
+  onSelect?(value: string, event: React.SyntheticEvent<HTMLTextAreaElement>): void
 }
 
 export interface BaseTextAreaProps<P = undefined> extends TextAreaProps {
@@ -44,6 +45,7 @@ export function BaseTextArea<P = undefined>({
   placeholder,
   value,
   onChange,
+  onSelect,
   style,
   styleProps
 }: BaseTextAreaProps<P>): JSX.Element {
@@ -55,7 +57,10 @@ export function BaseTextArea<P = undefined>({
       placeholder={placeholder}
       value={value}
       onChange={event => {
-        if (onChange) onChange(event.target.value, event)
+        if (onChange) onChange(event.currentTarget.value, event)
+      }}
+      onSelect={event => {
+        if (onSelect) onSelect(event.currentTarget.value, event)
       }}
     />
   )

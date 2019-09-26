@@ -17,6 +17,9 @@ export function RichtextBlock({value, onChange}: FieldProps) {
       style={RichtextBlockStyle}
       value={value}
       onChange={value => onChange(value)}
+      onSelect={(value, event) => {
+        console.log(event)
+      }}
     />
   )
 }
