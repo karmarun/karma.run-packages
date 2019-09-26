@@ -52,7 +52,7 @@ export function BaseInput<P = undefined>({
       placeholder={placeholder}
       value={value}
       onChange={event => {
-        onChange(event.target.value, event)
+        if (onChange) onChange(event.target.value, event)
       }}
     />
   )
