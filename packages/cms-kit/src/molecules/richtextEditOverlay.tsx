@@ -4,6 +4,7 @@ import {IconType, Icon, IconScale} from '../atoms/icon'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {pxToRem, FontSize} from '../style/helpers'
 import {Spacing} from '../style/helpers'
+import {cssRule} from '@karma.run/react'
 
 export const RichtextEditOverlayStyle = cssRuleWithTheme(({theme}) => ({
   backgroundColor: theme.colors.dark,
@@ -36,6 +37,8 @@ export interface RichTextEditButtonProps {
   onClick(): void
   icon: IconType
 }
+
+const SpanStyle = cssRule({})
 
 export function RichTextEditButton({onClick, icon}: RichTextEditButtonProps) {
   return (
