@@ -24,14 +24,14 @@ const EditorTemplateContentWrapperStyle = cssRuleWithTheme(() => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '100%'
+  width: '100%',
+  padding: pxToRem(Spacing.Large)
 }))
 
 const EditorTemplateContentStyle = cssRuleWithTheme(() => ({
   display: 'flex',
   width: '100%',
-  maxWidth: pxToRem(contentMaxWidth + Spacing.Large),
-  padding: pxToRem(Spacing.Large)
+  maxWidth: pxToRem(contentMaxWidth + Spacing.Large)
 }))
 
 export interface EditorTemplateProps {
