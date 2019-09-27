@@ -10,9 +10,19 @@ export default {
   decorators: [centerLayoutDecorator()]
 }
 
-export const Standard = () => (
-  <TextInput label={'Label'} value={''} description={'Description'} onChange={() => {}} />
-)
+export const Interactive = () => {
+  const [value, setValue] = useState('')
+
+  return (
+    <TextInput
+      icon={IconType.Search}
+      label="Label"
+      description="Description"
+      value={value}
+      onChange={event => setValue(event.target.value)}
+    />
+  )
+}
 
 export const WithValue = () => (
   <TextInput label={'Label'} value={'Value'} description={'Description'} onChange={() => {}} />
@@ -21,9 +31,9 @@ export const WithValue = () => (
 export const WithIcon = () => (
   <TextInput
     icon={IconType.Search}
-    label={'Label'}
-    value={''}
-    description={'Description'}
+    label="Label"
+    value=""
+    description="Description"
     onChange={() => {}}
   />
 )
@@ -31,16 +41,3 @@ export const WithIcon = () => (
 export const Disabled = () => (
   <TextInput label={'Label'} value={''} onChange={() => {}} description={'Description'} disabled />
 )
-
-export const Interactive = () => {
-  const [value, setValue] = useState('')
-  return (
-    <TextInput
-      icon={IconType.Search}
-      label={'Label'}
-      value={value}
-      onChange={value => setValue(value)}
-      description={'Description'}
-    />
-  )
-}

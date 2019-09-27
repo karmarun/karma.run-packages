@@ -9,7 +9,6 @@ import {RadioGroupContext} from './radioGroup'
 const RadioContainerStyle = cssRuleWithTheme(() => ({
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'center',
   alignItems: 'center',
 
   cursor: 'pointer',

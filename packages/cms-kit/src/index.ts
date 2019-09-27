@@ -14,7 +14,6 @@ export * from './atoms/toggle'
 export * from './atoms/checkbox'
 
 // Molecules
-export * from './molecules/toggleWithLabel'
 
 // Organisms
 export * from './organisms/navigation'

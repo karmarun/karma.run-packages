@@ -54,7 +54,7 @@ export interface GridColumnProp {
   readonly children?: ReactNode
 }
 
-export function GridColumn({ratio, children}: GridColumnProp) {
+export function Column({ratio, children}: GridColumnProp) {
   const {spacing} = useContext(GridContext)
   const {css} = useStyle<ColumnStyleProps>({
     flexBasis: ratio ? `${(ratio * 100).toFixed(2)}%` : '100%',

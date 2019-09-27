@@ -23,7 +23,10 @@ const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme})
     border: 'none',
     borderBottom: '1px solid',
     borderColor: hasError ? theme.colors.alert : theme.colors.gray,
-    transition: `border-color ease-in ${TransitionDuration.Slow}`,
+
+    transitionProperty: 'border-color',
+    transitionTimingFunction: 'ease-in',
+    transitionDuration: TransitionDuration.Slow,
 
     fontSize: pxToRem(FontSize.Medium),
 
