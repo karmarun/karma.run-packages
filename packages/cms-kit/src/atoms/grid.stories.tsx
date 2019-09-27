@@ -2,8 +2,9 @@ import React from 'react'
 
 import {centerLayoutDecorator} from '../.storybook/decorators'
 
-import {Grid} from './grid'
+import {Grid, GridColumn} from './grid'
 import {Placeholder} from './placeholder'
+import {Spacing} from '../style/helpers'
 
 export default {
   component: Grid,
@@ -12,12 +13,34 @@ export default {
 }
 
 export const Standard = () => (
-  <Grid numColumns={6}>
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
+  <Grid spacing={Spacing.Tiny}>
+    <GridColumn>
+      <Placeholder />
+    </GridColumn>
+    <GridColumn ratio={1 / 3}>
+      <Placeholder />
+      <Placeholder />
+    </GridColumn>
+    <GridColumn ratio={2 / 3}>
+      <Placeholder />
+    </GridColumn>
+    <GridColumn ratio={1 / 2}>
+      <Placeholder />
+    </GridColumn>
+    <GridColumn ratio={1 / 2}>
+      <Placeholder />
+    </GridColumn>
+    <GridColumn ratio={1 / 4}>
+      <Placeholder />
+    </GridColumn>
+    <GridColumn ratio={1 / 4}>
+      <Placeholder />
+    </GridColumn>
+    <GridColumn ratio={1 / 4}>
+      <Placeholder />
+    </GridColumn>
+    <GridColumn ratio={1 / 4}>
+      <Placeholder />
+    </GridColumn>
   </Grid>
 )
