@@ -21,7 +21,10 @@ const NavigationStyle = cssRuleWithTheme<NavigationStyleProps>(({isCollapsed, th
   overflow: 'hidden',
   borderRight: `1px solid ${theme.colors.gray}`,
   backgroundColor: theme.colors.light,
-  transition: `width ${TransitionDuration.Fast}`
+
+  transitionProperty: 'width',
+  transitionTimingFunction: 'ease-in',
+  transitionDuration: TransitionDuration.Fast
 }))
 
 const NavigationItemContentStyle = cssRuleWithTheme<NavigationStyleProps>(({theme}) => ({

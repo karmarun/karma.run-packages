@@ -131,11 +131,11 @@ export enum IconType {
   Wave = 'wave'
 }
 
-export interface IconStyleProps {
+interface IconStyleProps {
   scale: IconScale
 }
 
-export const IconStyle = cssRuleWithTheme<IconStyleProps>(({scale, theme}) => ({
+const IconStyle = cssRuleWithTheme<IconStyleProps>(({scale, theme}) => ({
   height: '1em',
   fontSize: scale,
   lineHeight: '1em',
@@ -151,11 +151,11 @@ export const IconStyle = cssRuleWithTheme<IconStyleProps>(({scale, theme}) => ({
   }
 }))
 
-export const InlineIconStyle = cssRuleWithTheme<IconStyleProps>(({scale, theme}) => ({
+const InlineIconStyle = cssRuleWithTheme<IconStyleProps>(({scale, theme}) => ({
   display: 'inline-block'
 }))
 
-export const BlockIconStyle = cssRuleWithTheme<IconStyleProps>(({scale, theme}) => ({
+const BlockIconStyle = cssRuleWithTheme<IconStyleProps>(({scale, theme}) => ({
   display: 'block'
 }))
 

@@ -1,8 +1,8 @@
 import React from 'react'
-import {cssRule, useStyle} from '@karma.run/react'
+import {cssRule} from '@karma.run/react'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 
-export const InfoListingItemStyle = cssRule({
+const InfoListingItemStyle = cssRule({
   width: '100%'
 })
 

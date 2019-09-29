@@ -91,7 +91,8 @@ const LabelStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme}) => 
   fontSize: pxToRem(FontSize.Small),
   opacity: 1,
   transform: 'translateY(0%)',
-  transition: 'transform ease-in-out, opacity ease-in-out, color ease-in-out',
+  transitionProperty: 'transform, opacity, color',
+  transitionTimingFunction: 'ease-in-out',
   transitionDuration: TransitionDuration.Fast
 }))
 

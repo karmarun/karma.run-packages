@@ -1,29 +1,30 @@
 import React from 'react'
 import {BaseButtonProps, BaseButton} from './baseButton'
 import {cssRuleWithTheme} from '../style/themeContext'
-import {pxToRem, FontSize, TransitionDuration, Spacing} from '../style/helpers'
+import {pxToRem, TransitionDuration, Spacing} from '../style/helpers'
 import {FontMedium} from '../style/textStyles'
 
-export const TextButtonStyle = cssRuleWithTheme(({theme}) => ({
+const TextButtonStyle = cssRuleWithTheme(({theme}) => ({
   border: 'none',
   color: theme.colors.action,
   borderRadius: '2px',
 
-  transition: 'background-color ease-in',
+  transitionProperty: 'background-color',
+  transitionTimingFunction: 'ease-in',
   transitionDuration: TransitionDuration.Fast,
 
   minWidth: pxToRem(140),
   padding: `${pxToRem(Spacing.Tiny)} ${pxToRem(Spacing.ExtraSmall)}`,
 
-  '&:hover:enabled': {
+  ':hover:enabled': {
     backgroundColor: theme.colors.light
   },
 
-  '&:active:enabled': {
+  ':active:enabled': {
     backgroundColor: theme.colors.actionDark
   },
 
-  '&:disabled': {
+  ':disabled': {
     backgroundColor: theme.colors.light,
     color: theme.colors.gray
   }

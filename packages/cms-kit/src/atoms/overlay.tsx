@@ -2,7 +2,7 @@ import React, {ReactNode} from 'react'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {pxToRem, Spacing} from '../style/helpers'
 import {TextButton} from './textButton'
-import {OutlineButton} from '..'
+import {OutlineButton} from './outlineButton'
 
 const OverlayBackgroundStyle = cssRuleWithTheme(({theme}) => ({
   position: 'fixed',

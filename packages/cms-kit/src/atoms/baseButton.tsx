@@ -40,10 +40,7 @@ const BaseButtonStyle = cssRule({
 
   border: 'none',
   backgroundColor: 'transparent',
-
   appearance: 'none',
-  MozAppearance: 'none',
-  WebkitAppearance: 'none',
 
   ':disabled': {
     cursor: 'default'
