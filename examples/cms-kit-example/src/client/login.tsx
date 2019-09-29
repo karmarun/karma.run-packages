@@ -1,7 +1,8 @@
 import React, {useState, useContext} from 'react'
-import {LoginTemplate, Input, PrimaryButton} from '@karma.run/cms-kit'
-import {useRouteDispatch, matchRoute, useRoute, IndexRoute} from './route'
+import {LoginTemplate, TextInput, PrimaryButton} from '@karma.run/cms-kit'
 import {RouteActionType} from '@karma.run/react'
+
+import {useRouteDispatch, matchRoute, useRoute, IndexRoute} from './route'
 import {AuthDispatchContext, AuthDispatchActionType} from './authContext'
 
 export function Login() {
@@ -35,8 +36,16 @@ export function Login() {
 
   return (
     <LoginTemplate>
-      <Input label="Username" value={username} onValueChange={value => setUsername(value)} />
-      <Input label="Password" value={password} onValueChange={value => setPassword(value)} />
+      <TextInput
+        label="Username"
+        value={username}
+        onChange={event => setUsername(event.target.value)}
+      />
+      <TextInput
+        label="Password"
+        value={password}
+        onChange={event => setPassword(event.target.value)}
+      />
       <PrimaryButton label="Login" onClick={login} disabled={loading} />
     </LoginTemplate>
   )

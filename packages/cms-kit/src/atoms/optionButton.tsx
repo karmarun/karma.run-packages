@@ -1,9 +1,9 @@
 import React from 'react'
 
 import {BaseButton, ButtonProps} from './baseButton'
-import {cssRuleWithTheme} from '../style/themeContext'
 import {IconType, Icon} from './icon'
 import {pxToRem, TransitionDuration, FontSize} from '../style/helpers'
+import {cssRuleWithTheme} from '../style/themeContext'
 
 const OptionButtonStyle = cssRuleWithTheme(({theme}) => ({
   width: pxToRem(40),
@@ -12,14 +12,15 @@ const OptionButtonStyle = cssRuleWithTheme(({theme}) => ({
   fontSize: pxToRem(FontSize.Heading2),
   lineHeight: 1,
 
-  backgroundColor: theme.colors.white,
   border: 'none',
   borderRadius: '100%',
 
-  transition: 'background-color ease-in',
+  transitionProperty: 'background',
+  transitionTimingFunction: 'ease-in',
   transitionDuration: TransitionDuration.Fast,
 
   fill: theme.colors.action,
+  backgroundColor: theme.colors.white,
 
   ':hover:enabled': {
     backgroundColor: theme.colors.light

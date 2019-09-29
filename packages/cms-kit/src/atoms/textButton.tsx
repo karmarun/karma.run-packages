@@ -1,13 +1,14 @@
 import React from 'react'
 import {BaseButtonProps, BaseButton} from './baseButton'
 import {cssRuleWithTheme} from '../style/themeContext'
-import {pxToRem, TransitionDuration, Spacing} from '../style/helpers'
-import {FontMedium} from '../style/textStyles'
+import {pxToRem, TransitionDuration, Spacing, FontSize} from '../style/helpers'
 
 const TextButtonStyle = cssRuleWithTheme(({theme}) => ({
   border: 'none',
   color: theme.colors.action,
   borderRadius: '2px',
+
+  fontSize: FontSize.Medium,
 
   transitionProperty: 'background-color',
   transitionTimingFunction: 'ease-in',
@@ -37,7 +38,7 @@ export interface TextButtonProps extends BaseButtonProps {
 export function TextButton({label, ...rest}: TextButtonProps) {
   return (
     <BaseButton {...rest} style={TextButtonStyle}>
-      <FontMedium>{label}</FontMedium>
+      {label}
     </BaseButton>
   )
 }

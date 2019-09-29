@@ -1,9 +1,9 @@
 import React, {ReactNode, ElementType, CSSProperties} from 'react'
 
-import {pxToRem, FontSize, Spacing} from '../style/helpers'
+import {pxToRem, FontSize} from '../style/helpers'
 import {cssRuleWithTheme, useThemeStyle, ThemeColors} from '../style/themeContext'
 
-export type TypographyVariant =
+export type TypographyStyle =
   | 'title'
   | 'h1'
   | 'h2'
@@ -15,52 +15,59 @@ export type TypographyVariant =
 
 export type TypographyTextAlign = 'left' | 'center' | 'right'
 export type TypographyDisplay = 'block' | 'inline'
+export type TypographySpacing = 'small' | 'large'
 
 interface TypographStyleProps {
-  readonly variant: TypographyVariant
+  readonly style: TypographyStyle
   readonly color?: keyof ThemeColors
   readonly align?: TypographyTextAlign
   readonly display?: TypographyDisplay
-  readonly spacing: Spacing
+  readonly spacing?: TypographySpacing
+  readonly noWrap?: boolean
 }
 
 const TypographStyle = cssRuleWithTheme<TypographStyleProps>(
-  ({variant, color, align, display, spacing, theme}) => ({
+  ({style, color, align, display, spacing, noWrap, theme}) => ({
     display,
     textAlign: align,
     color: color ? theme.colors[color] : undefined,
+    whiteSpace: noWrap ? 'nowrap' : undefined,
+    textOverflow: noWrap ? 'ellipsis' : undefined,
+    overflow: noWrap ? 'hidden' : undefined,
     marginTop: 0,
-    marginBottom: pxToRem(spacing),
-    ...stylesForTypographyVariant(variant)
+    marginBottom: spacing ? marginForTypographySpacing(spacing) : 0,
+    ...stylesForTypographyStyle(style)
   })
 )
 
 export interface TypographyProps {
-  readonly variant?: TypographyVariant
+  readonly style?: TypographyStyle
   readonly color?: keyof ThemeColors
   readonly align?: TypographyTextAlign
   readonly display?: TypographyDisplay
-  readonly spacing?: Spacing
+  readonly spacing?: TypographySpacing
+  readonly noWrap?: boolean
   readonly element?: ElementType<{className?: string}>
   readonly children?: ReactNode
 }
 
 export function Typography({
-  variant = 'body1',
+  style = 'body1',
   color,
   align,
   display,
-  spacing = Spacing.None,
+  spacing,
+  noWrap,
   element,
   children
 }: TypographyProps) {
-  const Element = element || elementForTypographyVariant(variant)
-  const {css} = useThemeStyle<TypographStyleProps>({variant, color, align, display, spacing})
+  const Element = element || elementForTypographyVariant(style)
+  const {css} = useThemeStyle<TypographStyleProps>({style, color, align, display, spacing, noWrap})
 
   return <Element className={css(TypographStyle)}>{children}</Element>
 }
 
-export function elementForTypographyVariant(variant: TypographyVariant) {
+export function elementForTypographyVariant(variant: TypographyStyle) {
   switch (variant) {
     case 'title':
       return 'h1'
@@ -79,8 +86,18 @@ export function elementForTypographyVariant(variant: TypographyVariant) {
   }
 }
 
-export function stylesForTypographyVariant(variant: TypographyVariant): CSSProperties {
-  switch (variant) {
+export function marginForTypographySpacing(spacing: TypographySpacing): string {
+  switch (spacing) {
+    case 'small':
+      return '0.4em'
+
+    case 'large':
+      return '0.8em'
+  }
+}
+
+export function stylesForTypographyStyle(style: TypographyStyle): CSSProperties {
+  switch (style) {
     case 'title':
       return {
         fontSize: pxToRem(FontSize.ExtraLarge)
@@ -105,14 +122,14 @@ export function stylesForTypographyVariant(variant: TypographyVariant): CSSPrope
     case 'body2':
       return {
         fontSize: pxToRem(FontSize.Medium),
-        fontWeight: variant === 'body2' ? 'bold' : undefined
+        fontWeight: style === 'body2' ? 'bold' : undefined
       }
 
     case 'subtitle1':
     case 'subtitle2':
       return {
         fontSize: pxToRem(FontSize.Small),
-        fontStyle: variant === 'subtitle2' ? 'italic' : undefined
+        fontStyle: style === 'subtitle2' ? 'italic' : undefined
       }
   }
 }

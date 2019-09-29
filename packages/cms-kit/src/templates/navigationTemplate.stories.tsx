@@ -1,5 +1,6 @@
 import React from 'react'
 
+import {Text} from '../layout/typography.stories'
 import {NavigationTemplate} from './navigationTemplate'
 import {MenuIconButton} from '../atoms/menuIconButton'
 import {IconType} from '../atoms/icon'
@@ -29,6 +30,8 @@ export const Standard = () => (
         <MenuIconButton icon={IconType.Logout} label={'Logout'} hideLabel={isCollapsed} />
       </>
     )}>
-    <div style={{height: '2000px', backgroundImage: 'linear-gradient(#FFF, #000)'}} />
+    <Text />
+    <Text />
+    <Text />
   </NavigationTemplate>
 )
