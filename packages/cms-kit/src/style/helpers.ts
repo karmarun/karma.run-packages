@@ -33,6 +33,11 @@ export enum BorderWidth {
   Small = '1px'
 }
 
+export enum BorderRadius {
+  Small = 5,
+  Medium = 10
+}
+
 export enum TransitionDuration {
   Fast = '50ms',
   Slow = '200ms'
