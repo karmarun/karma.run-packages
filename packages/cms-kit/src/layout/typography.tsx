@@ -58,10 +58,10 @@ export function Typography({
   display,
   spacing,
   noWrap,
-  element,
+  element = elementForTypographyVariant(style),
   children
 }: TypographyProps) {
-  const Element = element || elementForTypographyVariant(style)
+  const Element = element
   const {css} = useThemeStyle<TypographStyleProps>({style, color, align, display, spacing, noWrap})
 
   return <Element className={css(TypographStyle)}>{children}</Element>
