@@ -1,6 +1,18 @@
 import React, {useState} from 'react'
+
 import {AccessoryBar} from '../molecules/accessoryBar'
 import {FavorButtonProps} from '../atoms/favorButton'
+import {cssRule, useStyle} from '@karma.run/react'
+
+const BlockContainerStyle = cssRule(() => ({
+  position: 'relative'
+}))
+
+const AccessoryBarStyle = cssRule(() => ({
+  position: 'absolute',
+  top: '0',
+  width: '100%'
+}))
 
 export interface Image {
   src: string
@@ -14,6 +26,7 @@ export interface ImagesBlockProps {
 }
 
 export function ImagesBlock({images, isLead, onEdit}: ImagesBlockProps) {
+  const {css} = useStyle()
   const isGallery = images.length > 1
 
   const [current, setCurrent] = useState(0)
@@ -35,13 +48,15 @@ export function ImagesBlock({images, isLead, onEdit}: ImagesBlockProps) {
   }
 
   return (
-    <>
-      <AccessoryBar
-        onEdit={onEdit}
-        isLead={isLead}
-        onPrevious={isGallery ? onPrevious : undefined}
-        onNext={isGallery ? onNext : undefined}
-      />
+    <div className={css(BlockContainerStyle)}>
+      <div className={css(AccessoryBarStyle)}>
+        <AccessoryBar
+          onEdit={onEdit}
+          isLead={isLead}
+          onPrevious={isGallery ? onPrevious : undefined}
+          onNext={isGallery ? onNext : undefined}
+        />
+      </div>
       <img src={images[current].src} />
       <div>
         {isGallery && (
@@ -51,6 +66,6 @@ export function ImagesBlock({images, isLead, onEdit}: ImagesBlockProps) {
         )}{' '}
         {images[current].description}
       </div>
-    </>
+    </div>
   )
 }
