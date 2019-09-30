@@ -52,7 +52,6 @@ export interface FavorButtonProps extends ButtonProps {
 }
 
 export function FavorButton({isFavorite, onFavoriteChange, ...rest}: FavorButtonProps) {
-  console.log(isFavorite)
   return (
     <BaseButton
       {...rest}
