@@ -1,7 +1,8 @@
 import React, {ElementType, ReactNode} from 'react'
-import {CSSRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {toArray} from '../utility'
 import {cssRule} from '@karma.run/react'
+import {toArray} from '@karma.run/utility'
+
+import {CSSRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {FlexDirectionProperty} from 'csstype'
 
 export interface BaseBoxProps {

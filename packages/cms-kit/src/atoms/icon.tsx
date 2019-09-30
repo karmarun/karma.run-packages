@@ -1,4 +1,5 @@
 import React from 'react'
+import {toArray} from '@karma.run/utility'
 
 import {DropHereIconSVG} from '../icons/dropHere'
 import {ReplaceIconSVG} from '../icons/replace'
@@ -61,7 +62,6 @@ import {VideoIconSVG} from '../icons/video'
 import {WaveIconSVG} from '../icons/wave'
 
 import {cssRuleWithTheme, useThemeStyle, CSSRuleWithTheme} from '../style/themeContext'
-import {toArray} from '../utility'
 
 export enum IconScale {
   Equal = '1em',

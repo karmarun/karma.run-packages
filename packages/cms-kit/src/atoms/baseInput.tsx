@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react'
+import {toArray} from '@karma.run/utility'
 
-import {toArray} from '../utility'
 import {CSSRuleWithTheme, useThemeStyle} from '../style/themeContext'
 
 export enum InputType {

@@ -1,7 +1,8 @@
 import React, {ReactNode, MouseEventHandler} from 'react'
-import {cssRule} from '@karma.run/react'
 
-import {toArray} from '../utility'
+import {cssRule} from '@karma.run/react'
+import {toArray} from '@karma.run/utility'
+
 import {useThemeStyle, CSSRuleWithTheme} from '../style/themeContext'
 
 export interface ButtonProps {
