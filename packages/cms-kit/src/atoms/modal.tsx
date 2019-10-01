@@ -3,7 +3,7 @@ import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {pxToRem, Spacing, ZIndex} from '../style/helpers'
 import {TextButton} from './textButton'
 import {OutlineButton} from '..'
-import { FontStyle } from '../style/textStyles'
+import {FontStyle} from '../style/textStyles'
 
 const ModalStyle = cssRuleWithTheme(({theme}) => ({
   position: 'fixed',
@@ -50,7 +50,7 @@ export function Modal({title, children, onConfirm, onCancel}: ModalProps) {
       <div className={css(ModalDialogStyle)}>
         <div className={css(ModalContentStyle)}>
           <div className={css(ModalHeaderStyle)}>
-            <Fo>{title}</h3>
+            <h3>{title}</h3>
           </div>
           <div className={css(ModalBodyStyle)}>{children}</div>
           <div className={css(ModalFooterStyle)}>
