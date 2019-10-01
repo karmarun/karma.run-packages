@@ -9,23 +9,21 @@ export interface BaseProps {
 export function Base({children}: BaseProps) {
   return (
     <NavigationTemplate
-      navigationChildren={isCollapsed => (
+      navigationChildren={
         <>
           <LinkMenuIconButton
             icon={IconType.Article}
             label="Article"
-            hideLabel={isCollapsed}
             route={ArticleListRoute.create({})}
           />
 
           <LinkMenuIconButton
             icon={IconType.Logout}
             label="Logout"
-            hideLabel={isCollapsed}
             route={LogoutRoute.create({})}
           />
         </>
-      )}>
+      }>
       {children}
     </NavigationTemplate>
   )
