@@ -14,7 +14,7 @@ export default {
   decorators: [centerLayoutDecorator()]
 }
 
-export const ShowCase = () => {
+export const Empty = () => {
   const [showSidePanel, setShowSidePanel] = useState(true)
 
   return (
