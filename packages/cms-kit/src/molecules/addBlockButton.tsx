@@ -7,32 +7,30 @@ export interface AddBlockButtonStyleProps {
   active: boolean
 }
 
-const AddBlockButtonStyle = cssRuleWithTheme<AddBlockButtonStyleProps>(
-  ({theme, active}) => ({
-    display: 'flex',
-    position: 'relative',
+const AddBlockButtonStyle = cssRuleWithTheme<AddBlockButtonStyleProps>(({theme, active}) => ({
+  display: 'flex',
+  position: 'relative',
 
-    alignItems: 'center',
-    justifyContent: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  width: '100%',
+  fill: active ? theme.colors.dark : undefined,
+
+  '&::before': {
+    content: '""',
+
+    position: 'absolute',
+    display: 'block',
+
+    top: '50%',
 
     width: '100%',
-    fill: active ? theme.colors.dark : undefined,
+    height: '1px',
 
-    '&::before': {
-      content: '""',
-
-      position: 'absolute',
-      display: 'block',
-
-      top: '50%',
-
-      width: '100%',
-      height: '1px',
-
-      backgroundColor: theme.colors.action
-    }
-  })
-)
+    backgroundColor: theme.colors.action
+  }
+}))
 
 const AddBlockButtonWrapperStyle = cssRuleWithTheme(() => ({
   zIndex: 1,
