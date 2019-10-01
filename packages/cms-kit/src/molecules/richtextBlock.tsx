@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react'
 
-import {Editor, OnChangeParam, EditorProps} from 'slate-react'
+import {Editor, OnChangeParam, EditorProps, Plugin} from 'slate-react'
 import {Value} from 'slate'
 
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
@@ -31,7 +31,10 @@ export interface RichtextBlockProps {
 
 export function RichtextBlock({editItems, value, onChange}: RichtextBlockProps) {
   const ref = useRef<HTMLDivElement>(null)
+  const renderRef = useRef<Plugin['renderEditor']>()
+
   const {fragment, selection} = value
+  const [test, setTest] = useState(false)
   const [{currentTop, currentLeft}, setMenuPosition] = useState({
     currentTop: outside,
     currentLeft: outside
@@ -62,17 +65,18 @@ export function RichtextBlock({editItems, value, onChange}: RichtextBlockProps) 
 
     console.log('temp position top', temptop, 'left', templeft)
     setMenuPosition({currentTop: temptop, currentLeft: templeft})
+    setTest(true)
     //console.log('set position top', currentTop, 'left', currentLeft, 'other top', top)
   }
 
   function onDeselect() {
-    console.log('current deselect', currentTop)
+    console.log('current deselect', test)
     //setMenuPosition({currentTop: outside, currentLeft: outside})
   }
 
-  console.log('current allg', currentTop)
+  console.log('current allg', test)
 
-  function renderEditor(props: EditorProps, editor: any, next: () => any) {
+  renderRef.current = (props, editor, next) => {
     console.log('current', currentTop)
     const children = next()
     return (
@@ -104,7 +108,7 @@ export function RichtextBlock({editItems, value, onChange}: RichtextBlockProps) 
         onChange={({value}: OnChangeParam) => {
           if (onChange) onChange(value)
         }}
-        renderEditor={renderEditor}
+        renderEditor={(...args) => renderRef.current!(...args)}
       />
       {/* <div className={css(EditMenuStyle)} ref={ref}>
         <RichtextEditOverlay>
