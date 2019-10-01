@@ -10,7 +10,7 @@ export default {
 }
 
 export const PublishArticle = () => (
-  <Modal title={'Publish Article'} onConfirm={() => {}}>
+  <Modal title={'Publish Article'} onConfirm={() => {}} onCancel={() => {}}>
     <Input
       label={'Publish state'}
       value={''}

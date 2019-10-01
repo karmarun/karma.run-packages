@@ -1,39 +1,69 @@
 import React, {ReactNode} from 'react'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem, Spacing, ZIndex} from '../style/helpers'
+import {pxToRem, Spacing, ZIndex, BorderRadius, whenTablet, whenMobile} from '../style/helpers'
 import {TextButton} from './textButton'
 import {OutlineButton} from '..'
-import {FontStyle} from '../style/textStyles'
+import {Heading3} from '../style/textStyles'
 
 const ModalStyle = cssRuleWithTheme(({theme}) => ({
   position: 'fixed',
-  top: pxToRem(30),
+  zIndex: ZIndex.Modal,
+  top: pxToRem(40),
   right: 0,
   bottom: 0,
   left: 0,
-  WebkitOverflowScrolling: 'touch',
-  overflow: 'hidden',
-  ZIndex: 1050
+  overflow: 'hidden'
 }))
 
 const ModalDialogStyle = cssRuleWithTheme(({theme}) => ({
+  width: '40%',
+  position: 'relative',
   backgroundColor: theme.colors.white,
+  marginTop: 0,
+  marginBottom: 0,
+  marginLeft: 'auto',
+  marginRight: 'auto',
   boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.5)',
-  borderRadius: pxToRem(8),
+  border: '1px solid',
+  borderColor: theme.colors.grayLight,
+  borderRadius: pxToRem(BorderRadius.Medium),
+  padding: pxToRem(Spacing.Small),
   overflow: 'hidden',
-  maxWidth: '500px'
-}))
 
-const ModalContentStyle = cssRuleWithTheme(({theme}) => ({}))
+  ...whenTablet({
+    width: '60%'
+  }),
+
+  ...whenMobile({
+    width: '96%'
+  })
+}))
 
 const ModalHeaderStyle = cssRuleWithTheme(({theme}) => ({
-  textAlign: 'center'
+  textAlign: 'center',
+  marginBottom: pxToRem(Spacing.Large)
 }))
 
-const ModalBodyStyle = cssRuleWithTheme(({theme}) => ({}))
+const ModalBodyStyle = cssRuleWithTheme(({theme}) => ({
+  marginBottom: pxToRem(Spacing.Large)
+}))
 
 const ModalFooterStyle = cssRuleWithTheme(({theme}) => ({
-  float: 'right'
+  float: 'right',
+
+  '> button': {
+    marginLeft: pxToRem(Spacing.ExtraSmall)
+  }
+}))
+
+const ModalBackdropStyle = cssRuleWithTheme(({theme}) => ({
+  position: 'fixed',
+  top: 0,
+  right: 0,
+  left: 0,
+  bottom: 0,
+  zIndex: ZIndex.ModalBackdrop,
+  backgroundColor: 'rgba(255,255,255,0.85)'
 }))
 
 export interface ModalProps {
@@ -46,11 +76,11 @@ export interface ModalProps {
 export function Modal({title, children, onConfirm, onCancel}: ModalProps) {
   const {css} = useThemeStyle()
   return (
-    <div className={css(ModalStyle)}>
-      <div className={css(ModalDialogStyle)}>
-        <div className={css(ModalContentStyle)}>
+    <React.Fragment>
+      <div className={css(ModalStyle)}>
+        <div className={css(ModalDialogStyle)}>
           <div className={css(ModalHeaderStyle)}>
-            <h3>{title}</h3>
+            <Heading3>{title}</Heading3>
           </div>
           <div className={css(ModalBodyStyle)}>{children}</div>
           <div className={css(ModalFooterStyle)}>
@@ -59,6 +89,7 @@ export function Modal({title, children, onConfirm, onCancel}: ModalProps) {
           </div>
         </div>
       </div>
-    </div>
+      <div className={css(ModalBackdropStyle)} />
+    </React.Fragment>
   )
 }
