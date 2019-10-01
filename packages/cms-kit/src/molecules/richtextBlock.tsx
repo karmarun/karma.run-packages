@@ -1,25 +1,124 @@
-import React from 'react'
-import {FieldProps} from '../fields/types'
+import React, {useRef, useState} from 'react'
+
+import {Editor, OnChangeParam, EditorProps} from 'slate-react'
+import {Value} from 'slate'
+
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {BaseTextArea} from '../atoms/baseTextArea'
+import {pxToRem, Spacing, TransitionDuration} from '../style/helpers'
+import {RichtextEditOverlay, RichTextEditButton} from './richtextEditOverlay'
+import {cssRule, useStyle} from '@karma.run/react'
 
-export const RichtextBlockStyle = cssRuleWithTheme(({theme}) => ({}))
+const outside = -10000
 
-export function RichtextBlock({value, onChange}: FieldProps) {
-  const {css} = useThemeStyle()
+interface EditMenuStyleProps {
+  top: number
+  left: number
+}
+const RichtextBlockStyle = cssRuleWithTheme(({theme}) => ({}))
+const EditMenuStyle = cssRule<EditMenuStyleProps>(({top, left}) => ({
+  position: 'absolute',
+  opacity: top > outside ? 1 : 0,
+  top: pxToRem(top),
+  left: pxToRem(left),
+  transition: `opacity ${TransitionDuration.Fast}`
+}))
 
-  const placeholderLead =
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore. Stet clita kasd gubergren, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore'
+export interface RichtextBlockProps {
+  readonly value: Value
+  readonly editItems: RichTextEditButton[]
+  onChange?(value: Value): void
+}
+
+export function RichtextBlock({editItems, value, onChange}: RichtextBlockProps) {
+  const ref = useRef<HTMLDivElement>(null)
+  const {fragment, selection} = value
+  const [{currentTop, currentLeft}, setMenuPosition] = useState({
+    currentTop: outside,
+    currentLeft: outside
+  })
+  const {css} = useThemeStyle({top: currentTop, left: currentLeft})
+
+  function checkForSelection() {
+    if (selection.isBlurred || selection.isCollapsed || fragment.text === '') {
+      onDeselect()
+    } else {
+      const native = window.getSelection()
+
+      if (native) {
+        showMenu(native)
+      }
+    }
+  }
+
+  function showMenu(native: Selection) {
+    const menu = ref.current
+    if (!menu) return
+
+    const range = native.getRangeAt(0)
+    const rect = range.getBoundingClientRect()
+
+    let temptop = rect.top + window.pageYOffset - menu.offsetHeight
+    let templeft = rect.left + window.pageXOffset - menu.offsetWidth / 2 + rect.width / 2
+
+    console.log('temp position top', temptop, 'left', templeft)
+    setMenuPosition({currentTop: temptop, currentLeft: templeft})
+    //console.log('set position top', currentTop, 'left', currentLeft, 'other top', top)
+  }
+
+  function onDeselect() {
+    console.log('current deselect', currentTop)
+    //setMenuPosition({currentTop: outside, currentLeft: outside})
+  }
+
+  console.log('current allg', currentTop)
+
+  function renderEditor(props: EditorProps, editor: any, next: () => any) {
+    console.log('current', currentTop)
+    const children = next()
+    return (
+      <React.Fragment>
+        {children}
+        <div className={css(EditMenuStyle)} ref={ref}>
+          <RichtextEditOverlay>
+            {editItems.map((item, idx) => (
+              <RichTextEditButton
+                key={idx}
+                editor={editor}
+                isActive={item.isActive}
+                icon={item.icon}
+                onClick={item.onClick}
+                label={item.label}
+              />
+            ))}
+          </RichtextEditOverlay>
+        </div>
+      </React.Fragment>
+    )
+  }
 
   return (
-    <BaseTextArea
-      placeholder={placeholderLead}
-      style={RichtextBlockStyle}
-      value={value}
-      onChange={value => onChange(value)}
-      onSelect={(value, event) => {
-        console.log(event)
-      }}
-    />
+    <div className={css(RichtextBlockStyle)} onClick={checkForSelection} onBlur={onDeselect}>
+      <Editor
+        placeholder="Enter some text..."
+        value={value}
+        onChange={({value}: OnChangeParam) => {
+          if (onChange) onChange(value)
+        }}
+        renderEditor={renderEditor}
+      />
+      {/* <div className={css(EditMenuStyle)} ref={ref}>
+        <RichtextEditOverlay>
+          {editItems.map(item => (
+            <RichTextEditButton
+              //editor={editor}
+              isActive={item.isActive}
+              icon={item.icon}
+              onClick={item.onClick}
+              label={item.label}
+            />
+          ))}
+        </RichtextEditOverlay>
+      </div> */}
+    </div>
   )
 }
