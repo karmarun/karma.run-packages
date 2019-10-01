@@ -64,3 +64,15 @@ export function whenDesktop(styles: CSSStyle) {
     [`@media screen and (min-width: ${Breakpoint.Desktop}px)`]: styles
   }
 }
+
+export function hexToRgba(hex: string | number, alpha: number) {
+  hex = typeof hex === 'string' ? parseInt(hex[0] === '#' ? hex.slice(1) : hex, 16) : hex
+
+  const red = 0xff & hex
+  const green = 0xff & (hex >> 4)
+  const blue = 0xff & (hex >> 4)
+
+  console.log('RED', red.toString(16), green.toString(16), blue.toString(16))
+}
+
+console.log('HEX', hexToRgba('#FFEECC', 0.5))
