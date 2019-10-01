@@ -39,7 +39,7 @@ export function AccessoryBar({onEdit, isLead, onNext, onPrevious}: AccessoryBarP
   const {css} = useStyle()
   return (
     <div className={css(AccessoryBarStyle)}>
-      <div></div>
+      <div />
       <div className={css(ChevronsStyle)}>
         {onPrevious && <OptionButtonSmall icon={IconType.ChevronLeft} onClick={onPrevious} />}
         {onNext && <OptionButtonSmall icon={IconType.ChevronRight} onClick={onNext} />}
