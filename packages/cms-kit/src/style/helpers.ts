@@ -2,7 +2,8 @@ import {CSSStyle} from '@karma.run/react'
 
 export enum Breakpoint {
   Mobile = 0,
-  Desktop = 750
+  Tablet = 600,
+  Desktop = 992
 }
 
 export enum ZIndex {
@@ -52,13 +53,13 @@ export function pxToEm(px: number) {
 export function onlyMobile(styles: CSSStyle) {
   // prettier-ignore
   return {
-    [`@media screen and (max-width: ${Breakpoint.Desktop - 1}px)`]: styles
+    [`@media screen and (max-width: ${Breakpoint.Tablet - 1}px)`]: styles
   }
 }
 
-export function whenDesktop(styles: CSSStyle) {
+export function whenTablet(styles: CSSStyle) {
   // prettier-ignore
   return {
-    [`@media screen and (min-width: ${Breakpoint.Desktop}px)`]: styles
+    [`@media screen and (min-width: ${Breakpoint.Desktop - 1}px)`]: styles
   }
 }
