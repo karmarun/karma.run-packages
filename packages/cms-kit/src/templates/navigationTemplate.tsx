@@ -34,7 +34,7 @@ const NavigationTemplateContentStyle = cssRuleWithTheme(() => ({
 }))
 
 export interface NavigationTemplateProps {
-  navigationChildren?: (isCollapsed: boolean) => ReactNode
+  navigationChildren?: ReactNode
   children?: ReactNode
 }
 

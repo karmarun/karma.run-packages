@@ -1,10 +1,11 @@
 import React, {ChangeEvent} from 'react'
 
-import {IconType, Icon, IconScale} from './icon'
+import {IconType, Icon} from './icon'
 import {BaseInput, InputType} from './baseInput'
 
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem, FontSize, TransitionDuration, Spacing} from '../style/helpers'
+import {pxToRem, FontSize, TransitionDuration, Spacing, BorderWidth} from '../style/helpers'
+import {cssRule} from '@karma.run/react'
 
 interface TextInputStyleProps {
   hasError: boolean
@@ -15,71 +16,70 @@ const TextInputContainerStyle = cssRuleWithTheme(() => ({
   paddingTop: pxToRem(16)
 }))
 
-const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme}) => ({
+const TextInputWrapperStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme}) => ({
   position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
 
-  '> input': {
-    width: '100%',
-    border: 'none',
-    borderBottom: '1px solid',
-    borderColor: hasError ? theme.colors.alert : theme.colors.gray,
+  fontSize: pxToRem(FontSize.Medium),
+  fill: theme.colors.dark,
 
-    transitionProperty: 'border-color',
-    transitionTimingFunction: 'ease-in',
-    transitionDuration: TransitionDuration.Slow,
+  borderBottomWidth: BorderWidth.Small,
+  borderBottomStyle: 'solid',
+  borderBottomColor: hasError ? theme.colors.alert : theme.colors.gray
+}))
 
-    fontSize: pxToRem(FontSize.Medium),
+const IconStyle = cssRule(() => ({
+  marginRight: pxToRem(Spacing.Tiny)
+}))
 
-    '::placeholder': {
-      color: theme.colors.gray
-    },
+const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme}) => ({
+  width: '100%',
 
-    ':focus': {
-      outline: 'none',
-      borderColor: theme.colors.action
-    },
+  transitionProperty: 'border-color',
+  transitionTimingFunction: 'ease-in',
+  transitionDuration: TransitionDuration.Slow,
 
-    ':required:focus:valid': {
-      borderColor: theme.colors.success
-    },
-
-    ':required:focus:valid + label': {
-      color: theme.colors.success
-    },
-
-    ':required:focus:invalid': {
-      borderColor: theme.colors.alert
-    },
-
-    ':required:focus:invalid + label': {
-      color: theme.colors.alert
-    },
-
-    ':required:invalid': {
-      borderColor: theme.colors.alert
-    },
-
-    ':required:invalid + label': {
-      color: theme.colors.alert
-    },
-
-    ':placeholder-shown + label': {
-      opacity: 0,
-      transform: 'translateY(30%)'
-    },
-
-    ':focus + label': {
-      color: theme.colors.action
-    }
+  '::placeholder': {
+    color: theme.colors.gray
   },
-  '> span': {
-    position: 'absolute',
-    left: '1px',
-    top: '1px',
-    fill: theme.colors.dark
+
+  ':focus': {
+    outline: 'none',
+    borderColor: theme.colors.action
   },
-  '> span + input': {
-    paddingLeft: pxToRem(Spacing.Medium)
+
+  ':required:focus:valid': {
+    borderColor: theme.colors.success
+  },
+
+  ':required:focus:valid + label': {
+    color: theme.colors.success
+  },
+
+  ':required:focus:invalid': {
+    borderColor: theme.colors.alert
+  },
+
+  ':required:focus:invalid + span': {
+    color: theme.colors.alert
+  },
+
+  ':required:invalid': {
+    borderColor: theme.colors.alert
+  },
+
+  ':required:invalid + span': {
+    color: theme.colors.alert
+  },
+
+  ':placeholder-shown + span': {
+    opacity: 0,
+    transform: 'translateY(30%)'
+  },
+
+  ':focus + span': {
+    color: theme.colors.action
   }
 }))
 
@@ -113,23 +113,22 @@ export interface TextInputProps {
 }
 
 export function TextInput({label, description, errorDescription, icon, ...props}: TextInputProps) {
-  const {css} = useThemeStyle<TextInputStyleProps>({hasError: errorDescription != null})
-  const Input = <BaseInput type={InputType.Text} placeholder={label} {...props} />
+  const styleProps = {hasError: errorDescription != null}
+  const {css} = useThemeStyle<TextInputStyleProps>(styleProps)
 
   return (
     <div className={css(TextInputContainerStyle)}>
-      <div className={css(TextInputStyle)}>
-        {icon ? (
-          <>
-            <Icon type={icon} scale={IconScale.Larger} />
-            {Input}
-          </>
-        ) : (
-          Input
-        )}
-        <label className={css(LabelStyle)}>{label}</label>
-      </div>
-
+      <label className={css(TextInputWrapperStyle)}>
+        {icon && <Icon type={icon} style={IconStyle} />}
+        <BaseInput
+          type={InputType.Text}
+          placeholder={label}
+          style={TextInputStyle}
+          styleProps={styleProps}
+          {...props}
+        />
+        <span className={css(LabelStyle)}>{label}</span>
+      </label>
       <div className={css(DescriptionStyle)}>{errorDescription || description}</div>
     </div>
   )

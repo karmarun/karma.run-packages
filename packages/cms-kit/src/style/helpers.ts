@@ -2,12 +2,15 @@ import {CSSStyle} from '@karma.run/react'
 
 export enum Breakpoint {
   Mobile = 0,
-  Desktop = 750
+  Tablet = 600,
+  Desktop = 992
 }
 
 export enum ZIndex {
   Default = 0,
-  NavigationBar = 10
+  NavigationBar = 10,
+  Modal = 1050,
+  ModalBackdrop = 1040
 }
 
 export enum Spacing {
@@ -51,28 +54,26 @@ export function pxToEm(px: number) {
   return `${px / 10}em`
 }
 
-export function onlyMobile(styles: CSSStyle) {
+export function whenTablet(styles: CSSStyle) {
   // prettier-ignore
   return {
     [`@media screen and (max-width: ${Breakpoint.Desktop - 1}px)`]: styles
   }
 }
 
-export function whenDesktop(styles: CSSStyle) {
+export function whenMobile(styles: CSSStyle) {
   // prettier-ignore
   return {
-    [`@media screen and (min-width: ${Breakpoint.Desktop}px)`]: styles
+    [`@media screen and (max-width: ${Breakpoint.Tablet - 1}px)`]: styles
   }
 }
 
 export function hexToRgba(hex: string | number, alpha: number) {
   hex = typeof hex === 'string' ? parseInt(hex[0] === '#' ? hex.slice(1) : hex, 16) : hex
 
-  const red = 0xff & hex
-  const green = 0xff & (hex >> 4)
-  const blue = 0xff & (hex >> 4)
+  const red = 0xff & (hex >> 16)
+  const green = 0xff & (hex >> 8)
+  const blue = 0xff & (hex >> 0)
 
-  console.log('RED', red.toString(16), green.toString(16), blue.toString(16))
+  return `rgba(${red}, ${green}, ${blue}, ${alpha})`
 }
-
-console.log('HEX', hexToRgba('#FFEECC', 0.5))

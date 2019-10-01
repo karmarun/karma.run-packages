@@ -10,10 +10,4 @@ export default {
   decorators: [centerLayoutDecorator()]
 }
 
-export const Standard = () => (
-  <Box flex flexDirection="column" margin={-Spacing.Tiny}>
-    <Box padding={Spacing.Tiny}>Test</Box>
-    <Box padding={Spacing.Tiny}>Test</Box>
-    <Box padding={Spacing.Tiny}>Test</Box>
-  </Box>
-)
+export const Standard = () => <Box margin={-Spacing.Tiny}>Box</Box>

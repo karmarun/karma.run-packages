@@ -1,13 +1,13 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {BaseButton, ButtonProps} from '../atoms/baseButton'
 import {IconType, Icon, IconScale} from '../atoms/icon'
 
 import {pxToRem, Spacing, TransitionDuration, FontSize} from '../style/helpers'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {cssRule} from '@karma.run/react'
+import {NavigationContext} from '../organisms/navigation'
 
 interface MenuIconButtonStyleProps {
-  readonly hideLabel: boolean
+  readonly isCollapsed: boolean
 }
 
 const MenuIconButtonStyle = cssRuleWithTheme(({theme}) => ({
@@ -35,13 +35,13 @@ const MenuIconButtonStyle = cssRuleWithTheme(({theme}) => ({
   }
 }))
 
-const LabelStyle = cssRuleWithTheme<MenuIconButtonStyleProps>(({hideLabel, theme}) => ({
+const LabelStyle = cssRuleWithTheme<MenuIconButtonStyleProps>(({isCollapsed}) => ({
   marginLeft: pxToRem(Spacing.ExtraSmall),
   whiteSpace: 'nowrap',
-  opacity: hideLabel ? 0 : 1,
+  opacity: isCollapsed ? 0 : 1,
   transitionProperty: 'opacity',
   transitionTimingFunction: 'ease-in',
-  transitionDuration: TransitionDuration.Fast
+  transitionDuration: TransitionDuration.Slow
 }))
 
 export interface MenuIconButtonProps extends ButtonProps {
@@ -53,13 +53,13 @@ export interface MenuIconButtonProps extends ButtonProps {
 
 export function MenuIconButton({
   label,
-  hideLabel = false,
   iconScale = IconScale.Larger,
   icon,
   href,
   onClick
 }: MenuIconButtonProps) {
-  const {css} = useThemeStyle({hideLabel})
+  const {isCollapsed} = useContext(NavigationContext)
+  const {css} = useThemeStyle({isCollapsed})
 
   return (
     <BaseButton href={href} onClick={onClick} style={MenuIconButtonStyle}>

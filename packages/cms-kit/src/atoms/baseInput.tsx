@@ -2,6 +2,7 @@ import React, {ChangeEvent} from 'react'
 import {toArray} from '@karma.run/utility'
 
 import {CSSRuleWithTheme, useThemeStyle} from '../style/themeContext'
+import {cssRule} from '@karma.run/react'
 
 export enum InputType {
   Text = 'text',
@@ -42,6 +43,11 @@ export interface BaseInputPropsPropsWithStyleProps<T extends InputType, P = unde
   readonly styleProps: P
 }
 
+const BaseInputStyle = cssRule(() => ({
+  border: 'none',
+  fontSize: 'inherit'
+}))
+
 export function BaseInput<T extends InputType>(
   props: BaseInputPropsWithoutStyleProps<T>
 ): JSX.Element
@@ -55,5 +61,5 @@ export function BaseInput<T extends InputType, P = undefined>({
   ...props
 }: BaseInputProps<T, P>): JSX.Element {
   const {css} = useThemeStyle(styleProps)
-  return <input {...props} type={type} className={css(...toArray(style))} />
+  return <input {...props} type={type} className={css(BaseInputStyle, ...toArray(style))} />
 }
