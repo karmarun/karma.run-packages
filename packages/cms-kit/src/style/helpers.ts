@@ -7,7 +7,9 @@ export enum Breakpoint {
 
 export enum ZIndex {
   Default = 0,
-  NavigationBar = 10
+  NavigationBar = 10,
+  Modal = 1050,
+  ModalBackdrop = 1040
 }
 
 export enum Spacing {
