@@ -60,6 +60,6 @@ export function onlyMobile(styles: CSSStyle) {
 export function whenTablet(styles: CSSStyle) {
   // prettier-ignore
   return {
-    [`@media screen and (min-width: ${Breakpoint.Desktop - 1}px)`]: styles
+    [`@media screen and (max-width: ${Breakpoint.Desktop - 1}px)`]: styles
   }
 }
