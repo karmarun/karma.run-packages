@@ -6,7 +6,7 @@ import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {pxToRem, BorderRadius, pxToEm, FontSize, Spacing} from '../style/helpers'
 import {BaseInput, InputType} from '../atoms/baseInput'
 
-export const SearchBarStyle = cssRuleWithTheme(({theme}) => ({
+const SearchBarStyle = cssRuleWithTheme(({theme}) => ({
   border: `1px solid ${theme.colors.grayLight}`,
   borderRadius: pxToRem(BorderRadius.Medium),
   display: 'flex',

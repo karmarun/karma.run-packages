@@ -7,7 +7,7 @@ export interface AddBlockButtonStyleProps {
   active: boolean
 }
 
-export const AddBlockButtonStyle = cssRuleWithTheme<AddBlockButtonStyleProps>(
+const AddBlockButtonStyle = cssRuleWithTheme<AddBlockButtonStyleProps>(
   ({theme, active}) => ({
     display: 'flex',
     position: 'relative',
@@ -34,7 +34,7 @@ export const AddBlockButtonStyle = cssRuleWithTheme<AddBlockButtonStyleProps>(
   })
 )
 
-export const AddBlockButtonWrapperStyle = cssRuleWithTheme(() => ({
+const AddBlockButtonWrapperStyle = cssRuleWithTheme(() => ({
   zIndex: 1,
   top: '50%',
   left: '50%'

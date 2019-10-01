@@ -5,7 +5,7 @@ import {pxToRem, Spacing, FontSize} from '../style/helpers'
 export const toastPositionShowen = 'translateY(0px)'
 export const toastPositionHide = 'translateY(-100px)'
 
-export const ToastStyle = cssRuleWithTheme<{type: ToastType}>(({type, theme}) => {
+const ToastStyle = cssRuleWithTheme<{type: ToastType}>(({type, theme}) => {
   function backgroundColor(): string {
     switch (type) {
       case ToastType.Info:

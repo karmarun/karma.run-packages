@@ -3,7 +3,6 @@ import React, {ChangeEvent} from 'react'
 import {pxToRem, FontSize, Spacing} from '../style/helpers'
 import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
 import {BaseInput, InputType} from './baseInput'
-import {FontInlineSmall} from '../style/textStyles'
 
 const CheckboxContainerStyle = cssRuleWithTheme(() => ({
   display: 'flex',
@@ -83,9 +82,7 @@ export function Checkbox({label, ...props}: CheckboxProps) {
     <label className={css(CheckboxContainerStyle)}>
       <BaseInput {...props} type={InputType.Checkbox} style={CheckboxStyle} />
       <span className={css(CheckMarkStyle)} />
-      <span className={css(LabelStyle)}>
-        <FontInlineSmall>{label}</FontInlineSmall>
-      </span>
+      <span className={css(LabelStyle)}>{label}</span>
     </label>
   )
 }

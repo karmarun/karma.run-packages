@@ -65,7 +65,7 @@ export function Navigation({children}: NavigationProps) {
   )
 }
 
-export const NavigationButtonStyle = cssRuleWithTheme(({theme}) => ({
+const NavigationButtonStyle = cssRuleWithTheme(({theme}) => ({
   alignSelf: 'flex-end',
 
   padding: pxToRem(18),

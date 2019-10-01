@@ -7,12 +7,12 @@ export interface TextAreaStyleProps {
   hasError: boolean
 }
 
-export const TextAreaContainerStyle = cssRuleWithTheme(({theme}) => ({
+const TextAreaContainerStyle = cssRuleWithTheme(({theme}) => ({
   minHeight: pxToRem(54),
   paddingTop: pxToRem(16)
 }))
 
-export const TextAreaStyle = cssRuleWithTheme<TextAreaStyleProps>(({hasError, theme}) => ({
+const TextAreaStyle = cssRuleWithTheme<TextAreaStyleProps>(({hasError, theme}) => ({
   position: 'relative',
 
   '> textarea': {

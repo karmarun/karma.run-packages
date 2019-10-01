@@ -3,7 +3,7 @@ import React, {ReactNode, ElementType, CSSProperties} from 'react'
 import {pxToRem, FontSize} from '../style/helpers'
 import {cssRuleWithTheme, useThemeStyle, ThemeColors} from '../style/themeContext'
 
-export type TypographyStyle =
+export type TypographyVariant =
   | 'title'
   | 'h1'
   | 'h2'
@@ -18,7 +18,7 @@ export type TypographyDisplay = 'block' | 'inline'
 export type TypographySpacing = 'small' | 'large'
 
 interface TypographStyleProps {
-  readonly style: TypographyStyle
+  readonly variant: TypographyVariant
   readonly color?: keyof ThemeColors
   readonly align?: TypographyTextAlign
   readonly display?: TypographyDisplay
@@ -27,7 +27,7 @@ interface TypographStyleProps {
 }
 
 const TypographStyle = cssRuleWithTheme<TypographStyleProps>(
-  ({style, color, align, display, spacing, noWrap, theme}) => ({
+  ({variant, color, align, display, spacing, noWrap, theme}) => ({
     display,
     textAlign: align,
     color: color ? theme.colors[color] : undefined,
@@ -36,12 +36,12 @@ const TypographStyle = cssRuleWithTheme<TypographStyleProps>(
     overflow: noWrap ? 'hidden' : undefined,
     marginTop: 0,
     marginBottom: spacing ? marginForTypographySpacing(spacing) : 0,
-    ...stylesForTypographyStyle(style)
+    ...stylesForTypographyVariant(variant)
   })
 )
 
 export interface TypographyProps {
-  readonly style?: TypographyStyle
+  readonly variant?: TypographyVariant
   readonly color?: keyof ThemeColors
   readonly align?: TypographyTextAlign
   readonly display?: TypographyDisplay
@@ -52,22 +52,29 @@ export interface TypographyProps {
 }
 
 export function Typography({
-  style = 'body1',
+  variant = 'body1',
   color,
   align,
   display,
   spacing,
   noWrap,
-  element = elementForTypographyVariant(style),
+  element = elementForTypographyVariant(variant),
   children
 }: TypographyProps) {
   const Element = element
-  const {css} = useThemeStyle<TypographStyleProps>({style, color, align, display, spacing, noWrap})
+  const {css} = useThemeStyle<TypographStyleProps>({
+    variant,
+    color,
+    align,
+    display,
+    spacing,
+    noWrap
+  })
 
   return <Element className={css(TypographStyle)}>{children}</Element>
 }
 
-export function elementForTypographyVariant(variant: TypographyStyle) {
+export function elementForTypographyVariant(variant: TypographyVariant) {
   switch (variant) {
     case 'title':
       return 'h1'
@@ -96,7 +103,7 @@ export function marginForTypographySpacing(spacing: TypographySpacing): string {
   }
 }
 
-export function stylesForTypographyStyle(style: TypographyStyle): CSSProperties {
+export function stylesForTypographyVariant(style: TypographyVariant): CSSProperties {
   switch (style) {
     case 'title':
       return {

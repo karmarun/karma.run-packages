@@ -20,7 +20,7 @@ const ToggleInputStyle = cssRuleWithTheme(({theme}) => ({
   }
 }))
 
-export const ToggleStyle = cssRuleWithTheme(({theme}) => ({
+const ToggleStyle = cssRuleWithTheme(({theme}) => ({
   overflow: 'hidden',
   position: 'relative',
   cursor: 'pointer',
