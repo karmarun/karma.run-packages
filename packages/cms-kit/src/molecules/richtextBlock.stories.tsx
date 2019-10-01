@@ -1,11 +1,10 @@
 import React, {useState} from 'react'
-import {Value, DocumentJSON, ValueJSON} from 'slate'
+import {Value, DocumentJSON, ValueJSON, Editor as CoreEditor} from 'slate'
 
 import {centerLayoutDecorator} from '../.storybook/decorators'
 import {RichtextBlock} from './richtextBlock'
 import {IconType} from '../atoms/icon'
-import {edit} from 'external-editor'
-import {Editor} from 'slate-react'
+import {RenderMarkProps, RenderBlockProps} from 'slate-react'
 
 export default {
   component: RichtextBlock,
@@ -21,15 +20,96 @@ export const Standard = () => {
     setValue(value)
   }
 
-  return <RichtextBlock editItems={standardRichTextEditItems} value={value} onChange={onChange} />
+  function renderMark(props: RenderMarkProps, editor: CoreEditor, next: () => any) {
+    const {children, mark, attributes} = props
+
+    switch (mark.type) {
+      case 'bold':
+        return <strong {...attributes}>{children}</strong>
+      case 'code':
+        return <code {...attributes}>{children}</code>
+      case 'italic':
+        return <em {...attributes}>{children}</em>
+      case 'underlined':
+        return <u {...attributes}>{children}</u>
+      default:
+        return next()
+    }
+  }
+
+  function renderBlock(props: RenderBlockProps, editor: CoreEditor, next: () => any) {
+    return next()
+  }
+
+  return (
+    <RichtextBlock
+      editItems={standardRichTextEditItems}
+      value={value}
+      onChange={onChange}
+      renderMark={renderMark}
+      renderBlock={renderBlock}
+    />
+  )
 }
+
+const isActive = (editor: CoreEditor, value: Value, label: string) =>
+  value.activeMarks.some(mark => mark.type === label)
+const toggleMark = (editor: CoreEditor, value: Value, label: string) => editor.toggleMark(label)
 
 export const standardRichTextEditItems = [
   {
     icon: IconType.Bold,
     label: 'bold',
-    onClick: (editor: Editor, value: Value) => {},
-    isActive: (editor: Editor, value: Value) => true
+    onClick: toggleMark,
+    isActive: isActive
+  },
+  {
+    icon: IconType.Italic,
+    label: 'italic',
+    onClick: toggleMark,
+    isActive: isActive
+  },
+  {
+    icon: IconType.Underline,
+    label: 'underline',
+    onClick: toggleMark,
+    isActive: isActive
+  },
+  {
+    icon: IconType.Striked,
+    label: 'striked',
+    onClick: toggleMark,
+    isActive: isActive
+  },
+  {
+    icon: IconType.H2,
+    label: 'h2',
+    onClick: (editor: CoreEditor, value: Value) => {},
+    isActive: isActive
+  },
+  {
+    icon: IconType.H3,
+    label: 'h3',
+    onClick: (editor: CoreEditor, value: Value) => {},
+    isActive: isActive
+  },
+  {
+    icon: IconType.ListUnsorted,
+    label: 'listUnsorted',
+    onClick: (editor: CoreEditor, value: Value) => {},
+    isActive: isActive
+  },
+  {
+    icon: IconType.ListSorted,
+    label: 'listSorted',
+    onClick: (editor: CoreEditor, value: Value) => {},
+    isActive: isActive
+  },
+  {
+    icon: IconType.Link,
+    label: 'link',
+    onClick: (editor: CoreEditor, value: Value) => {},
+    isActive: isActive
   }
 ]
 

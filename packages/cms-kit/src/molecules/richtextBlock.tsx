@@ -1,7 +1,14 @@
 import React, {useRef, useState} from 'react'
 
-import {Editor, OnChangeParam, EditorProps, Plugin} from 'slate-react'
-import {Value} from 'slate'
+import {
+  Editor,
+  OnChangeParam,
+  EditorProps,
+  Plugin,
+  RenderMarkProps,
+  RenderBlockProps
+} from 'slate-react'
+import {Value, Editor as CoreEditor} from 'slate'
 
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {pxToRem, Spacing, TransitionDuration} from '../style/helpers'
@@ -27,18 +34,26 @@ export interface RichtextBlockProps {
   readonly value: Value
   readonly editItems: RichTextEditButton[]
   onChange?(value: Value): void
+  renderMark?(props: RenderMarkProps, editor: CoreEditor, next: () => any): any
+  renderBlock?(props: RenderBlockProps, editor: CoreEditor, next: () => any): any
 }
 
-export function RichtextBlock({editItems, value, onChange}: RichtextBlockProps) {
+export function RichtextBlock({
+  editItems,
+  value,
+  onChange,
+  renderMark,
+  renderBlock
+}: RichtextBlockProps) {
   const ref = useRef<HTMLDivElement>(null)
   const renderRef = useRef<Plugin['renderEditor']>()
 
   const {fragment, selection} = value
-  const [test, setTest] = useState(false)
   const [{currentTop, currentLeft}, setMenuPosition] = useState({
     currentTop: outside,
     currentLeft: outside
   })
+
   const {css} = useThemeStyle({top: currentTop, left: currentLeft})
 
   function checkForSelection() {
@@ -63,21 +78,14 @@ export function RichtextBlock({editItems, value, onChange}: RichtextBlockProps) 
     let temptop = rect.top + window.pageYOffset - menu.offsetHeight
     let templeft = rect.left + window.pageXOffset - menu.offsetWidth / 2 + rect.width / 2
 
-    console.log('temp position top', temptop, 'left', templeft)
     setMenuPosition({currentTop: temptop, currentLeft: templeft})
-    setTest(true)
-    //console.log('set position top', currentTop, 'left', currentLeft, 'other top', top)
   }
 
   function onDeselect() {
-    console.log('current deselect', test)
-    //setMenuPosition({currentTop: outside, currentLeft: outside})
+    setMenuPosition({currentTop: outside, currentLeft: outside})
   }
 
-  console.log('current allg', test)
-
   renderRef.current = (props, editor, next) => {
-    console.log('current', currentTop)
     const children = next()
     return (
       <React.Fragment>
@@ -102,27 +110,28 @@ export function RichtextBlock({editItems, value, onChange}: RichtextBlockProps) 
 
   return (
     <div className={css(RichtextBlockStyle)} onClick={checkForSelection} onBlur={onDeselect}>
-      <Editor
-        placeholder="Enter some text..."
-        value={value}
-        onChange={({value}: OnChangeParam) => {
-          if (onChange) onChange(value)
-        }}
-        renderEditor={(...args) => renderRef.current!(...args)}
-      />
-      {/* <div className={css(EditMenuStyle)} ref={ref}>
-        <RichtextEditOverlay>
-          {editItems.map(item => (
-            <RichTextEditButton
-              //editor={editor}
-              isActive={item.isActive}
-              icon={item.icon}
-              onClick={item.onClick}
-              label={item.label}
-            />
-          ))}
-        </RichtextEditOverlay>
-      </div> */}
+      {renderBlock ? (
+        <Editor
+          placeholder="Enter some text..."
+          value={value}
+          onChange={({value}: OnChangeParam) => {
+            if (onChange) onChange(value)
+          }}
+          renderEditor={(...args) => renderRef.current!(...args)}
+          renderMark={renderMark ? renderMark : undefined}
+          renderBlock={renderBlock}
+        />
+      ) : (
+        <Editor
+          placeholder="Enter some text..."
+          value={value}
+          onChange={({value}: OnChangeParam) => {
+            if (onChange) onChange(value)
+          }}
+          renderEditor={(...args) => renderRef.current!(...args)}
+          renderMark={renderMark ? renderMark : undefined}
+        />
+      )}
     </div>
   )
 }

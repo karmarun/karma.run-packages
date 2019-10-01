@@ -1,11 +1,11 @@
 import React, {ReactNode} from 'react'
+
 import {BaseButton} from '../atoms/baseButton'
 import {IconType, Icon, IconScale} from '../atoms/icon'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {pxToRem, FontSize} from '../style/helpers'
 import {Spacing} from '../style/helpers'
-import {Editor} from 'slate-react'
-import {Value} from 'slate'
+import {Value, Editor} from 'slate'
 
 export const RichtextEditOverlayStyle = cssRuleWithTheme(({theme}) => ({
   backgroundColor: theme.colors.dark,
@@ -43,11 +43,11 @@ export interface RichTextEditButton {
   readonly icon: IconType
   readonly label: string
   onClick(editor: Editor, value: Value, label: string): void
-  isActive(editor: Editor, value: Value): boolean
+  isActive(editor: Editor, value: Value, label: string): boolean
 }
 
 export interface RichTextEditButtonProps extends RichTextEditButton {
-  readonly editor?: Editor
+  readonly editor: Editor
 }
 
 export function RichTextEditButton({
@@ -59,10 +59,9 @@ export function RichTextEditButton({
 }: RichTextEditButtonProps) {
   return (
     <BaseButton
-      //onClick={e => onClick(editor, editor.value, label)}
+      onClick={e => onClick(editor, editor.value, label)}
       style={RichTextEditButtonStyle}
-      //styleProps={{isActive: isActive(editor, editor.value)}}
-      styleProps={{isActive: true}}>
+      styleProps={{isActive: isActive(editor, editor.value, label)}}>
       <Icon type={icon} scale={IconScale.Equal} />
     </BaseButton>
   )
