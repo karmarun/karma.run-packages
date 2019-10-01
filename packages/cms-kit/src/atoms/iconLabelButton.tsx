@@ -1,39 +1,33 @@
 import React from 'react'
 
 import {BaseButton, ButtonProps} from './baseButton'
-import {IconType, Icon, IconSize} from './icon'
+import {IconType, Icon, IconScale} from './icon'
 import {cssRuleWithTheme} from '../style/themeContext'
-import {pxToRem} from '../style/helpers'
-import {Spacing} from '../style/spacing'
+import {pxToRem, FontSize, Spacing, TransitionDuration} from '../style/helpers'
+import {FontSmall, FontInlineSmall, FontFace, Align} from '../style/textStyles'
 
 export const IconLabelButtonStyle = cssRuleWithTheme(({theme}) => ({
-  width: pxToRem(70),
+  minWidth: pxToRem(70),
   borderRadius: pxToRem(2),
 
-  padding: pxToRem(Spacing.ExtraSmall),
+  padding: pxToRem(Spacing.Tiny),
+
+  transition: 'fill ease-in, background-color ease-in',
+  transitionDuration: TransitionDuration.Fast,
 
   '&:hover:enabled': {
     fill: theme.colors.action
   },
 
-  '&:active': {
-    fill: theme.colors.action,
+  '&:active:enabled': {
+    fill: theme.colors.actionDark,
     backgroundColor: theme.colors.light
   },
 
   '&:disabled': {
     fill: theme.colors.gray,
     color: theme.colors.gray
-  },
-
-  '&:focus': {
-    outline: 'none',
-    fill: theme.colors.action
   }
-}))
-
-export const IconLabelIconStyle = cssRuleWithTheme(({theme}) => ({
-  height: pxToRem(IconSize.Medium)
 }))
 
 export interface IconLabelButtonProps extends ButtonProps {
@@ -44,10 +38,10 @@ export interface IconLabelButtonProps extends ButtonProps {
 export function IconLabelButton({label, icon, ...rest}: IconLabelButtonProps) {
   return (
     <BaseButton {...rest} style={IconLabelButtonStyle}>
-      <>
-        <Icon type={icon} style={IconLabelIconStyle} />
+      <FontSmall>
+        <Icon type={icon} scale={IconScale.Double} />
         <div>{label}</div>
-      </>
+      </FontSmall>
     </BaseButton>
   )
 }

@@ -5,7 +5,7 @@ import {StoryFn} from '@storybook/addons'
 import {pxToRem} from '../style/helpers'
 
 export interface CenterLayoutStyleProps {
-  scale: number
+  scale?: number
 }
 
 export const CenterLayoutStyle = cssRule({
@@ -14,18 +14,18 @@ export const CenterLayoutStyle = cssRule({
   alignItems: 'center',
 
   width: '100%',
-  height: '100%'
+  minHeight: '100%'
 })
 
 export const CenterLayoutContentStyle = cssRule(({scale}: CenterLayoutStyleProps) => ({
   padding: pxToRem(20),
   margin: pxToRem(20),
-  minWidth: `${scale * 100}%`,
+  width: scale ? `${scale * 100}%` : undefined,
   border: '1px dashed rgba(0,0,0, 0.05)'
 }))
 
 export interface CenterLayoutProps {
-  minWidthFactor: number
+  minWidthFactor?: number
   children?: ReactNode
 }
 
@@ -39,7 +39,7 @@ export function CenterLayout({minWidthFactor: scale, children}: CenterLayoutProp
   )
 }
 
-export function centerLayoutDecorator(minWidthFactor: number = 0) {
+export function centerLayoutDecorator(minWidthFactor?: number) {
   return (story: StoryFn<ReactNode>) => {
     return <CenterLayout minWidthFactor={minWidthFactor}>{story()}</CenterLayout>
   }
@@ -70,20 +70,23 @@ export function fontSizeDecorator(fontSize: number = 24) {
   }
 }
 
-export const InfoBoxStyle = cssRule(() => ({
-  backgroundColor: '#f7fcff',
+export const InfoBoxStyle = cssRule<{padding: number}>(({padding}) => ({
+  backgroundColor: '#f7f9fa',
   display: 'inline-block',
   margin: pxToRem(10),
   textAlign: 'center',
   minWidth: pxToRem(80),
   paddingTop: pxToRem(20),
-  paddingBottom: pxToRem(5)
+  paddingBottom: pxToRem(5),
+  paddingLeft: pxToRem(padding),
+  paddingRight: pxToRem(padding)
 }))
 
 export const InfoBoxTextStyle = cssRule(() => ({
   paddingBottom: pxToRem(5),
   paddingTop: pxToRem(5),
-  fontSize: '1.2rem'
+  fontSize: '1.2rem',
+  color: '#b9b9b9'
 }))
 
 export const InfoBoxContentStyle = cssRule(() => ({
@@ -95,10 +98,11 @@ export interface InfoBoxProps {
   children: ReactNode
   fontSize?: number
   elementSize?: number
+  padding?: number
 }
 
-export function InfoBox({infoText, children}: InfoBoxProps) {
-  const {css} = useStyle()
+export function InfoBox({infoText, children, padding = 0}: InfoBoxProps) {
+  const {css} = useStyle({padding: padding})
 
   return (
     <div className={css(InfoBoxStyle)}>
@@ -115,5 +119,29 @@ export function infoBoxDecorator(infoText: string, fontSize: number = 12) {
         {story()}
       </InfoBox>
     )
+  }
+}
+
+export const DarkBackgroundStyle = cssRule({
+  backgroundColor: '#222222',
+  width: '100%',
+  height: '100%',
+  padding: '20px',
+  borderRadius: '5px'
+})
+
+export interface DarkBackgroundProps {
+  children?: ReactNode
+}
+
+export function DarkBackground({children}: DarkBackgroundProps) {
+  const {css} = useStyle()
+
+  return <div className={css(DarkBackgroundStyle)}>{children}</div>
+}
+
+export function darkBackgroundDecorator() {
+  return (story: StoryFn<ReactNode>) => {
+    return <DarkBackground>{story()}</DarkBackground>
   }
 }

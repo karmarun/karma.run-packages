@@ -1,20 +1,34 @@
 import React from 'react'
-import {IconType, Icon, IconSize} from './icon'
+
+import {IconType, Icon} from './icon'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem} from '../style/helpers'
 import {BaseButton} from './baseButton'
+import {FontSize, pxToRem, Spacing, TransitionDuration} from '../style/helpers'
 
-export const FilterTagStyle = cssRuleWithTheme(({theme}) => ({
-  backgroundColor: theme.colors.action
+const FilterTagStyle = cssRuleWithTheme(({theme}) => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  backgroundColor: theme.colors.action,
+  fontSize: pxToRem(FontSize.Small),
+  minWidth: pxToRem(100),
+  height: pxToRem(30),
+  overflow: 'hidden',
+  borderRadius: '2px',
+  border: `1px solid ${theme.colors.actionDark}`,
+  color: theme.colors.white,
+  lineHeight: pxToRem(30),
+  paddingLeft: pxToRem(Spacing.Tiny)
 }))
 
-const CloseButtonStyle = cssRuleWithTheme(() => ({
-  height: pxToRem(IconSize.Small)
-}))
+const CloseButtonStyle = cssRuleWithTheme(({theme}) => ({
+  fill: theme.colors.white,
+  fontSize: pxToRem(FontSize.Medium),
+  transition: `fill ease-in ${TransitionDuration.Fast}`,
+  width: pxToRem(20),
 
-const CloseIconStyle = cssRuleWithTheme(({theme}) => ({
-  height: pxToRem(IconSize.Small),
-  fill: theme.colors.white
+  ':hover': {
+    fill: theme.colors.actionDark
+  }
 }))
 
 export interface FilterTagProps {
@@ -29,7 +43,7 @@ export function FilterTag({text, onDismiss}: FilterTagProps) {
     <div className={css(FilterTagStyle)}>
       {text}
       <BaseButton onClick={onDismiss} style={CloseButtonStyle}>
-        <Icon type={IconType.Close} style={CloseIconStyle} />
+        <Icon type={IconType.Close} />
       </BaseButton>
     </div>
   )
