@@ -80,7 +80,8 @@ export function FontMedium({
 
 // HEADING3 = 20px
 export const Heading3Style = cssRule({
-  fontSize: pxToRem(FontSize.Heading3)
+  fontSize: pxToRem(FontSize.Heading3),
+  margin: 0
 })
 
 export interface Heading3Props extends TextProps {}
@@ -97,7 +98,8 @@ export function Heading3({
 
 // HEADING2 = 24px
 export const Heading2Style = cssRule({
-  fontSize: pxToRem(FontSize.Heading2)
+  fontSize: pxToRem(FontSize.Heading2),
+  margin: 0
 })
 
 export interface Heading2Props extends TextProps {}
@@ -114,7 +116,8 @@ export function Heading2({
 
 // HEADING1 = 28px
 export const Heading1Style = cssRule({
-  fontSize: pxToRem(FontSize.Heading1)
+  fontSize: pxToRem(FontSize.Heading1),
+  margin: 0
 })
 
 export interface Heading1Props extends TextProps {}
@@ -131,7 +134,8 @@ export function Heading1({
 
 // EXTRALARGE = 60px
 export const TextExtraLargeStyle = cssRule({
-  fontSize: pxToRem(FontSize.ExtraLarge)
+  fontSize: pxToRem(FontSize.ExtraLarge),
+  margin: 0
 })
 
 export interface TextExtraLargeProps extends TextProps {}
