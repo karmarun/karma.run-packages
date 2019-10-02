@@ -6,6 +6,7 @@ import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {Spacing} from '../style/helpers'
 import {Draggable} from '../atoms/draggable'
 import {DragContainer} from '../atoms/dragContainer'
+import {DescriptionListing, DescriptionListingItem} from '../atoms/descriptionListingItem'
 
 const ImageMetaStyle = cssRuleWithTheme(({theme}) => ({
   backgroundColor: theme.colors.dark,
@@ -31,11 +32,13 @@ export function ImageMeta({file}: ImageMetaProps) {
   return (
     <div className={css(ImageMetaStyle)}>
       <FocalPointSetter imgSrc={file.src} width={file.width} height={file.height} />
-      <ImageMetaItem label={'File name'} value={file.name} />
-      <ImageMetaItem label={'Dimensions'} value={`${file.width} x ${file.height} px`} />
-      <ImageMetaItem label={'Upload date'} value={file.date} />
-      <ImageMetaItem label={'File size'} value={`${file.size} MB`} />
-      <ImageMetaItem label={'Link'} value={file.link} />
+      <DescriptionListing>
+        <DescriptionListingItem label={'File name'} value={file.name} />
+        <DescriptionListingItem label={'Dimensions'} value={`${file.width} x ${file.height} px`} />
+        <DescriptionListingItem label={'Upload date'} value={file.date} />
+        <DescriptionListingItem label={'File size'} value={`${file.size} MB`} />
+        <DescriptionListingItem label={'Link'} value={file.link} />
+      </DescriptionListing>
     </div>
   )
 }
