@@ -10,7 +10,15 @@ import {DescriptionListing, DescriptionListingItem} from '../atoms/descriptionLi
 
 const ImageMetaStyle = cssRuleWithTheme(({theme}) => ({
   backgroundColor: theme.colors.dark,
-  padding: pxToRem(Spacing.Small)
+  padding: pxToRem(Spacing.Small),
+
+  '> dl dt': {
+    color: theme.colors.light
+  },
+
+  '> dl dd': {
+    color: theme.colors.white
+  }
 }))
 
 export type File = {
@@ -39,34 +47,6 @@ export function ImageMeta({file}: ImageMetaProps) {
         <DescriptionListingItem label={'File size'} value={`${file.size} MB`} />
         <DescriptionListingItem label={'Link'} value={file.link} />
       </DescriptionListing>
-    </div>
-  )
-}
-
-const ImageMetaItemStyle = cssRuleWithTheme(({theme}) => ({
-  color: theme.colors.white,
-  display: 'flex',
-  justifyContent: 'space-between',
-  paddingTop: pxToRem(Spacing.Tiny),
-  paddingBottom: pxToRem(Spacing.Tiny)
-}))
-
-const ImageMetaLabel = cssRuleWithTheme(({theme}) => ({
-  color: theme.colors.gray
-}))
-
-const ImageMetaRight = cssRuleWithTheme(({theme}) => ({}))
-
-export interface ImageMetaItemProps {
-  label: string
-  value: string
-}
-export function ImageMetaItem({label, value}: ImageMetaItemProps) {
-  const {css} = useThemeStyle()
-  return (
-    <div className={css(ImageMetaItemStyle)}>
-      <span className={css(ImageMetaLabel)}>{label}</span>
-      <span className={css(ImageMetaRight)}>{value}</span>
     </div>
   )
 }
