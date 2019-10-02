@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {ReactNode} from 'react'
 import {toArray} from '@karma.run/utility'
 
 import {DropHereIconSVG} from '../icons/dropHere'
@@ -145,19 +145,14 @@ const IconStyle = cssRuleWithTheme<IconStyleProps>(({scale, block}) => ({
   verticalAlign: 'middle',
 
   fill: 'inherit',
-  stroke: 'inherit',
-
-  '> svg': {
-    fill: 'inherit',
-    stroke: 'inherit',
-    height: 'inherit'
-  }
+  stroke: 'inherit'
 }))
 
 export interface BaseIconProps {
   readonly type: IconType
   readonly scale?: IconScale
   readonly block?: boolean
+  readonly children?: IconType | ReactNode
 }
 
 export interface IconProps<P = undefined> extends BaseIconProps {
@@ -181,14 +176,19 @@ export function Icon<P = undefined>({
   scale = IconScale.Equal,
   block,
   style,
-  styleProps
+  styleProps,
+  children
 }: IconProps<P>): JSX.Element {
   const {css} = useThemeStyle({...styleProps, scale, block})
 
   return (
-    <span className={css(IconStyle, ...toArray(style))} role="img">
-      {iconForType(type)}
-    </span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 48 48"
+      className={css(IconStyle, ...toArray(style))}
+      role="img">
+      {typeof children === 'string' ? iconForType(children as any) : children}
+    </svg>
   )
 }
 
