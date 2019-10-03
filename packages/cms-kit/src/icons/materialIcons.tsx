@@ -926,15 +926,15 @@ export function MaterialIconFiberSmartRecord(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="16 -12 48 48" enableBackground="new 16 -12 48 48" {...props}><circle cx={34} cy={12} r={16} /><path d="M50-3.48V.7c4.66 1.64 8 6.08 8 11.3s-3.34 9.66-8 11.3v4.18C56.9 25.7 62 19.46 62 12S56.9-1.7 50-3.48z" /></svg>;
 }
 
-export function MaterialIconForward_10(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconForward10(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M8 26c0 8.8 7.2 16 16 16s16-7.2 16-16h-4c0 6.6-5.4 12-12 12s-12-5.4-12-12 5.4-12 12-12v8l10-10L24 2v8c-8.8 0-16 7.2-16 16zm13.7 6H20v-6.5l-2 .6v-1.4l3.5-1.3h.2V32zm8.5-3.5c0 .6-.1 1.2-.2 1.6s-.3.8-.6 1.1-.6.5-.9.7-.7.2-1.2.2-.8-.1-1.2-.2-.7-.4-.9-.7-.5-.7-.6-1.1-.2-1-.2-1.6V27c0-.6.1-1.2.2-1.6s.3-.8.6-1.1.6-.5.9-.7.7-.2 1.2-.2.8.1 1.2.2.7.4.9.7.5.7.6 1.1.2 1 .2 1.6v1.5zm-1.7-1.7c0-.4 0-.7-.1-1s-.1-.5-.2-.6-.2-.3-.4-.3-.3-.1-.5-.1-.4 0-.5.1-.3.2-.4.3-.2.4-.2.6-.1.6-.1 1v1.9c0 .4 0 .7.1 1s.1.5.2.6.2.3.4.3.3.1.5.1.4 0 .5-.1.3-.2.4-.3.2-.4.2-.6.1-.6.1-1v-1.9z" /></svg>;
 }
 
-export function MaterialIconForward_30(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconForward30(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M19.1 27h.9c.4 0 .7-.1 1-.3s.3-.5.3-.9c0-.2 0-.3-.1-.4s-.1-.3-.2-.4-.2-.2-.4-.2-.3-.1-.5-.1-.3 0-.4.1-.3.1-.4.2-.2.2-.2.3-.1.2-.1.4h-1.7c0-.4.1-.7.2-1s.3-.5.6-.7.5-.4.9-.5.7-.2 1.1-.2c.4 0 .8.1 1.2.2s.7.3.9.5.5.5.6.8.2.7.2 1.1c0 .2 0 .4-.1.5s-.1.3-.3.5-.2.3-.4.4-.3.2-.6.3c.5.2.8.4 1.1.8s.4.8.4 1.2c0 .4-.1.8-.2 1.1s-.4.6-.6.8-.6.4-1 .5-.8.2-1.2.2c-.4 0-.7 0-1.1-.1s-.7-.2-.9-.5-.5-.5-.7-.8-.2-.7-.2-1.1h1.7c0 .2 0 .3.1.4s.1.2.3.3.2.2.4.2.3.1.5.1.4 0 .5-.1.3-.1.4-.2.2-.2.3-.4.1-.3.1-.5 0-.4-.1-.6-.2-.3-.3-.4-.3-.2-.4-.2-.4-.1-.6-.1h-.9V27zm11.5 1.5c0 .6-.1 1.2-.2 1.6s-.4.9-.6 1.2-.6.5-.9.7-.7.2-1.2.2-.8-.1-1.2-.2-.7-.4-.9-.7-.5-.7-.6-1.1-.2-1-.2-1.6V27c0-.6.1-1.2.2-1.6s.3-.8.6-1.1.6-.5.9-.7.7-.2 1.2-.2.8.1 1.2.2.7.4.9.7.5.7.6 1.1.2 1 .2 1.6v1.5zm-1.7-1.7c0-.4 0-.7-.1-1s-.1-.5-.2-.6-.2-.3-.4-.3-.3-.1-.5-.1-.4 0-.5.1-.3.2-.4.3-.2.4-.2.6-.1.6-.1 1v1.9c0 .4 0 .7.1 1s.1.5.2.6.2.3.4.3.3.1.5.1.4 0 .5-.1.3-.2.4-.3.2-.4.2-.6.1-.6.1-1v-1.9zM8 26c0 8.8 7.2 16 16 16s16-7.2 16-16h-4c0 6.6-5.4 12-12 12s-12-5.4-12-12 5.4-12 12-12v8l10-10L24 2v8c-8.8 0-16 7.2-16 16z" /></svg>;
 }
 
-export function MaterialIconForward_5(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconForward5(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M8 26c0 8.8 7.2 16 16 16s16-7.2 16-16h-4c0 6.6-5.4 12-12 12s-12-5.4-12-12 5.4-12 12-12v8l10-10L24 2v8c-8.8 0-16 7.2-16 16zm13.4 1.8l.5-4.3h4.8v1.4h-3.4l-.2 1.8c.1 0 .1-.1.2-.1s.2-.1.3-.1.2-.1.4-.1h.4c.4 0 .8.1 1.1.2s.6.3.8.6.4.5.5.9.2.8.2 1.2c0 .4-.1.7-.2 1.1s-.3.6-.5.9-.5.5-.9.6-.8.2-1.3.2c-.4 0-.7-.1-1.1-.2s-.6-.3-.9-.5-.5-.5-.6-.8-.3-.7-.3-1.1h1.7c0 .4.2.6.4.8s.5.3.8.3c.2 0 .4 0 .5-.1s.3-.2.4-.3.2-.3.2-.5.1-.4.1-.6 0-.4-.1-.6-.1-.3-.3-.5-.3-.2-.4-.3-.4-.1-.6-.1h-.4s-.2.1-.3.1-.2.2-.3.3l-.2.2-1.3-.4z" /></svg>;
 }
 
@@ -1070,11 +1070,11 @@ export function MaterialIconRepeatOne(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M14 14h20v6l8-8-8-8v6H10v12h4v-8zm20 20H14v-6l-8 8 8 8v-6h24V26h-4v8zm-8-4V18h-2l-4 2v2h3v8h3z" /></svg>;
 }
 
-export function MaterialIconReplay_10(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconReplay10(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M24 10V2L14 12l10 10v-8c6.6 0 12 5.4 12 12s-5.4 12-12 12-12-5.4-12-12H8c0 8.8 7.2 16 16 16s16-7.2 16-16-7.2-16-16-16zm-2.2 22h-1.7v-6.5l-2 .6v-1.4l3.5-1.3h.2V32zm8.5-3.5c0 .6-.1 1.2-.2 1.6s-.3.8-.6 1.1-.6.5-.9.7-.7.2-1.2.2-.8-.1-1.2-.2-.7-.4-.9-.7-.5-.7-.6-1.1-.2-1-.2-1.6V27c0-.6.1-1.2.2-1.6s.3-.8.6-1.1.6-.5.9-.7.7-.2 1.2-.2.8.1 1.2.2.7.4.9.7.5.7.6 1.1.2 1 .2 1.6v1.5zm-1.6-1.7c0-.4 0-.7-.1-1s-.1-.5-.2-.6-.2-.3-.4-.3-.3-.1-.5-.1-.4 0-.5.1-.3.2-.4.3-.2.4-.2.6-.1.6-.1 1v1.9c0 .4 0 .7.1 1s.1.5.2.6.2.3.4.3.3.1.5.1.4 0 .5-.1.3-.2.4-.3.2-.4.2-.6.1-.6.1-1v-1.9z" /></svg>;
 }
 
-export function MaterialIconReplay_30(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconReplay30(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M24 10V2L14 12l10 10v-8c6.6 0 12 5.4 12 12s-5.4 12-12 12-12-5.4-12-12H8c0 8.8 7.2 16 16 16s16-7.2 16-16-7.2-16-16-16zm-4.9 17h.9c.4 0 .7-.1 1-.3s.3-.5.3-.9c0-.2 0-.3-.1-.4s-.1-.3-.2-.4-.2-.2-.4-.2-.3-.1-.5-.1-.3 0-.4.1-.3.1-.4.2-.2.2-.2.3-.1.2-.1.4h-1.7c0-.4.1-.7.2-1s.3-.5.6-.7.5-.4.9-.5.7-.2 1.1-.2c.4 0 .8.1 1.2.2s.7.3.9.5.5.5.6.8.2.7.2 1.1c0 .2 0 .4-.1.5s-.1.3-.3.5-.2.3-.4.4-.3.2-.6.3c.5.2.8.4 1.1.8s.4.8.4 1.2c0 .4-.1.8-.2 1.1s-.4.6-.6.8-.6.4-1 .5-.8.2-1.2.2c-.4 0-.7 0-1.1-.1s-.7-.2-.9-.5-.5-.5-.7-.8-.2-.7-.2-1.1h1.7c0 .2 0 .3.1.4s.1.2.3.3.2.2.4.2.3.1.5.1.4 0 .5-.1.3-.1.4-.2.2-.2.3-.4.1-.3.1-.5 0-.4-.1-.6-.2-.3-.3-.4-.3-.2-.4-.2-.4-.1-.6-.1h-.9V27zm11.5 1.5c0 .6-.1 1.2-.2 1.6s-.3.8-.6 1.1-.6.5-.9.7-.7.2-1.2.2-.8-.1-1.2-.2-.7-.4-.9-.7-.5-.7-.6-1.1-.2-1-.2-1.6V27c0-.6.1-1.2.2-1.6s.3-.8.6-1.1.6-.5.9-.7.7-.2 1.2-.2.8.1 1.2.2.7.4.9.7.5.7.6 1.1.2 1 .2 1.6v1.5zm-1.7-1.7c0-.4 0-.7-.1-1s-.1-.5-.2-.6-.2-.3-.4-.3-.3-.1-.5-.1-.4 0-.5.1-.3.2-.4.3-.2.4-.2.6-.1.6-.1 1v1.9c0 .4 0 .7.1 1s.1.5.2.6.2.3.4.3.3.1.5.1.4 0 .5-.1.3-.2.4-.3.2-.4.2-.6.1-.6.1-1v-1.9z" /></svg>;
 }
 
@@ -1082,7 +1082,7 @@ export function MaterialIconReplay(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M24 10V2L14 12l10 10v-8c6.63 0 12 5.37 12 12s-5.37 12-12 12-12-5.37-12-12H8c0 8.84 7.16 16 16 16s16-7.16 16-16-7.16-16-16-16z" /></svg>;
 }
 
-export function MaterialIconReplay_5(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconReplay5(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M24 10V2L14 12l10 10v-8c6.6 0 12 5.4 12 12s-5.4 12-12 12-12-5.4-12-12H8c0 8.8 7.2 16 16 16s16-7.2 16-16-7.2-16-16-16zm-2.6 17.8l.5-4.3h4.8v1.4h-3.4l-.2 1.8c.1 0 .1-.1.2-.1s.2-.1.3-.1.2-.1.4-.1h.4c.4 0 .8.1 1.1.2s.6.3.8.6.4.5.5.9.2.8.2 1.2c0 .4-.1.7-.2 1.1s-.3.6-.5.9-.5.5-.9.6-.8.2-1.3.2c-.4 0-.7-.1-1.1-.2s-.6-.3-.9-.5-.5-.5-.6-.8-.3-.7-.3-1.1h1.7c0 .4.2.6.4.8s.5.3.8.3c.2 0 .4 0 .5-.1s.3-.2.4-.3.2-.3.2-.5.1-.4.1-.6 0-.4-.1-.6-.1-.3-.3-.5-.3-.2-.4-.3-.4-.1-.6-.1h-.4s-.2.1-.3.1-.2.2-.3.3l-.2.2-1.3-.4z" /></svg>;
 }
 
@@ -1534,27 +1534,27 @@ export function MaterialIconAirplanemodeInactive(props: SVGProps<SVGSVGElement>)
   return <svg viewBox="0 0 48 48" {...props}><path d="M26 18V7c0-1.66-1.34-3-3-3s-3 1.34-3 3v7.36l15.65 15.65L42 32v-4L26 18zM6 10.55l9.97 9.97L4 28v4l16-5v11l-4 3v3l7-2 7 2v-3l-4-3v-7.45L37.45 42 40 39.45 8.55 8 6 10.55z" /></svg>;
 }
 
-export function MaterialIconBattery_20(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBattery20(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M14 34v7.33C14 42.8 15.19 44 16.67 44h14.67c1.47 0 2.67-1.19 2.67-2.67V34H14z" /><path fillOpacity={0.3} d="M34 10.67C34 9.19 32.81 8 31.33 8H28V4h-8v4h-3.33C15.19 8 14 9.19 14 10.67V34h20V10.67z" /></svg>;
 }
 
-export function MaterialIconBattery_30(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBattery30(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M34 10.67C34 9.19 32.81 8 31.33 8H28V4h-8v4h-3.33C15.19 8 14 9.19 14 10.67V30h20V10.67z" /><path d="M14 30v11.33C14 42.8 15.19 44 16.67 44h14.67c1.47 0 2.67-1.19 2.67-2.67V30H14z" /></svg>;
 }
 
-export function MaterialIconBattery_50(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBattery50(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M34 10.67C34 9.19 32.81 8 31.33 8H28V4h-8v4h-3.33C15.19 8 14 9.19 14 10.67V26h20V10.67z" /><path d="M14 26v15.33C14 42.8 15.19 44 16.67 44h14.67c1.47 0 2.67-1.19 2.67-2.67V26H14z" /></svg>;
 }
 
-export function MaterialIconBattery_60(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBattery60(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M34 10.67C34 9.19 32.81 8 31.33 8H28V4h-8v4h-3.33C15.19 8 14 9.19 14 10.67V22h20V10.67z" /><path d="M14 22v19.33C14 42.8 15.19 44 16.67 44h14.67c1.47 0 2.67-1.19 2.67-2.67V22H14z" /></svg>;
 }
 
-export function MaterialIconBattery_80(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBattery80(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M34 10.67C34 9.19 32.81 8 31.33 8H28V4h-8v4h-3.33C15.19 8 14 9.19 14 10.67V18h20v-7.33z" /><path d="M14 18v23.33C14 42.8 15.19 44 16.67 44h14.67c1.47 0 2.67-1.19 2.67-2.67V18H14z" /></svg>;
 }
 
-export function MaterialIconBattery_90(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBattery90(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M34 10.67C34 9.19 32.81 8 31.33 8H28V4h-8v4h-3.33C15.19 8 14 9.19 14 10.67V16h20v-5.33z" /><path d="M14 16v25.33C14 42.8 15.19 44 16.67 44h14.67c1.47 0 2.67-1.19 2.67-2.67V16H14z" /></svg>;
 }
 
@@ -1562,27 +1562,27 @@ export function MaterialIconBatteryAlert(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M31.33 8H28V4h-8v4h-3.33C15.19 8 14 9.19 14 10.67v30.67c0 1.47 1.19 2.67 2.67 2.67h14.67c1.47 0 2.67-1.19 2.67-2.67V10.67C34 9.19 32.81 8 31.33 8zM26 36h-4v-4h4v4zm0-8h-4V18h4v10z" /></svg>;
 }
 
-export function MaterialIconBatteryCharging_20(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBatteryCharging20(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M22 40v-6h-8v7.33C14 42.8 15.19 44 16.67 44h14.67c1.47 0 2.67-1.19 2.67-2.67V34h-8.8L22 40z" /><path fillOpacity={0.3} d="M31.33 8H28V4h-8v4h-3.33C15.19 8 14 9.19 14 10.67V34h8v-5h-4l8-15v11h4l-4.8 9H34V10.67C34 9.19 32.81 8 31.33 8z" /></svg>;
 }
 
-export function MaterialIconBatteryCharging_30(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBatteryCharging30(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M31.33 8H28V4h-8v4h-3.33C15.19 8 14 9.19 14 10.67V29h4l8-15v11h4l-2.13 4H34V10.67C34 9.19 32.81 8 31.33 8z" /><path d="M22 40V29h-8v12.33C14 42.8 15.19 44 16.67 44h14.67c1.47 0 2.67-1.19 2.67-2.67V29h-6.13L22 40z" /></svg>;
 }
 
-export function MaterialIconBatteryCharging_50(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBatteryCharging50(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M28.93 27L22 40V29h-4l1.07-2H14v14.33C14 42.8 15.19 44 16.67 44h14.67c1.47 0 2.67-1.19 2.67-2.67V27h-5.08z" /><path fillOpacity={0.3} d="M31.33 8H28V4h-8v4h-3.33C15.19 8 14 9.19 14 10.67V27h5.07L26 14v11h4l-1.07 2H34V10.67C34 9.19 32.81 8 31.33 8z" /></svg>;
 }
 
-export function MaterialIconBatteryCharging_60(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBatteryCharging60(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M31.33 8H28V4h-8v4h-3.33C15.19 8 14 9.19 14 10.67V22h7.73L26 14v8h8V10.67C34 9.19 32.81 8 31.33 8z" /><path d="M26 25h4l-8 15V29h-4l3.73-7H14v19.33C14 42.8 15.19 44 16.67 44h14.67c1.47 0 2.67-1.19 2.67-2.67V22h-8v3z" /></svg>;
 }
 
-export function MaterialIconBatteryCharging_80(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBatteryCharging80(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M31.33 8H28V4h-8v4h-3.33C15.19 8 14 9.19 14 10.67V18h9.87L26 14v4h8v-7.33C34 9.19 32.81 8 31.33 8z" /><path d="M26 25h4l-8 15V29h-4l5.87-11H14v23.33C14 42.8 15.19 44 16.67 44h14.67c1.47 0 2.67-1.19 2.67-2.67V18h-8v7z" /></svg>;
 }
 
-export function MaterialIconBatteryCharging_90(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBatteryCharging90(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M31.33 8H28V4h-8v4h-3.33C15.19 8 14 9.19 14 10.67V16h10.93L26 14v2h8v-5.33C34 9.19 32.81 8 31.33 8z" /><path d="M26 25h4l-8 15V29h-4l6.93-13H14v25.33C14 42.8 15.19 44 16.67 44h14.67c1.47 0 2.67-1.19 2.67-2.67V16h-8v9z" /></svg>;
 }
 
@@ -1710,43 +1710,43 @@ export function MaterialIconSettingsSystemDaydream(props: SVGProps<SVGSVGElement
   return <svg viewBox="0 0 48 48" {...props}><path d="M18 32h13c2.76 0 5-2.24 5-5s-2.24-5-5-5h-.1c-.49-3.39-3.38-6-6.9-6-2.8 0-5.2 1.66-6.32 4.04h-.33C14.34 20.36 12 22.91 12 26c0 3.31 2.69 6 6 6zM42 6H6c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h36c2.21 0 4-1.79 4-4V10c0-2.21-1.79-4-4-4zm0 32.03H6V9.97h36v28.06z" /></svg>;
 }
 
-export function MaterialIconSignalCellular_0Bar(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalCellular0Bar(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M4 44h40V4z" /></svg>;
 }
 
-export function MaterialIconSignalCellular_1Bar(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalCellular1Bar(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M4 44h40V4z" /><path d="M24 24L4 44h20z" /></svg>;
 }
 
-export function MaterialIconSignalCellular_2Bar(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalCellular2Bar(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M4 44h40V4z" /><path d="M28 20L4 44h24z" /></svg>;
 }
 
-export function MaterialIconSignalCellular_3Bar(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalCellular3Bar(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M4 44h40V4z" /><path d="M34 14L4 44h30z" /></svg>;
 }
 
-export function MaterialIconSignalCellular_4Bar(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalCellular4Bar(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M4 44h40V4z" /></svg>;
 }
 
-export function MaterialIconSignalCellularConnectedNoInternet_0Bar(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalCellularConnectedNoInternet0Bar(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M44 16V4L4 44h32V16z" /><path d="M40 44h4v-4h-4v4zm0-24v16h4V20h-4z" /></svg>;
 }
 
-export function MaterialIconSignalCellularConnectedNoInternet_1Bar(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalCellularConnectedNoInternet1Bar(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M44 16V4L4 44h32V16z" /><path d="M40 20v16h4V20h-4zM24 44V24L4 44h20zm16 0h4v-4h-4v4z" /></svg>;
 }
 
-export function MaterialIconSignalCellularConnectedNoInternet_2Bar(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalCellularConnectedNoInternet2Bar(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M44 16V4L4 44h32V16z" /><path d="M28 44V20L4 44h24zm12-24v16h4V20h-4zm0 24h4v-4h-4v4z" /></svg>;
 }
 
-export function MaterialIconSignalCellularConnectedNoInternet_3Bar(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalCellularConnectedNoInternet3Bar(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M44 16V4L4 44h32V16z" /><path d="M34 44V14L4 44h30zm6-24v16h4V20h-4zm0 24h4v-4h-4v4z" /></svg>;
 }
 
-export function MaterialIconSignalCellularConnectedNoInternet_4Bar(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalCellularConnectedNoInternet4Bar(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M40 36h4V20h-4v16zm0 8h4v-4h-4v4zM4 44h32V16h8V4L4 44z" /></svg>;
 }
 
@@ -1762,39 +1762,39 @@ export function MaterialIconSignalCellularOff(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M42 2L24.82 19.18 42 36.36V2zM9.55 9L7 11.54l12.73 12.73L2 42h35.45l4 4L44 43.45 9.55 9z" /></svg>;
 }
 
-export function MaterialIconSignalWifi_0Bar(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalWifi0Bar(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M24.02 42.98L47.28 14c-.9-.68-9.85-8-23.28-8C10.57 6 1.62 13.32.72 14l23.26 28.98.02.02.02-.02z" /></svg>;
 }
 
-export function MaterialIconSignalWifi_1Bar(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalWifi1Bar(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M24.02 42.98L47.28 14c-.9-.68-9.85-8-23.28-8S1.62 13.32.72 14l23.26 28.98.02.02.02-.02z" /><path d="M13.34 29.72l10.65 13.27.01.01.01-.01 10.65-13.27C34.13 29.31 30.06 26 24 26s-10.13 3.31-10.66 3.72z" /></svg>;
 }
 
-export function MaterialIconSignalWifi_1BarLock(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalWifi1BarLock(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M41 19c.7 0 1.4.1 2.1.2l4.2-5.2c-.9-.7-9.8-8-23.3-8S1.6 13.3.7 14L24 43l7-8.7V29c0-5.5 4.5-10 10-10z" opacity={0.3} /><path d="M46 32v-3c0-2.8-2.2-5-5-5s-5 2.2-5 5v3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2 0h-6v-3c0-1.7 1.3-3 3-3s3 1.3 3 3v3zm-30.7-2.3l9 11.2L24 43l7-8.8V29c0-.5 0-1 .1-1.4-1.8-.8-4.2-1.6-7.1-1.6-6.1 0-10.1 3.3-10.7 3.7z" /></svg>;
 }
 
-export function MaterialIconSignalWifi_2Bar(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalWifi2Bar(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M24.02 42.98L47.28 14c-.9-.68-9.85-8-23.28-8S1.62 13.32.72 14l23.26 28.98.02.02.02-.02z" /><path d="M9.58 25.03l14.41 17.95.01.02.01-.02 14.41-17.95C37.7 24.47 32.2 20 24 20s-13.7 4.47-14.42 5.03z" /></svg>;
 }
 
-export function MaterialIconSignalWifi_2BarLock(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalWifi2BarLock(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path opacity={0.3} d="M41 19c.7 0 1.4.1 2.1.2l4.2-5.2c-.9-.7-9.9-8-23.3-8S1.6 13.3.7 14L24 43l7-8.7V29c0-5.5 4.5-10 10-10z" /><path d="M46 32v-3c0-2.8-2.2-5-5-5s-5 2.2-5 5v3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2 0h-6v-3c0-1.7 1.3-3 3-3s3 1.3 3 3v3zM9.6 25L24 43l7-8.7V29c0-2.6 1-5 2.7-6.8C31.2 21 27.9 20 24 20c-8.2 0-13.7 4.5-14.4 5z" /></svg>;
 }
 
-export function MaterialIconSignalWifi_3Bar(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalWifi3Bar(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path fillOpacity={0.3} d="M24.02 42.98L47.28 14c-.9-.68-9.85-8-23.28-8S1.62 13.32.72 14l23.26 28.98.02.02.02-.02z" /><path d="M7.07 21.91l16.92 21.07.01.02.02-.02 16.92-21.07C40.08 21.25 33.62 16 24 16c-9.63 0-16.08 5.25-16.93 5.91z" /></svg>;
 }
 
-export function MaterialIconSignalWifi_3BarLock(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalWifi3BarLock(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path opacity={0.3} enableBackground="new" d="M41 19c.7 0 1.4.1 2.1.2l4.2-5.2c-.9-.7-9.8-8-23.3-8S1.6 13.3.7 14L24 43l7-8.7V29c0-5.5 4.5-10 10-10z" /><path d="M46 32v-3c0-2.8-2.2-5-5-5s-5 2.2-5 5v3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2 0h-6v-3c0-1.7 1.3-3 3-3s3 1.3 3 3v3zM7.1 21.9L24 43l7-8.7V29c0-4.3 2.7-8 6.5-9.4C34.6 18 29.9 16 24 16c-9.6 0-16.1 5.2-16.9 5.9z" /></svg>;
 }
 
-export function MaterialIconSignalWifi_4Bar(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalWifi4Bar(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M24.02 42.98L47.28 14c-.9-.68-9.85-8-23.28-8S1.62 13.32.72 14l23.26 28.98.02.02.02-.02z" /></svg>;
 }
 
-export function MaterialIconSignalWifi_4BarLock(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconSignalWifi4BarLock(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M41 19c.72 0 1.41.08 2.09.22L47.28 14c-.9-.68-9.85-8-23.28-8S1.62 13.32.72 14l23.26 28.98.02.02.02-.02 6.98-8.7V29c0-5.52 4.48-10 10-10zm5 13v-3c0-2.76-2.24-5-5-5s-5 2.24-5 5v3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2 0h-6v-3c0-1.66 1.34-3 3-3s3 1.34 3 3v3z" /></svg>;
 }
 
@@ -2378,31 +2378,31 @@ export function MaterialIconBlurOn(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M12 26c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 1c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm6-9c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm30 11c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm-14-7c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0-7c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zM6 27c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm14 14c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm0-34c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0 7c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 11c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm16 1c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 17c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-14 7c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 7c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm-8-24c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0 17c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8-9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" /></svg>;
 }
 
-export function MaterialIconBrightness_1(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBrightness1(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><circle cx={24} cy={24} r={20} /></svg>;
 }
 
-export function MaterialIconBrightness_2(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBrightness2(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M20 4c-3.65 0-7.06.99-10 2.7 5.97 3.46 10 9.9 10 17.3s-4.03 13.84-10 17.3c2.94 1.71 6.35 2.7 10 2.7 11.05 0 20-8.95 20-20S31.05 4 20 4z" /></svg>;
 }
 
-export function MaterialIconBrightness_3(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBrightness3(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M18 4c-2.09 0-4.11.32-6 .92C20.11 7.47 26 15.05 26 24c0 8.95-5.89 16.53-14 19.08 1.89.59 3.91.92 6 .92 11.05 0 20-8.95 20-20S29.05 4 18 4z" /></svg>;
 }
 
-export function MaterialIconBrightness_4(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBrightness4(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M40 17.37V8h-9.37L24 1.37 17.37 8H8v9.37L1.37 24 8 30.63V40h9.37L24 46.63 30.63 40H40v-9.37L46.63 24 40 17.37zM24 36c-1.79 0-3.48-.4-5-1.1 4.13-1.9 7-6.06 7-10.9s-2.87-9-7-10.9c1.52-.7 3.21-1.1 5-1.1 6.63 0 12 5.37 12 12s-5.37 12-12 12z" /></svg>;
 }
 
-export function MaterialIconBrightness_5(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBrightness5(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M40 30.63L46.63 24 40 17.37V8h-9.37L24 1.37 17.37 8H8v9.37L1.37 24 8 30.63V40h9.37L24 46.63 30.63 40H40v-9.37zM24 36c-6.63 0-12-5.37-12-12s5.37-12 12-12 12 5.37 12 12-5.37 12-12 12z" /></svg>;
 }
 
-export function MaterialIconBrightness_6(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBrightness6(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M40 30.63L46.63 24 40 17.37V8h-9.37L24 1.37 17.37 8H8v9.37L1.37 24 8 30.63V40h9.37L24 46.63 30.63 40H40v-9.37zM24 36V12c6.63 0 12 5.37 12 12s-5.37 12-12 12z" /></svg>;
 }
 
-export function MaterialIconBrightness_7(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconBrightness7(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M40 17.37V8h-9.37L24 1.37 17.37 8H8v9.37L1.37 24 8 30.63V40h9.37L24 46.63 30.63 40H40v-9.37L46.63 24 40 17.37zM24 36c-6.63 0-12-5.37-12-12s5.37-12 12-12 12 5.37 12 12-5.37 12-12 12zm0-20c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8z" /></svg>;
 }
 
@@ -2470,11 +2470,11 @@ export function MaterialIconControlPointDuplicate(props: SVGProps<SVGSVGElement>
   return <svg viewBox="0 0 48 48" {...props}><path d="M32 16h-4v6h-6v4h6v6h4v-6h6v-4h-6zM4 24c0-5.58 3.29-10.39 8.02-12.64V7.05C5.03 9.51 0 16.17 0 24s5.03 14.49 12.02 16.95v-4.31C7.29 34.39 4 29.58 4 24zM30 6c-9.93 0-18 8.07-18 18s8.07 18 18 18 18-8.07 18-18S39.93 6 30 6zm0 32c-7.72 0-14-6.28-14-14s6.28-14 14-14 14 6.28 14 14-6.28 14-14 14z" /></svg>;
 }
 
-export function MaterialIconCrop_16_9(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconCrop169(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M38 12H10c-2.21 0-4 1.79-4 4v16c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V16c0-2.21-1.79-4-4-4zm0 20H10V16h28v16z" /></svg>;
 }
 
-export function MaterialIconCrop_3_2(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconCrop32(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M38 8H10c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 28H10V12h28v24z" /></svg>;
 }
 
@@ -2482,11 +2482,11 @@ export function MaterialIconCrop(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M34 30h4V14c0-2.21-1.79-4-4-4H18v4h16v16zm-20 4V2h-4v8H2v4h8v20c0 2.21 1.79 4 4 4h20v8h4v-8h8v-4H14z" /></svg>;
 }
 
-export function MaterialIconCrop_5_4(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconCrop54(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M38 10H10c-2.21 0-4 1.79-4 4v20c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V14c0-2.21-1.79-4-4-4zm0 24H10V14h28v20z" /></svg>;
 }
 
-export function MaterialIconCrop_7_5(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconCrop75(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M38 14H10c-2.21 0-4 1.79-4 4v12c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V18c0-2.21-1.79-4-4-4zm0 16H10V18h28v12z" /></svg>;
 }
 
@@ -2534,19 +2534,19 @@ export function MaterialIconExposure(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M30 34v4h4v-4h4v-4h-4v-4h-4v4h-4v4h4zM40 4H8C5.79 4 4 5.79 4 8v32c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V8c0-2.21-1.79-4-4-4zm-30 6h12v4H10v-4zm30 30H8L40 8v32z" /></svg>;
 }
 
-export function MaterialIconExposureNeg_1(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconExposureNeg1(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M8 22v4h16v-4H8zm30 14h-4V14.75l-6 2.05v-3.4l9.4-3.4h.6v26z" /></svg>;
 }
 
-export function MaterialIconExposureNeg_2(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconExposureNeg2(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M30.09 32.58l5.73-6.13c.75-.79 1.44-1.57 2.08-2.35.63-.78 1.18-1.56 1.64-2.33.46-.78.82-1.55 1.07-2.33.26-.78.39-1.57.39-2.37 0-1.07-.18-2.04-.54-2.92-.36-.87-.88-1.62-1.57-2.23-.69-.61-1.53-1.08-2.53-1.42-1-.33-2.14-.5-3.42-.5-1.38 0-2.62.21-3.7.64-1.08.43-1.99 1.01-2.73 1.75s-1.3 1.61-1.68 2.6c-.36.94-.54 1.95-.56 3.01h4.28c.01-.62.09-1.21.26-1.74.18-.58.45-1.08.81-1.5.36-.42.81-.74 1.35-.98.55-.23 1.19-.35 1.93-.35.61 0 1.15.1 1.62.31.47.21.87.49 1.19.85.32.36.57.8.74 1.29.17.5.25 1.04.25 1.63 0 .43-.06.87-.17 1.3-.11.43-.3.9-.58 1.4-.28.5-.65 1.05-1.11 1.66-.46.6-1.05 1.29-1.75 2.07l-8.35 9.11V36H42v-3.42H30.09zM4 22v4h16v-4H4z" /></svg>;
 }
 
-export function MaterialIconExposurePlus_1(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconExposurePlus1(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M20 14h-4v8H8v4h8v8h4v-8h8v-4h-8v-8zm20 22h-4V14.75l-6 2.05v-3.4l9.4-3.4h.6v26z" /></svg>;
 }
 
-export function MaterialIconExposurePlus_2(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconExposurePlus2(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M32.09 32.58l5.73-6.13c.75-.79 1.44-1.57 2.08-2.35.63-.78 1.18-1.56 1.64-2.33.46-.78.82-1.55 1.07-2.33.26-.78.39-1.57.39-2.37 0-1.07-.18-2.04-.54-2.92-.36-.87-.88-1.62-1.57-2.23-.69-.61-1.53-1.08-2.53-1.42-1-.33-2.14-.5-3.42-.5-1.38 0-2.62.21-3.7.64-1.08.43-1.99 1.01-2.73 1.75s-1.3 1.61-1.68 2.6c-.36.94-.54 1.95-.56 3.01h4.28c.01-.62.09-1.21.26-1.74.18-.58.45-1.08.81-1.5.36-.42.81-.74 1.35-.98.55-.23 1.19-.35 1.93-.35.61 0 1.15.1 1.62.31.47.21.87.49 1.19.85.32.36.57.8.74 1.29.17.5.25 1.04.25 1.63 0 .43-.06.87-.17 1.3-.11.43-.3.9-.58 1.4-.28.5-.65 1.05-1.11 1.66-.46.6-1.05 1.29-1.75 2.07l-8.35 9.11V36H44v-3.42H32.09zM16 14h-4v8H4v4h8v8h4v-8h8v-4h-8v-8z" /></svg>;
 }
 
@@ -2554,19 +2554,19 @@ export function MaterialIconExposureZero(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M32.28 25c0 2-.2 3.7-.59 5.1-.39 1.4-.95 2.53-1.67 3.41-.72.87-1.59 1.51-2.6 1.9-1.01.39-2.14.59-3.39.59-1.24 0-2.37-.2-3.39-.59-1.02-.39-1.89-1.03-2.62-1.9-.73-.87-1.3-2.01-1.69-3.41-.4-1.4-.6-3.1-.6-5.1v-4.08c0-2 .2-3.7.59-5.09.39-1.39.95-2.52 1.68-3.38.72-.86 1.59-1.49 2.61-1.87 1.02-.38 2.15-.57 3.39-.57 1.25 0 2.39.19 3.41.57 1.02.38 1.89 1.01 2.62 1.87.72.86 1.28 1.99 1.68 3.38.39 1.39.59 3.09.59 5.09V25zm-4.22-4.73c0-1.29-.09-2.37-.27-3.24-.18-.87-.44-1.58-.79-2.12-.35-.54-.77-.93-1.28-1.16-.5-.24-1.08-.36-1.73-.36-.65 0-1.23.12-1.73.36-.51.24-.93.63-1.28 1.16-.35.54-.61 1.25-.79 2.12-.18.87-.27 1.96-.27 3.24v5.34c0 1.27.09 2.36.28 3.25.19.89.45 1.62.8 2.17.35.56.78.96 1.29 1.22.51.25 1.09.38 1.74.38.66 0 1.24-.13 1.74-.38s.92-.66 1.26-1.22c.34-.56.6-1.28.77-2.17.17-.89.26-1.98.26-3.25v-5.34z" /></svg>;
 }
 
-export function MaterialIconFilter_1(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconFilter1(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm22 20h4V10h-8v4h4v16zM42 2H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6c0-2.21-1.79-4-4-4zm0 32H14V6h28v28z" /></svg>;
 }
 
-export function MaterialIconFilter_2(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconFilter2(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm36-8H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6c0-2.21-1.79-4-4-4zm0 32H14V6h28v28zm-8-8h-8v-4h4c2.21 0 4-1.79 4-4v-4c0-2.21-1.79-4-4-4h-8v4h8v4h-4c-2.21 0-4 1.79-4 4v8h12v-4z" /></svg>;
 }
 
-export function MaterialIconFilter_3(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconFilter3(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M42 2H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6c0-2.21-1.79-4-4-4zm0 32H14V6h28v28zM6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm28 16v-3c0-1.66-1.34-3-3-3 1.66 0 3-1.34 3-3v-3c0-2.21-1.79-4-4-4h-8v4h8v4h-4v4h4v4h-8v4h8c2.21 0 4-1.79 4-4z" /></svg>;
 }
 
-export function MaterialIconFilter_4(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconFilter4(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm24 20h4V10h-4v8h-4v-8h-4v12h8v8zM42 2H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6c0-2.21-1.79-4-4-4zm0 32H14V6h28v28z" /></svg>;
 }
 
@@ -2574,27 +2574,27 @@ export function MaterialIconFilter(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M31.93 20.57l-5.5 7.08-3.93-4.72L17 30h22l-7.07-9.43zM6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm36-8H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6c0-2.21-1.79-4-4-4zm0 32H14V6h28v28z" /></svg>;
 }
 
-export function MaterialIconFilter_5(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconFilter5(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M42 2H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6c0-2.21-1.79-4-4-4zm0 32H14V6h28v28zM6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm28 16v-4c0-2.21-1.79-4-4-4h-4v-4h8v-4H22v12h8v4h-8v4h8c2.21 0 4-1.79 4-4z" /></svg>;
 }
 
-export function MaterialIconFilter_6(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconFilter6(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm36-8H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6c0-2.21-1.79-4-4-4zm0 32H14V6h28v28zm-16-4h4c2.21 0 4-1.79 4-4v-4c0-2.21-1.79-4-4-4h-4v-4h8v-4h-8c-2.21 0-4 1.79-4 4v12c0 2.21 1.79 4 4 4zm0-8h4v4h-4v-4z" /></svg>;
 }
 
-export function MaterialIconFilter_7(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconFilter7(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm36-8H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6c0-2.21-1.79-4-4-4zm0 32H14V6h28v28zm-16-4l8-16v-4H22v4h8l-8 16h4z" /></svg>;
 }
 
-export function MaterialIconFilter_8(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconFilter8(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm36-8H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6c0-2.21-1.79-4-4-4zm0 32H14V6h28v28zm-16-4h4c2.21 0 4-1.79 4-4v-3c0-1.66-1.34-3-3-3 1.66 0 3-1.34 3-3v-3c0-2.21-1.79-4-4-4h-4c-2.21 0-4 1.79-4 4v3c0 1.66 1.34 3 3 3-1.66 0-3 1.34-3 3v3c0 2.21 1.79 4 4 4zm0-16h4v4h-4v-4zm0 8h4v4h-4v-4z" /></svg>;
 }
 
-export function MaterialIconFilter_9(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconFilter9(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm36-8H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6c0-2.21-1.79-4-4-4zm0 32H14V6h28v28zM30 10h-4c-2.21 0-4 1.79-4 4v4c0 2.21 1.79 4 4 4h4v4h-8v4h8c2.21 0 4-1.79 4-4V14c0-2.21-1.79-4-4-4zm0 8h-4v-4h4v4z" /></svg>;
 }
 
-export function MaterialIconFilter_9Plus(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconFilter9Plus(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm22 14v-8c0-2.21-1.79-4-4-4h-2c-2.21 0-4 1.79-4 4v2c0 2.21 1.79 4 4 4h2v2h-6v4h6c2.21 0 4-1.79 4-4zm-6-6v-2h2v2h-2zM42 2H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6c0-2.21-1.79-4-4-4zm0 16h-4v-4h-4v4h-4v4h4v4h4v-4h4v12H14V6h28v12z" /></svg>;
 }
 
@@ -2718,11 +2718,11 @@ export function MaterialIconLinkedCamera(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><circle cx={24} cy={28} r={6.4} /><path d="M32 6.66c5.16 0 9.34 4.18 9.34 9.34H44c0-6.62-5.38-12-12-12v2.66M32 12c2.22 0 4 1.78 4 4h2.66c0-3.68-2.98-6.66-6.66-6.66V12" /><path d="M34 18c0-2.22-1.78-4-4-4V8H18l-3.66 4H8c-2.2 0-4 1.8-4 4v24c0 2.2 1.8 4 4 4h32c2.2 0 4-1.8 4-4V18H34zM24 38c-5.52 0-10-4.48-10-10s4.48-10 10-10 10 4.48 10 10-4.48 10-10 10z" /></svg>;
 }
 
-export function MaterialIconLooks_3(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconLooks3(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M38.01 6h-28c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V10c0-2.21-1.79-4-4-4zm-8 15c0 1.66-1.34 3-3 3 1.66 0 3 1.34 3 3v3c0 2.21-1.79 4-4 4h-8v-4h8v-4h-4v-4h4v-4h-8v-4h8c2.21 0 4 1.79 4 4v3z" /></svg>;
 }
 
-export function MaterialIconLooks_4(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconLooks4(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M38 6H10c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V10c0-2.21-1.79-4-4-4zm-8 28h-4v-8h-8V14h4v8h4v-8h4v20z" /></svg>;
 }
 
@@ -2730,11 +2730,11 @@ export function MaterialIconLooks(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M24 20c-7.72 0-14 6.28-14 14h4c0-5.51 4.49-10 10-10s10 4.49 10 10h4c0-7.72-6.28-14-14-14zm0-8C11.87 12 2 21.87 2 34h4c0-9.92 8.08-18 18-18s18 8.08 18 18h4c0-12.13-9.87-22-22-22z" /></svg>;
 }
 
-export function MaterialIconLooks_5(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconLooks5(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M38 6H10c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V10c0-2.21-1.79-4-4-4zm-8 12h-8v4h4c2.21 0 4 1.79 4 4v4c0 2.21-1.79 4-4 4h-8v-4h8v-4h-8V14h12v4z" /></svg>;
 }
 
-export function MaterialIconLooks_6(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconLooks6(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M22 30h4v-4h-4v4zM38 6H10c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V10c0-2.21-1.79-4-4-4zm-8 12h-8v4h4c2.21 0 4 1.79 4 4v4c0 2.21-1.79 4-4 4h-4c-2.21 0-4-1.79-4-4V18c0-2.21 1.79-4 4-4h8v4z" /></svg>;
 }
 
@@ -2838,7 +2838,7 @@ export function MaterialIconRemoveRedEye(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M24 9C14 9 5.46 15.22 2 24c3.46 8.78 12 15 22 15s18.54-6.22 22-15C42.54 15.22 34.01 9 24 9zm0 25c-5.52 0-10-4.48-10-10s4.48-10 10-10 10 4.48 10 10-4.48 10-10 10zm0-16c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z" /></svg>;
 }
 
-export function MaterialIconRotate_90DegreesCcw(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconRotate90DegreesCcw(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M14.69 12.83L1.72 25.8l12.97 12.97L27.66 25.8 14.69 12.83zM7.37 25.8l7.31-7.31L22 25.8l-7.31 7.31-7.32-7.31zm31.36-12.53C35.21 9.76 30.61 8 26 8V1.51L17.51 10 26 18.48V12c3.58 0 7.17 1.37 9.9 4.1 5.47 5.47 5.47 14.33 0 19.8-2.73 2.73-6.32 4.1-9.9 4.1-1.94 0-3.87-.41-5.67-1.21l-2.98 2.98C20.03 43.25 23.01 44 26 44c4.61 0 9.21-1.76 12.73-5.27 7.03-7.03 7.03-18.43 0-25.46z" /></svg>;
 }
 
@@ -2882,11 +2882,11 @@ export function MaterialIconTimelapse(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M32.49 15.51C30.14 13.17 27.07 12 24 12v12l-8.49 8.49c4.69 4.69 12.28 4.69 16.97 0 4.69-4.69 4.69-12.29.01-16.98zM24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.96 20-20c0-11.05-8.95-20-20-20zm0 36c-8.84 0-16-7.16-16-16S15.16 8 24 8s16 7.16 16 16-7.16 16-16 16z" /></svg>;
 }
 
-export function MaterialIconTimer_10(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconTimer10(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M0 15.43v3.37l6-2V36h4V12h-.51L0 15.43zm47.57 13.3c-.29-.57-.71-1.06-1.26-1.48-.55-.42-1.23-.77-2.02-1.06-.8-.29-1.7-.54-2.7-.75-.7-.15-1.27-.3-1.73-.46-.46-.15-.83-.32-1.1-.5-.27-.18-.46-.39-.57-.61-.11-.22-.16-.48-.16-.77 0-.29.06-.56.18-.83.12-.26.3-.49.54-.69.24-.2.54-.36.91-.48.36-.12.79-.18 1.28-.18.5 0 .94.07 1.32.22.38.14.7.34.95.59.26.25.45.53.58.84.13.32.19.64.19.97h3.9c0-.78-.16-1.51-.47-2.18-.31-.67-.77-1.26-1.37-1.76-.6-.5-1.33-.89-2.19-1.17-.87-.29-1.84-.43-2.92-.43-1.03 0-1.96.14-2.78.42-.83.28-1.53.67-2.12 1.15-.58.48-1.03 1.04-1.34 1.68-.31.64-.47 1.31-.47 2.01 0 .73.15 1.37.46 1.93.3.56.73 1.04 1.28 1.45.55.41 1.2.76 1.97 1.05.76.29 1.61.53 2.54.72.78.16 1.41.33 1.9.51s.86.38 1.13.59c.27.21.45.43.54.67.09.24.14.5.14.78 0 .63-.27 1.14-.8 1.53-.54.39-1.32.59-2.34.59-.44 0-.87-.05-1.28-.15-.42-.1-.79-.26-1.12-.49-.33-.22-.6-.52-.82-.88-.21-.36-.34-.81-.37-1.35h-3.79c0 .72.16 1.42.47 2.11.31.69.78 1.31 1.4 1.85.62.55 1.39.99 2.3 1.32.91.34 1.97.51 3.15.51 1.06 0 2.02-.13 2.89-.38.87-.26 1.61-.62 2.22-1.08.62-.47 1.09-1.02 1.42-1.66.33-.64.5-1.35.5-2.12-.01-.79-.15-1.46-.44-2.03zM27.64 14.09c-.68-.81-1.5-1.39-2.45-1.75-.96-.36-2.02-.54-3.2-.54-1.16 0-2.22.18-3.18.54-.96.36-1.78.94-2.45 1.75-.68.81-1.2 1.87-1.57 3.17-.37 1.31-.55 2.9-.55 4.78v3.83c0 1.88.19 3.48.56 4.79.38 1.31.91 2.38 1.59 3.2.69.82 1.51 1.42 2.46 1.79.96.37 2.02.55 3.18.55 1.17 0 2.24-.19 3.19-.55.95-.37 1.76-.96 2.44-1.79.67-.82 1.2-1.89 1.57-3.2.37-1.31.55-2.91.55-4.79v-3.83c0-1.88-.19-3.47-.55-4.78-.38-1.3-.91-2.36-1.59-3.17zm-1.83 12.36c0 1.2-.08 2.21-.24 3.05-.16.84-.41 1.52-.73 2.04s-.72.9-1.18 1.14c-.47.24-1.01.36-1.63.36-.61 0-1.15-.12-1.63-.36s-.88-.62-1.21-1.14c-.33-.52-.58-1.2-.75-2.04-.17-.84-.26-1.85-.26-3.05v-5.01c0-1.21.08-2.22.25-3.04.17-.82.42-1.48.74-1.99.33-.51.73-.87 1.2-1.09.47-.22 1.01-.33 1.62-.33.61 0 1.15.11 1.62.33.47.22.87.59 1.2 1.09.33.51.57 1.17.74 1.99.17.82.25 1.84.25 3.04v5.01z" /></svg>;
 }
 
-export function MaterialIconTimer_3(props: SVGProps<SVGSVGElement>) {
+export function MaterialIconTimer3(props: SVGProps<SVGSVGElement>) {
   return <svg viewBox="0 0 48 48" {...props}><path d="M23.22 25.95c-.32-.48-.73-.92-1.23-1.31-.51-.39-1.12-.7-1.85-.95.61-.27 1.14-.61 1.6-1 .46-.4.84-.82 1.14-1.27.3-.45.53-.92.69-1.41.15-.49.23-.97.23-1.45 0-1.11-.19-2.08-.55-2.93-.37-.84-.89-1.55-1.56-2.11-.67-.56-1.47-.99-2.41-1.28-.94-.29-1.97-.43-3.1-.43-1.1 0-2.11.16-3.04.49-.93.33-1.73.78-2.4 1.36-.67.58-1.19 1.27-1.57 2.06-.38.79-.56 1.66-.56 2.59h3.96c0-.51.09-.97.28-1.38.19-.41.44-.76.77-1.04.33-.29.71-.51 1.16-.67.45-.16.93-.24 1.45-.24 1.22 0 2.12.31 2.72.94.59.63.89 1.5.89 2.63 0 .54-.08 1.04-.24 1.48-.16.45-.41.83-.75 1.14-.34.32-.76.56-1.26.74-.5.18-1.09.27-1.78.27h-2.35v3.13h2.35c.67 0 1.28.08 1.82.23.54.15 1 .39 1.38.71.38.32.67.73.88 1.22.21.49.31 1.07.31 1.75 0 1.24-.35 2.19-1.06 2.84-.71.65-1.67.98-2.9.98-.59 0-1.12-.08-1.6-.25-.48-.17-.89-.41-1.22-.72-.34-.31-.6-.68-.78-1.12-.19-.43-.28-.91-.28-1.44H8.37c0 1.1.21 2.07.64 2.9.42.84.99 1.54 1.71 2.1s1.55.98 2.49 1.26c.94.28 1.93.42 2.96.42 1.13 0 2.18-.16 3.16-.46.97-.31 1.82-.76 2.53-1.35.71-.59 1.27-1.32 1.67-2.19.4-.87.6-1.86.6-2.97 0-.59-.07-1.16-.22-1.71-.15-.56-.38-1.08-.69-1.56zm18.53 2.78c-.29-.57-.71-1.06-1.26-1.48-.55-.42-1.23-.77-2.02-1.06-.8-.29-1.7-.54-2.7-.75-.7-.15-1.27-.3-1.73-.46-.46-.15-.83-.32-1.1-.5-.27-.18-.46-.39-.57-.61-.11-.22-.16-.48-.16-.77 0-.29.06-.56.18-.83.12-.26.3-.49.54-.69.24-.2.54-.36.91-.48.36-.12.79-.18 1.28-.18.5 0 .94.07 1.32.22.38.14.7.34.95.59.26.25.45.53.58.84.13.32.19.64.19.97h3.9c0-.78-.16-1.51-.47-2.18-.32-.67-.77-1.26-1.37-1.76-.6-.5-1.33-.89-2.19-1.17-.87-.29-1.84-.43-2.93-.43-1.03 0-1.96.14-2.78.42-.83.28-1.53.67-2.12 1.15-.58.48-1.03 1.04-1.34 1.68-.31.64-.47 1.31-.47 2.01 0 .73.15 1.37.46 1.93.3.56.73 1.04 1.28 1.45.55.41 1.2.76 1.97 1.05.76.29 1.61.53 2.54.72.78.16 1.41.33 1.9.51s.86.38 1.13.59c.27.21.45.43.54.67.09.24.14.5.14.78 0 .63-.27 1.14-.8 1.53-.54.39-1.32.59-2.34.59-.44 0-.87-.05-1.28-.15-.42-.1-.79-.26-1.12-.49-.33-.22-.6-.52-.82-.88-.21-.36-.34-.81-.37-1.35h-3.79c0 .72.16 1.42.47 2.11.31.69.78 1.31 1.4 1.85.62.55 1.39.99 2.3 1.32.91.34 1.97.51 3.15.51 1.06 0 2.02-.13 2.89-.38.87-.26 1.61-.62 2.22-1.08.62-.47 1.09-1.02 1.42-1.66.33-.64.5-1.35.5-2.12 0-.79-.15-1.46-.43-2.03z" /></svg>;
 }
 

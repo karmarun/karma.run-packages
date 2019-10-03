@@ -4,6 +4,7 @@ import {centerLayoutDecorator} from '../.storybook/decorators'
 import {IconType} from '../atoms/icon'
 import {Navigation} from './navigation'
 import {MenuIconButton} from '../atoms/menuIconButton'
+import {MaterialIconPages, MaterialIconInsertDriveFile} from '../icons/materialIcons'
 
 export default {
   component: Navigation,
@@ -13,7 +14,7 @@ export default {
 
 export const Standard = () => (
   <Navigation>
-    <MenuIconButton icon={IconType.Article} label={'Article'} />
+    <MenuIconButton icon={MaterialIconInsertDriveFile} label={'Article'} />
     <MenuIconButton icon={IconType.Page} label={'Pages'} />
     <MenuIconButton icon={IconType.MediaLibrary} label={'Media Library'} />
     <MenuIconButton icon={IconType.Proofreading} label={'Proofreading'} />

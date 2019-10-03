@@ -12,7 +12,7 @@ function template({template}, _opts, {componentName, jsx}) {
 }
 
 function snakeCaseToPascalCase(str) {
-  return str.replace(/(([-_]|^)[a-z])/gi, group =>
+  return str.replace(/(([-_]|^)[a-z0-9])/gi, group =>
     group
       .toUpperCase()
       .replace('-', '')
@@ -52,7 +52,7 @@ glob(`${STATIC_PATH}/*/svg/production/*_48px.svg`, async (err, files) => {
 
 // This file includes Material Design Icons converted to React components.
 // Material Design Icons are licensed under the Apache License Version 2.0:
-// https://github.com/google/material-design-icons/blob/master/LICENSE
+// https://www.apache.org/licenses/LICENSE-2.0.html
 
 import React, {SVGProps} from 'react'
 

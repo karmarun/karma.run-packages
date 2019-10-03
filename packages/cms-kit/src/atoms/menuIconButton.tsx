@@ -63,7 +63,7 @@ export function MenuIconButton({
 
   return (
     <BaseButton href={href} onClick={onClick} style={MenuIconButtonStyle}>
-      <Icon type={icon} scale={iconScale} />
+      <Icon element={icon} scale={iconScale} />
       <span className={css(LabelStyle)}>{label}</span>
     </BaseButton>
   )

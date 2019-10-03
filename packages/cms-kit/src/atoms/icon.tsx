@@ -3,6 +3,8 @@ import {toArray} from '@karma.run/utility'
 
 import {cssRuleWithTheme, useThemeStyle, CSSRuleWithTheme} from '../style/themeContext'
 
+export type IconType = ElementType<SVGProps<SVGSVGElement>>
+
 export enum IconScale {
   Equal = '1em',
   Larger = '1.5em',
@@ -27,8 +29,7 @@ const IconStyle = cssRuleWithTheme<IconStyleProps>(({scale, block}) => ({
 }))
 
 export interface BaseIconProps {
-  readonly type?: any
-  readonly element: ElementType<SVGProps<SVGSVGElement>>
+  readonly element: IconType
   readonly scale?: IconScale
   readonly block?: boolean
 }

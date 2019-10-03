@@ -3,12 +3,14 @@ import React, {useState} from 'react'
 import {centerLayoutDecorator} from '../.storybook/decorators'
 import {UnionListField} from './unionListField'
 import {TextField} from './textField'
-import {IconType} from '../atoms/icon'
 
 import {UnionListValue} from './types'
 import {ListField, ListValue} from './listField'
 import {Grid, Column} from '../layout/grid'
 import {Placeholder} from '../atoms/placeholder'
+
+import {IconColumn4, IconColumn2, IconColumn2Alt} from '../icons/customIcons'
+import {MaterialIconTextFormat, MaterialIconShortText} from '../icons/materialIcons'
 
 export type StringValue = UnionListValue<'string', string>
 export type StringArrayValue = UnionListValue<'stringArray', ListValue<string>[]>
@@ -30,7 +32,7 @@ export const Standard = () => {
           field: props => <TextField {...props} />,
           defaultValue: '',
           label: 'String',
-          icon: IconType.Replace
+          icon: MaterialIconTextFormat
         },
 
         stringArray: {
@@ -41,7 +43,7 @@ export const Standard = () => {
           ),
           defaultValue: [],
           label: 'String Array',
-          icon: IconType.DropHere
+          icon: MaterialIconShortText
         }
       }}
     </UnionListField>
@@ -73,7 +75,7 @@ export const WithGrid = () => {
           ),
           defaultValue: '',
           label: '4 Cols',
-          icon: IconType.Column4
+          icon: IconColumn4
         },
 
         column2: {
@@ -89,7 +91,7 @@ export const WithGrid = () => {
           ),
           defaultValue: [],
           label: '2 Cols',
-          icon: IconType.Column2
+          icon: IconColumn2
         },
 
         column2Alt: {
@@ -105,7 +107,7 @@ export const WithGrid = () => {
           ),
           defaultValue: [],
           label: '2 Cols Alt',
-          icon: IconType.Column2Alt
+          icon: IconColumn2Alt
         }
       }}
     </UnionListField>

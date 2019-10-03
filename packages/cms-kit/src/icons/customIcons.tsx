@@ -2,7 +2,7 @@ import React, {SVGProps} from 'react'
 
 export function IconColumn1(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" {...props}>
+    <svg viewBox="0 0 48 48" {...props}>
       <g fillRule="evenodd">
         <path fillRule="nonzero" d="M2 35h44V13H2z" />
       </g>
@@ -12,7 +12,7 @@ export function IconColumn1(props: SVGProps<SVGSVGElement>) {
 
 export function IconColumn2(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" {...props}>
+    <svg viewBox="0 0 48 48" {...props}>
       <g fillRule="evenodd">
         <path fillRule="nonzero" d="M2 35h20V13H2v22zm24-22v22h20V13H26z" />
       </g>
@@ -22,7 +22,7 @@ export function IconColumn2(props: SVGProps<SVGSVGElement>) {
 
 export function IconColumn2Alt(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" {...props}>
+    <svg viewBox="0 0 48 48" {...props}>
       <g fillRule="evenodd">
         <path fillRule="nonzero" d="M2 35h31V13H2v22zm35-22v22h9V13h-9z" />
       </g>
@@ -32,7 +32,7 @@ export function IconColumn2Alt(props: SVGProps<SVGSVGElement>) {
 
 export function IconColumn4(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" {...props}>
+    <svg viewBox="0 0 48 48" {...props}>
       <g fillRule="evenodd">
         <path
           fillRule="nonzero"
@@ -45,7 +45,7 @@ export function IconColumn4(props: SVGProps<SVGSVGElement>) {
 
 export function IconColumn6(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" {...props}>
+    <svg viewBox="0 0 48 48" {...props}>
       <g fillRule="evenodd">
         <path
           fillRule="nonzero"
