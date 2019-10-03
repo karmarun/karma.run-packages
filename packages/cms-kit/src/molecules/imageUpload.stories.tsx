@@ -13,6 +13,10 @@ export const Standard = () => {
   return <ImageUpload onUpload={() => {}} />
 }
 
+export const Uploading = () => {
+  return <ImageUpload onUpload={() => {}} uploadProgress={60} />
+}
+
 export const ImageThumb = () => {
   return (
     <ImageUploadThumb

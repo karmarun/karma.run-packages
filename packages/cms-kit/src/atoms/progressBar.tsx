@@ -40,8 +40,7 @@ export function ProgressBar({progress, onCancel}: ProgressBarProps) {
       <div className={css(ProgressStyle)}>
         <div className={css(FillerStyle)} />
       </div>
-      {progress}
-      {onCancel && <OptionButtonSmall icon={IconType.Close} onClick={onCancel} />}
+      {progress}%{onCancel && <OptionButtonSmall icon={IconType.Close} onClick={onCancel} />}
     </div>
   )
 }
