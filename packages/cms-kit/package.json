@@ -2,6 +2,7 @@
   "name": "@karma.run/cms-kit",
   "version": "0.0.0",
   "module": "./lib/esm/",
+  "sideEffects": false,
   "license": "MIT",
   "scripts": {
     "build": "run-s copy-license sync-package-info build:*",
