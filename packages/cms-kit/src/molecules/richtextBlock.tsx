@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef, useState, ReactNode} from 'react'
 
 import {
   Editor,
@@ -11,40 +11,31 @@ import {
 import {Value, Editor as CoreEditor} from 'slate'
 
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem, Spacing, TransitionDuration} from '../style/helpers'
-import {RichtextEditOverlay, RichTextEditButton} from './richtextEditOverlay'
+import {DarkMenu, DarkMenuButton} from './darkMenu'
 import {cssRule, useStyle} from '@karma.run/react'
+import {PositionableOverlay} from '../atoms/positionableOverlay'
 
 const outside = -10000
 
-interface EditMenuStyleProps {
-  top: number
-  left: number
-}
 const RichtextBlockStyle = cssRuleWithTheme(({theme}) => ({}))
-const EditMenuStyle = cssRule<EditMenuStyleProps>(({top, left}) => ({
-  position: 'absolute',
-  opacity: top > outside ? 1 : 0,
-  top: pxToRem(top),
-  left: pxToRem(left),
-  transition: `opacity ${TransitionDuration.Fast}`
-}))
 
 export interface RichtextBlockProps {
   readonly value: Value
-  readonly editItems: RichTextEditButton[]
+  readonly editorMenu: ReactNode
   onChange?(value: Value): void
   renderMark?(props: RenderMarkProps, editor: CoreEditor, next: () => any): any
   renderBlock?(props: RenderBlockProps, editor: CoreEditor, next: () => any): any
 }
 
 export function RichtextBlock({
-  editItems,
+  editorMenu,
   value,
   onChange,
   renderMark,
   renderBlock
 }: RichtextBlockProps) {
+  const {css} = useThemeStyle()
+
   const ref = useRef<HTMLDivElement>(null)
   const renderRef = useRef<Plugin['renderEditor']>()
 
@@ -53,8 +44,6 @@ export function RichtextBlock({
     currentTop: outside,
     currentLeft: outside
   })
-
-  const {css} = useThemeStyle({top: currentTop, left: currentLeft})
 
   function checkForSelection() {
     if (selection.isBlurred || selection.isCollapsed || fragment.text === '') {
@@ -90,26 +79,19 @@ export function RichtextBlock({
     return (
       <React.Fragment>
         {children}
-        <div className={css(EditMenuStyle)} ref={ref}>
-          <RichtextEditOverlay>
-            {editItems.map((item, idx) => (
-              <RichTextEditButton
-                key={idx}
-                editor={editor}
-                isActive={item.isActive}
-                icon={item.icon}
-                onClick={item.onClick}
-                label={item.label}
-              />
-            ))}
-          </RichtextEditOverlay>
-        </div>
+        <PositionableOverlay
+          top={currentTop}
+          left={currentLeft}
+          show={currentTop > outside}
+          ref={ref}>
+          {editorMenu}
+        </PositionableOverlay>
       </React.Fragment>
     )
   }
 
   return (
-    <div className={css(RichtextBlockStyle)} onClick={checkForSelection} onBlur={onDeselect}>
+    <div className={css(RichtextBlockStyle)} onClick={checkForSelection} onBlur={checkForSelection}>
       {renderBlock ? (
         <Editor
           placeholder="Enter some text..."

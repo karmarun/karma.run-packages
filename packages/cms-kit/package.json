@@ -23,7 +23,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "slate": "^0.47.8",
-    "slate-react": "^0.22.8"
+    "slate-react": "^0.22.9"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",

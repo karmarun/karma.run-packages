@@ -7,60 +7,52 @@ import {pxToRem, FontSize} from '../style/helpers'
 import {Spacing} from '../style/helpers'
 import {Value, Editor} from 'slate'
 
-export const RichtextEditOverlayStyle = cssRuleWithTheme(({theme}) => ({
+export const DarkMenuStyle = cssRuleWithTheme(({theme}) => ({
   backgroundColor: theme.colors.dark,
   padding: pxToRem(Spacing.Tiny),
   borderRadius: '5px'
 }))
 
-export interface RichtextEditOverlayProps {
+export interface DarkMenuProps {
   readonly children: ReactNode
 }
 
-export function RichtextEditOverlay({children}: RichtextEditOverlayProps) {
+export function DarkMenu({children}: DarkMenuProps) {
   const {css} = useThemeStyle()
 
-  return <div className={css(RichtextEditOverlayStyle)}>{children}</div>
+  return <div className={css(DarkMenuStyle)}>{children}</div>
 }
 
 /**
  *
  * Rich Text Edit Button
  */
-export const RichTextEditButtonStyle = cssRuleWithTheme<{isActive: boolean}>(
-  ({isActive, theme}) => ({
-    fill: isActive ? theme.colors.action : theme.colors.white,
-    fontSize: pxToRem(FontSize.Medium),
-    paddingLeft: pxToRem(Spacing.Tiny / 2),
-    paddingRight: pxToRem(Spacing.Tiny / 2),
-    '&:hover': {
-      backgroundColor: theme.colors.grayDark
-    }
-  })
-)
+export const DarkMenuButtonStyle = cssRuleWithTheme<{isActive: boolean}>(({isActive, theme}) => ({
+  fill: isActive ? theme.colors.action : theme.colors.white,
+  fontSize: pxToRem(FontSize.Medium),
+  paddingLeft: pxToRem(Spacing.Tiny / 2),
+  paddingRight: pxToRem(Spacing.Tiny / 2),
+  '&:hover': {
+    backgroundColor: theme.colors.grayDark
+  }
+}))
 
-export interface RichTextEditButton {
+export interface DarkMenuButton {
   readonly icon: IconType
   readonly label: string
   onClick(editor: Editor, value: Value, label: string): void
   isActive(editor: Editor, value: Value, label: string): boolean
 }
 
-export interface RichTextEditButtonProps extends RichTextEditButton {
+export interface DarkMenuButtonProps extends DarkMenuButton {
   readonly editor: Editor
 }
 
-export function RichTextEditButton({
-  editor,
-  onClick,
-  icon,
-  label,
-  isActive
-}: RichTextEditButtonProps) {
+export function DarkMenuButton({editor, onClick, icon, label, isActive}: DarkMenuButtonProps) {
   return (
     <BaseButton
       onClick={e => onClick(editor, editor.value, label)}
-      style={RichTextEditButtonStyle}
+      style={DarkMenuButtonStyle}
       styleProps={{isActive: isActive(editor, editor.value, label)}}>
       <Icon type={icon} scale={IconScale.Equal} />
     </BaseButton>

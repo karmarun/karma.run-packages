@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
-import {Value, DocumentJSON, ValueJSON, Editor as CoreEditor} from 'slate'
+import {Value, DocumentJSON, ValueJSON, Editor as CoreEditor, Block} from 'slate'
 
 import {centerLayoutDecorator} from '../.storybook/decorators'
 import {RichtextBlock} from './richtextBlock'
 import {IconType} from '../atoms/icon'
 import {RenderMarkProps, RenderBlockProps} from 'slate-react'
+import {RichtextEditorMenu} from './richtextEditorMenu'
 
 export default {
   component: RichtextBlock,
@@ -14,10 +15,10 @@ export default {
 
 export const Standard = () => {
   const val: ValueJSON = {object: 'value', document: {...mockRichTextValue}}
-  const [value, setValue] = useState(Value.create(val))
+  const [stateValue, setStateValue] = useState(Value.create(val))
 
-  function onChange(value: Value) {
-    setValue(value)
+  function onChange(val: Value) {
+    setStateValue(val)
   }
 
   function renderMark(props: RenderMarkProps, editor: CoreEditor, next: () => any) {
@@ -41,77 +42,128 @@ export const Standard = () => {
     return next()
   }
 
+  function hasMark(editor: CoreEditor, value: Value, label: string) {
+    return value.activeMarks.some(mark => mark.type === label)
+  }
+
+  function hasType(editor: CoreEditor, value: Value, label: string) {
+    return value.blocks.some(blocks => {
+      return blocks.type === label
+    })
+  }
+
+  function hasInlines(editor: CoreEditor, value: Value, label: string) {
+    return value.inlines.some(inline => inline.type === label)
+  }
+
+  function isListOfType(editor: CoreEditor, val: Value, label: string) {
+    const {blocks} = val
+    const first = blocks.first()
+    const isListItem = blocks.some(blocks => blocks.type === 'list-item')
+
+    return editor.value.blocks.some(block => {
+      if (isListItem) {
+        const parent = val.document.getClosest(
+          first.key,
+          parent => parent.object == 'block' && parent.type == label
+        )
+
+        return parent != undefined
+      }
+    })
+  }
+
+  function toggleMark(editor: CoreEditor, value: Value, label: string) {
+    editor.toggleMark(label)
+    setStateValue(editor.value)
+  }
+
+  function wrapLink(editor: CoreEditor, href: string) {
+    editor.wrapInline({
+      type: 'link',
+      data: {
+        href: 'TODO how to input?'
+      }
+    })
+    setStateValue(editor.value)
+  }
+
+  function wrapTitle(editor: CoreEditor, value: Value, isH2: boolean) {
+    editor.wrapBlock({
+      type: isH2 ? 'heading-two' : 'heading-three'
+    })
+    setStateValue(editor.value)
+  }
+
+  const standardRichTextEditItems = [
+    {
+      icon: IconType.Bold,
+      label: 'bold',
+      onClick: toggleMark,
+      isActive: hasMark
+    },
+    {
+      icon: IconType.Italic,
+      label: 'italic',
+      onClick: toggleMark,
+      isActive: hasMark
+    },
+    {
+      icon: IconType.Underline,
+      label: 'underline',
+      onClick: toggleMark,
+      isActive: hasMark
+    },
+    {
+      icon: IconType.Striked,
+      label: 'striked',
+      onClick: toggleMark,
+      isActive: hasMark
+    },
+    {
+      icon: IconType.H2,
+      label: 'heading-two',
+      onClick: (editor: CoreEditor, value: Value) => wrapTitle(editor, value, true),
+      isActive: hasType
+    },
+    {
+      icon: IconType.H3,
+      label: 'heading-three',
+      onClick: (editor: CoreEditor, value: Value) => wrapTitle(editor, value, false),
+      isActive: hasType
+    },
+    {
+      icon: IconType.ListUnsorted,
+      label: 'bulleted-list',
+      onClick: (editor: CoreEditor, value: Value) => {},
+      isActive: isListOfType
+    },
+    {
+      icon: IconType.ListSorted,
+      label: 'numbered-list',
+      onClick: (editor: CoreEditor, value: Value) => {},
+      isActive: isListOfType
+    },
+    {
+      icon: IconType.Link,
+      label: 'link',
+      onClick: (editor: CoreEditor, value: Value) => {},
+      isActive: hasInlines
+    }
+  ]
+
+  const EditorMenu = <RichtextEditorMenu editItems={standardRichTextEditItems} />
+
   return (
     <RichtextBlock
-      editItems={standardRichTextEditItems}
-      value={value}
+      editorMenu={EditorMenu}
+      value={stateValue}
       onChange={onChange}
       renderMark={renderMark}
       renderBlock={renderBlock}
     />
   )
 }
-
-const isActive = (editor: CoreEditor, value: Value, label: string) =>
-  value.activeMarks.some(mark => mark.type === label)
-const toggleMark = (editor: CoreEditor, value: Value, label: string) => editor.toggleMark(label)
-
-export const standardRichTextEditItems = [
-  {
-    icon: IconType.Bold,
-    label: 'bold',
-    onClick: toggleMark,
-    isActive: isActive
-  },
-  {
-    icon: IconType.Italic,
-    label: 'italic',
-    onClick: toggleMark,
-    isActive: isActive
-  },
-  {
-    icon: IconType.Underline,
-    label: 'underline',
-    onClick: toggleMark,
-    isActive: isActive
-  },
-  {
-    icon: IconType.Striked,
-    label: 'striked',
-    onClick: toggleMark,
-    isActive: isActive
-  },
-  {
-    icon: IconType.H2,
-    label: 'h2',
-    onClick: (editor: CoreEditor, value: Value) => {},
-    isActive: isActive
-  },
-  {
-    icon: IconType.H3,
-    label: 'h3',
-    onClick: (editor: CoreEditor, value: Value) => {},
-    isActive: isActive
-  },
-  {
-    icon: IconType.ListUnsorted,
-    label: 'listUnsorted',
-    onClick: (editor: CoreEditor, value: Value) => {},
-    isActive: isActive
-  },
-  {
-    icon: IconType.ListSorted,
-    label: 'listSorted',
-    onClick: (editor: CoreEditor, value: Value) => {},
-    isActive: isActive
-  },
-  {
-    icon: IconType.Link,
-    label: 'link',
-    onClick: (editor: CoreEditor, value: Value) => {},
-    isActive: isActive
-  }
-]
 
 export const mockRichTextValue: DocumentJSON = {
   object: 'document',
