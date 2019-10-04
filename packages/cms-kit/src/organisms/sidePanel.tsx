@@ -72,7 +72,14 @@ export function SidePanelHeader({title, action, onClose}: SidePanelHeaderProps) 
 
 const SidePanelTitleStyle = cssRuleWithTheme(({theme}) => ({
   backgroundColor: theme.colors.light,
-  width: '100%'
+  width: '108%',
+  height: pxToRem(30),
+  color: theme.colors.grayDark,
+  fontSize: pxToRem(FontSize.Small),
+  lineHeight: pxToRem(30),
+  marginLeft: '-4%',
+  paddingLeft: pxToRem(20),
+  marginBottom: pxToRem(Spacing.Small)
 }))
 
 export interface SidePanelTitleProps {
