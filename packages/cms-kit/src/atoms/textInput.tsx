@@ -37,7 +37,7 @@ const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme})
   transitionProperty: 'border-color',
   transitionTimingFunction: 'ease-in',
   transitionDuration: TransitionDuration.Slow,
-  // If Inupt has Icon add padding:
+  // If Input has Icon add padding:
   //paddingLeft: pxToRem(20),
 
   '::placeholder': {
@@ -69,8 +69,16 @@ const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme})
     borderColor: theme.colors.alert
   },
 
+  ':disabled': {
+    borderBottomStyle: 'dashed'
+  },
+
   ':invalid + label': {
     color: theme.colors.alert
+  },
+
+  ':disabled::placeholder': {
+    textDecoration: 'line-through'
   },
 
   ':placeholder-shown + label': {
@@ -121,7 +129,7 @@ export function TextInput({label, description, errorDescription, icon, ...props}
       <div className={css(TextInputWrapperStyle)}>
         {icon && <Icon type={icon} style={IconStyle} />}
         <BaseInput
-          type={InputType.Email}
+          type={InputType.Text}
           placeholder={label}
           style={TextInputStyle}
           styleProps={styleProps}
