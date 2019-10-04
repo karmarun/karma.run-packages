@@ -53,7 +53,7 @@ const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme})
     borderColor: theme.colors.action
   },
 
-  ':focus:valid + label': {
+  ':focus:valid + span': {
     color: theme.colors.action
   },
 
@@ -61,7 +61,7 @@ const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme})
     borderColor: theme.colors.alert
   },
 
-  ':focus:invalid + label': {
+  ':focus:invalid + span': {
     color: theme.colors.alert
   },
 
@@ -73,7 +73,7 @@ const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme})
     borderBottomStyle: 'dashed'
   },
 
-  ':invalid + label': {
+  ':invalid + span': {
     color: theme.colors.alert
   },
 
@@ -81,12 +81,12 @@ const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme})
     textDecoration: 'line-through'
   },
 
-  ':placeholder-shown + label': {
+  ':placeholder-shown + span': {
     opacity: 0,
     transform: 'translateY(30%)'
   },
 
-  ':focus + label': {
+  ':focus + span': {
     color: theme.colors.action
   }
 }))
@@ -126,7 +126,7 @@ export function TextInput({label, description, errorDescription, icon, ...props}
 
   return (
     <div className={css(TextInputContainerStyle)}>
-      <div className={css(TextInputWrapperStyle)}>
+      <label className={css(TextInputWrapperStyle)}>
         {icon && <Icon type={icon} style={IconStyle} />}
         <BaseInput
           type={InputType.Text}
@@ -135,8 +135,8 @@ export function TextInput({label, description, errorDescription, icon, ...props}
           styleProps={styleProps}
           {...props}
         />
-        <label className={css(LabelStyle)}>{label}</label>
-      </div>
+        <span className={css(LabelStyle)}>{label}</span>
+      </label>
       <div className={css(DescriptionStyle)}>{errorDescription || description}</div>
     </div>
   )
