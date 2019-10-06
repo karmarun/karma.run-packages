@@ -4,6 +4,11 @@ import {useStyle, cssRule} from '@karma.run/react'
 import {IconType, Icon} from '../atoms/icon'
 import {OptionButtonSmall} from '../atoms/optionButtonSmall'
 import {pxToRem, Spacing} from '../style/helpers'
+import {
+  MaterialIconDeleteOutlined,
+  MaterialIconKeyboardArrowUp,
+  MaterialIconKeyboardArrowDown
+} from '@karma.run/icons'
 
 const ListItemWrapperStyle = cssRule({
   display: 'flex',
@@ -51,19 +56,19 @@ export function ListItemWrapper({
       <div className={css(ListItemWrapperActionStyle)}>
         <OptionButtonSmall
           title="Delete"
-          icon={IconType.Delete}
+          icon={MaterialIconDeleteOutlined}
           onClick={onDelete}
           disabled={onDelete == null}
         />
         <OptionButtonSmall
           title="Move Up"
-          icon={IconType.ChevronUp}
+          icon={MaterialIconKeyboardArrowUp}
           onClick={onMoveUp}
           disabled={onMoveUp == null}
         />
         <OptionButtonSmall
           title="Move Down"
-          icon={IconType.ChevronDown}
+          icon={MaterialIconKeyboardArrowDown}
           onClick={onMoveDown}
           disabled={onMoveDown == null}
         />
@@ -71,7 +76,7 @@ export function ListItemWrapper({
       <div className={css(ListItemWrapperContentStyle)}>
         <Card>{children}</Card>
       </div>
-      <div className={css(ListItemWrapperAccessoryStyle)}>{icon && <Icon type={icon} />}</div>
+      <div className={css(ListItemWrapperAccessoryStyle)}>{icon && <Icon element={icon} />}</div>
     </div>
   )
 }

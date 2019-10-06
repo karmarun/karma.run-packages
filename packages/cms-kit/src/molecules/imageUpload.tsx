@@ -1,9 +1,15 @@
 import React from 'react'
 
-import {IconType, Icon, IconScale} from '../atoms/icon'
+import {Icon, IconScale} from '../atoms/icon'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {OptionButtonSmall} from '../atoms/optionButtonSmall'
 import {pxToRem, FontSize} from '../style/helpers'
+import {
+  MaterialIconClose,
+  MaterialIconAccessTime,
+  MaterialIconCloudUpload,
+  MaterialIconCloudUploadOutlined
+} from '@karma.run/icons'
 
 const ImageUploadStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
@@ -37,7 +43,7 @@ export function ImageUpload({images, isProcessing, onDeleteImage}: ImageUploadPr
         <div className={css(ThumbStyle)}>
           <OptionButtonSmall
             disabled={isProcessing}
-            icon={IconType.Close}
+            icon={MaterialIconClose}
             onClick={() => onDeleteImage(img.id)}
           />
           <ImageUploadThumb id={img.id} src={img.src} size={img.size} name={img.name} />
@@ -90,7 +96,10 @@ export function ImageUploadIcon({state}: ImageUploadIconProps) {
 
   return (
     <div className={css(UploadInfoStyle)}>
-      <Icon type={isInProcess ? IconType.Created : IconType.Upload} scale={IconScale.Double} />
+      <Icon
+        element={isInProcess ? MaterialIconAccessTime : MaterialIconCloudUploadOutlined}
+        scale={IconScale.Double}
+      />
       <div className={css(UploadInfoLabelStyle)}>{getInfoText()}</div>
     </div>
   )

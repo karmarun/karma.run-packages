@@ -2,7 +2,7 @@ import React from 'react'
 
 import {Icon} from './icon'
 import {centerLayoutDecorator, fontSizeDecorator} from '../.storybook/decorators'
-import {MaterialIconAddAPhoto} from '../icons/materialIcons'
+import {MaterialIconAddAPhoto} from '@karma.run/icons'
 
 export default {
   component: Icon,

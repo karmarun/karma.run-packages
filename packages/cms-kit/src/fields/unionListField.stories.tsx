@@ -1,5 +1,13 @@
 import React, {useState} from 'react'
 
+import {
+  IconColumn4,
+  IconColumn2,
+  IconColumn2Alt,
+  MaterialIconTextFormat,
+  MaterialIconShortText
+} from '@karma.run/icons'
+
 import {centerLayoutDecorator} from '../.storybook/decorators'
 import {UnionListField} from './unionListField'
 import {TextField} from './textField'
@@ -8,9 +16,6 @@ import {UnionListValue} from './types'
 import {ListField, ListValue} from './listField'
 import {Grid, Column} from '../layout/grid'
 import {Placeholder} from '../atoms/placeholder'
-
-import {IconColumn4, IconColumn2, IconColumn2Alt} from '../icons/customIcons'
-import {MaterialIconTextFormat, MaterialIconShortText} from '../icons/materialIcons'
 
 export type StringValue = UnionListValue<'string', string>
 export type StringArrayValue = UnionListValue<'stringArray', ListValue<string>[]>

@@ -10,7 +10,7 @@ import {
   MaterialIconMovie,
   MaterialIconCode,
   MaterialIconFormatQuote
-} from '../icons/materialIcons'
+} from '@karma.run/icons'
 
 export default {
   component: AddBlockMenu,

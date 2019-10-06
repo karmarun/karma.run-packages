@@ -3,6 +3,7 @@ import {IconType} from '../atoms/icon'
 import {IconLabelButton} from '../atoms/iconLabelButton'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {pxToRem} from '../style/helpers'
+import {MaterialIconArrowForward} from '@karma.run/icons'
 
 const sidePanelWidth = 480
 const SidePanelStyle = cssRuleWithTheme(({theme}) => ({
@@ -39,7 +40,7 @@ export function SidePanelHeader({title, action, onClose}: SidePanelHeaderProps) 
   const {css} = useThemeStyle()
   return (
     <div className={css(SidePanelHeaderStyle)}>
-      <IconLabelButton icon={IconType.ArrowRight} label={'Close'} onClick={onClose} />
+      <IconLabelButton icon={MaterialIconArrowForward} label={'Close'} onClick={onClose} />
       <div>{title}</div>
       {action && (
         <IconLabelButton icon={action.icon} label={action.label} onClick={action.onClick} />

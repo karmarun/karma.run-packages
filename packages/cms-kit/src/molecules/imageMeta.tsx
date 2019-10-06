@@ -6,6 +6,7 @@ import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {Spacing} from '../style/helpers'
 import {Draggable} from '../atoms/draggable'
 import {DragContainer} from '../atoms/dragContainer'
+import {MaterialIconCenterFocusStrong} from '@karma.run/icons'
 
 const ImageMetaStyle = cssRuleWithTheme(({theme}) => ({
   backgroundColor: theme.colors.dark,
@@ -138,7 +139,7 @@ export function FocalPoint({}: FocalPointProps) {
 
   return (
     <div className={css(FocalPointStyle)}>
-      <Icon type={IconType.Focus} />
+      <Icon element={MaterialIconCenterFocusStrong} />
     </div>
   )
 }

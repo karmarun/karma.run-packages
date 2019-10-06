@@ -19,6 +19,9 @@ interface IconStyleProps {
 const IconStyle = cssRuleWithTheme<IconStyleProps>(({scale, block}) => ({
   display: block ? 'block' : 'inline-block',
 
+  flexShrink: 0,
+  flexGrow: 0,
+
   height: '1em',
   fontSize: scale,
   lineHeight: 1,

@@ -10,9 +10,9 @@ import {
   MaterialIconMovie,
   MaterialIconCode,
   MaterialIconFormatQuote,
-  MaterialIconContentCopy,
+  MaterialIconFileCopy,
   MaterialIconArchive
-} from '../icons/materialIcons'
+} from '@karma.run/icons'
 
 export default {
   component: OverlayMenu,
@@ -39,7 +39,7 @@ export const Inline = () => (
   <OverlayMenu
     inline={true}
     menuItems={[
-      {id: 'copy', icon: MaterialIconContentCopy, label: 'Copy'},
+      {id: 'copy', icon: MaterialIconFileCopy, label: 'Copy'},
       {id: 'archive', icon: MaterialIconArchive, label: 'Archive'}
     ]}
     onMenuItemClick={item => {}}
