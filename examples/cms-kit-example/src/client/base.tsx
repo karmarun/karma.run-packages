@@ -1,10 +1,7 @@
 import React, {ReactNode} from 'react'
 
-import {
-  NavigationTemplate,
-  MaterialIconInsertDriveFileOutlined,
-  MaterialIconPowerSettingsNew
-} from '@karma.run/cms-kit'
+import {NavigationTemplate} from '@karma.run/cms-kit'
+import {MaterialIconInsertDriveFileOutlined, MaterialIconPowerSettingsNew} from '@karma.run/icons'
 
 import {LinkMenuIconButton, LogoutRoute, ArticleListRoute} from './route'
 

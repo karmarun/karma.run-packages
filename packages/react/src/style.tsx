@@ -203,3 +203,16 @@ export function useStyle<P>(props?: P): UseStyleResult<P> {
     }
   }
 }
+
+export function useKeyfame<P>(keyframesFn: CSSKeyframesFn<P>, props: P) {
+  const context = useContext(StyleContext)
+
+  if (!context) {
+    throw new Error(
+      "Couldn't find a StyleContext provider, did you forget to include StyleProvider in the component tree."
+    )
+  }
+
+  const {renderer} = context
+  return renderer.renderKeyframe(keyframesFn, props)
+}

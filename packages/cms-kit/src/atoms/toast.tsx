@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {ReactNode} from 'react'
 import {cssRuleWithTheme, useThemeStyle, ThemeColors, Theme} from '../style/themeContext'
 import {pxToRem, Spacing, FontSize, hexToRgba, BorderWidth} from '../style/helpers'
 
@@ -52,10 +52,10 @@ export enum ToastType {
 
 export interface ToastProps {
   type: ToastType
-  text: string
+  children?: ReactNode
 }
 
-export function Toast({type, text}: ToastProps) {
+export function Toast({type, children}: ToastProps) {
   const {css} = useThemeStyle({type: type})
-  return <div className={css(ToastStyle)}>{text}</div>
+  return <div className={css(ToastStyle)}>{children}</div>
 }
