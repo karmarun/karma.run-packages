@@ -1,22 +1,21 @@
 import React from 'react'
 
-import {Overlay} from './overlay'
-import {Input} from './input'
+import {Modal} from './modal'
+import {TextInput} from './textInput'
 import {DescriptionListing, DescriptionListingItem} from './descriptionListingItem'
 
 export default {
-  component: Overlay,
-  title: 'Atoms|Overlay'
+  component: Modal,
+  title: 'Atoms|Modal'
 }
 
 export const PublishArticle = () => (
-  <Overlay title={'Publish Article'} onConfirm={() => {}}>
-    <Input
+  <Modal title={'Publish Article'} onConfirm={() => {}} onCancel={() => {}}>
+    <TextInput
       label={'Publish state'}
       value={''}
-      placeholder={''}
       description={'Set state to Proofreading or Live'}
-      onValueChange={() => {}}
+      onChange={() => {}}
     />
     <DescriptionListing>
       <DescriptionListingItem label={'Teaser type'} value={'image & Title'} />
@@ -27,5 +26,5 @@ export const PublishArticle = () => (
       <DescriptionListingItem label={'Publish date'} value={'08.08.2019'} />
       <DescriptionListingItem label={'Expire date'} value={'None'} />
     </DescriptionListing>
-  </Overlay>
+  </Modal>
 )

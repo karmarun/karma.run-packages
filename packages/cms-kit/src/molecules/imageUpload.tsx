@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 
 import {FileDropZone} from './fileDropZone'
 import {OptionButtonSmall} from '../atoms/optionButtonSmall'
+
 import {IconType} from '..'
 import {ProgressBar} from '../atoms/progressBar'
 import {ButtonBar} from '../atoms/buttonBar'

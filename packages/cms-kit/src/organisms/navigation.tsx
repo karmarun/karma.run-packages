@@ -1,5 +1,5 @@
-import React, {ReactNode, useState} from 'react'
-import {IconType, BlockIcon} from '../atoms/icon'
+import React, {ReactNode, useState, createContext} from 'react'
+import {IconType, Icon} from '../atoms/icon'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {pxToRem, TransitionDuration, Spacing, FontSize} from '../style/helpers'
 import {BaseButton} from '../atoms/baseButton'
@@ -21,7 +21,10 @@ const NavigationStyle = cssRuleWithTheme<NavigationStyleProps>(({isCollapsed, th
   overflow: 'hidden',
   borderRight: `1px solid ${theme.colors.gray}`,
   backgroundColor: theme.colors.light,
-  transition: `width ${TransitionDuration.Fast}`
+
+  transitionProperty: 'width',
+  transitionTimingFunction: 'ease-in',
+  transitionDuration: TransitionDuration.Slow
 }))
 
 const NavigationItemContentStyle = cssRuleWithTheme<NavigationStyleProps>(({theme}) => ({
@@ -47,7 +50,7 @@ const NavigationItemContentStyle = cssRuleWithTheme<NavigationStyleProps>(({them
 }))
 
 export interface NavigationProps {
-  readonly children?: (isCollapsed: boolean) => ReactNode
+  readonly children?: ReactNode
 }
 
 export function Navigation({children}: NavigationProps) {
@@ -55,14 +58,16 @@ export function Navigation({children}: NavigationProps) {
   const {css} = useThemeStyle({isCollapsed})
 
   return (
-    <div className={css(NavigationStyle)}>
-      <NavigationButton isCollapsed={isCollapsed} onClick={() => setCollapsed(!isCollapsed)} />
-      <div className={css(NavigationItemContentStyle)}>{children && children(isCollapsed)}</div>
-    </div>
+    <NavigationContext.Provider value={{isCollapsed}}>
+      <div className={css(NavigationStyle)}>
+        <NavigationButton isCollapsed={isCollapsed} onClick={() => setCollapsed(!isCollapsed)} />
+        <div className={css(NavigationItemContentStyle)}>{children}</div>
+      </div>
+    </NavigationContext.Provider>
   )
 }
 
-export const NavigationButtonStyle = cssRuleWithTheme(({theme}) => ({
+const NavigationButtonStyle = cssRuleWithTheme(({theme}) => ({
   alignSelf: 'flex-end',
 
   padding: pxToRem(18),
@@ -82,7 +87,13 @@ export interface NavigationButtonProps {
 export function NavigationButton({isCollapsed, onClick}: NavigationButtonProps) {
   return (
     <BaseButton onClick={onClick} style={NavigationButtonStyle}>
-      <BlockIcon type={isCollapsed ? IconType.ChevronRight : IconType.ChevronLeft} />
+      <Icon type={isCollapsed ? IconType.ChevronRight : IconType.ChevronLeft} block />
     </BaseButton>
   )
 }
+
+export interface NavigationContextState {
+  isCollapsed: boolean
+}
+
+export const NavigationContext = createContext<NavigationContextState>({isCollapsed: false})
