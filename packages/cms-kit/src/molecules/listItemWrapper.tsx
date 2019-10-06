@@ -1,14 +1,17 @@
 import React, {ReactNode} from 'react'
-import {Card} from '../atoms/card'
-import {useStyle, cssRule} from '@karma.run/react'
-import {IconType, Icon} from '../atoms/icon'
-import {OptionButtonSmall} from '../atoms/optionButtonSmall'
-import {pxToRem, Spacing} from '../style/helpers'
+
+import {cssRule, useStyle} from '@karma.run/react'
+
 import {
   MaterialIconDeleteOutlined,
-  MaterialIconKeyboardArrowUp,
-  MaterialIconKeyboardArrowDown
+  MaterialIconKeyboardArrowDown,
+  MaterialIconKeyboardArrowUp
 } from '@karma.run/icons'
+
+import {Card} from '../atoms/card'
+import {Icon, IconType} from '../atoms/icon'
+import {OptionButtonSmall} from '../atoms/optionButtonSmall'
+import {pxToRem, Spacing} from '../style/helpers'
 
 const ListItemWrapperStyle = cssRule({
   display: 'flex',
@@ -18,13 +21,21 @@ const ListItemWrapperStyle = cssRule({
 const ListItemWrapperActionStyle = cssRule({
   display: 'flex',
   flexDirection: 'column',
-  marginRight: pxToRem(Spacing.ExtraSmall)
+  width: pxToRem(30)
+})
+
+const ListItemActionMoverStyle = cssRule({
+  margin: 'auto 0',
+
+  '> button': {
+    margin: `${pxToRem(Spacing.Tiny)} 0`
+  }
 })
 
 const ListItemWrapperAccessoryStyle = cssRule({
   display: 'flex',
   flexDirection: 'column',
-  marginLeft: pxToRem(Spacing.ExtraSmall)
+  width: pxToRem(30)
 })
 
 const ListItemWrapperContentStyle = cssRule({
@@ -60,18 +71,20 @@ export function ListItemWrapper({
           onClick={onDelete}
           disabled={onDelete == null}
         />
-        <OptionButtonSmall
-          title="Move Up"
-          icon={MaterialIconKeyboardArrowUp}
-          onClick={onMoveUp}
-          disabled={onMoveUp == null}
-        />
-        <OptionButtonSmall
-          title="Move Down"
-          icon={MaterialIconKeyboardArrowDown}
-          onClick={onMoveDown}
-          disabled={onMoveDown == null}
-        />
+        <div className={css(ListItemActionMoverStyle)}>
+          <OptionButtonSmall
+            title="Move Up"
+            icon={MaterialIconKeyboardArrowUp}
+            onClick={onMoveUp}
+            disabled={onMoveUp == null}
+          />
+          <OptionButtonSmall
+            title="Move Down"
+            icon={MaterialIconKeyboardArrowDown}
+            onClick={onMoveDown}
+            disabled={onMoveDown == null}
+          />
+        </div>
       </div>
       <div className={css(ListItemWrapperContentStyle)}>
         <Card>{children}</Card>

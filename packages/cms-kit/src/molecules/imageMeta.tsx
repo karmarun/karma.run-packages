@@ -1,16 +1,25 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 
-import {Icon, IconType, IconScale} from '../atoms/icon'
+import {Icon, IconScale} from '../atoms/icon'
 import {pxToRem} from '../style/helpers'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {Spacing} from '../style/helpers'
 import {Draggable} from '../atoms/draggable'
 import {DragContainer} from '../atoms/dragContainer'
 import {MaterialIconCenterFocusStrong} from '@karma.run/icons'
+import {DescriptionListing, DescriptionListingItem} from '../atoms/descriptionListingItem'
 
 const ImageMetaStyle = cssRuleWithTheme(({theme}) => ({
   backgroundColor: theme.colors.dark,
-  padding: pxToRem(Spacing.Small)
+  padding: pxToRem(Spacing.Small),
+
+  '> dl dt': {
+    color: theme.colors.light
+  },
+
+  '> dl dd': {
+    color: theme.colors.white
+  }
 }))
 
 export type File = {
@@ -32,39 +41,13 @@ export function ImageMeta({file}: ImageMetaProps) {
   return (
     <div className={css(ImageMetaStyle)}>
       <FocalPointSetter imgSrc={file.src} width={file.width} height={file.height} />
-      <ImageMetaItem label={'File name'} value={file.name} />
-      <ImageMetaItem label={'Dimensions'} value={`${file.width} x ${file.height} px`} />
-      <ImageMetaItem label={'Upload date'} value={file.date} />
-      <ImageMetaItem label={'File size'} value={`${file.size} MB`} />
-      <ImageMetaItem label={'Link'} value={file.link} />
-    </div>
-  )
-}
-
-const ImageMetaItemStyle = cssRuleWithTheme(({theme}) => ({
-  color: theme.colors.white,
-  display: 'flex',
-  justifyContent: 'space-between',
-  paddingTop: pxToRem(Spacing.Tiny),
-  paddingBottom: pxToRem(Spacing.Tiny)
-}))
-
-const ImageMetaLabel = cssRuleWithTheme(({theme}) => ({
-  color: theme.colors.gray
-}))
-
-const ImageMetaRight = cssRuleWithTheme(({theme}) => ({}))
-
-export interface ImageMetaItemProps {
-  label: string
-  value: string
-}
-export function ImageMetaItem({label, value}: ImageMetaItemProps) {
-  const {css} = useThemeStyle()
-  return (
-    <div className={css(ImageMetaItemStyle)}>
-      <span className={css(ImageMetaLabel)}>{label}</span>
-      <span className={css(ImageMetaRight)}>{value}</span>
+      <DescriptionListing>
+        <DescriptionListingItem label={'File name'} value={file.name} />
+        <DescriptionListingItem label={'Dimensions'} value={`${file.width} x ${file.height} px`} />
+        <DescriptionListingItem label={'Upload date'} value={file.date} />
+        <DescriptionListingItem label={'File size'} value={`${file.size} MB`} />
+        <DescriptionListingItem label={'Link'} value={file.link} />
+      </DescriptionListing>
     </div>
   )
 }
