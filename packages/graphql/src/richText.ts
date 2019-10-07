@@ -47,10 +47,10 @@ export function createRichTextScalar({
       return node
     },
 
-    parseLiteral(ast, variables) {
+    parseLiteral(ast) {
       const keyGenerator = new keyGeneratorClass()
       const opts = {validation, keyGenerator}
-      const node = validateNodeJSON(valueFromASTUntyped(ast, variables), opts)
+      const node = validateNodeJSON(valueFromASTUntyped(ast), opts)
 
       if (node.object !== 'document') throw new TypeError(`Top-level node must be a document node.`)
       return node
