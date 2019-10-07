@@ -5,7 +5,7 @@ import {HeaderBlock} from './headerBlock'
 
 export default {
   component: HeaderBlock,
-  title: 'Molecules|HeaderBlock',
+  title: 'Blocks|HeaderBlock',
   decorators: [centerLayoutDecorator(0.8)]
 }
 

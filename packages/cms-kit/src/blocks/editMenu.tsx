@@ -39,20 +39,20 @@ export const EditMenuButtonStyle = cssRuleWithTheme<{isActive: boolean}>(({isAct
 export interface EditMenuButton {
   readonly icon: IconType
   readonly label: string
-  onClick(editor: Editor, value: Value, label: string): void
-  isActive(editor: Editor, value: Value, label: string): boolean
+  onClick(editor?: Editor, value?: Value, label?: string): void
+  isActive(editor?: Editor, value?: Value, label?: string): boolean
 }
 
 export interface EditMenuButtonProps extends EditMenuButton {
-  readonly editor: Editor
+  readonly editor?: Editor
 }
 
 export function EditMenuButton({editor, onClick, icon, label, isActive}: EditMenuButtonProps) {
   return (
     <BaseButton
-      onClick={e => onClick(editor, editor.value, label)}
+      onClick={e => onClick(editor, editor ? editor.value : undefined, label)}
       style={EditMenuButtonStyle}
-      styleProps={{isActive: isActive(editor, editor.value, label)}}>
+      styleProps={{isActive: isActive(editor, editor ? editor.value : undefined, label)}}>
       <Icon type={icon} scale={IconScale.Equal} />
     </BaseButton>
   )

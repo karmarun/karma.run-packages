@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-import {AccessoryBar} from '../molecules/accessoryBar'
+import {EditorBlockActionBar} from './editorBlockActionBar'
 import {FavorButtonProps} from '../atoms/favorButton'
 import {cssRule, useStyle} from '@karma.run/react'
 
@@ -50,7 +50,7 @@ export function ImagesBlock({images, isLead, onEdit}: ImagesBlockProps) {
   return (
     <div className={css(BlockContainerStyle)}>
       <div className={css(AccessoryBarStyle)}>
-        <AccessoryBar
+        <EditorBlockActionBar
           onEdit={onEdit}
           isLead={isLead}
           onPrevious={isGallery ? onPrevious : undefined}

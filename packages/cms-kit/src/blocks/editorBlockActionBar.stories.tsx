@@ -1,20 +1,20 @@
 import React, {useState} from 'react'
 
 import {centerLayoutDecorator} from '../.storybook/decorators'
-import {AccessoryBar} from './accessoryBar'
+import {EditorBlockActionBar} from './editorBlockActionBar'
 
 export default {
-  component: AccessoryBar,
-  title: 'Molecules|AccessoryBar',
+  component: EditorBlockActionBar,
+  title: 'Blocks|Interactivty/EditorBlockActionBar',
   decorators: [centerLayoutDecorator(0.8)]
 }
 
-export const Standard = () => <AccessoryBar onEdit={() => {}} />
+export const Standard = () => <EditorBlockActionBar onEdit={() => {}} />
 
 export const Favor = () => {
   const [isFavorite, setFavorite] = useState(false)
   return (
-    <AccessoryBar
+    <EditorBlockActionBar
       onEdit={() => {}}
       isLead={{
         isFavorite: isFavorite,
@@ -27,5 +27,5 @@ export const Favor = () => {
 }
 
 export const Slideshow = () => (
-  <AccessoryBar onEdit={() => {}} onPrevious={() => {}} onNext={() => {}} />
+  <EditorBlockActionBar onEdit={() => {}} onPrevious={() => {}} onNext={() => {}} />
 )

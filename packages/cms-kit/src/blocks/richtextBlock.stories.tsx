@@ -9,7 +9,7 @@ import {RichtextEditorMenu} from './richtextEditorMenu'
 
 export default {
   component: RichtextBlock,
-  title: 'Molecules|RichtextBlock',
+  title: 'Blocks|RichtextBlock',
   decorators: [centerLayoutDecorator(0.8)]
 }
 

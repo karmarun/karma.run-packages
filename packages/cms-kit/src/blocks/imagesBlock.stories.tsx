@@ -5,7 +5,7 @@ import {ImagesBlock} from './imagesBlock'
 
 export default {
   component: ImagesBlock,
-  title: 'Organisms|ImagesBlock',
+  title: 'Blocks|ImagesBlock',
   decorators: [centerLayoutDecorator()]
 }
 
