@@ -6,13 +6,12 @@ import {
   EditorProps,
   Plugin,
   RenderMarkProps,
-  RenderBlockProps
+  RenderBlockProps,
+  RenderNodeProps
 } from 'slate-react'
 import {Value, Editor as CoreEditor} from 'slate'
 
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {DarkMenu, DarkMenuButton} from './darkMenu'
-import {cssRule, useStyle} from '@karma.run/react'
 import {PositionableOverlay} from '../atoms/positionableOverlay'
 
 const outside = -10000
@@ -21,18 +20,20 @@ const RichtextBlockStyle = cssRuleWithTheme(({theme}) => ({}))
 
 export interface RichtextBlockProps {
   readonly value: Value
-  readonly editorMenu: ReactNode
+  readonly showMenu?: boolean
   onChange?(value: Value): void
+  renderMenu(props: any, editor: CoreEditor, next: () => any): any
   renderMark?(props: RenderMarkProps, editor: CoreEditor, next: () => any): any
   renderBlock?(props: RenderBlockProps, editor: CoreEditor, next: () => any): any
 }
 
 export function RichtextBlock({
-  editorMenu,
   value,
   onChange,
-  renderMark,
-  renderBlock
+  renderMark = () => {},
+  renderBlock = () => {},
+  renderMenu = () => {},
+  showMenu = false
 }: RichtextBlockProps) {
   const {css} = useThemeStyle()
 
@@ -52,12 +53,12 @@ export function RichtextBlock({
       const native = window.getSelection()
 
       if (native) {
-        showMenu(native)
+        positionMenu(native)
       }
     }
   }
 
-  function showMenu(native: Selection) {
+  function positionMenu(native: Selection) {
     const menu = ref.current
     if (!menu) return
 
@@ -74,33 +75,34 @@ export function RichtextBlock({
     setMenuPosition({currentTop: outside, currentLeft: outside})
   }
 
-  renderRef.current = (props, editor, next) => {
-    const children = next()
-    return (
-      <React.Fragment>
-        {children}
-        <PositionableOverlay
-          top={currentTop}
-          left={currentLeft}
-          show={currentTop > outside}
-          ref={ref}>
-          {editorMenu}
-        </PositionableOverlay>
-      </React.Fragment>
-    )
-  }
+  // renderRef.current = (props, editor, next) => {
+  //   const children = next()
+  //   return (
+  //     <React.Fragment>
+  //       {children}
+  //       <PositionableOverlay
+  //         top={currentTop}
+  //         left={currentLeft}
+  //         show={currentTop > outside}
+  //         ref={ref}>
+  //         {editorMenu}
+  //       </PositionableOverlay>
+  //     </React.Fragment>
+  //   )
+  // }
 
   return (
     <div className={css(RichtextBlockStyle)} onClick={checkForSelection} onBlur={checkForSelection}>
-      {renderBlock ? (
+      {showMenu ? (
         <Editor
           placeholder="Enter some text..."
           value={value}
           onChange={({value}: OnChangeParam) => {
             if (onChange) onChange(value)
           }}
-          renderEditor={(...args) => renderRef.current!(...args)}
-          renderMark={renderMark ? renderMark : undefined}
+          //renderEditor={(...args) => renderRef.current!(...args)}
+          renderEditor={renderMenu}
+          renderMark={renderMark}
           renderBlock={renderBlock}
         />
       ) : (
@@ -110,8 +112,8 @@ export function RichtextBlock({
           onChange={({value}: OnChangeParam) => {
             if (onChange) onChange(value)
           }}
-          renderEditor={(...args) => renderRef.current!(...args)}
-          renderMark={renderMark ? renderMark : undefined}
+          renderMark={renderMark}
+          renderBlock={renderBlock}
         />
       )}
     </div>

@@ -8,16 +8,15 @@ import {Spacing} from '../style/helpers'
 import {Value, Editor} from 'slate'
 
 export const DarkMenuStyle = cssRuleWithTheme(({theme}) => ({
-  backgroundColor: theme.colors.dark,
   padding: pxToRem(Spacing.Tiny),
   borderRadius: '5px'
 }))
 
-export interface DarkMenuProps {
+export interface EditMenuProps {
   readonly children: ReactNode
 }
 
-export function DarkMenu({children}: DarkMenuProps) {
+export function EditMenu({children}: EditMenuProps) {
   const {css} = useThemeStyle()
 
   return <div className={css(DarkMenuStyle)}>{children}</div>
@@ -27,32 +26,32 @@ export function DarkMenu({children}: DarkMenuProps) {
  *
  * Rich Text Edit Button
  */
-export const DarkMenuButtonStyle = cssRuleWithTheme<{isActive: boolean}>(({isActive, theme}) => ({
-  fill: isActive ? theme.colors.action : theme.colors.white,
+export const EditMenuButtonStyle = cssRuleWithTheme<{isActive: boolean}>(({isActive, theme}) => ({
+  fill: isActive ? theme.colors.action : theme.colors.dark,
   fontSize: pxToRem(FontSize.Medium),
   paddingLeft: pxToRem(Spacing.Tiny / 2),
   paddingRight: pxToRem(Spacing.Tiny / 2),
   '&:hover': {
-    backgroundColor: theme.colors.grayDark
+    backgroundColor: theme.colors.light
   }
 }))
 
-export interface DarkMenuButton {
+export interface EditMenuButton {
   readonly icon: IconType
   readonly label: string
   onClick(editor: Editor, value: Value, label: string): void
   isActive(editor: Editor, value: Value, label: string): boolean
 }
 
-export interface DarkMenuButtonProps extends DarkMenuButton {
+export interface EditMenuButtonProps extends EditMenuButton {
   readonly editor: Editor
 }
 
-export function DarkMenuButton({editor, onClick, icon, label, isActive}: DarkMenuButtonProps) {
+export function EditMenuButton({editor, onClick, icon, label, isActive}: EditMenuButtonProps) {
   return (
     <BaseButton
       onClick={e => onClick(editor, editor.value, label)}
-      style={DarkMenuButtonStyle}
+      style={EditMenuButtonStyle}
       styleProps={{isActive: isActive(editor, editor.value, label)}}>
       <Icon type={icon} scale={IconScale.Equal} />
     </BaseButton>

@@ -13,9 +13,24 @@ export default {
   decorators: [centerLayoutDecorator(0.8)]
 }
 
+enum RichtextType {
+  H2 = 'heading-two',
+  H3 = 'heading-three',
+  Link = 'link',
+  BulletList = 'bulleted-list',
+  NumberedList = 'numbered-list',
+  ListItem = 'list-item',
+  Bold = 'bold',
+  Italic = 'italic',
+  Underline = 'underlined',
+  Strike = 'striked'
+}
+
 export const Standard = () => {
   const val: ValueJSON = {object: 'value', document: {...mockRichTextValue}}
   const [stateValue, setStateValue] = useState(Value.create(val))
+
+  const DEFAULT_NODE = 'paragraph'
 
   function onChange(val: Value) {
     setStateValue(val)
@@ -39,7 +54,24 @@ export const Standard = () => {
   }
 
   function renderBlock(props: RenderBlockProps, editor: CoreEditor, next: () => any) {
-    return next()
+    const {children, node, attributes} = props
+
+    switch (node.type) {
+      case 'heading-two':
+        return <h2 {...attributes}>{children}</h2>
+      case 'heading-three':
+        return <h3 {...attributes}>{children}</h3>
+      case 'link':
+        return <a {...attributes}>{children}</a>
+      case 'bulleted-list':
+        return <ul {...attributes}>{children}</ul>
+      case 'numbered-list':
+        return <ol {...attributes}>{children}</ol>
+      case 'list-item':
+        return <li {...attributes}>{children}</li>
+      default:
+        return next()
+    }
   }
 
   function hasMark(editor: CoreEditor, value: Value, label: string) {
@@ -47,8 +79,12 @@ export const Standard = () => {
   }
 
   function hasType(editor: CoreEditor, value: Value, label: string) {
-    return value.blocks.some(blocks => {
-      return blocks.type === label
+    return hasBlock(value, label)
+  }
+
+  function hasBlock(value: Value, label: string) {
+    return value.blocks.some(block => {
+      return block.type === label
     })
   }
 
@@ -78,20 +114,47 @@ export const Standard = () => {
     setStateValue(editor.value)
   }
 
-  function wrapLink(editor: CoreEditor, href: string) {
-    editor.wrapInline({
-      type: 'link',
-      data: {
-        href: 'TODO how to input?'
-      }
-    })
+  function toggleTitle(editor: CoreEditor, value: Value, isH2: boolean) {
+    const type = isH2 ? RichtextType.H2 : RichtextType.H3
+    const isActive = hasBlock(value, type)
+    const isList = hasBlock(value, 'list-item')
+
+    if (isList) {
+      editor
+        .setBlocks(isActive ? DEFAULT_NODE : type)
+        .unwrapBlock('bulleted-list')
+        .unwrapBlock('numbered-list')
+    } else {
+      console.log('set block ', isActive ? DEFAULT_NODE : type)
+      editor.setBlocks(isActive ? DEFAULT_NODE : type)
+    }
     setStateValue(editor.value)
   }
 
-  function wrapTitle(editor: CoreEditor, value: Value, isH2: boolean) {
-    editor.wrapBlock({
-      type: isH2 ? 'heading-two' : 'heading-three'
+  function toggleList(editor: CoreEditor, value: Value, listType: string) {
+    // Handle the extra wrapping required for list buttons.
+    const isList = hasBlock(value, RichtextType.ListItem)
+    const isType = value.blocks.some(block => {
+      return !!value.document.getClosest(
+        block.key,
+        parent => parent.object == 'block' && parent.type === listType
+      )
     })
+
+    if (isList && isType) {
+      editor
+        .setBlocks(DEFAULT_NODE)
+        .unwrapBlock(RichtextType.BulletList)
+        .unwrapBlock(RichtextType.NumberedList)
+    } else if (isList) {
+      editor
+        .unwrapBlock(
+          listType === RichtextType.BulletList ? RichtextType.NumberedList : RichtextType.BulletList
+        )
+        .wrapBlock(listType)
+    } else {
+      editor.setBlocks(RichtextType.ListItem).wrapBlock(listType)
+    }
     setStateValue(editor.value)
   }
 
@@ -123,40 +186,51 @@ export const Standard = () => {
     {
       icon: IconType.H2,
       label: 'heading-two',
-      onClick: (editor: CoreEditor, value: Value) => wrapTitle(editor, value, true),
+      onClick: (editor: CoreEditor, value: Value) => toggleTitle(editor, value, true),
       isActive: hasType
     },
     {
       icon: IconType.H3,
       label: 'heading-three',
-      onClick: (editor: CoreEditor, value: Value) => wrapTitle(editor, value, false),
+      onClick: (editor: CoreEditor, value: Value) => toggleTitle(editor, value, false),
       isActive: hasType
     },
     {
       icon: IconType.ListUnsorted,
       label: 'bulleted-list',
-      onClick: (editor: CoreEditor, value: Value) => {},
+      onClick: (editor: CoreEditor, value: Value) =>
+        toggleList(editor, value, RichtextType.BulletList),
       isActive: isListOfType
     },
     {
       icon: IconType.ListSorted,
       label: 'numbered-list',
-      onClick: (editor: CoreEditor, value: Value) => {},
+      onClick: (editor: CoreEditor, value: Value) =>
+        toggleList(editor, value, RichtextType.NumberedList),
       isActive: isListOfType
     },
     {
       icon: IconType.Link,
       label: 'link',
-      onClick: (editor: CoreEditor, value: Value) => {},
+      onClick: (editor: CoreEditor, value: Value) => {}, // todo open side panel to enter href
       isActive: hasInlines
     }
   ]
 
-  const EditorMenu = <RichtextEditorMenu editItems={standardRichTextEditItems} />
+  function renderMenu(props, editor, next) {
+    const children = next()
+    return (
+      <>
+        <RichtextEditorMenu editor={editor} editItems={standardRichTextEditItems} />
+        {children}
+      </>
+    )
+  }
 
   return (
     <RichtextBlock
-      editorMenu={EditorMenu}
+      showMenu={true}
+      renderMenu={renderMenu}
       value={stateValue}
       onChange={onChange}
       renderMark={renderMark}
@@ -165,7 +239,7 @@ export const Standard = () => {
   )
 }
 
-export const mockRichTextValue: DocumentJSON = {
+const mockRichTextValue: DocumentJSON = {
   object: 'document',
   nodes: [
     {

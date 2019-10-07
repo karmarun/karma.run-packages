@@ -1,17 +1,17 @@
 import React from 'react'
-import {DarkMenuButton, DarkMenu} from './darkMenu'
+import {EditMenuButton, EditMenu} from './editMenu'
 import {Editor} from 'slate'
 
 export interface RichtextEditorMenuProps {
-  readonly editItems: DarkMenuButton[]
+  readonly editItems: EditMenuButton[]
   readonly editor: Editor
 }
 
 export function RichtextEditorMenu({editItems, editor}: RichtextEditorMenuProps) {
   return (
-    <DarkMenu>
+    <EditMenu>
       {editItems.map((item, idx) => (
-        <DarkMenuButton
+        <EditMenuButton
           key={idx}
           editor={editor}
           isActive={item.isActive}
@@ -20,6 +20,6 @@ export function RichtextEditorMenu({editItems, editor}: RichtextEditorMenuProps)
           label={item.label}
         />
       ))}
-    </DarkMenu>
+    </EditMenu>
   )
 }
