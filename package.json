@@ -13,27 +13,27 @@
     "build:icons": "yarn workspace @karma.run/icons build",
     "watch:icons": "yarn workspace @karma.run/icons watch",
     "download:icons": "yarn workspace @karma.run/icons download",
-    "publish:icons": "yarn workspace @karma.run/icons publish",
+    "publish:icons": "yarn workspace @karma.run/icons publish --access public",
     "clean:ui": "yarn workspace @karma.run/ui clean",
     "build:ui": "yarn workspace @karma.run/ui build",
     "watch:ui": "yarn workspace @karma.run/ui watch",
-    "publish:ui": "yarn workspace @karma.run/ui publish",
+    "publish:ui": "yarn workspace @karma.run/ui publish --access public",
     "clean:react": "yarn workspace @karma.run/react clean",
     "build:react": "yarn workspace @karma.run/react build",
     "watch:react": "yarn workspace @karma.run/react watch",
-    "publish:react": "yarn workspace @karma.run/react publish",
+    "publish:react": "yarn workspace @karma.run/react publish --access public",
     "clean:webpack": "yarn workspace @karma.run/webpack clean",
     "build:webpack": "yarn workspace @karma.run/webpack build",
     "watch:webpack": "yarn workspace @karma.run/webpack watch",
-    "publish:webpack": "yarn workspace @karma.run/webpack publish",
+    "publish:webpack": "yarn workspace @karma.run/webpack publish --access public",
     "clean:utility": "yarn workspace @karma.run/utility clean",
     "build:utility": "yarn workspace @karma.run/utility build",
     "watch:utility": "yarn workspace @karma.run/utility watch",
-    "publish:utility": "yarn workspace @karma.run/utility publish --scope",
+    "publish:utility": "yarn workspace @karma.run/utility publish --access public",
     "clean:graphql": "yarn workspace @karma.run/graphql clean",
     "build:graphql": "yarn workspace @karma.run/graphql build",
     "watch:graphql": "yarn workspace @karma.run/graphql watch",
-    "publish:graphql": "yarn workspace @karma.run/graphql publish",
+    "publish:graphql": "yarn workspace @karma.run/graphql publish --access public",
     "clean:ui-example": "yarn workspace @karma.run/ui-example clean",
     "build:ui-example": "yarn workspace @karma.run/ui-example build",
     "watch:ui-example": "yarn workspace @karma.run/ui-example watch",
@@ -53,7 +53,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --pattern 'packages/**/*.{js,ts,tsx,json}'"
+      "pre-commit": "pretty-quick --staged --pattern 'packages/**/*.{js,ts,tsx,json}'"
     }
   }
 }
