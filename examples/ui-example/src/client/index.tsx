@@ -5,7 +5,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import {createStyleRenderer, renderStyles} from '@karma.run/react'
-import {CMSKitProvider} from '@karma.run/cms-kit'
+import {CMSKitProvider} from '@karma.run/ui'
 
 import {hot} from 'react-hot-loader/root'
 import {App} from './app'

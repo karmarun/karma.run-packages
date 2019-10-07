@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import {LoginTemplate, TextInput, PrimaryButton} from '@karma.run/cms-kit'
+import {LoginTemplate, TextInput, PrimaryButton} from '@karma.run/ui'
 import {RouteActionType} from '@karma.run/react'
 
 import {useRouteDispatch, matchRoute, useRoute, IndexRoute} from './route'

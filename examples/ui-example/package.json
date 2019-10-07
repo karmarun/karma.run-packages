@@ -1,9 +1,9 @@
 {
-  "name": "@karma.run/cms-kit-example",
+  "name": "@karma.run/ui-example",
   "version": "0.0.0",
   "private": true,
   "bin": {
-    "cms-kit-example": "./dist/server/index.js"
+    "ui-example": "./dist/server/index.js"
   },
   "main": "./dist/server/index.js",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "sync-package-info": "exit 0"
   },
   "dependencies": {
-    "@karma.run/cms-kit": "^0.0.0",
+    "@karma.run/ui": "^0.0.0",
     "@karma.run/icons": "^0.0.0",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
@@ -48,7 +48,7 @@
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.7.2",
     "ts-node": "^8.3.0",
-    "typescript": "^3.6.3",
+    "typescript": "beta",
     "npm-run-all": "^4.1.5"
   }
 }
