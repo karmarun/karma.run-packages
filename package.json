@@ -6,7 +6,7 @@
   },
   "scripts": {
     "clean": "run-p clean:**",
-    "build": "run-s --print-label build:utility build:graphql build:webpack build:react build:cms-kit build:cms-kit-example",
+    "build": "run-s --print-label build:utility build:graphql build:webpack build:react build:icons build:cms-kit build:cms-kit-example",
     "watch": "run-p --print-label watch:*",
     "publish": "run-s --print-label publish:utility publish:graphql publish:webpack publish:react publish:cms-kit",
     "clean:icons": "yarn workspace @karma.run/icons clean",
