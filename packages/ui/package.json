@@ -1,6 +1,6 @@
 {
   "name": "@karma.run/ui",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "module": "./lib/esm/",
   "sideEffects": false,
   "license": "MIT",
@@ -19,7 +19,7 @@
   "dependencies": {
     "react": "^16.10.1",
     "nanoid": "^2.0.3",
-    "@karma.run/react": "^0.0.17",
+    "@karma.run/react": "^0.0.18",
     "@karma.run/icons": "^0.0.0",
     "@karma.run/utility": "^0.0.0"
   },
