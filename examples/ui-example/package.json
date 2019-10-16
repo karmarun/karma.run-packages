@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "build": "run-p build:*",
-    "build:client": "webpack --progress --mode production --devtool source-map --json",
+    "build:client": "webpack --progress --mode production --devtool source-map",
     "build:server": "tsc -b ./src/shared ./src/server",
     "watch": "npm-run-all copy-license sync-package-info --parallel watch:*",
     "watch:client": "webpack-dev-server --progress --mode development --hot --inline",
