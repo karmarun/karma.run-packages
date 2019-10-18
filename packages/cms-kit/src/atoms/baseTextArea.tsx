@@ -1,6 +1,7 @@
 import React from 'react'
+import {toArray} from '@karma.run/utility'
+
 import {cssRuleWithTheme, useThemeStyle, CSSRuleWithTheme} from '../style/themeContext'
-import {toArray} from '../utility'
 import {pxToRem, FontSize} from '../style/helpers'
 
 export const BaseTextAreaStyle = cssRuleWithTheme(({theme}) => ({

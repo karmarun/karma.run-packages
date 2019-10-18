@@ -3,7 +3,7 @@ import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {cssRule, useStyle} from '@karma.run/react'
 import {pxToRem, FontSize} from '../style/helpers'
 import {FieldProps} from '../fields/types'
-import {BaseInput} from '../atoms/baseInput'
+import {BaseInput, InputType} from '../atoms/baseInput'
 import {BaseTextArea} from '../atoms/baseTextArea'
 
 export const HeaderBlockStyle = cssRuleWithTheme(({theme}) => ({
@@ -32,10 +32,11 @@ export function HeaderBlock({value, onChange}: FieldProps<{title: string; lead: 
   return (
     <div className={css(HeaderBlockStyle)}>
       <BaseInput
+        type={InputType.Text}
         placeholder={'Article title'}
         style={HeaderBlockTitleStyle}
         value={value.title}
-        onChange={inputVal => onChange({title: inputVal, lead: value.lead})}
+        onChange={inputVal => onChange({title: inputVal.target.value, lead: value.lead})}
       />
       <BaseTextArea
         placeholder={placeholderLead}

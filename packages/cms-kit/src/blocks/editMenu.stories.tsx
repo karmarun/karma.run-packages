@@ -1,5 +1,17 @@
 import React from 'react'
 
+import {
+  MaterialIconFormatBold,
+  MaterialIconFormatItalic,
+  MaterialIconFormatUnderlined,
+  MaterialIconFormatStrikethrough,
+  MaterialIconLooksTwoOutlined,
+  MaterialIconLooks3Outlined,
+  MaterialIconFormatListBulleted,
+  MaterialIconFormatListNumbered,
+  MaterialIconLink
+} from '@karma.run/icons'
+
 import {centerLayoutDecorator} from '../.storybook/decorators'
 import {EditMenu, EditMenuButton} from './editMenu'
 import {IconType} from '../atoms/icon'
@@ -14,63 +26,63 @@ export const Standard = () => (
   <EditMenu>
     <EditMenuButton
       editor={null}
-      icon={IconType.Bold}
+      icon={MaterialIconFormatBold}
       label={''}
       onClick={() => {}}
       isActive={() => false}
     />
     <EditMenuButton
       editor={null}
-      icon={IconType.Italic}
+      icon={MaterialIconFormatItalic}
       label={''}
       onClick={() => {}}
       isActive={() => false}
     />
     <EditMenuButton
       editor={null}
-      icon={IconType.Underline}
+      icon={MaterialIconFormatUnderlined}
       label={''}
       onClick={() => {}}
       isActive={() => false}
     />
     <EditMenuButton
       editor={null}
-      icon={IconType.Striked}
+      icon={MaterialIconFormatStrikethrough}
       label={''}
       onClick={() => {}}
       isActive={() => false}
     />
     <EditMenuButton
       editor={null}
-      icon={IconType.H2}
+      icon={MaterialIconLooksTwoOutlined}
       label={''}
       onClick={() => {}}
       isActive={() => false}
     />
     <EditMenuButton
       editor={null}
-      icon={IconType.H3}
+      icon={MaterialIconLooks3Outlined}
       label={''}
       onClick={() => {}}
       isActive={() => false}
     />
     <EditMenuButton
       editor={null}
-      icon={IconType.ListUnsorted}
+      icon={MaterialIconFormatListBulleted}
       label={''}
       onClick={() => {}}
       isActive={() => false}
     />
     <EditMenuButton
       editor={null}
-      icon={IconType.ListSorted}
+      icon={MaterialIconFormatListNumbered}
       label={''}
       onClick={() => {}}
       isActive={() => false}
     />
     <EditMenuButton
       editor={null}
-      icon={IconType.Link}
+      icon={MaterialIconLink}
       label={''}
       onClick={() => {}}
       isActive={() => false}

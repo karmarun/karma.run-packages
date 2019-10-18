@@ -2,13 +2,19 @@ import React, {ReactNode} from 'react'
 import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
 import {OptionButton} from './optionButton'
 import {IconType} from './icon'
+import {pxToEm} from '../style/helpers'
+import {MaterialIconAdd} from '@karma.run/icons'
 
-export const PlaceholderStyle = cssRuleWithTheme(({theme}) => ({
+const PlaceholderStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
-  alignContent: 'center',
+  width: '100%',
+  height: '100%',
+  minWidth: pxToEm(230),
+  minHeight: pxToEm(260),
+  flexDirection: 'column',
+  alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: theme.colors.light,
-  width: '100%'
+  backgroundColor: theme.colors.light
 }))
 
 export interface PlaceholderProps {
@@ -35,7 +41,7 @@ export function Placeholder({children, onAdd}: PlaceholderProps) {
 
   return (
     <div className={css(PlaceholderStyle)}>
-      <OptionButton icon={IconType.Add} onClick={() => onAdd && onAdd()} />
+      <OptionButton icon={MaterialIconAdd} onClick={() => onAdd && onAdd()} />
     </div>
   )
 }

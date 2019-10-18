@@ -1,7 +1,15 @@
 import React from 'react'
 
+import {
+  MaterialIconInsertDriveFileOutlined,
+  MaterialIconPowerSettingsNew,
+  MaterialIconTextFields,
+  MaterialIconPermMediaOutlined,
+  MaterialIconSpellcheck,
+  MaterialIconNavigationOutlined
+} from '@karma.run/icons'
+
 import {centerLayoutDecorator} from '../.storybook/decorators'
-import {IconType} from '../atoms/icon'
 import {Navigation} from './navigation'
 import {MenuIconButton} from '../atoms/menuIconButton'
 
@@ -13,23 +21,11 @@ export default {
 
 export const Standard = () => (
   <Navigation>
-    {isCollapsed => (
-      <>
-        <MenuIconButton icon={IconType.Article} label={'Article'} hideLabel={isCollapsed} />
-        <MenuIconButton icon={IconType.Page} label={'Pages'} hideLabel={isCollapsed} />
-        <MenuIconButton
-          icon={IconType.MediaLibrary}
-          label={'Media Library'}
-          hideLabel={isCollapsed}
-        />
-        <MenuIconButton
-          icon={IconType.Proofreading}
-          label={'Proofreading'}
-          hideLabel={isCollapsed}
-        />
-        <MenuIconButton icon={IconType.Menu} label={'Menu'} hideLabel={isCollapsed} />
-        <MenuIconButton icon={IconType.Logout} label={'Logout'} hideLabel={isCollapsed} />
-      </>
-    )}
+    <MenuIconButton icon={MaterialIconTextFields} label={'Article'} />
+    <MenuIconButton icon={MaterialIconInsertDriveFileOutlined} label={'Pages'} />
+    <MenuIconButton icon={MaterialIconPermMediaOutlined} label={'Media Library'} />
+    <MenuIconButton icon={MaterialIconSpellcheck} label={'Proofreading'} />
+    <MenuIconButton icon={MaterialIconNavigationOutlined} label={'Menu'} />
+    <MenuIconButton icon={MaterialIconPowerSettingsNew} label={'Logout'} />
   </Navigation>
 )

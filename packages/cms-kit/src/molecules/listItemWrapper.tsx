@@ -1,28 +1,44 @@
 import React, {ReactNode} from 'react'
+
+import {cssRule, useStyle} from '@karma.run/react'
+
+import {
+  MaterialIconDeleteOutlined,
+  MaterialIconKeyboardArrowDown,
+  MaterialIconKeyboardArrowUp
+} from '@karma.run/icons'
+
 import {Card} from '../atoms/card'
-import {useStyle, cssRule} from '@karma.run/react'
-import {IconType, Icon} from '../atoms/icon'
+import {Icon, IconType} from '../atoms/icon'
 import {OptionButtonSmall} from '../atoms/optionButtonSmall'
 import {pxToRem, Spacing} from '../style/helpers'
 
-export const ListItemWrapperStyle = cssRule({
+const ListItemWrapperStyle = cssRule({
   display: 'flex',
   width: '100%'
 })
 
-export const ListItemWrapperActionStyle = cssRule({
+const ListItemWrapperActionStyle = cssRule({
   display: 'flex',
   flexDirection: 'column',
-  marginRight: pxToRem(Spacing.ExtraSmall)
+  width: pxToRem(30)
 })
 
-export const ListItemWrapperAccessoryStyle = cssRule({
+const ListItemActionMoverStyle = cssRule({
+  margin: 'auto 0',
+
+  '> button': {
+    margin: `${pxToRem(Spacing.Tiny)} 0`
+  }
+})
+
+const ListItemWrapperAccessoryStyle = cssRule({
   display: 'flex',
   flexDirection: 'column',
-  marginLeft: pxToRem(Spacing.ExtraSmall)
+  width: pxToRem(30)
 })
 
-export const ListItemWrapperContentStyle = cssRule({
+const ListItemWrapperContentStyle = cssRule({
   display: 'flex',
   width: '100%'
 })
@@ -51,27 +67,29 @@ export function ListItemWrapper({
       <div className={css(ListItemWrapperActionStyle)}>
         <OptionButtonSmall
           title="Delete"
-          icon={IconType.Delete}
+          icon={MaterialIconDeleteOutlined}
           onClick={onDelete}
           disabled={onDelete == null}
         />
-        <OptionButtonSmall
-          title="Move Up"
-          icon={IconType.ChevronUp}
-          onClick={onMoveUp}
-          disabled={onMoveUp == null}
-        />
-        <OptionButtonSmall
-          title="Move Down"
-          icon={IconType.ChevronDown}
-          onClick={onMoveDown}
-          disabled={onMoveDown == null}
-        />
+        <div className={css(ListItemActionMoverStyle)}>
+          <OptionButtonSmall
+            title="Move Up"
+            icon={MaterialIconKeyboardArrowUp}
+            onClick={onMoveUp}
+            disabled={onMoveUp == null}
+          />
+          <OptionButtonSmall
+            title="Move Down"
+            icon={MaterialIconKeyboardArrowDown}
+            onClick={onMoveDown}
+            disabled={onMoveDown == null}
+          />
+        </div>
       </div>
       <div className={css(ListItemWrapperContentStyle)}>
         <Card>{children}</Card>
       </div>
-      <div className={css(ListItemWrapperAccessoryStyle)}>{icon && <Icon type={icon} />}</div>
+      <div className={css(ListItemWrapperAccessoryStyle)}>{icon && <Icon element={icon} />}</div>
     </div>
   )
 }

@@ -1,17 +1,22 @@
 import React from 'react'
+
 import {BaseButton, ButtonProps} from './baseButton'
 import {cssRuleWithTheme} from '../style/themeContext'
 import {pxToRem, FontSize, TransitionDuration} from '../style/helpers'
 
-export const PrimaryButtonStyle = cssRuleWithTheme(({theme}) => ({
-  backgroundColor: theme.colors.primary,
+const PrimaryButtonStyle = cssRuleWithTheme(({theme}) => ({
   borderRadius: pxToRem(10),
   padding: pxToRem(10),
-  color: theme.colors.white,
-  fontSize: pxToRem(FontSize.Medium),
   minWidth: pxToRem(140),
+
+  color: theme.colors.white,
+  backgroundColor: theme.colors.primary,
+
+  fontSize: pxToRem(FontSize.Medium),
   fontWeight: 'bold',
-  transition: 'background-color ease-in',
+
+  transitionProperty: 'background-color',
+  transitionTimingFunction: 'ease-in',
   transitionDuration: TransitionDuration.Fast,
 
   '&:hover:enabled': {

@@ -1,7 +1,17 @@
 import React from 'react'
 
-import {Standard as StandardNavigation} from '../organisms/navigation.stories'
+import {
+  MaterialIconInsertDriveFileOutlined,
+  MaterialIconPowerSettingsNew,
+  MaterialIconTextFields,
+  MaterialIconPermMediaOutlined,
+  MaterialIconSpellcheck,
+  MaterialIconNavigationOutlined
+} from '@karma.run/icons'
+
+import {Text} from '../layout/typography.stories'
 import {NavigationTemplate} from './navigationTemplate'
+import {MenuIconButton} from '../atoms/menuIconButton'
 
 export default {
   component: NavigationTemplate,
@@ -9,7 +19,19 @@ export default {
 }
 
 export const Standard = () => (
-  <NavigationTemplate navigationChildren={<StandardNavigation />}>
-    <div style={{height: '2000px', backgroundImage: 'linear-gradient(#FFF, #000)'}} />
+  <NavigationTemplate
+    navigationChildren={
+      <>
+        <MenuIconButton icon={MaterialIconTextFields} label={'Article'} />
+        <MenuIconButton icon={MaterialIconInsertDriveFileOutlined} label={'Pages'} />
+        <MenuIconButton icon={MaterialIconPermMediaOutlined} label={'Media Library'} />
+        <MenuIconButton icon={MaterialIconSpellcheck} label={'Proofreading'} />
+        <MenuIconButton icon={MaterialIconNavigationOutlined} label={'Menu'} />
+        <MenuIconButton icon={MaterialIconPowerSettingsNew} label={'Logout'} />
+      </>
+    }>
+    <Text />
+    <Text />
+    <Text />
   </NavigationTemplate>
 )

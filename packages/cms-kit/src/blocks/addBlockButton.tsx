@@ -1,40 +1,38 @@
 import React from 'react'
-import {IconType} from '../atoms/icon'
 import {OptionButtonSmall} from '../atoms/optionButtonSmall'
 import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
+import {MaterialIconAdd} from '@karma.run/icons'
 
 export interface AddBlockButtonStyleProps {
   active: boolean
 }
 
-export const AddBlockButtonStyle = cssRuleWithTheme<AddBlockButtonStyleProps>(
-  ({theme, active}) => ({
-    display: 'flex',
-    position: 'relative',
+const AddBlockButtonStyle = cssRuleWithTheme<AddBlockButtonStyleProps>(({theme, active}) => ({
+  display: 'flex',
+  position: 'relative',
 
-    alignItems: 'center',
-    justifyContent: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  width: '100%',
+  fill: active ? theme.colors.dark : undefined,
+
+  '&::before': {
+    content: '""',
+
+    position: 'absolute',
+    display: 'block',
+
+    top: '50%',
 
     width: '100%',
-    fill: active ? theme.colors.dark : undefined,
+    height: '1px',
 
-    '&::before': {
-      content: '""',
+    backgroundColor: theme.colors.action
+  }
+}))
 
-      position: 'absolute',
-      display: 'block',
-
-      top: '50%',
-
-      width: '100%',
-      height: '1px',
-
-      backgroundColor: theme.colors.action
-    }
-  })
-)
-
-export const AddBlockButtonWrapperStyle = cssRuleWithTheme(() => ({
+const AddBlockButtonWrapperStyle = cssRuleWithTheme(() => ({
   zIndex: 1,
   top: '50%',
   left: '50%'
@@ -51,7 +49,7 @@ export function AddBlockButton({onClick, active = false}: AddBlockButtonProps) {
   return (
     <div className={css(AddBlockButtonStyle)}>
       <div className={css(AddBlockButtonWrapperStyle)}>
-        <OptionButtonSmall title="Add Block" icon={IconType.Add} onClick={() => onClick()} />
+        <OptionButtonSmall title="Add Block" icon={MaterialIconAdd} onClick={() => onClick()} />
       </div>
     </div>
   )

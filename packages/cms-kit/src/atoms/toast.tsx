@@ -1,33 +1,51 @@
 import React from 'react'
-import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem, Spacing} from '../style/helpers'
+import {cssRuleWithTheme, useThemeStyle, ThemeColors, Theme} from '../style/themeContext'
+import {pxToRem, Spacing, FontSize, hexToRgba, BorderWidth} from '../style/helpers'
 
-export const ToastStyle = cssRuleWithTheme<{type: ToastType}>(({type, theme}) => {
-  function backgroundColor(): string {
-    switch (type) {
-      case ToastType.Info:
-        return theme.colors.light
-      case ToastType.Action:
-        return theme.colors.action
-      case ToastType.Success:
-        return `${theme.colors.success}80`
-      case ToastType.Error:
-        return `${theme.colors.alert}80`
-    }
+function borderColorForType(type: ToastType, theme: Theme): string {
+  switch (type) {
+    case ToastType.Info:
+      return theme.colors.actionDark
+    case ToastType.Success:
+      return theme.colors.successDark
+    case ToastType.Error:
+      return theme.colors.alertDark
   }
+}
 
-  return {
-    width: '100%',
-    backgroundColor: backgroundColor(),
-    color: type == ToastType.Info ? theme.colors.dark : theme.colors.white,
-    textAlign: 'center',
-    padding: pxToRem(Spacing.Tiny)
+function backgroundColorForType(type: ToastType, theme: Theme): string {
+  switch (type) {
+    case ToastType.Info:
+      return theme.colors.action
+    case ToastType.Success:
+      return theme.colors.success
+    case ToastType.Error:
+      return theme.colors.alert
   }
-})
+}
+
+const ToastStyle = cssRuleWithTheme<{type: ToastType}>(({type, theme}) => ({
+  width: '100%',
+  backgroundColor: hexToRgba(backgroundColorForType(type, theme), 0.85),
+  color: theme.colors.white,
+
+  textAlign: 'center',
+  fontSize: pxToRem(FontSize.Medium),
+  fontWeight: 'bold',
+
+  backdropFilter: 'blur(5px)',
+  padding: pxToRem(Spacing.Tiny),
+
+  borderWidth: BorderWidth.Small,
+  borderStyle: 'solid',
+  borderColor: hexToRgba(borderColorForType(type, theme), 0.85),
+
+  cursor: 'pointer',
+  boxShadow: '0 0 4px 0 rgba(34, 34, 34, 0.5)'
+}))
 
 export enum ToastType {
   Info = 'info',
-  Action = 'action',
   Success = 'success',
   Error = 'error'
 }

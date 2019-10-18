@@ -4,6 +4,7 @@ import {OptionButtonSmall} from '../atoms/optionButtonSmall'
 import {IconType} from '../atoms/icon'
 import {FavorButton, FavorButtonProps} from '../atoms/favorButton'
 import {BlockActionBar} from './blockActionBar'
+import {MaterialIconChevronLeft, MaterialIconChevronRight, MaterialIconEdit} from '@karma.run/icons'
 
 export interface EditorBlockActionBarProps {
   onEdit(): void
@@ -22,13 +23,13 @@ export function EditorBlockActionBar({
     <BlockActionBar
       buttonsCenter={
         <>
-          {onPrevious && <OptionButtonSmall icon={IconType.ChevronLeft} onClick={onPrevious} />}
-          {onNext && <OptionButtonSmall icon={IconType.ChevronRight} onClick={onNext} />}
+          {onPrevious && <OptionButtonSmall icon={MaterialIconChevronLeft} onClick={onPrevious} />}
+          {onNext && <OptionButtonSmall icon={MaterialIconChevronRight} onClick={onNext} />}
         </>
       }
       buttonsRight={
         <>
-          <OptionButtonSmall icon={IconType.Edit} onClick={onEdit} />
+          <OptionButtonSmall icon={MaterialIconEdit} onClick={onEdit} />
           {isLead && (
             <FavorButton
               isFavorite={isLead.isFavorite}

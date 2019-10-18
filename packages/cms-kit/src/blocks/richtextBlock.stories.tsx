@@ -6,6 +6,17 @@ import {RichtextBlock} from './richtextBlock'
 import {IconType} from '../atoms/icon'
 import {RenderMarkProps, RenderBlockProps} from 'slate-react'
 import {RichtextEditorMenu} from './richtextEditorMenu'
+import {
+  MaterialIconFormatBold,
+  MaterialIconFormatItalic,
+  MaterialIconFormatUnderlined,
+  MaterialIconFormatStrikethrough,
+  MaterialIconLooksTwoOutlined,
+  MaterialIconLooks3Outlined,
+  MaterialIconFormatListBulleted,
+  MaterialIconFormatListNumbered,
+  MaterialIconLink
+} from '@karma.run/icons'
 
 export default {
   component: RichtextBlock,
@@ -160,57 +171,57 @@ export const Standard = () => {
 
   const standardRichTextEditItems = [
     {
-      icon: IconType.Bold,
+      icon: MaterialIconFormatBold,
       label: 'bold',
       onClick: toggleMark,
       isActive: hasMark
     },
     {
-      icon: IconType.Italic,
+      icon: MaterialIconFormatItalic,
       label: 'italic',
       onClick: toggleMark,
       isActive: hasMark
     },
     {
-      icon: IconType.Underline,
+      icon: MaterialIconFormatUnderlined,
       label: 'underline',
       onClick: toggleMark,
       isActive: hasMark
     },
     {
-      icon: IconType.Striked,
+      icon: MaterialIconFormatStrikethrough,
       label: 'striked',
       onClick: toggleMark,
       isActive: hasMark
     },
     {
-      icon: IconType.H2,
+      icon: MaterialIconLooksTwoOutlined,
       label: 'heading-two',
       onClick: (editor: CoreEditor, value: Value) => toggleTitle(editor, value, true),
       isActive: hasType
     },
     {
-      icon: IconType.H3,
+      icon: MaterialIconLooks3Outlined,
       label: 'heading-three',
       onClick: (editor: CoreEditor, value: Value) => toggleTitle(editor, value, false),
       isActive: hasType
     },
     {
-      icon: IconType.ListUnsorted,
+      icon: MaterialIconFormatListBulleted,
       label: 'bulleted-list',
       onClick: (editor: CoreEditor, value: Value) =>
         toggleList(editor, value, RichtextType.BulletList),
       isActive: isListOfType
     },
     {
-      icon: IconType.ListSorted,
+      icon: MaterialIconFormatListNumbered,
       label: 'numbered-list',
       onClick: (editor: CoreEditor, value: Value) =>
         toggleList(editor, value, RichtextType.NumberedList),
       isActive: isListOfType
     },
     {
-      icon: IconType.Link,
+      icon: MaterialIconLink,
       label: 'link',
       onClick: (editor: CoreEditor, value: Value) => {}, // todo open side panel to enter href
       isActive: hasInlines

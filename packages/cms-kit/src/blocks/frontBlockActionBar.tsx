@@ -1,7 +1,9 @@
 import React from 'react'
+
+import {MaterialIconEdit, MaterialIconFindReplace} from '@karma.run/icons'
+
 import {BlockActionBar} from './blockActionBar'
 import {OptionButtonSmall} from '../atoms/optionButtonSmall'
-import {IconType} from '../atoms/icon'
 
 export interface FrontBlockActionBarProps {
   onEdit(): void
@@ -13,8 +15,8 @@ export function FrontBlockActionBar({onEdit, onReplace}: FrontBlockActionBarProp
     <BlockActionBar
       buttonsRight={
         <>
-          <OptionButtonSmall icon={IconType.Edit} onClick={onEdit} />
-          <OptionButtonSmall icon={IconType.Replace} onClick={onReplace} />
+          <OptionButtonSmall icon={MaterialIconEdit} onClick={onEdit} />
+          <OptionButtonSmall icon={MaterialIconFindReplace} onClick={onReplace} />
         </>
       }
     />

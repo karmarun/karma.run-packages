@@ -1,9 +1,11 @@
 import React from 'react'
 
-import {IconType, BaseButton, Icon} from '..'
+import {BaseButton} from './baseButton'
+import {Icon} from './icon'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {ButtonProps} from './baseButton'
 import {TransitionDuration, pxToEm} from '../style/helpers'
+import {MaterialIconStarOutlined} from '@karma.run/icons'
 
 export interface FavorButtonStyleProps {
   isFavorite: boolean
@@ -58,7 +60,7 @@ export function FavorButton({isFavorite, onFavoriteChange, ...rest}: FavorButton
       style={FavorButtonStyle}
       styleProps={{isFavorite: isFavorite}}
       onClick={onFavoriteChange}>
-      <Icon type={IconType.Favorite} />
+      <Icon element={MaterialIconStarOutlined} />
     </BaseButton>
   )
 }

@@ -1,29 +1,29 @@
-import React from 'react'
-import {BaseButton, BaseButtonProps} from '../atoms/baseButton'
-import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem, FontSize, Spacing, TransitionDuration} from '../style/helpers'
+import React, {useContext} from 'react'
+import {BaseButton, ButtonProps} from '../atoms/baseButton'
 import {IconType, Icon, IconScale} from '../atoms/icon'
-import {toArray} from '../utility'
+
+import {pxToRem, Spacing, TransitionDuration, FontSize} from '../style/helpers'
+import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
+import {NavigationContext} from '../organisms/navigation'
 
 interface MenuIconButtonStyleProps {
-  readonly hideLabel: boolean
+  readonly isCollapsed: boolean
 }
 
-const MenuIconButtonStyle = cssRuleWithTheme<MenuIconButtonStyleProps>(({theme}) => ({
+const MenuIconButtonStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
-  flexWrap: 'nowrap',
   alignItems: 'center',
 
   padding: `${pxToRem(12)} ${pxToRem(18)}`,
 
-  border: 'none',
   width: '100%',
-  textAlign: 'left',
   fontSize: pxToRem(FontSize.Medium),
+  textAlign: 'left',
 
   fill: theme.colors.dark,
 
-  transition: 'background-color ease-in',
+  transitionProperty: 'background-color',
+  transitionTimingFunction: 'ease-in',
   transitionDuration: TransitionDuration.Fast,
 
   ':hover:enabled': {
@@ -37,15 +37,16 @@ const MenuIconButtonStyle = cssRuleWithTheme<MenuIconButtonStyleProps>(({theme})
   }
 }))
 
-const LabelStyle = cssRuleWithTheme<MenuIconButtonStyleProps>(({hideLabel, theme}) => ({
+const LabelStyle = cssRuleWithTheme<MenuIconButtonStyleProps>(({isCollapsed}) => ({
   marginLeft: pxToRem(Spacing.ExtraSmall),
   whiteSpace: 'nowrap',
-  opacity: hideLabel ? 0 : 1,
-  transition: 'opacity',
-  transitionDuration: TransitionDuration.Fast
+  opacity: isCollapsed ? 0 : 1,
+  transitionProperty: 'opacity',
+  transitionTimingFunction: 'ease-in',
+  transitionDuration: TransitionDuration.Slow
 }))
 
-export interface MenuIconButtonProps extends BaseButtonProps {
+export interface MenuIconButtonProps extends ButtonProps {
   readonly label?: string
   readonly icon: IconType
   readonly iconScale?: IconScale
@@ -54,23 +55,17 @@ export interface MenuIconButtonProps extends BaseButtonProps {
 
 export function MenuIconButton({
   label,
-  hideLabel = false,
   iconScale = IconScale.Larger,
   icon,
   href,
-  onClick,
-  style,
-  styleProps
+  onClick
 }: MenuIconButtonProps) {
-  const {css} = useThemeStyle({hideLabel})
+  const {isCollapsed} = useContext(NavigationContext)
+  const {css} = useThemeStyle({isCollapsed})
 
   return (
-    <BaseButton
-      href={href}
-      onClick={onClick}
-      style={[MenuIconButtonStyle, ...toArray(style)]}
-      styleProps={styleProps}>
-      <Icon type={icon} scale={iconScale} />
+    <BaseButton href={href} onClick={onClick} style={MenuIconButtonStyle}>
+      <Icon element={icon} scale={iconScale} block />
       <span className={css(LabelStyle)}>{label}</span>
     </BaseButton>
   )

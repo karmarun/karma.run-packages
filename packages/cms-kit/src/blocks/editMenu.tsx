@@ -53,7 +53,7 @@ export function EditMenuButton({editor, onClick, icon, label, isActive}: EditMen
       onClick={e => onClick(editor, editor ? editor.value : undefined, label)}
       style={EditMenuButtonStyle}
       styleProps={{isActive: isActive(editor, editor ? editor.value : undefined, label)}}>
-      <Icon type={icon} scale={IconScale.Equal} />
+      <Icon element={icon} scale={IconScale.Equal} />
     </BaseButton>
   )
 }

@@ -6,10 +6,9 @@ import {isFunctionalUpdate, isValueConstructor, useStyle, cssRule} from '@karma.
 import {FieldProps, UnionListValue, UnionListCaseMapForValue, UnionFieldCaseMap} from './types'
 import {Icon, IconType} from '../atoms/icon'
 import {ListItemWrapper} from '../molecules/listItemWrapper'
-import {AddBlockButton} from '../blocks/addBlockButton'
 import {AddBlockMenu} from '../blocks/addBlockMenu'
 
-export const UnionListFieldStyle = cssRule({
+const UnionListFieldStyle = cssRule({
   width: '100%'
 })
 
@@ -130,7 +129,7 @@ export function UnionListField<V extends UnionListValue>({
           {casePickerIndex === index &&
             Object.entries(unionFieldMap).map(([type, value]) => (
               <button key={type} onClick={() => handleAdd(index, type)}>
-                <Icon type={value.icon} />
+                <Icon element={value.icon} />
                 {value.label}
               </button>
             ))}

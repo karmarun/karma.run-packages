@@ -1,12 +1,21 @@
 import React, {useState} from 'react'
 
+import {
+  IconColumn4,
+  IconColumn2,
+  IconColumn2Alt,
+  MaterialIconTextFormat,
+  MaterialIconShortText
+} from '@karma.run/icons'
+
 import {centerLayoutDecorator} from '../.storybook/decorators'
 import {UnionListField} from './unionListField'
 import {TextField} from './textField'
-import {IconType} from '../atoms/icon'
 
 import {UnionListValue} from './types'
 import {ListField, ListValue} from './listField'
+import {Grid, Column} from '../layout/grid'
+import {Placeholder} from '../atoms/placeholder'
 
 export type StringValue = UnionListValue<'string', string>
 export type StringArrayValue = UnionListValue<'stringArray', ListValue<string>[]>
@@ -28,7 +37,7 @@ export const Standard = () => {
           field: props => <TextField {...props} />,
           defaultValue: '',
           label: 'String',
-          icon: IconType.Replace
+          icon: MaterialIconTextFormat
         },
 
         stringArray: {
@@ -39,7 +48,71 @@ export const Standard = () => {
           ),
           defaultValue: [],
           label: 'String Array',
-          icon: IconType.DropHere
+          icon: MaterialIconShortText
+        }
+      }}
+    </UnionListField>
+  )
+}
+
+export const WithGrid = () => {
+  const [values, setValues] = useState([])
+
+  return (
+    <UnionListField value={values} onChange={setValues}>
+      {{
+        string: {
+          field: props => (
+            <Grid>
+              <Column ratio={1 / 4}>
+                <Placeholder></Placeholder>
+              </Column>
+              <Column ratio={1 / 4}>
+                <Placeholder></Placeholder>
+              </Column>
+              <Column ratio={1 / 4}>
+                <Placeholder></Placeholder>
+              </Column>
+              <Column ratio={1 / 4}>
+                <Placeholder></Placeholder>
+              </Column>
+            </Grid>
+          ),
+          defaultValue: '',
+          label: '4 Cols',
+          icon: IconColumn4
+        },
+
+        column2: {
+          field: props => (
+            <Grid>
+              <Column ratio={1 / 2}>
+                <Placeholder></Placeholder>
+              </Column>
+              <Column ratio={1 / 2}>
+                <Placeholder></Placeholder>
+              </Column>
+            </Grid>
+          ),
+          defaultValue: [],
+          label: '2 Cols',
+          icon: IconColumn2
+        },
+
+        column2Alt: {
+          field: props => (
+            <Grid>
+              <Column ratio={2 / 3}>
+                <Placeholder></Placeholder>
+              </Column>
+              <Column ratio={1 / 3}>
+                <Placeholder></Placeholder>
+              </Column>
+            </Grid>
+          ),
+          defaultValue: [],
+          label: '2 Cols Alt',
+          icon: IconColumn2Alt
         }
       }}
     </UnionListField>
