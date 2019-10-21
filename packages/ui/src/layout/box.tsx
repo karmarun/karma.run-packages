@@ -22,7 +22,7 @@ import {
 } from 'csstype'
 
 import {pxToRem} from '../style/helpers'
-import {CSSRuleWithTheme, useThemeStyle} from '../style/themeContext'
+import {CSSRuleWithTheme, useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
 
 export interface BaseBoxProps {
   readonly flex?: boolean
@@ -82,8 +82,8 @@ export interface BoxPropsWithStyleProps<P = undefined> extends BaseBoxProps {
 
 type BoxStyleProps = Omit<Omit<BaseBoxProps, 'element'>, 'children'>
 
-const BoxBaseStyle = cssRule<BoxStyleProps>(
-  ({flex, inlineFlex, block, inline, margin, padding, ...props}) => ({
+const BoxBaseStyle = cssRuleWithTheme<BoxStyleProps>(
+  ({flex, inlineFlex, block, inline, margin, padding, theme, ...props}) => ({
     display: flex
       ? 'flex'
       : inlineFlex
