@@ -1,6 +1,6 @@
 import React from 'react'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {cssRule, useStyle} from '@karma.run/react'
+import {cssRule} from '@karma.run/react'
 import {pxToRem, FontSize} from '../style/helpers'
 import {FieldProps} from '../fields/types'
 import {BaseInput, InputType} from '../atoms/baseInput'

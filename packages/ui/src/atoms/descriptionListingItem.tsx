@@ -1,5 +1,5 @@
-import React, {ReactNode, Children} from 'react'
-import {cssRule, useStyle} from '@karma.run/react'
+import React, {ReactNode} from 'react'
+import {cssRule} from '@karma.run/react'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {FontSize, pxToRem, Spacing} from '../style/helpers'
 

@@ -44,12 +44,16 @@ export * from './layout/box'
 export * from './layout/grid'
 export * from './layout/typography'
 
+// Inputs
+export * from './input/richTextInput'
+
 // Fields
 export * from './fields/types'
 export * from './fields/listField'
 export * from './fields/unionListField'
 export * from './fields/transformField'
 export * from './fields/textField'
+export * from './fields/richTextField'
 
 // Style
 export * from './style/globalStyles'

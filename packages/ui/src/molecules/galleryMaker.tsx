@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 
 import {TextButton} from '../atoms/textButton'
 import {OptionButtonSmall} from '../atoms/optionButtonSmall'
-import {IconType} from '../atoms/icon'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {pxToRem, Spacing, BorderWidth, FontSize} from '../style/helpers'
 import {OutlineButton} from '../atoms/outlineButton'

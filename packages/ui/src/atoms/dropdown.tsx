@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem, FontSize, TransitionDuration, Spacing, BorderWidth} from '../style/helpers'
+import {pxToRem, FontSize, BorderWidth} from '../style/helpers'
 import {joinClassNames} from '@karma.run/react'
 
 const DropdownContainerStyle = cssRuleWithTheme(({theme}) => ({

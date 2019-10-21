@@ -9,12 +9,6 @@ import {OptionButtonSmall} from '../atoms/optionButtonSmall'
 import {ProgressBar} from '../atoms/progressBar'
 import {FileDropZone} from './fileDropZone'
 
-enum UploadState {
-  Empty = 'empty',
-  ReadyToUpload = 'ready',
-  Uploading = 'uploading'
-}
-
 export interface ImageUploadProps {
   // upload progress in percentage
   readonly uploadProgress?: number

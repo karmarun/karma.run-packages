@@ -2,7 +2,7 @@ import React from 'react'
 
 import {BaseButton} from './baseButton'
 import {Icon} from './icon'
-import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
+import {cssRuleWithTheme} from '../style/themeContext'
 import {ButtonProps} from './baseButton'
 import {TransitionDuration, pxToEm} from '../style/helpers'
 import {MaterialIconStarOutlined} from '@karma.run/icons'

@@ -73,8 +73,6 @@ export function FocalPointSetter({
   focalPoint = {x: 440 / 2, y: 290 / 2},
   onFocalPointChange
 }: FocalPointSetterProps) {
-  const {css} = useThemeStyle()
-
   return (
     <DragContainer>
       <img src={imgSrc} width={width} height={height} />

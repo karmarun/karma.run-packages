@@ -16,7 +16,7 @@ export function RichtextEditorMenu({editItems, editor}: RichtextEditorMenuProps)
           editor={editor}
           isActive={item.isActive}
           icon={item.icon}
-          onClick={item.onClick}
+          onApply={item.onApply}
           label={item.label}
         />
       ))}

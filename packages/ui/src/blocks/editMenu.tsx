@@ -1,11 +1,10 @@
 import React, {ReactNode} from 'react'
+import {Value, Editor} from 'slate'
 
 import {BaseButton} from '../atoms/baseButton'
 import {IconType, Icon, IconScale} from '../atoms/icon'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem, FontSize} from '../style/helpers'
-import {Spacing} from '../style/helpers'
-import {Value, Editor} from 'slate'
+import {pxToRem, FontSize, Spacing} from '../style/helpers'
 
 export const DarkMenuStyle = cssRuleWithTheme(({theme}) => ({
   padding: pxToRem(Spacing.Tiny),
@@ -39,7 +38,7 @@ export const EditMenuButtonStyle = cssRuleWithTheme<{isActive: boolean}>(({isAct
 export interface EditMenuButton {
   readonly icon: IconType
   readonly label: string
-  onClick(editor?: Editor, value?: Value, label?: string): void
+  onApply(editor?: Editor, value?: Value, label?: string): void
   isActive(editor?: Editor, value?: Value, label?: string): boolean
 }
 
@@ -47,10 +46,13 @@ export interface EditMenuButtonProps extends EditMenuButton {
   readonly editor?: Editor
 }
 
-export function EditMenuButton({editor, onClick, icon, label, isActive}: EditMenuButtonProps) {
+export function EditMenuButton({editor, onApply, icon, label, isActive}: EditMenuButtonProps) {
   return (
     <BaseButton
-      onClick={e => onClick(editor, editor ? editor.value : undefined, label)}
+      onMouseDown={e => {
+        e.preventDefault()
+        onApply(editor, editor ? editor.value : undefined, label)
+      }}
       style={EditMenuButtonStyle}
       styleProps={{isActive: isActive(editor, editor ? editor.value : undefined, label)}}>
       <Icon element={icon} scale={IconScale.Equal} />

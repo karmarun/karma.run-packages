@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react'
-import {cssRuleWithTheme, useThemeStyle, ThemeColors, Theme} from '../style/themeContext'
+import {cssRuleWithTheme, useThemeStyle, Theme} from '../style/themeContext'
 import {pxToRem, Spacing, FontSize, hexToRgba, BorderWidth} from '../style/helpers'
 
 function borderColorForType(type: ToastType, theme: Theme): string {

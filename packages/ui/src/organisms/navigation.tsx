@@ -1,5 +1,5 @@
 import React, {ReactNode, useState, createContext} from 'react'
-import {IconType, Icon} from '../atoms/icon'
+import {Icon} from '../atoms/icon'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {pxToRem, TransitionDuration, Spacing, FontSize} from '../style/helpers'
 import {BaseButton} from '../atoms/baseButton'

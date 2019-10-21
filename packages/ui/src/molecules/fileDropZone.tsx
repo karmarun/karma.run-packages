@@ -1,7 +1,7 @@
 import React, {ReactNode, useState} from 'react'
 import {pxToRem, FontSize} from '../style/helpers'
 import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
-import {Icon, IconType, IconScale} from '..'
+import {Icon, IconScale} from '..'
 import {cssRule} from '@karma.run/react'
 import {MaterialIconCloudUploadOutlined} from '@karma.run/icons'
 

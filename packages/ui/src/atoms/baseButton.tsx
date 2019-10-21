@@ -11,6 +11,8 @@ export interface ButtonProps {
   readonly title?: string
   readonly children?: ReactNode
   readonly onClick?: MouseEventHandler
+  readonly onMouseDown?: MouseEventHandler
+  readonly onMouseUp?: MouseEventHandler
   readonly disabled?: boolean
 }
 
