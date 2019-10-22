@@ -31,11 +31,11 @@ export interface CenterLayoutProps {
 }
 
 export function CenterLayout({minWidthFactor: scale, children}: CenterLayoutProps) {
-  const {css} = useStyle({scale})
+  const style = useStyle({scale})
 
   return (
-    <div className={css(CenterLayoutStyle)}>
-      <div className={css(CenterLayoutContentStyle)}>{children}</div>
+    <div className={style(CenterLayoutStyle)}>
+      <div className={style(CenterLayoutContentStyle)}>{children}</div>
     </div>
   )
 }

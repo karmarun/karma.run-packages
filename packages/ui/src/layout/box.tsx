@@ -63,7 +63,7 @@ export interface BaseBoxProps {
   readonly marginRight?: number | string
 
   readonly element?: ElementType<{className?: string}>
-  readonly children?: ReactNode
+  readonly children?: ReactNode | ((props: {className: string}) => ReactNode)
 }
 
 export interface BoxProps<P = undefined> extends BaseBoxProps {
@@ -120,18 +120,18 @@ const BoxPaddingStyle = cssRule<BoxStyleProps>(
 export function Box(props: BoxPropsWithoutStyleProps): JSX.Element
 export function Box<P = undefined>(props: BoxPropsWithStyleProps<P>): JSX.Element
 export function Box<P = undefined>({
-  element = 'div',
+  element: Element = 'div',
   style,
   styleProps,
   children,
   ...props
 }: BoxProps<P>): JSX.Element {
-  const Element = element
   const {css} = useThemeStyle(Object.assign({}, props, styleProps))
+  const className = css(BoxBaseStyle, BoxMarginStyle, BoxPaddingStyle, ...toArray(style))
 
-  return (
-    <Element className={css(BoxBaseStyle, BoxMarginStyle, BoxPaddingStyle, ...toArray(style))}>
-      {children}
-    </Element>
+  return typeof children === 'function' ? (
+    children({className})
+  ) : (
+    <Element className={className}>{children}</Element>
   )
 }
