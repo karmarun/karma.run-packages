@@ -1,4 +1,12 @@
-import React, {createContext, useContext, useMemo, ReactNode, FunctionComponent} from 'react'
+import React, {
+  createContext,
+  useContext,
+  useMemo,
+  ReactNode,
+  forwardRef,
+  DetailedHTMLProps,
+  ComponentType
+} from 'react'
 
 import {createRenderer, IRenderer, combineRules} from 'fela'
 import {rehydrate, render, renderToMarkup, renderToSheetList} from 'fela-dom'
@@ -242,14 +250,36 @@ export type PropsFromStyleParameter<T extends StyleParameter> = T extends CSSRul
   ? P
   : never
 
-export function styled<E extends keyof JSX.IntrinsicElements, S extends StyleParameter>(
-  element: E,
-  styles: S
-): FunctionComponent<JSX.IntrinsicElements[E] & PropsFromStyleParameter<S>> {
-  return props => {
-    const style = useStyle(props)
-    const Element = element as any
+export type PropsForElementAndStyle<
+  E extends (keyof JSX.IntrinsicElements) | ComponentType,
+  S extends StyleParameter
+> = (E extends keyof JSX.IntrinsicElements
+  ? JSX.IntrinsicElements[E]
+  : E extends ComponentType<infer P>
+  ? P
+  : {}) &
+  PropsFromStyleParameter<S>
 
-    return <Element className={style(...toArray(styles))} {...props} />
-  }
+export type RefTypeForElement<E> = E extends keyof JSX.IntrinsicElements
+  ? JSX.IntrinsicElements[E] extends DetailedHTMLProps<infer _, infer T>
+    ? T
+    : never
+  : E
+
+export function styled<
+  E extends (keyof JSX.IntrinsicElements) | ComponentType,
+  S extends StyleParameter
+>(element: E, styles: S) {
+  const Element = element as any
+  const forwardedRef = forwardRef<RefTypeForElement<E>, PropsForElementAndStyle<E, S>>(
+    (props, ref) => {
+      const style = useStyle(props)
+      return <Element ref={ref} {...props} className={style(...toArray(styles))} />
+    }
+  )
+
+  const displayName = typeof element === 'string' ? element : Element.displayName || Element.name
+  forwardedRef.displayName = `Styled(${displayName})`
+
+  return forwardedRef
 }

@@ -17,7 +17,7 @@ export interface ButtonBarProps {
 }
 
 export function ButtonBar({confirmLabel, cancelLabel, onConfirm, onCancel}: ButtonBarProps) {
-  const {css} = useStyle()
+  const css = useStyle()
   return (
     <div className={css(ButtonBarStyle)}>
       {cancelLabel && <TextButton label={cancelLabel} onClick={onCancel} />}

@@ -42,7 +42,7 @@ export interface FilterTagProps {
 }
 
 export function FilterTag({text, onDismiss}: FilterTagProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
 
   return (
     <div className={css(FilterTagStyle)}>

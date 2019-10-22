@@ -64,7 +64,7 @@ export function Dropdown({
   onValueChange,
   className
 }: DropdownProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
 
   return (
     <div className={joinClassNames(css(DropdownContainerStyle), className)}>

@@ -35,7 +35,7 @@ export interface ProgressBarProps {
 }
 
 export function ProgressBar({progress, onCancel}: ProgressBarProps) {
-  const {css} = useThemeStyle({progress: progress})
+  const css = useThemeStyle({progress: progress})
   return (
     <div className={css(ProgressBarStyle)}>
       <div className={css(ProgressStyle)}>

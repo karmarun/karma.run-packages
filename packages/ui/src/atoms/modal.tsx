@@ -76,7 +76,7 @@ export interface ModalProps {
 }
 
 export function Modal({title, children, onConfirm, onCancel}: ModalProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
   return (
     <React.Fragment>
       <div className={css(ModalStyle)}>

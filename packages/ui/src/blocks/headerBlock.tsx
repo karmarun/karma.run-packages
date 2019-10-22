@@ -24,7 +24,7 @@ const HeaderBlockLeadStyle = cssRuleWithTheme(({theme}) => ({
 }))
 
 export function HeaderBlock({value, onChange}: FieldProps<{title: string; lead: string}>) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
 
   const placeholderLead =
     'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam consetetur sadipscing elitr, sed diam nonumy eirmod'

@@ -122,7 +122,7 @@ export interface TextInputProps {
 
 export function TextInput({label, description, errorDescription, icon, ...props}: TextInputProps) {
   const styleProps = {hasError: errorDescription != null}
-  const {css} = useThemeStyle<TextInputStyleProps>(styleProps)
+  const css = useThemeStyle<TextInputStyleProps>(styleProps)
 
   return (
     <div className={css(TextInputContainerStyle)}>

@@ -60,7 +60,7 @@ export function ListItemWrapper({
   onMoveUp,
   onMoveDown
 }: ListItemWrapperProps) {
-  const {css} = useStyle()
+  const css = useStyle()
 
   return (
     <div className={css(ListItemWrapperStyle)}>

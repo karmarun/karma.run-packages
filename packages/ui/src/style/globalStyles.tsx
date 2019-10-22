@@ -1,11 +1,11 @@
-import {useStyle} from '@karma.run/react'
+import {useStaticStyle} from '@karma.run/react'
 
 export interface GlobalStylesProps {
   readonly rootElementID: string
 }
 
 export function GlobalStyles({rootElementID}: GlobalStylesProps) {
-  const {staticCSS} = useStyle()
+  const staticCSS = useStaticStyle()
 
   staticCSS('html', {
     fontFamily: `'Open Sans', Arial, sans-serif`,

@@ -60,6 +60,6 @@ export function Icon<P = undefined>({
   style,
   styleProps
 }: IconProps<P>): JSX.Element {
-  const {css} = useThemeStyle({...styleProps, scale, block})
+  const css = useThemeStyle({...styleProps, scale, block})
   return <Element className={css(IconStyle, ...toArray(style))} role="img" />
 }

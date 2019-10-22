@@ -56,6 +56,6 @@ export interface ToastProps {
 }
 
 export function Toast({type, children}: ToastProps) {
-  const {css} = useThemeStyle({type: type})
+  const css = useThemeStyle({type: type})
   return <div className={css(ToastStyle)}>{children}</div>
 }

@@ -62,7 +62,7 @@ export function Typography({
   children
 }: TypographyProps) {
   const Element = element
-  const {css} = useThemeStyle<TypographStyleProps>({
+  const css = useThemeStyle<TypographStyleProps>({
     variant,
     color,
     align,

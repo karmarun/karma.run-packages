@@ -35,7 +35,7 @@ export const PositionableOverlay = React.forwardRef(
     {top, left, show, positionIsFixed = false, children}: PositionableOverlayProps,
     ref: React.Ref<HTMLDivElement>
   ) => {
-    const {css} = useStyle({top: top, left: left, show: show, isFixed: positionIsFixed})
+    const css = useStyle({top: top, left: left, show: show, isFixed: positionIsFixed})
     return (
       <div className={css(OverlayStyle)} ref={ref}>
         {children}

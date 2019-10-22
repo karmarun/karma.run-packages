@@ -10,7 +10,7 @@ export interface DragContainerProps {
 }
 
 export function DragContainer({children}: DragContainerProps) {
-  const {css} = useStyle()
+  const css = useStyle()
 
   return <div className={css(DragContainerStyle)}>{children}</div>
 }

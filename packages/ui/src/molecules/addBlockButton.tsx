@@ -44,7 +44,7 @@ export interface AddBlockButtonProps {
 }
 
 export function AddBlockButton({onClick, active = false}: AddBlockButtonProps) {
-  const {css} = useThemeStyle<AddBlockButtonStyleProps>({active})
+  const css = useThemeStyle<AddBlockButtonStyleProps>({active})
 
   return (
     <div className={css(AddBlockButtonStyle)}>

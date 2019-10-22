@@ -61,7 +61,7 @@ export function MenuIconButton({
   onClick
 }: MenuIconButtonProps) {
   const {isCollapsed} = useContext(NavigationContext)
-  const {css} = useThemeStyle({isCollapsed})
+  const css = useThemeStyle({isCollapsed})
 
   return (
     <BaseButton href={href} onClick={onClick} style={MenuIconButtonStyle}>

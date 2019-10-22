@@ -34,7 +34,7 @@ export interface LoginTemplateProps {
 }
 
 export function LoginTemplate({children}: LoginTemplateProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
 
   return (
     <div className={css(LoginTemplateStyle)}>

@@ -14,7 +14,7 @@ export interface DescriptionListingProps {
 }
 
 export function DescriptionListing({children}: DescriptionListingProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
   return <dl className={css(DescriptionListingStyle)}>{children}</dl>
 }
 
@@ -39,7 +39,7 @@ export interface DescriptionListingItemProps {
 }
 
 export function DescriptionListingItem({label, value}: DescriptionListingItemProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
   return (
     <React.Fragment>
       <dt className={css(DescriptionListingItemLabelStyle)}>{label}</dt>

@@ -32,7 +32,7 @@ export interface PlaceholderProps {
  * A placeholder for a component.
  */
 export function Placeholder({children, onAdd}: PlaceholderProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
 
   if (children) {
     return <>{children}</>

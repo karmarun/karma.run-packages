@@ -25,7 +25,7 @@ export interface InfoListingItemProps {
 }
 
 export function InfoListingItem({label, value}: InfoListingItemProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
   return (
     <div className={css(InfoListingItemStyle)}>
       <div className={css(InfoListingItemLabelStyle)}>{label}</div>

@@ -16,7 +16,7 @@ export interface EditMenuProps {
 }
 
 export function EditMenu({children}: EditMenuProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
 
   return <div className={css(DarkMenuStyle)}>{children}</div>
 }

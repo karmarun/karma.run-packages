@@ -89,7 +89,7 @@ export interface RadioProps {
 }
 
 export function Radio({label, name, value, checked, onChange, ...props}: RadioProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
   const radioGroup = useContext(RadioGroupContext)
   const {name: radioGroupName, value: radioGroupValue, onChange: radioGroupOnChange} =
     radioGroup || {}

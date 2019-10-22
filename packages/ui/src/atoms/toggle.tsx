@@ -102,7 +102,7 @@ export interface ToggleProps {
 }
 
 export function Toggle({label, description, ...props}: ToggleProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
 
   return (
     <label className={css(ToggleWrapperStyle)}>

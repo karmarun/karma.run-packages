@@ -27,7 +27,7 @@ export interface MenuItem {
 }
 
 export function OverlayMenu({menuItems, inline, onMenuItemClick}: OverlayMenuProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
 
   let MenuItems = <></>
   if (inline) {

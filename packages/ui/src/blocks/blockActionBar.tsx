@@ -34,7 +34,7 @@ export interface BlockActionBarProps {
 }
 
 export function BlockActionBar({buttonsLeft, buttonsCenter, buttonsRight}: BlockActionBarProps) {
-  const {css} = useStyle()
+  const css = useStyle()
   return (
     <div className={css(BlockActionBarStyle)}>
       <div className={css(SideStyle)}>{buttonsLeft}</div>

@@ -40,7 +40,7 @@ export interface EditorTemplateProps {
 }
 
 export function EditorTemplate({children, navigationChildren}: EditorTemplateProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
 
   return (
     <div className={css(EditorTemplateStyle)}>

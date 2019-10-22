@@ -20,7 +20,7 @@ export interface GridProps {
 }
 
 export function Grid({children, spacing = Spacing.Tiny}: GridProps) {
-  const {css} = useStyle<GridStyleProps>({spacing})
+  const css = useStyle<GridStyleProps>({spacing})
 
   return (
     <GridContext.Provider value={{spacing}}>
@@ -56,7 +56,7 @@ export interface GridColumnProp {
 
 export function Column({ratio, children}: GridColumnProp) {
   const {spacing} = useContext(GridContext)
-  const {css} = useStyle<ColumnStyleProps>({
+  const css = useStyle<ColumnStyleProps>({
     flexBasis: ratio ? `${(ratio * 100).toFixed(2)}%` : '100%',
     spacing
   })

@@ -96,7 +96,7 @@ export function ImageUploadThumb({
   isLoading,
   onDelete
 }: ImageUploadThumbProps) {
-  const {css} = useStyle()
+  const css = useStyle()
   return (
     <div className={css(ImageUploadThumbStyle)}>
       {!isLoading && (

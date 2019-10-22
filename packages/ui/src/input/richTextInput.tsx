@@ -11,7 +11,7 @@ const RichtextBlockStyle = cssRuleWithTheme(({theme}) => ({}))
 export interface RichtextBlockProps extends BasicEditorProps {}
 
 export function RichTextInput(props: RichtextBlockProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
 
   return (
     <div className={css(RichtextBlockStyle)}>

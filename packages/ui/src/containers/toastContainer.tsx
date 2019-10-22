@@ -32,7 +32,7 @@ const ToastWrapperStyle = cssRule(() => ({
 // }))
 
 export function ToastContainer({children}: ToastContainerProps) {
-  const {css} = useStyle()
+  const css = useStyle()
 
   return (
     <>

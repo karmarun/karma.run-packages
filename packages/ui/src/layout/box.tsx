@@ -126,7 +126,7 @@ export function Box<P = undefined>({
   children,
   ...props
 }: BoxProps<P>): JSX.Element {
-  const {css} = useThemeStyle(Object.assign({}, props, styleProps))
+  const css = useThemeStyle(Object.assign({}, props, styleProps))
   const className = css(BoxBaseStyle, BoxMarginStyle, BoxPaddingStyle, ...toArray(style))
 
   return typeof children === 'function' ? (

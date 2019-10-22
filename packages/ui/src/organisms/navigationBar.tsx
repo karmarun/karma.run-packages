@@ -33,7 +33,7 @@ export interface NavigationBarProps {
 }
 
 export function NavigationBar({leftChildren, rightChildren, centerChildren}: NavigationBarProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
 
   return (
     <div className={css(NavigationBarStyle)}>

@@ -39,7 +39,7 @@ export interface NavigationTemplateProps {
 }
 
 export function NavigationTemplate({children, navigationChildren}: NavigationTemplateProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
 
   return (
     <div className={css(NavigationTemplateStyle)}>

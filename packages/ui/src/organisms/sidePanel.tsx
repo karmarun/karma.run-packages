@@ -25,7 +25,7 @@ export interface SidePanelProps extends SidePanelHeaderProps {
 }
 
 export function SidePanel({title, action, onClose, children}: SidePanelProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
   return (
     <div className={css(SidePanelStyle)}>
       <SidePanelHeader title={title} action={action} onClose={onClose} />
@@ -60,7 +60,7 @@ export interface SidePanelHeaderProps {
 }
 
 export function SidePanelHeader({title, action, onClose}: SidePanelHeaderProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
   return (
     <div className={css(SidePanelHeaderStyle)}>
       <IconLabelButton icon={MaterialIconArrowForward} label={'Close'} onClick={onClose} />
@@ -89,6 +89,6 @@ export interface SidePanelTitleProps {
 }
 
 export function SidePanelTitle({title}: SidePanelTitleProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
   return <div className={css(SidePanelTitleStyle)}>{title}</div>
 }

@@ -62,9 +62,8 @@ export interface FontSizeProps {
 }
 
 export function FontSizeContainer({fontSize, children}: FontSizeProps) {
-  const {css} = useStyle({fontSize})
-
-  return <div className={css(FontSizeStyle)}>{children}</div>
+  const style = useStyle({fontSize})
+  return <div className={style(FontSizeStyle)}>{children}</div>
 }
 
 export function fontSizeDecorator(fontSize: number = 24) {
@@ -95,7 +94,7 @@ export interface InfoBoxProps {
 }
 
 export function InfoBox({label, children}: InfoBoxProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
 
   return (
     <div className={css(InfoBoxStyle)}>
@@ -118,7 +117,7 @@ export interface DarkBackgroundProps {
 }
 
 export function DarkBackground({children}: DarkBackgroundProps) {
-  const {css} = useStyle()
+  const css = useStyle()
 
   return <div className={css(DarkBackgroundStyle)}>{children}</div>
 }

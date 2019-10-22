@@ -63,7 +63,7 @@ export function BaseButton<P = undefined>({
   children,
   ...props
 }: BaseButtonProps<P>): JSX.Element {
-  const {css} = useThemeStyle(styleProps)
+  const css = useThemeStyle(styleProps)
   const Element = href ? 'a' : 'button'
 
   return (

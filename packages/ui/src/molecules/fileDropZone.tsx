@@ -44,7 +44,7 @@ export function FileDropZone({
   children
 }: FileDropZoneProps) {
   const [{dragging, dragCount}, setDragging] = useState({dragging: false, dragCount: 0})
-  const {css} = useThemeStyle({dragging: dragging, isDisabled: isDisabled})
+  const css = useThemeStyle({dragging: dragging, isDisabled: isDisabled})
 
   function handleDrag(e: React.DragEvent<HTMLDivElement>) {
     e.preventDefault()

@@ -44,7 +44,7 @@ export function Draggable({children, position, halfSize, onPositionChange}: Drag
   })
   const [dragPosition, setPosition] = useState(position)
 
-  const {css} = useThemeStyle({position: dragPosition, halfSize: halfSize})
+  const css = useThemeStyle({position: dragPosition, halfSize: halfSize})
 
   function handleStart(relativeStart: Point2D) {
     draggingState.relativePosition = relativeStart

@@ -66,6 +66,6 @@ export function BaseInput<T extends InputType, P = undefined>({
   styleProps,
   ...props
 }: BaseInputProps<T, P>): JSX.Element {
-  const {css} = useThemeStyle(styleProps)
+  const css = useThemeStyle(styleProps)
   return <input {...props} type={type} className={css(BaseInputStyle, ...toArray(style))} />
 }

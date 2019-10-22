@@ -37,7 +37,7 @@ export interface ImageMetaProps {
 }
 
 export function ImageMeta({file}: ImageMetaProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
   return (
     <div className={css(ImageMetaStyle)}>
       <FocalPointSetter imgSrc={file.src} width={file.width} height={file.height} />
@@ -116,7 +116,7 @@ const FocalPointStyle = cssRuleWithTheme(({theme}) => ({
 export interface FocalPointProps {}
 
 export function FocalPoint({}: FocalPointProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
 
   return (
     <div className={css(FocalPointStyle)}>

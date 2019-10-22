@@ -91,7 +91,7 @@ export function TextArea({
   onValueChange,
   className
 }: TextAreaProps) {
-  const {css} = useThemeStyle<TextAreaStyleProps>({hasError: errorDescription != null})
+  const css = useThemeStyle<TextAreaStyleProps>({hasError: errorDescription != null})
 
   return (
     <div className={joinClassNames(css(TextAreaContainerStyle), className)}>

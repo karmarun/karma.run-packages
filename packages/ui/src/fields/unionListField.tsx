@@ -64,7 +64,7 @@ export function UnionListField<V extends UnionListValue>({
 }: UnionListFieldProps<V>) {
   const [casePickerIndex, setCasePickerIndex] = useState<number | null>(null)
   const unionFieldMap = children as UnionFieldCaseMap
-  const {css} = useStyle()
+  const css = useStyle()
 
   function handleItemChange(index: number, itemValue: React.SetStateAction<UnionListValue>) {
     onChange(value =>

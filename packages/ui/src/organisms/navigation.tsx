@@ -56,7 +56,7 @@ export interface NavigationProps {
 
 export function Navigation({children}: NavigationProps) {
   const [isCollapsed, setCollapsed] = useState(false)
-  const {css} = useThemeStyle({isCollapsed})
+  const css = useThemeStyle({isCollapsed})
 
   return (
     <NavigationContext.Provider value={{isCollapsed}}>

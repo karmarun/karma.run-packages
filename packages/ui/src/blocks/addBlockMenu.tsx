@@ -19,7 +19,7 @@ export interface AddBlockMenuProps {
 
 export function AddBlockMenu({menuItems, onMenuItemClick}: AddBlockMenuProps) {
   const [isOpen, setOpen] = useState(false)
-  const {css} = useStyle()
+  const css = useStyle()
 
   return (
     <div className={css(AddBlockMenuStyle)}>

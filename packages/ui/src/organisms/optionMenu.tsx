@@ -33,7 +33,7 @@ export interface OptionMenuProps {
 
 export function OptionMenu({menuItems, onMenuItemClick}: OptionMenuProps) {
   const [isOpen, setOpen] = useState(false)
-  const {css} = useThemeStyle({isOpen})
+  const css = useThemeStyle({isOpen})
 
   return (
     <div className={css(OptionMenuStyle)}>

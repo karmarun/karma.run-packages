@@ -26,7 +26,7 @@ export interface ImagesBlockProps {
 }
 
 export function ImagesBlock({images, isLead, onEdit}: ImagesBlockProps) {
-  const {css} = useStyle()
+  const css = useStyle()
   const isGallery = images.length > 1
 
   const [current, setCurrent] = useState(0)

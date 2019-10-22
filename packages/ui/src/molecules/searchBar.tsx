@@ -39,7 +39,7 @@ export function SearchBar({
   onTextInput,
   onClear
 }: SearchBarProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
   const [showOptions, setShowOptions] = useState(false)
 
   return (

@@ -95,7 +95,7 @@ export function GalleryMakerList({
   onConfirm,
   onRemove
 }: GalleryMakerListProps): JSX.Element {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
   return (
     <div className={css(GalleryMakerStyle)}>
       {images.map((image, index) => (
@@ -167,7 +167,7 @@ export interface GalleryMakerItemProps {
 }
 
 export function GalleryMakerItem({image, onMoveUp, onMoveDown, onRemove}: GalleryMakerItemProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
   return (
     <div>
       <div className={css(GalleryMakerItemStyle)}>

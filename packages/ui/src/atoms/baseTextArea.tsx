@@ -50,7 +50,7 @@ export function BaseTextArea<P = undefined>({
   style,
   styleProps
 }: BaseTextAreaProps<P>): JSX.Element {
-  const {css} = useThemeStyle(styleProps)
+  const css = useThemeStyle(styleProps)
 
   return (
     <textarea

@@ -85,7 +85,7 @@ export interface CheckboxProps {
 }
 
 export function Checkbox({label, ...props}: CheckboxProps) {
-  const {css} = useThemeStyle()
+  const css = useThemeStyle()
 
   return (
     <label className={css(CheckboxContainerStyle)}>
