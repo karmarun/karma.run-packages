@@ -1,6 +1,4 @@
-import React, {ElementType, ReactNode} from 'react'
-import {cssRule, styled} from '@karma.run/react'
-import {toArray} from '@karma.run/utility'
+import React, {ReactNode, forwardRef, Ref} from 'react'
 
 import {
   FlexDirectionProperty,
@@ -22,7 +20,7 @@ import {
 } from 'csstype'
 
 import {pxToRem} from '../style/helpers'
-import {CSSRuleWithTheme, useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
+import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
 
 export interface BaseBoxProps {
   readonly flex?: boolean
@@ -62,28 +60,31 @@ export interface BaseBoxProps {
   readonly marginLeft?: number | string
   readonly marginRight?: number | string
 
-  readonly element?: ElementType<{className?: string}>
-  readonly children?: ReactNode | ((props: {className: string}) => ReactNode)
-}
-
-export interface BoxProps<P = undefined> extends BaseBoxProps {
-  readonly styleRule?: CSSRuleWithTheme<P> | CSSRuleWithTheme<P>[]
-  readonly styleProps?: P
-}
-
-export interface BoxPropsWithoutStyleProps extends BaseBoxProps {
-  readonly styleRule?: CSSRuleWithTheme | CSSRuleWithTheme[]
-}
-
-export interface BoxPropsWithStyleProps<P = undefined> extends BaseBoxProps {
-  readonly styleRule?: CSSRuleWithTheme<P> | CSSRuleWithTheme<P>[]
-  readonly styleProps: P
+  readonly element?: keyof JSX.IntrinsicElements
+  readonly children?: ReactNode | ((props: {className: string}, ref: Ref<any>) => ReactNode)
 }
 
 type BoxStyleProps = Omit<Omit<BaseBoxProps, 'element'>, 'children'>
 
 const BoxBaseStyle = cssRuleWithTheme<BoxStyleProps>(
-  ({flex, inlineFlex, block, inline, margin, padding, theme, ...props}) => ({
+  ({
+    flex,
+    inlineFlex,
+    block,
+    inline,
+    margin,
+    padding,
+    theme,
+    marginTop,
+    marginBottom,
+    marginLeft,
+    marginRight,
+    paddingTop,
+    paddingBottom,
+    paddingLeft,
+    paddingRight,
+    ...props
+  }) => ({
     display: flex
       ? 'flex'
       : inlineFlex
@@ -94,46 +95,35 @@ const BoxBaseStyle = cssRuleWithTheme<BoxStyleProps>(
       ? 'inline'
       : undefined,
     margin: typeof margin === 'number' ? pxToRem(margin) : margin,
+    marginTop: typeof marginTop === 'number' ? pxToRem(marginTop) : marginTop,
+    marginBottom: typeof marginBottom === 'number' ? pxToRem(marginBottom) : marginBottom,
+    marginLeft: typeof marginLeft === 'number' ? pxToRem(marginLeft) : marginLeft,
+    marginRight: typeof marginRight === 'number' ? pxToRem(marginRight) : marginRight,
+
     padding: typeof padding === 'number' ? pxToRem(padding) : padding,
+    paddingTop: typeof paddingTop === 'number' ? pxToRem(paddingTop) : paddingTop,
+    paddingBottom: typeof paddingBottom === 'number' ? pxToRem(paddingBottom) : paddingBottom,
+    paddingLeft: typeof paddingLeft === 'number' ? pxToRem(paddingLeft) : paddingLeft,
+    paddingRight: typeof paddingRight === 'number' ? pxToRem(paddingRight) : paddingRight,
+
     ...props
   })
 )
 
-const BoxMarginStyle = cssRule<BoxStyleProps>(
-  ({marginTop, marginBottom, marginLeft, marginRight}) => ({
-    marginTop: typeof marginTop === 'number' ? pxToRem(marginTop) : marginTop,
-    marginBottom: typeof marginBottom === 'number' ? pxToRem(marginBottom) : marginBottom,
-    marginLeft: typeof marginLeft === 'number' ? pxToRem(marginLeft) : marginLeft,
-    marginRight: typeof marginRight === 'number' ? pxToRem(marginRight) : marginRight
-  })
+export const Box = forwardRef<any, BaseBoxProps>(
+  ({element = 'div', children, ...props}, ref: any) => {
+    const style = useThemeStyle(props)
+    const className = style(BoxBaseStyle)
+
+    const Element = element as any
+    const anyChildren = children as any
+
+    return typeof anyChildren === 'function' ? (
+      anyChildren({className}, ref)
+    ) : (
+      <Element className={className} ref={ref}>
+        {children}
+      </Element>
+    )
+  }
 )
-
-const BoxPaddingStyle = cssRule<BoxStyleProps>(
-  ({paddingTop, paddingBottom, paddingLeft, paddingRight}) => ({
-    paddingTop: typeof paddingTop === 'number' ? pxToRem(paddingTop) : paddingTop,
-    paddingBottom: typeof paddingBottom === 'number' ? pxToRem(paddingBottom) : paddingBottom,
-    paddingLeft: typeof paddingLeft === 'number' ? pxToRem(paddingLeft) : paddingLeft,
-    paddingRight: typeof paddingRight === 'number' ? pxToRem(paddingRight) : paddingRight
-  })
-)
-
-export const Test = styled('div', () => ({backgroundColor: 'red'}))
-
-export function Box(props: BoxPropsWithoutStyleProps): JSX.Element
-export function Box<P = undefined>(props: BoxPropsWithStyleProps<P>): JSX.Element
-export function Box<P = undefined>({
-  element: Element = 'div',
-  styleRule,
-  styleProps,
-  children,
-  ...props
-}: BoxProps<P>): JSX.Element {
-  const css = useThemeStyle(Object.assign({}, props, styleProps))
-  const className = css(BoxBaseStyle, BoxMarginStyle, BoxPaddingStyle, ...toArray(styleRule))
-
-  return typeof children === 'function' ? (
-    children({className})
-  ) : (
-    <Element className={className}>{children}</Element>
-  )
-}
