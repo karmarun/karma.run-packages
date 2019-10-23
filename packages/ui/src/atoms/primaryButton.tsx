@@ -1,25 +1,40 @@
-import React from 'react'
+import React, {ButtonHTMLAttributes, forwardRef, AnchorHTMLAttributes} from 'react'
+import {styled} from '@karma.run/react'
 
-import {BaseButton, ButtonProps} from './baseButton'
-import {cssRuleWithTheme} from '../style/themeContext'
-import {pxToRem, FontSize, TransitionDuration} from '../style/helpers'
+import {BaseButtonStyle} from './baseButton'
+import {cssRuleWithTheme, themeMiddleware} from '../style/themeContext'
+import {pxToRem, FontSize, TransitionDuration, Spacing} from '../style/helpers'
 
 const PrimaryButtonStyle = cssRuleWithTheme(({theme}) => ({
-  borderRadius: pxToRem(10),
-  padding: pxToRem(10),
   minWidth: pxToRem(140),
+
+  borderRadius: pxToRem(Spacing.ExtraSmall),
+
+  paddingTop: pxToRem(Spacing.ExtraSmall),
+  paddingBottom: pxToRem(Spacing.ExtraSmall),
+  paddingLeft: pxToRem(Spacing.ExtraSmall),
+  paddingRight: pxToRem(Spacing.ExtraSmall),
 
   color: theme.colors.white,
   backgroundColor: theme.colors.primary,
 
   fontSize: pxToRem(FontSize.Medium),
   fontWeight: 'bold',
+  textAlign: 'center',
 
   transitionProperty: 'background-color',
   transitionTimingFunction: 'ease-in',
   transitionDuration: TransitionDuration.Fast,
 
-  '&:hover:enabled': {
+  ':link': {
+    color: theme.colors.white
+  },
+
+  ':visited': {
+    color: theme.colors.white
+  },
+
+  ':hover:enabled': {
     backgroundColor: theme.colors.primaryDark,
     color: theme.colors.light
   },
@@ -35,14 +50,36 @@ const PrimaryButtonStyle = cssRuleWithTheme(({theme}) => ({
   }
 }))
 
-export interface PrimaryButtonProps extends ButtonProps {
+export interface PrimaryButtonProps {
   readonly label: string
 }
 
-export function PrimaryButton({label, ...rest}: PrimaryButtonProps) {
-  return (
-    <BaseButton {...rest} style={PrimaryButtonStyle}>
-      {label}
-    </BaseButton>
-  )
-}
+export const PrimaryButton = styled(
+  forwardRef<HTMLButtonElement, PrimaryButtonProps & ButtonHTMLAttributes<HTMLButtonElement>>(
+    ({label, ...props}, ref) => (
+      <button {...props} ref={ref}>
+        {label}
+      </button>
+    )
+  ),
+  (...props) => ({
+    ...BaseButtonStyle(...props),
+    ...PrimaryButtonStyle(...props)
+  }),
+  themeMiddleware
+)
+
+export const PrimaryLinkButton = styled(
+  forwardRef<HTMLAnchorElement, PrimaryButtonProps & AnchorHTMLAttributes<HTMLAnchorElement>>(
+    ({label, ...props}, ref) => (
+      <a {...props} ref={ref}>
+        {label}
+      </a>
+    )
+  ),
+  (...props) => ({
+    ...BaseButtonStyle(...props),
+    ...PrimaryButtonStyle(...props)
+  }),
+  themeMiddleware
+)

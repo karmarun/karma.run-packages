@@ -53,3 +53,7 @@ export type CSSRuleWithTheme<P = {}> = CSSRule<P & {theme: Theme}>
 export function cssRuleWithTheme<P = {}>(styleFn: CSSRuleWithTheme<P>): CSSRuleWithTheme<P> {
   return styleFn
 }
+
+export function themeMiddleware() {
+  return {theme: useContext(ThemeContext)}
+}

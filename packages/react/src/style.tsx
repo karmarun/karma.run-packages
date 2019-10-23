@@ -5,7 +5,10 @@ import React, {
   ReactNode,
   forwardRef,
   DetailedHTMLProps,
-  ComponentType
+  ComponentType,
+  ForwardRefExoticComponent,
+  PropsWithoutRef,
+  RefAttributes
 } from 'react'
 
 import {createRenderer, IRenderer, combineRules} from 'fela'
@@ -244,66 +247,67 @@ export function useFont<P>(
   }
 }
 
-export type StylePropsFromStyleParameter<P extends {} = {}> = keyof P extends never
+export type StylePropsFromProps<P extends {}> = keyof P extends never
   ? {styleProps?: P}
   : {styleProps: P}
 
-export type PropsForElement<
-  E extends (keyof JSX.IntrinsicElements) | ComponentType<{className: string}>
-> = E extends keyof JSX.IntrinsicElements
-  ? JSX.IntrinsicElements[E]
-  : E extends ComponentType<infer P>
-  ? P
-  : {}
-
-export type PropsForElementAndStyle<
-  E extends (keyof JSX.IntrinsicElements) | ComponentType<{className: string}>,
-  P extends {}
-> = PropsForElement<E> & StylePropsFromStyleParameter<P>
-
-export type RefTypeForElement<E> = E extends keyof JSX.IntrinsicElements
-  ? JSX.IntrinsicElements[E] extends DetailedHTMLProps<infer _, infer T>
-    ? T
-    : never
-  : E
+export type RefTypeForElement<
+  E extends keyof JSX.IntrinsicElements
+> = JSX.IntrinsicElements[E] extends DetailedHTMLProps<infer _, infer T> ? T : never
 
 export function styled<
-  E extends (keyof JSX.IntrinsicElements) | ComponentType<{className: string}>,
-  MPI extends {} = {},
+  E extends keyof JSX.IntrinsicElements,
   MP extends {} = {},
-  SP extends {} = MP,
-  P = Omit<SP, keyof MP | 'className'> & MPI
->(element: E, rule: CSSRule<SP>, middleware?: (props: MPI) => MP) {
-  const Element = element as any
+  SP extends {} = MP
+>(
+  element: E,
+  rule: CSSRule<SP>,
+  middleware?: () => MP
+): ForwardRefExoticComponent<
+  PropsWithoutRef<Omit<JSX.IntrinsicElements[E], 'className'>> &
+    RefAttributes<RefTypeForElement<E>> &
+    StylePropsFromProps<Omit<SP, keyof MP>>
+>
+export function styled<P extends {className?: string}, MP extends {} = {}, SP extends {} = MP>(
+  element: ComponentType<P>,
+  rule: CSSRule<SP>,
+  middleware?: () => MP
+): ForwardRefExoticComponent<
+  PropsWithoutRef<Omit<P, 'className'>> &
+    RefAttributes<any> &
+    StylePropsFromProps<Omit<SP, keyof MP>>
+>
+export function styled(
+  Element: any,
+  rule: (props: any, renderer: CSSRenderer) => any,
+  middleware?: () => any
+): ForwardRefExoticComponent<any> {
+  const forwardedRef = forwardRef<any, {styleProps: any}>(({styleProps, ...props}, ref) => {
+    const context = useContext(StyleContext)
 
-  const forwardedRef = forwardRef<RefTypeForElement<E>, PropsForElementAndStyle<E, P>>(
-    ({styleProps, ...props}, ref) => {
-      const context = useContext(StyleContext)
-
-      if (process.env.NODE_ENV !== 'production') {
-        if (!context) {
-          throw new Error(
-            "Couldn't find a StyleContext provider, did you forget to include StyleProvider in the component tree."
-          )
-        }
+    if (process.env.NODE_ENV !== 'production') {
+      if (!context) {
+        throw new Error(
+          "Couldn't find a StyleContext provider, did you forget to include StyleProvider in the component tree."
+        )
       }
-
-      const {renderer} = context!
-      const stylePropsWithMiddleware = middleware
-        ? Object.assign({}, styleProps, middleware(styleProps as any))
-        : styleProps
-
-      return (
-        <Element
-          ref={ref}
-          {...props}
-          className={renderer.renderRule(rule, stylePropsWithMiddleware as any)}
-        />
-      )
     }
-  )
 
-  const displayName = typeof element === 'string' ? element : Element.displayName || Element.name
+    const {renderer} = context!
+    const stylePropsWithMiddleware = middleware
+      ? Object.assign({}, styleProps, middleware())
+      : styleProps
+
+    return (
+      <Element
+        ref={ref}
+        {...props}
+        className={renderer.renderRule(rule, stylePropsWithMiddleware)}
+      />
+    )
+  })
+
+  const displayName = typeof Element === 'string' ? Element : Element.displayName || Element.name
   forwardedRef.displayName = `Styled(${displayName})`
 
   return forwardedRef

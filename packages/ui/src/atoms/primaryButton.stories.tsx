@@ -1,14 +1,15 @@
 import React from 'react'
-import {PrimaryButton} from './primaryButton'
+import {PrimaryButton, PrimaryLinkButton} from './primaryButton'
 
 import {centerLayoutDecorator} from '../.storybook/decorators'
 
 export default {
   component: PrimaryButton,
-  title: 'Atoms|Buttons/Text/PrimaryButton',
+  title: 'Input|Buttons/PrimaryButton',
   decorators: [centerLayoutDecorator()]
 }
 
-export const Standard = () => <PrimaryButton label={'Label'} />
+export const Standard = () => <PrimaryButton label="Label" />
+export const Disabled = () => <PrimaryButton label="Label" disabled />
 
-export const Disabled = () => <PrimaryButton label={'Label'} disabled />
+export const Link = () => <PrimaryLinkButton href="#" label="Label" />

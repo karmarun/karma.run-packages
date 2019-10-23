@@ -1,5 +1,5 @@
 import React, {ElementType, ReactNode} from 'react'
-import {cssRule} from '@karma.run/react'
+import {cssRule, styled} from '@karma.run/react'
 import {toArray} from '@karma.run/utility'
 
 import {
@@ -67,16 +67,16 @@ export interface BaseBoxProps {
 }
 
 export interface BoxProps<P = undefined> extends BaseBoxProps {
-  readonly style?: CSSRuleWithTheme<P> | CSSRuleWithTheme<P>[]
+  readonly styleRule?: CSSRuleWithTheme<P> | CSSRuleWithTheme<P>[]
   readonly styleProps?: P
 }
 
 export interface BoxPropsWithoutStyleProps extends BaseBoxProps {
-  readonly style?: CSSRuleWithTheme | CSSRuleWithTheme[]
+  readonly styleRule?: CSSRuleWithTheme | CSSRuleWithTheme[]
 }
 
 export interface BoxPropsWithStyleProps<P = undefined> extends BaseBoxProps {
-  readonly style?: CSSRuleWithTheme<P> | CSSRuleWithTheme<P>[]
+  readonly styleRule?: CSSRuleWithTheme<P> | CSSRuleWithTheme<P>[]
   readonly styleProps: P
 }
 
@@ -117,17 +117,19 @@ const BoxPaddingStyle = cssRule<BoxStyleProps>(
   })
 )
 
+export const Test = styled('div', () => ({backgroundColor: 'red'}))
+
 export function Box(props: BoxPropsWithoutStyleProps): JSX.Element
 export function Box<P = undefined>(props: BoxPropsWithStyleProps<P>): JSX.Element
 export function Box<P = undefined>({
   element: Element = 'div',
-  style,
+  styleRule,
   styleProps,
   children,
   ...props
 }: BoxProps<P>): JSX.Element {
   const css = useThemeStyle(Object.assign({}, props, styleProps))
-  const className = css(BoxBaseStyle, BoxMarginStyle, BoxPaddingStyle, ...toArray(style))
+  const className = css(BoxBaseStyle, BoxMarginStyle, BoxPaddingStyle, ...toArray(styleRule))
 
   return typeof children === 'function' ? (
     children({className})

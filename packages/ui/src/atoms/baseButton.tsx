@@ -30,7 +30,7 @@ export interface BaseButtonPropsWithStyleProps<P = undefined> extends ButtonProp
   readonly styleProps: P
 }
 
-const BaseButtonStyle = cssRule({
+export const BaseButtonStyle = cssRule({
   display: 'inline-block',
   overflow: 'hidden',
 
@@ -38,12 +38,15 @@ const BaseButtonStyle = cssRule({
   fontSize: 'inherit',
   fontFamily: 'inherit',
 
-  padding: 0,
-  margin: 0,
+  paddingTop: 0,
+  paddingBottom: 0,
+  paddingLeft: 0,
+  paddingRight: 0,
 
-  border: 'none',
+  borderWidth: '0x',
+  borderStyle: 'none',
+  borderRadius: '0px',
   backgroundColor: 'transparent',
-  appearance: 'none',
 
   ':disabled': {
     cursor: 'default'
