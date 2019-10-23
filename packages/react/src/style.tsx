@@ -249,7 +249,7 @@ export type StylePropsFromStyleParameter<P extends {} = {}> = keyof P extends ne
   : {styleProps: P}
 
 export type PropsForElement<
-  E extends (keyof JSX.IntrinsicElements) | ComponentType
+  E extends (keyof JSX.IntrinsicElements) | ComponentType<{className: string}>
 > = E extends keyof JSX.IntrinsicElements
   ? JSX.IntrinsicElements[E]
   : E extends ComponentType<infer P>
@@ -257,7 +257,7 @@ export type PropsForElement<
   : {}
 
 export type PropsForElementAndStyle<
-  E extends (keyof JSX.IntrinsicElements) | ComponentType,
+  E extends (keyof JSX.IntrinsicElements) | ComponentType<{className: string}>,
   P extends {}
 > = PropsForElement<E> & StylePropsFromStyleParameter<P>
 
@@ -268,11 +268,11 @@ export type RefTypeForElement<E> = E extends keyof JSX.IntrinsicElements
   : E
 
 export function styled<
-  E extends (keyof JSX.IntrinsicElements) | ComponentType,
+  E extends (keyof JSX.IntrinsicElements) | ComponentType<{className: string}>,
   MPI extends {} = {},
   MP extends {} = {},
   SP extends {} = MP,
-  P = Omit<SP, keyof MP> & MPI
+  P = Omit<SP, keyof MP | 'className'> & MPI
 >(element: E, rule: CSSRule<SP>, middleware?: (props: MPI) => MP) {
   const Element = element as any
 
