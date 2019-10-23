@@ -1,14 +1,5 @@
-import React, {createContext, ReactNode, useContext, ComponentType, forwardRef} from 'react'
-
-import {
-  useStyle,
-  CSSRule,
-  PropsForElementAndStyle,
-  RefTypeForElement,
-  StyleParameter
-} from '@karma.run/react'
-
-import {toArray} from '@karma.run/utility'
+import React, {createContext, ReactNode, useContext} from 'react'
+import {useStyle, CSSRule} from '@karma.run/react'
 
 import {defaultTheme} from './defaultTheme'
 
@@ -61,23 +52,4 @@ export type CSSRuleWithTheme<P = {}> = CSSRule<P & {theme: Theme}>
 
 export function cssRuleWithTheme<P = {}>(styleFn: CSSRuleWithTheme<P>): CSSRuleWithTheme<P> {
   return styleFn
-}
-
-export function themeStyled<
-  E extends (keyof JSX.IntrinsicElements) | ComponentType<{className?: string}>,
-  S extends StyleParameter
->(element: E, styles: S) {
-  const Element = element as any
-  const forwardedRef = forwardRef<
-    RefTypeForElement<E>,
-    Omit<PropsForElementAndStyle<E, S>, 'theme'>
-  >((props, ref) => {
-    const style = useThemeStyle(props)
-    return <Element ref={ref} {...props} className={style(...toArray(styles))} />
-  })
-
-  const displayName = typeof element === 'string' ? element : Element.displayName || Element.name
-  forwardedRef.displayName = `ThemeStyled(${displayName})`
-
-  return forwardedRef
 }

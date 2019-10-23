@@ -14,9 +14,7 @@ import {rehydrate, render, renderToMarkup, renderToSheetList} from 'fela-dom'
 import felaPrefixer from 'fela-plugin-prefixer'
 import felaFallbackValue from 'fela-plugin-fallback-value'
 
-import {toArray} from '@karma.run/utility'
 import {Properties} from 'csstype'
-
 import {ChildrenProps} from './types'
 
 export interface CSSStyle extends Properties<string | number> {
@@ -105,8 +103,11 @@ export interface CSSStyle extends Properties<string | number> {
 }
 
 export type CSSRenderer = IRenderer
-export type CSSRule<P = {}> = (props: P, renderer: CSSRenderer) => CSSStyle
-export type CSSKeyframes<P = {}> = (props: P, renderer: CSSRenderer) => Record<string, CSSStyle>
+export type CSSRule<P = unknown> = (props: P, renderer: CSSRenderer) => CSSStyle
+export type CSSKeyframes<P = unknown> = (
+  props: P,
+  renderer: CSSRenderer
+) => Record<string, CSSStyle>
 
 export interface StyleContextType {
   readonly renderer: CSSRenderer
@@ -243,22 +244,22 @@ export function useFont<P>(
   }
 }
 
-export type StyleParameter = CSSRule<any>[] | CSSRule<any>
-export type PropsFromStyleParameter<T extends StyleParameter> = T extends CSSRule<infer P>[]
-  ? P
-  : T extends CSSRule<infer P>
-  ? P
-  : never
+export type StylePropsFromStyleParameter<P extends {} = {}> = keyof P extends never
+  ? {styleProps?: P}
+  : {styleProps: P}
 
-export type PropsForElementAndStyle<
-  E extends (keyof JSX.IntrinsicElements) | ComponentType,
-  S extends StyleParameter
-> = (E extends keyof JSX.IntrinsicElements
+export type PropsForElement<
+  E extends (keyof JSX.IntrinsicElements) | ComponentType
+> = E extends keyof JSX.IntrinsicElements
   ? JSX.IntrinsicElements[E]
   : E extends ComponentType<infer P>
   ? P
-  : {}) &
-  PropsFromStyleParameter<S>
+  : {}
+
+export type PropsForElementAndStyle<
+  E extends (keyof JSX.IntrinsicElements) | ComponentType,
+  P extends {}
+> = PropsForElement<E> & StylePropsFromStyleParameter<P>
 
 export type RefTypeForElement<E> = E extends keyof JSX.IntrinsicElements
   ? JSX.IntrinsicElements[E] extends DetailedHTMLProps<infer _, infer T>
@@ -268,13 +269,37 @@ export type RefTypeForElement<E> = E extends keyof JSX.IntrinsicElements
 
 export function styled<
   E extends (keyof JSX.IntrinsicElements) | ComponentType,
-  S extends StyleParameter
->(element: E, styles: S) {
+  MPI extends {} = {},
+  MP extends {} = {},
+  SP extends {} = MP,
+  P = Omit<SP, keyof MP> & MPI
+>(element: E, rule: CSSRule<SP>, middleware?: (props: MPI) => MP) {
   const Element = element as any
-  const forwardedRef = forwardRef<RefTypeForElement<E>, PropsForElementAndStyle<E, S>>(
-    (props, ref) => {
-      const style = useStyle(props)
-      return <Element ref={ref} {...props} className={style(...toArray(styles))} />
+
+  const forwardedRef = forwardRef<RefTypeForElement<E>, PropsForElementAndStyle<E, P>>(
+    ({styleProps, ...props}, ref) => {
+      const context = useContext(StyleContext)
+
+      if (process.env.NODE_ENV !== 'production') {
+        if (!context) {
+          throw new Error(
+            "Couldn't find a StyleContext provider, did you forget to include StyleProvider in the component tree."
+          )
+        }
+      }
+
+      const {renderer} = context!
+      const stylePropsWithMiddleware = middleware
+        ? Object.assign({}, styleProps, middleware(styleProps as any))
+        : styleProps
+
+      return (
+        <Element
+          ref={ref}
+          {...props}
+          className={renderer.renderRule(rule, stylePropsWithMiddleware as any)}
+        />
+      )
     }
   )
 
