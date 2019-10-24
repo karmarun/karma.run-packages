@@ -1,19 +1,18 @@
 import React, {ButtonHTMLAttributes, forwardRef, AnchorHTMLAttributes} from 'react'
-import {styled} from '@karma.run/react'
+import {styled, padding} from '@karma.run/react'
 
 import {BaseButtonStyle} from './baseButton'
 import {cssRuleWithTheme, themeMiddleware} from '../style/themeContext'
 import {pxToRem, FontSize, TransitionDuration, Spacing} from '../style/helpers'
 
 const PrimaryButtonStyle = cssRuleWithTheme(({theme}) => ({
+  _className: process.env.NODE_ENV !== 'production' ? 'PrimaryButton' : undefined,
+
   minWidth: pxToRem(140),
 
   borderRadius: pxToRem(Spacing.ExtraSmall),
 
-  paddingTop: pxToRem(Spacing.ExtraSmall),
-  paddingBottom: pxToRem(Spacing.ExtraSmall),
-  paddingLeft: pxToRem(Spacing.ExtraSmall),
-  paddingRight: pxToRem(Spacing.ExtraSmall),
+  ...padding(pxToRem(Spacing.ExtraSmall)),
 
   color: theme.colors.white,
   backgroundColor: theme.colors.primary,

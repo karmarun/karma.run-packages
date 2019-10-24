@@ -1,6 +1,6 @@
 import React, {ReactNode, MouseEventHandler} from 'react'
 
-import {cssRule} from '@karma.run/react'
+import {cssRule, padding} from '@karma.run/react'
 import {toArray} from '@karma.run/utility'
 
 import {useThemeStyle, CSSRuleWithTheme} from '../style/themeContext'
@@ -38,14 +38,12 @@ export const BaseButtonStyle = cssRule({
   fontSize: 'inherit',
   fontFamily: 'inherit',
 
-  paddingTop: 0,
-  paddingBottom: 0,
-  paddingLeft: 0,
-  paddingRight: 0,
+  ...padding(0),
 
-  borderWidth: '0x',
+  borderWidth: '0px',
   borderStyle: 'none',
   borderRadius: '0px',
+
   backgroundColor: 'transparent',
 
   ':disabled': {
