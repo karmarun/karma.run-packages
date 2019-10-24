@@ -21,6 +21,7 @@ import {
 
 import {pxToRem} from '../style/helpers'
 import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
+import {margin, padding} from '@karma.run/react'
 
 export interface BaseBoxProps {
   readonly flex?: boolean
@@ -72,8 +73,8 @@ const BoxBaseStyle = cssRuleWithTheme<BoxStyleProps>(
     inlineFlex,
     block,
     inline,
-    margin,
-    padding,
+    margin: marginValue,
+    padding: paddingValue,
     theme,
     marginTop,
     marginBottom,
@@ -84,30 +85,64 @@ const BoxBaseStyle = cssRuleWithTheme<BoxStyleProps>(
     paddingLeft,
     paddingRight,
     ...props
-  }) => ({
-    display: flex
-      ? 'flex'
-      : inlineFlex
-      ? 'inline-flex'
-      : block
-      ? 'block'
-      : inline
-      ? 'inline'
-      : undefined,
-    margin: typeof margin === 'number' ? pxToRem(margin) : margin,
-    marginTop: typeof marginTop === 'number' ? pxToRem(marginTop) : marginTop,
-    marginBottom: typeof marginBottom === 'number' ? pxToRem(marginBottom) : marginBottom,
-    marginLeft: typeof marginLeft === 'number' ? pxToRem(marginLeft) : marginLeft,
-    marginRight: typeof marginRight === 'number' ? pxToRem(marginRight) : marginRight,
+  }) => {
+    marginValue =
+      typeof marginValue === 'string' ? marginValue : marginValue && pxToRem(marginValue)
 
-    padding: typeof padding === 'number' ? pxToRem(padding) : padding,
-    paddingTop: typeof paddingTop === 'number' ? pxToRem(paddingTop) : paddingTop,
-    paddingBottom: typeof paddingBottom === 'number' ? pxToRem(paddingBottom) : paddingBottom,
-    paddingLeft: typeof paddingLeft === 'number' ? pxToRem(paddingLeft) : paddingLeft,
-    paddingRight: typeof paddingRight === 'number' ? pxToRem(paddingRight) : paddingRight,
+    marginTop = typeof marginTop === 'string' ? marginTop : marginTop && pxToRem(marginTop)
 
-    ...props
-  })
+    marginBottom =
+      typeof marginBottom === 'string' ? marginBottom : marginBottom && pxToRem(marginBottom)
+
+    marginLeft = typeof marginLeft === 'string' ? marginLeft : marginLeft && pxToRem(marginLeft)
+
+    marginRight =
+      typeof marginRight === 'string' ? marginRight : marginRight && pxToRem(marginRight)
+
+    paddingValue =
+      typeof paddingValue === 'string' ? paddingValue : paddingValue && pxToRem(paddingValue)
+
+    paddingTop = typeof paddingTop === 'string' ? paddingTop : paddingTop && pxToRem(paddingTop)
+
+    paddingBottom =
+      typeof paddingBottom === 'string' ? paddingBottom : paddingBottom && pxToRem(paddingBottom)
+
+    paddingLeft =
+      typeof paddingLeft === 'string' ? paddingLeft : paddingLeft && pxToRem(paddingLeft)
+
+    paddingRight =
+      typeof paddingRight === 'string' ? paddingRight : paddingRight && pxToRem(paddingRight)
+
+    return {
+      _className: process.env.NODE_ENV !== 'production' ? 'Box' : undefined,
+
+      display: flex
+        ? 'flex'
+        : inlineFlex
+        ? 'inline-flex'
+        : block
+        ? 'block'
+        : inline
+        ? 'inline'
+        : undefined,
+
+      ...margin(
+        marginTop || marginValue,
+        marginRight || marginValue,
+        marginBottom || marginValue,
+        marginLeft || marginValue
+      ),
+
+      ...padding(
+        paddingTop || paddingValue,
+        paddingRight || paddingValue,
+        paddingBottom || paddingValue,
+        paddingLeft || paddingValue
+      ),
+
+      ...props
+    }
+  }
 )
 
 export const Box = forwardRef<any, BaseBoxProps>(
@@ -127,3 +162,5 @@ export const Box = forwardRef<any, BaseBoxProps>(
     )
   }
 )
+
+Box.displayName = 'Box'

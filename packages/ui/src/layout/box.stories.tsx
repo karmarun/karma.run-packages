@@ -10,4 +10,8 @@ export default {
   decorators: [centerLayoutDecorator()]
 }
 
-export const Standard = () => <Box margin={-Spacing.Tiny}>Box</Box>
+export const Standard = () => (
+  <Box margin={Spacing.Tiny} padding={Spacing.Medium}>
+    Box
+  </Box>
+)

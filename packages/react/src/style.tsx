@@ -17,10 +17,22 @@ import {rehydrate, render, renderToMarkup, renderToSheetList} from 'fela-dom'
 import felaPrefixer from 'fela-plugin-prefixer'
 import felaFallbackValue from 'fela-plugin-fallback-value'
 
-import {Properties} from 'csstype'
+import {
+  StandardLonghandPropertiesFallback,
+  VendorPropertiesFallback,
+  ObsoletePropertiesFallback,
+  SvgPropertiesFallback
+} from 'csstype'
+
 import {ChildrenProps} from './types'
 
-export interface CSSStyle extends Properties<string | number> {
+export interface CSSProperties<T = string | 0>
+  extends StandardLonghandPropertiesFallback<T>,
+    VendorPropertiesFallback<T>,
+    ObsoletePropertiesFallback<T>,
+    SvgPropertiesFallback<T> {}
+
+export interface CSSStyle extends CSSProperties<string | number> {
   ':active'?: CSSStyle
   ':any-link'?: CSSStyle
   ':blank'?: CSSStyle
@@ -102,7 +114,7 @@ export interface CSSStyle extends Properties<string | number> {
 
   '@media screen and (min-width: 768px)'?: CSSStyle
 
-  [selector: string]: number | string | CSSStyle | undefined
+  [selector: string]: number | string | CSSStyle | undefined | (string | number)[]
 }
 
 export type CSSRenderer = IRenderer
@@ -194,7 +206,7 @@ export function useStaticStyle<P>(props?: P): (selector: string, style: CSSStyle
   const {renderer} = context!
 
   return (selector: string, style: CSSStyle) => {
-    renderer.renderStatic(style, selector)
+    renderer.renderStatic(style as any, selector)
   }
 }
 

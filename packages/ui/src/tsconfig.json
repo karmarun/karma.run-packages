@@ -6,7 +6,6 @@
     "outDir": "../lib/cjs/",
     "module": "commonjs",
     "types": [],
-    "lib": ["dom", "dom.iterable", "es2017"],
-    "composite": true
+    "lib": ["dom", "dom.iterable", "es2017"]
   }
 }
