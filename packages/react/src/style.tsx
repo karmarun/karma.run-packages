@@ -17,22 +17,11 @@ import {rehydrate, render, renderToMarkup, renderToSheetList} from 'fela-dom'
 import felaPrefixer from 'fela-plugin-prefixer'
 import felaFallbackValue from 'fela-plugin-fallback-value'
 
-import {
-  StandardLonghandPropertiesFallback,
-  VendorPropertiesFallback,
-  ObsoletePropertiesFallback,
-  SvgPropertiesFallback
-} from 'csstype'
+import {PropertiesFallback} from 'csstype'
 
 import {ChildrenProps} from './types'
 
-export interface CSSProperties<T = string | 0>
-  extends StandardLonghandPropertiesFallback<T>,
-    VendorPropertiesFallback<T>,
-    ObsoletePropertiesFallback<T>,
-    SvgPropertiesFallback<T> {}
-
-export interface CSSStyle extends CSSProperties<string | number> {
+export interface CSSStyle extends PropertiesFallback<string | number> {
   ':active'?: CSSStyle
   ':any-link'?: CSSStyle
   ':blank'?: CSSStyle
