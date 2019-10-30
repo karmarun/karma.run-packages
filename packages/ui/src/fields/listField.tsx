@@ -1,7 +1,8 @@
 import React from 'react'
 import nanoid from 'nanoid'
 
-import {isFunctionalUpdate, isValueConstructor} from '@karma.run/react'
+import {isFunctionalUpdate} from '@karma.run/react'
+import {isValueConstructor} from '@karma.run/utility'
 
 import {FieldProps} from './types'
 

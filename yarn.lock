@@ -1086,6 +1086,14 @@
   resolved "https://registry.yarnpkg.com/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
   integrity sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==
 
+"@karma.run/graphql@^0.0.0":
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/@karma.run/graphql/-/graphql-0.0.0.tgz#06e403a9d0584142b871b103c5496fbf7c915942"
+  integrity sha512-tCSOAn/sP7Ouv9Fq+Uueacr6wptBw2mtTLbfhmsYYzjLVG8VKsy3T+5SFYiyXkCz8A+QtLvqCCvlH325bHSVQQ==
+  dependencies:
+    "@karma.run/utility" "0.0.0"
+    "@types/slate" "^0.47.1"
+
 "@karma.run/react@^0.0.17":
   version "0.0.17"
   resolved "https://registry.yarnpkg.com/@karma.run/react/-/react-0.0.17.tgz#c40a1a67d6bb34913c3287ae2fe4a8c6e43ff10f"
@@ -1109,6 +1117,11 @@
     "@karma.run/utility" "^0.0.0"
     nanoid "^2.0.3"
     react "^16.10.1"
+
+"@karma.run/utility@0.0.0", "@karma.run/utility@^0.0.0":
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/@karma.run/utility/-/utility-0.0.0.tgz#5c9f791427c5d375f7c0ad5cb94892193b21df23"
+  integrity sha512-GV+mmm0iwcvVFtHyRy82ssHCXTqpoeNH+SU4B9GdBgn45R8MBt3Eohiw1bvKZt0HJi8zJlA2OUhkftQSrUTWDg==
 
 "@mdx-js/loader@^1.1.0":
   version "1.5.1"

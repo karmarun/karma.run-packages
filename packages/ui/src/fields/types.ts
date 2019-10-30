@@ -1,5 +1,5 @@
 import {IconType} from '../atoms/icon'
-import {ValueConstructor, UnionToIntersection} from '@karma.run/react'
+import {UnionToIntersection, ValueConstructor} from '@karma.run/utility'
 
 export interface FieldProps<V = any> {
   readonly value: V

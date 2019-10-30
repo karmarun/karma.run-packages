@@ -2,6 +2,8 @@ import {GraphQLScalarType, valueFromASTUntyped} from 'graphql'
 import {DocumentJSON, NodeJSON, BlockJSON, TextJSON, MarkJSON, InlineJSON} from 'slate'
 import {isObject, isArray, isString} from '@karma.run/utility'
 
+export type RichTextValue = DocumentJSON
+
 export interface KeyGeneratorClass {
   new (): KeyGenerator
 }

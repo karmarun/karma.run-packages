@@ -1,6 +1,6 @@
 {
   "name": "@karma.run/utility",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "module": "./lib/esm/",
   "license": "MIT",
   "scripts": {

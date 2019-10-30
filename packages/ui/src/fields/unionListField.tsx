@@ -1,7 +1,8 @@
 import React, {useState, Fragment} from 'react'
 import nanoid from 'nanoid'
 
-import {isFunctionalUpdate, isValueConstructor, useStyle, cssRule} from '@karma.run/react'
+import {isFunctionalUpdate, useStyle, cssRule} from '@karma.run/react'
+import {isValueConstructor} from '@karma.run/utility'
 
 import {FieldProps, UnionListValue, UnionListCaseMapForValue, UnionFieldCaseMap} from './types'
 import {Icon, IconType} from '../atoms/icon'
