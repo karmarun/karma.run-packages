@@ -9,8 +9,7 @@
   "env": {
     "NUM_CLUSTERS": 1,
     "DEBUG": true,
-    "STORAGE_PATH": "./.media",
-    "KEYS": "test:foo,test2:bar"
+    "STORAGE_PATH": "./.media"
   },
   "ignoreRoot": []
 }
