@@ -11,7 +11,7 @@ export function App() {
       return <Login />
 
     case RouteType.Index:
-      return <Base>Welcome to the CMS Kit example!</Base>
+      return <Base>Welcome to the UI example!</Base>
 
     case RouteType.ArticleList:
       return <Base></Base>

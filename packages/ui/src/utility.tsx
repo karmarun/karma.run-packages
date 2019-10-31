@@ -7,13 +7,13 @@ export enum ElementID {
   ReactRoot = 'react-root'
 }
 
-export interface CMSKitProviderProps {
+export interface UIProviderProps {
   rootElementID: string
   styleRenderer: IRenderer
   children?: ReactNode
 }
 
-export function CMSKitProvider({rootElementID, styleRenderer, children}: CMSKitProviderProps) {
+export function UIProvider({rootElementID, styleRenderer, children}: UIProviderProps) {
   return (
     <StyleProvider renderer={styleRenderer}>
       <GlobalStyles rootElementID={rootElementID} />

@@ -5,7 +5,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import {createStyleRenderer, renderStyles} from '@karma.run/react'
-import {CMSKitProvider} from '@karma.run/ui'
+import {UIProvider} from '@karma.run/ui'
 
 import {hot} from 'react-hot-loader/root'
 import {App} from './app'
@@ -20,13 +20,13 @@ const onDOMContentLoaded = async () => {
   renderStyles(styleRenderer)
 
   ReactDOM.render(
-    <CMSKitProvider styleRenderer={styleRenderer} rootElementID={ElementID.ReactRoot}>
+    <UIProvider styleRenderer={styleRenderer} rootElementID={ElementID.ReactRoot}>
       <AuthProvider>
         <RouteProvider>
           <HotApp />
         </RouteProvider>
       </AuthProvider>
-    </CMSKitProvider>,
+    </UIProvider>,
     document.getElementById(ElementID.ReactRoot)
   )
 }
