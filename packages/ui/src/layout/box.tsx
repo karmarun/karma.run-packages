@@ -16,7 +16,8 @@ import {
   WidthProperty,
   HeightProperty,
   MinHeightProperty,
-  MaxHeightProperty
+  MaxHeightProperty,
+  OverflowProperty
 } from 'csstype'
 
 import {pxToRem} from '../style/helpers'
@@ -28,6 +29,7 @@ export interface BaseBoxProps {
   readonly inlineFlex?: boolean
   readonly inline?: boolean
   readonly block?: boolean
+  readonly overflow?: OverflowProperty
 
   readonly flexDirection?: FlexDirectionProperty
   readonly justifyContent?: JustifyContentProperty

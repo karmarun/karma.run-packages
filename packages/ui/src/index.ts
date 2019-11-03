@@ -66,6 +66,9 @@ export * from './templates/loginTemplate'
 export * from './templates/navigationTemplate'
 export * from './templates/editorTemplate'
 
+// Context
+// export * from './modal/modal'
+
 // Other
 export * from './utility'
 export * from './version'

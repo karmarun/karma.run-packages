@@ -43,9 +43,14 @@ export enum BorderRadius {
   Medium = 10
 }
 
+export enum TransitionDurationRaw {
+  Fast = 50,
+  Slow = 100
+}
+
 export enum TransitionDuration {
   Fast = '50ms',
-  Slow = '200ms'
+  Slow = '100ms'
 }
 
 export function pxToRem(px: number) {

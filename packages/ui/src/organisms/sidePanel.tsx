@@ -12,8 +12,7 @@ const SidePanelStyle = cssRuleWithTheme(({theme}) => ({
   zIndex: ZIndex.Sidebar,
   height: '1000px',
   backgroundColor: 'rgba(255,255,255,0.96)',
-  backdropFilter: 'blur(2px)',
-  boxShadow: '0 0 6px 0 rgba(0,0,0,0.5)'
+  backdropFilter: 'blur(2px)'
 }))
 
 const SidePanelContentSytle = cssRuleWithTheme(({theme}) => ({
