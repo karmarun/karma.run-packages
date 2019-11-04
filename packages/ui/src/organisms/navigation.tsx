@@ -1,4 +1,4 @@
-import React, {ReactNode, useState, createContext} from 'react'
+import React, {ReactNode, useState, createContext, useEffect} from 'react'
 import {Icon} from '../atoms/icon'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {pxToRem, TransitionDuration, Spacing, FontSize} from '../style/helpers'
@@ -55,8 +55,17 @@ export interface NavigationProps {
 }
 
 export function Navigation({children}: NavigationProps) {
-  const [isCollapsed, setCollapsed] = useState(false)
+  const [isCollapsed, setCollapsed] = useState(
+    typeof localStorage === 'object'
+      ? JSON.parse(localStorage.getItem('karma.run/ui:isNavigationCollapsed') || 'false') // TODO: Use context to save user preferences
+      : false
+  )
+
   const css = useThemeStyle({isCollapsed})
+
+  useEffect(() => {
+    localStorage.setItem('karma.run/ui:isNavigationCollapsed', JSON.stringify(isCollapsed))
+  }, [isCollapsed])
 
   return (
     <NavigationContext.Provider value={{isCollapsed}}>

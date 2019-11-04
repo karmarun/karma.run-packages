@@ -1,16 +1,16 @@
 import React from 'react'
 
-import {Modal} from './modal'
+import {Dialog} from './modal'
 import {TextInput} from './textInput'
 import {DescriptionListing, DescriptionListingItem} from './descriptionListingItem'
 
 export default {
-  component: Modal,
+  component: Dialog,
   title: 'Atoms|Modal'
 }
 
 export const PublishArticle = () => (
-  <Modal title={'Publish Article'} onConfirm={() => {}} onCancel={() => {}}>
+  <Dialog title={'Publish Article'} onConfirm={() => {}} onCancel={() => {}}>
     <TextInput
       label={'Publish state'}
       value={''}
@@ -26,5 +26,5 @@ export const PublishArticle = () => (
       <DescriptionListingItem label={'Publish date'} value={'08.08.2019'} />
       <DescriptionListingItem label={'Expire date'} value={'None'} />
     </DescriptionListing>
-  </Modal>
+  </Dialog>
 )

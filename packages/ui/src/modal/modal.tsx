@@ -1,7 +1,7 @@
 import React, {ReactNode, useEffect} from 'react'
 import {createPortal} from 'react-dom'
 import {Transition} from 'react-transition-group'
-import {styled, useStaticStyle} from '@karma.run/react'
+import {styled} from '@karma.run/react'
 import {hexToRgba, TransitionDuration, TransitionDurationRaw} from '../style/helpers'
 import {themeMiddleware, Theme} from '../style/themeContext'
 import {TransitionStatus} from 'react-transition-group/Transition'
@@ -35,15 +35,9 @@ const ModalBackground = styled(
     backgroundColor: hexToRgba(theme.colors.dark, 0.5),
     backdropFilter: 'blur(2px)',
     transitionProperty: 'opacity',
-    transitionDuration: '500ms',
+    transitionDuration: TransitionDuration.Slow,
 
-    opacity: {
-      entering: 0,
-      entered: 1,
-      exiting: 0,
-      exited: 0,
-      unmounted: 0
-    }[transitionStatus]
+    opacity: transitionStatus === 'entered' ? 1 : 0
   }),
   themeMiddleware
 )
@@ -65,11 +59,14 @@ export interface ModalProps {
 
 export function Modal({children, onClose, open}: ModalProps) {
   useEffect(() => {
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+
+    document.body.style.paddingRight = open ? `${scrollbarWidth}px` : ''
     document.documentElement.style.overflow = open ? 'hidden' : '' // TODO: Move into context
   })
 
   return (
-    <Transition in={open} timeout={500} unmountOnExit>
+    <Transition in={open} timeout={TransitionDurationRaw.Slow} unmountOnExit>
       {transitionStatus =>
         createPortal(
           <ModalContainer>

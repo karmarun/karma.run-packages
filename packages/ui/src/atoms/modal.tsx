@@ -28,7 +28,7 @@ const ModalDialogStyle = cssRuleWithTheme(({theme}) => ({
   boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.5)',
   border: '1px solid',
   borderColor: theme.colors.grayLight,
-  borderRadius: pxToRem(BorderRadius.Medium),
+  borderRadius: BorderRadius.Medium,
   padding: pxToRem(Spacing.Small),
   overflow: 'hidden',
 
@@ -68,14 +68,14 @@ const ModalBackdropStyle = cssRuleWithTheme(({theme}) => ({
   backgroundColor: 'rgba(255,255,255,0.85)'
 }))
 
-export interface ModalProps {
+export interface DialogProps {
   readonly title: string
   readonly children: ReactNode
   onConfirm?(): void
   onCancel?(): void
 }
 
-export function Modal({title, children, onConfirm, onCancel}: ModalProps) {
+export function Dialog({title, children, onConfirm, onCancel}: DialogProps) {
   const css = useThemeStyle()
   return (
     <React.Fragment>

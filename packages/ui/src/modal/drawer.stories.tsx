@@ -2,8 +2,7 @@ import React, {useState} from 'react'
 
 import {PrimaryButton} from '../atoms/primaryButton'
 import {Drawer} from './drawer'
-import {Box} from '../layout/box'
-import {SidePanel} from '../organisms/sidePanel'
+import {Default} from '../panel/panel.stories'
 
 export default {
   component: Drawer,
@@ -17,8 +16,8 @@ export const Interactive = () => {
     <>
       <PrimaryButton label={'Label'} onClick={() => setOpen(true)} />
       <div style={{height: '2000px'}} />
-      <Drawer open={open} onClose={() => setOpen(false)}>
-        {() => <SidePanel title="??" onClose={() => setOpen(false)}></SidePanel>}
+      <Drawer open={open} onClose={() => setOpen(false)} width={480}>
+        {() => <Default />}
       </Drawer>
     </>
   )
