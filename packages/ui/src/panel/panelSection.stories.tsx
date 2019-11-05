@@ -15,3 +15,9 @@ export const Default = () => (
     <Text />
   </PanelSection>
 )
+
+export const Dark = () => (
+  <PanelSection dark>
+    <Text />
+  </PanelSection>
+)

@@ -2,10 +2,12 @@ import React, {useState} from 'react'
 
 import {PrimaryButton} from '../atoms/primaryButton'
 import {Modal} from './modal'
+import {centerLayoutDecorator} from '../.storybook/decorators'
 
 export default {
   component: Modal,
-  title: 'Modal|Modal'
+  title: 'Modal|Modal',
+  decorators: [centerLayoutDecorator()]
 }
 
 export const Interactive = () => {
@@ -13,9 +15,9 @@ export const Interactive = () => {
 
   return (
     <>
-      <PrimaryButton label={'Open'} onClick={() => setOpen(true)} />
+      <PrimaryButton label={'Open Modal'} onClick={() => setOpen(true)} />
       <Modal open={open} onClose={() => setOpen(false)}>
-        {() => <PrimaryButton label={'Close'} onClick={() => setOpen(false)} />}
+        {() => null}
       </Modal>
     </>
   )

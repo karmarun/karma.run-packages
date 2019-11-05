@@ -6,8 +6,8 @@ import {hexToRgba, TransitionDuration, TransitionDurationRaw} from '../style/hel
 import {themeMiddleware, Theme} from '../style/themeContext'
 import {TransitionStatus} from 'react-transition-group/Transition'
 
-const ModalContainer = styled('div', () => ({
-  _className: process.env.NODE_ENV !== 'production' ? 'ModalContainer' : undefined,
+const ModalWrapper = styled('div', () => ({
+  _className: process.env.NODE_ENV !== 'production' ? 'Modal' : undefined,
 
   position: 'fixed',
   left: 0,
@@ -44,6 +44,7 @@ const ModalBackground = styled(
 
 const ModalContent = styled('div', () => ({
   _className: process.env.NODE_ENV !== 'production' ? 'ModalContent' : undefined,
+
   position: 'absolute',
   left: 0,
   right: 0,
@@ -59,22 +60,28 @@ export interface ModalProps {
 
 export function Modal({children, onClose, open}: ModalProps) {
   useEffect(() => {
+    // TODO: Move into context
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
 
     document.body.style.paddingRight = open ? `${scrollbarWidth}px` : ''
-    document.documentElement.style.overflow = open ? 'hidden' : '' // TODO: Move into context
-  })
+    document.documentElement.style.overflow = open ? 'hidden' : ''
+
+    return () => {
+      document.body.style.paddingRight = ''
+      document.documentElement.style.overflow = ''
+    }
+  }, [open])
 
   return (
     <Transition in={open} timeout={TransitionDurationRaw.Slow} unmountOnExit>
       {transitionStatus =>
         createPortal(
-          <ModalContainer>
+          <ModalWrapper>
             <ModalBackground styleProps={{transitionStatus}} />
             <ModalContent onClick={e => e.target === e.currentTarget && onClose && onClose()}>
               {children && children(transitionStatus)}
             </ModalContent>
-          </ModalContainer>,
+          </ModalWrapper>,
           document.body
         )
       }

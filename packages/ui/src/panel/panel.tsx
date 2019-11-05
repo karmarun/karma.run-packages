@@ -9,12 +9,7 @@ export const Panel = styled(
     display: 'flex',
     flexDirection: 'column',
 
-    overflowX: 'hidden',
-    overflowY: 'auto',
-
     width: '100%',
-    height: 'inherit',
-
     backgroundColor: theme.colors.white
   }),
   themeMiddleware

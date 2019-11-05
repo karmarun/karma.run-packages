@@ -5,11 +5,15 @@ import {MaterialIconArrowForward, MaterialIconSaveOutlined} from '@karma.run/ico
 import {centerLayoutDecorator} from '../.storybook/decorators'
 import {IconButton} from '../atoms/iconButton'
 import {Text} from '../layout/typography.stories'
+import {Default as DefaultFocalPointInput} from '../input/focalPointInput.stories'
+import {Default as DefaultDescriptionList} from '../data/descriptionList.stories'
 
 import {Panel} from './panel'
 import {PanelHeader} from './panelHeader'
 import {PanelSectionHeader} from './panelSectionHeader'
 import {PanelSection} from './panelSection'
+import {Box} from '../layout/box'
+import {Spacing} from '../style/helpers'
 
 export default {
   component: Panel,
@@ -28,8 +32,11 @@ export const Default = () => (
       <Text />
     </PanelSection>
     <PanelSectionHeader title="Section Header #1" />
-    <PanelSection>
-      <Text />
+    <PanelSection dark>
+      <Box marginBottom={Spacing.ExtraSmall}>
+        <DefaultFocalPointInput />
+      </Box>
+      <DefaultDescriptionList />
     </PanelSection>
     <PanelSectionHeader title="Section Header #2" />
     <PanelSection>

@@ -20,7 +20,7 @@ import {
   OverflowProperty
 } from 'csstype'
 
-import {pxToRem} from '../style/helpers'
+import {remify} from '../style/helpers'
 import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
 import {margin, padding} from '@karma.run/react'
 
@@ -68,10 +68,6 @@ export interface BaseBoxProps {
 }
 
 type BoxStyleProps = Omit<Omit<BaseBoxProps, 'element'>, 'children'>
-
-function remify(value?: string | number) {
-  return typeof value === 'string' ? value : value != undefined ? pxToRem(value) : value
-}
 
 const BoxBaseStyle = cssRuleWithTheme<BoxStyleProps>(
   ({
