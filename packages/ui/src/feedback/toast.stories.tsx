@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Toast, ToastType} from './toast'
-import {PrimaryButton} from '../atoms/primaryButton'
+import {PrimaryButton} from '../input/primaryButton'
 import {Grid, Column} from '../layout/grid'
 import {centerLayoutDecorator} from '../.storybook/decorators'
 import {Spacing} from '../style/helpers'
