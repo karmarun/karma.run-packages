@@ -66,10 +66,14 @@ export * from './templates/editorTemplate'
 // Modal
 export * from './modal/modal'
 export * from './modal/drawer'
+export * from './modal/dialog'
 
 // Data
 export * from './data/image'
 export * from './data/descriptionList'
+
+// Interaction
+export * from './interaction/draggable'
 
 // Panel
 export * from './panel/panel'
