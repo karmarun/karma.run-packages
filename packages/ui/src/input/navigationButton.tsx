@@ -2,7 +2,6 @@ import React, {forwardRef, ButtonHTMLAttributes, AnchorHTMLAttributes} from 'rea
 
 import {pxToRem, Spacing, TransitionDuration, FontSize} from '../style/helpers'
 import {cssRuleWithTheme, themeMiddleware, Theme} from '../style/themeContext'
-import {ButtonResetStyle} from '../atoms/baseButton'
 import {Icon, IconScale, IconType} from '../atoms/icon'
 import {styled} from '@karma.run/react'
 import {Box} from '../layout/box'
@@ -15,9 +14,7 @@ interface NavigationButtonStyleProps {
 const NavigationButtonStyle = cssRuleWithTheme<NavigationButtonStyleProps>(({disabled, theme}) => ({
   _className: process.env.NODE_ENV !== 'production' ? 'NavigationButton' : undefined,
 
-  ...ButtonResetStyle,
-
-  display: 'flex',
+  display: 'inline-flex',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
@@ -25,7 +22,9 @@ const NavigationButtonStyle = cssRuleWithTheme<NavigationButtonStyleProps>(({dis
   minWidth: pxToRem(70),
   height: pxToRem(60),
 
+  cursor: 'pointer',
   fontSize: pxToRem(FontSize.Small),
+  fontFamily: 'inherit',
 
   paddingLeft: pxToRem(Spacing.Tiny),
   paddingRight: pxToRem(Spacing.Tiny),
@@ -33,6 +32,11 @@ const NavigationButtonStyle = cssRuleWithTheme<NavigationButtonStyleProps>(({dis
   fill: disabled ? theme.colors.gray : theme.colors.dark,
   color: disabled ? theme.colors.gray : theme.colors.dark,
   pointerEvents: disabled ? 'none' : undefined,
+
+  borderWidth: 0,
+  borderRadius: 0,
+  borderStyle: 'none',
+  backgroundColor: 'transparent',
 
   transitionProperty: 'fill background-color',
   transitionTimingFunction: 'ease-in',
@@ -56,6 +60,11 @@ const NavigationButtonStyle = cssRuleWithTheme<NavigationButtonStyleProps>(({dis
   ':active': {
     fill: theme.colors.actionDark,
     backgroundColor: 'rgba(0, 0, 0, 0.05)'
+  },
+
+  ':focus': {
+    outline: 'none',
+    backgroundColor: 'rgba(0, 0, 0, 0.025)'
   }
 }))
 
