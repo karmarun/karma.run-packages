@@ -63,7 +63,7 @@ export function TagSelect({label, placeholder, options, onUpdate}: TagSelectProp
     setTags(newTags)
   }
 
-  const handleDelete = (item: AutocompleteOptions) => () => {
+  function handleDelete(item: AutocompleteOptions) {
     const newTags = [...tags]
     newTags.splice(newTags.indexOf(item), 1)
     onUpdate(newTags)
@@ -92,7 +92,7 @@ export function TagSelect({label, placeholder, options, onUpdate}: TagSelectProp
   function onInputKeyDown(event: any, downshift: ControllerStateAndHelpers<any>) {
     // remove last tag with backspace
     if (tags.length && !inputValue.length && event.key === 'Backspace') {
-      setTags(tags.slice(0, tags.length - 1))
+      handleDelete(tags[tags.length - 1])
     }
 
     if (event.key == 'Enter') {
@@ -128,7 +128,7 @@ export function TagSelect({label, placeholder, options, onUpdate}: TagSelectProp
               <label {...downshift.getLabelProps()} className={css(TextInputWrapperStyle)}>
                 {tags.map((tag, index) => (
                   <div key={tag.name} className={css(TagStyle)}>
-                    <FilterTag text={tag.name} onDismiss={handleDelete(tag)} />
+                    <FilterTag text={tag.name} onDismiss={() => handleDelete(tag)} />
                   </div>
                 ))}
                 <BaseInput
