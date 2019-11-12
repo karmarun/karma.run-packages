@@ -7,9 +7,16 @@ import {mockListBoxOptions} from './listBox.stories'
 export default {
   component: TagSelect,
   title: 'Input|Text/TagSelect',
-  decorators: [centerLayoutDecorator()]
+  decorators: [centerLayoutDecorator(0.6)]
 }
 
 export const Standard = () => {
-  return <TagSelect label={'Select filter'} options={mockListBoxOptions} onUpdate={() => {}} />
+  return (
+    <TagSelect
+      label={'Tags'}
+      placeholder={'Add Tag'}
+      options={mockListBoxOptions}
+      onUpdate={() => {}}
+    />
+  )
 }

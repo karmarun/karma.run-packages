@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Downshift, {ControllerStateAndHelpers} from 'downshift'
 import {ListBox, AutocompleteOptions} from './listBox'
-import {useThemeStyle} from '../../style/themeContext'
+import {useThemeStyle, cssRuleWithTheme} from '../../style/themeContext'
 import {FilterTag} from '../../atoms/filterTag'
 import {
   TextInputStyleProps,
@@ -10,21 +10,41 @@ import {
   LabelStyle
 } from '../../atoms/textInput'
 import {BaseInput, InputType} from '../../atoms/baseInput'
+import {cssRule} from '@karma.run/react'
+import {Spacing, pxToRem} from '../../style/helpers'
+
+const TagSelectStyle = cssRuleWithTheme(({theme}) => ({
+  width: '100%',
+  borderBottom: `1px solid ${theme.colors.gray}`,
+
+  '& input': {
+    border: 'none'
+  }
+}))
+
+const TagSelectInputLineStyle = cssRule({
+  marginBottom: pxToRem(Spacing.Tiny)
+})
+
+const TagStyle = cssRule({
+  marginRight: pxToRem(Spacing.Tiny)
+})
 
 export interface TagSelectProps {
   readonly label: string
+  readonly placeholder?: string
   readonly options: AutocompleteOptions[]
   onUpdate(tags: AutocompleteOptions[]): void
 }
 
-export function TagSelect({label, options, onUpdate}: TagSelectProps) {
+export function TagSelect({label, placeholder, options, onUpdate}: TagSelectProps) {
   const styleProps = {hasError: false, hasIcon: false}
   const css = useThemeStyle<TextInputStyleProps>(styleProps)
 
   const [inputValue, setInputValue] = useState('')
   const [tags, setTags] = useState<Array<AutocompleteOptions>>([])
 
-  function handleInput(item: AutocompleteOptions, downshift: ControllerStateAndHelpers<any>) {
+  function handleSelect(item: AutocompleteOptions, downshift: ControllerStateAndHelpers<any>) {
     addTag(item)
     downshift.reset()
     setInputValue('')
@@ -51,7 +71,6 @@ export function TagSelect({label, options, onUpdate}: TagSelectProps) {
   }
 
   function addAndSelect(name: string, downshift: ControllerStateAndHelpers<any>) {
-    console.log('try to add', name)
     let item = {id: name, name: name}
     if (tagExists(name)) {
       item = options.filter(option => {
@@ -61,7 +80,6 @@ export function TagSelect({label, options, onUpdate}: TagSelectProps) {
       options.push(item)
     }
     downshift.selectItem(item)
-    console.log('select item', item)
   }
 
   function tagExists(name: string): boolean {
@@ -90,7 +108,7 @@ export function TagSelect({label, options, onUpdate}: TagSelectProps) {
   return (
     <Downshift
       inputValue={inputValue}
-      onSelect={handleInput}
+      onSelect={handleSelect}
       itemToString={item => {
         return item && item.name
       }}>
@@ -105,19 +123,21 @@ export function TagSelect({label, options, onUpdate}: TagSelectProps) {
           placeholder: label
         })
         return (
-          <div>
-            <div>
-              {tags.map((tag, index) => (
-                <FilterTag key={index} text={tag.name} onDismiss={handleDelete(tag)} />
-              ))}
+          <div className={css(TagSelectStyle)}>
+            <div className={css(TagSelectInputLineStyle)}>
               <label {...downshift.getLabelProps()} className={css(TextInputWrapperStyle)}>
+                {tags.map((tag, index) => (
+                  <div key={tag.name} className={css(TagStyle)}>
+                    <FilterTag text={tag.name} onDismiss={handleDelete(tag)} />
+                  </div>
+                ))}
                 <BaseInput
                   type={InputType.Text}
                   {...downshift.getInputProps()}
                   onChange={onChange}
                   onKeyDown={onKeyDown}
                   value={inputValue}
-                  placeholder={label}
+                  placeholder={placeholder}
                   style={TextInputStyle}
                   styleProps={styleProps}
                 />
