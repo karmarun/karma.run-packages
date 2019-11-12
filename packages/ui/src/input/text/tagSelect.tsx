@@ -18,7 +18,11 @@ const TagSelectStyle = cssRuleWithTheme(({theme}) => ({
   borderBottom: `1px solid ${theme.colors.gray}`,
 
   '& input': {
-    border: 'none'
+    border: 'none',
+    ':placeholder-shown + span': {
+      opacity: 1,
+      transform: 'none'
+    }
   }
 }))
 
