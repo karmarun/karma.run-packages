@@ -24,13 +24,6 @@ export function TagSelect({label, options, onUpdate}: TagSelectProps) {
   const [inputValue, setInputValue] = useState('')
   const [tags, setTags] = useState<Array<AutocompleteOptions>>([])
 
-  // remove last tag with backspace
-  function handleKeyDown(event: React.KeyboardEvent) {
-    if (tags.length && !inputValue.length && event.key === 'Backspace') {
-      setTags(tags.slice(0, tags.length - 1))
-    }
-  }
-
   function handleInput(item: AutocompleteOptions, downshift: ControllerStateAndHelpers<any>) {
     addTag(item)
     downshift.reset()
@@ -57,6 +50,43 @@ export function TagSelect({label, options, onUpdate}: TagSelectProps) {
     setTags(newTags)
   }
 
+  function addAndSelect(name: string, downshift: ControllerStateAndHelpers<any>) {
+    console.log('try to add', name)
+    let item = {id: name, name: name}
+    if (tagExists(name)) {
+      item = options.filter(option => {
+        return option.name == name
+      })[0]
+    } else {
+      options.push(item)
+    }
+    downshift.selectItem(item)
+    console.log('select item', item)
+  }
+
+  function tagExists(name: string): boolean {
+    for (let option of options) {
+      if (option.name == name) return true
+    }
+    return false
+  }
+
+  function onInputKeyDown(event: any, downshift: ControllerStateAndHelpers<any>) {
+    // remove last tag with backspace
+    if (tags.length && !inputValue.length && event.key === 'Backspace') {
+      setTags(tags.slice(0, tags.length - 1))
+    }
+
+    if (event.key == 'Enter') {
+      event.nativeEvent.preventDownshiftDefault = true
+      if (downshift.highlightedIndex) {
+        downshift.selectHighlightedItem()
+      } else {
+        addAndSelect(inputValue, downshift)
+      }
+    }
+  }
+
   return (
     <Downshift
       inputValue={inputValue}
@@ -66,7 +96,12 @@ export function TagSelect({label, options, onUpdate}: TagSelectProps) {
       }}>
       {downshift => {
         const {onChange, onKeyDown} = downshift.getInputProps({
-          onKeyDown: handleKeyDown,
+          onChange: (event: React.ChangeEvent<{value: string}>) => {
+            onInputChange(event)
+          },
+          onKeyDown: (event: any) => {
+            onInputKeyDown(event, downshift)
+          },
           placeholder: label
         })
         return (
@@ -79,20 +114,8 @@ export function TagSelect({label, options, onUpdate}: TagSelectProps) {
                 <BaseInput
                   type={InputType.Text}
                   {...downshift.getInputProps()}
-                  onChange={(
-                    event: React.ChangeEvent<{value: string}> | React.ChangeEvent<HTMLInputElement>
-                  ) => {
-                    onInputChange(event)
-                    onChange!(event as React.ChangeEvent<HTMLInputElement>)
-                  }}
-                  onKeyDown={e => {
-                    if (e.key == 'Enter') {
-                      const item = {id: inputValue, name: inputValue}
-                      options.push(item)
-                      downshift.selectItem(item)
-                    }
-                    onKeyDown(e)
-                  }}
+                  onChange={onChange}
+                  onKeyDown={onKeyDown}
                   value={inputValue}
                   placeholder={label}
                   style={TextInputStyle}
