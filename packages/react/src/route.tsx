@@ -8,14 +8,13 @@ import React, {
   AnchorHTMLAttributes,
   useCallback,
   MouseEvent,
-  MouseEventHandler
+  MouseEventHandler,
+  ReactNode
 } from 'react'
 
 import {UnionToIntersection} from '@karma.run/utility'
 
 import pathToRegexp, {Key} from 'path-to-regexp'
-
-import {ChildrenProps} from './types'
 import {useEventListener} from './hooks'
 
 export enum HistoryType {
@@ -166,9 +165,10 @@ export function routeReducer<R extends RouteInstance = RouteInstance>(
   }
 }
 
-export interface RouteProviderProps<R extends RouteInstance> extends ChildrenProps {
+export interface RouteProviderProps<R extends RouteInstance> {
   readonly initialRoute?: R | null
   readonly handleNextRoute?: HandleNextRouteFn<R>
+  readonly children?: ReactNode
 }
 
 export interface LinkProps<R extends RouteInstance> {

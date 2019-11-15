@@ -26,8 +26,14 @@
     "immutable": "^4.0.0-rc.12",
     "nanoid": "^2.0.3",
     "react-transition-group": "4.3.0",
+    "csstype": "^2.6.6",
     "slate": "^0.47.8",
-    "slate-react": "^0.22.9"
+    "slate-react": "^0.22.9",
+    "fela": "^10.6.1",
+    "fela-dom": "^10.6.1",
+    "fela-plugin-fallback-value": "^10.6.1",
+    "fela-plugin-prefixer": "^10.6.1",
+    "fela-plugin-unit": "^10.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",

@@ -20,7 +20,6 @@ import {
   OverflowProperty
 } from 'csstype'
 
-import {remify} from '../style/helpers'
 import {margin, padding, cssRule, useStyle} from '@karma.run/react'
 
 export interface BaseBoxProps {
@@ -96,9 +95,6 @@ const BoxBaseStyle = cssRule<BoxStyleProps>(
 
     ...props
   }) => {
-    marginValue = remify(marginValue)
-    paddingValue = remify(paddingValue)
-
     return {
       _className: process.env.NODE_ENV !== 'production' ? 'Box' : undefined,
 
@@ -112,26 +108,26 @@ const BoxBaseStyle = cssRule<BoxStyleProps>(
         ? 'inline'
         : undefined,
 
-      width: remify(width),
-      minWidth: remify(minWidth),
-      maxWidth: remify(maxWidth),
+      width,
+      minWidth,
+      maxWidth,
 
-      height: remify(height),
-      minHeight: remify(minHeight),
-      maxHeight: remify(maxHeight),
+      height,
+      minHeight,
+      maxHeight,
 
       ...margin(
-        remify(marginTop) || marginValue,
-        remify(marginRight) || marginValue,
-        remify(marginBottom) || marginValue,
-        remify(marginLeft) || marginValue
+        marginTop || marginValue,
+        marginRight || marginValue,
+        marginBottom || marginValue,
+        marginLeft || marginValue
       ),
 
       ...padding(
-        remify(paddingTop) || paddingValue,
-        remify(paddingRight) || paddingValue,
-        remify(paddingBottom) || paddingValue,
-        remify(paddingLeft) || paddingValue
+        paddingTop || paddingValue,
+        paddingRight || paddingValue,
+        paddingBottom || paddingValue,
+        paddingLeft || paddingValue
       ),
 
       ...props

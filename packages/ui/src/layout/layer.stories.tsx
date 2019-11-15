@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {MaterialIconDelete, MaterialIconEdit} from '@karma.run/icons'
 
 import {centerLayoutDecorator} from '../.storybook/decorators'
@@ -20,7 +20,7 @@ export const Standard = () => {
       <Box height={300}>
         <Image src="https://dummyimage.com/300x300/999/fff" width={300} height={300} />
       </Box>
-      <Layer>
+      <Layer top={0} right={0}>
         <Box padding={Spacing.Small} height="100%" justifyContent="flex-end" flex>
           <Box marginRight={Spacing.Tiny}>
             <OptionButtonSmall icon={MaterialIconEdit} />

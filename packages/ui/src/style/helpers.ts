@@ -62,16 +62,15 @@ export function pxToEm(px: number) {
   return `${px / 10}em`
 }
 
+export const tabletMediaQuery = `@media screen and (max-width: ${Breakpoint.Desktop - 1}px)`
+export const mobileMediaQuery = `@media screen and (max-width: ${Breakpoint.Tablet - 1}px)`
+
 export function whenTablet(styles: CSSStyle) {
-  return {
-    [`@media screen and (max-width: ${Breakpoint.Desktop - 1}px)`]: styles
-  }
+  return {[tabletMediaQuery]: styles}
 }
 
 export function whenMobile(styles: CSSStyle) {
-  return {
-    [`@media screen and (max-width: ${Breakpoint.Tablet - 1}px)`]: styles
-  }
+  return {[mobileMediaQuery]: styles}
 }
 
 export function hexToRgba(hex: string | number, alpha: number) {

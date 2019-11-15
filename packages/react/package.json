@@ -16,11 +16,9 @@
   "dependencies": {
     "@karma.run/utility": "^0.0.1",
     "csstype": "^2.6.6",
+    "path-to-regexp": "^3.0.0",
     "fela": "^10.6.1",
-    "fela-dom": "^10.6.1",
-    "fela-plugin-fallback-value": "^10.6.1",
-    "fela-plugin-prefixer": "^10.6.1",
-    "path-to-regexp": "^3.0.0"
+    "fela-dom": "^10.6.1"
   },
   "devDependencies": {
     "@types/react": "^16.8.23",
