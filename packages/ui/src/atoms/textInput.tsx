@@ -4,7 +4,7 @@ import {IconType, Icon} from './icon'
 import {BaseInput, InputType} from './baseInput'
 
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem, FontSize, TransitionDuration, Spacing} from '../style/helpers'
+import { FontSize, TransitionDuration, Spacing} from '../style/helpers'
 import {cssRule} from '@karma.run/react'
 
 interface TextInputStyleProps {
@@ -13,7 +13,7 @@ interface TextInputStyleProps {
 }
 
 const TextInputContainerStyle = cssRuleWithTheme(() => ({
-  paddingTop: pxToRem(16)
+  paddingTop: 16
 }))
 
 const TextInputWrapperStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme}) => ({
@@ -21,13 +21,13 @@ const TextInputWrapperStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, 
   display: 'flex',
   alignItems: 'center',
 
-  fontSize: pxToRem(FontSize.Medium),
+  fontSize: FontSize.Medium,
   fill: theme.colors.dark
 }))
 
 const IconStyle = cssRule(() => ({
   position: 'absolute',
-  marginRight: pxToRem(Spacing.Tiny)
+  marginRight: Spacing.Tiny
 }))
 
 const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(({hasIcon, theme}) => ({
@@ -38,7 +38,7 @@ const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(({hasIcon, theme}) 
   transitionTimingFunction: 'ease-in',
   transitionDuration: TransitionDuration.Slow,
 
-  paddingLeft: hasIcon ? pxToRem(20) : undefined,
+  paddingLeft: hasIcon ? 20 : undefined,
 
   '::placeholder': {
     color: theme.colors.gray
@@ -92,7 +92,7 @@ const LabelStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme}) => 
   position: 'absolute',
   top: '-1.6rem',
   left: 0,
-  fontSize: pxToRem(FontSize.Small),
+  fontSize: FontSize.Small,
   opacity: 1,
   transform: 'translateY(0%)',
   transitionProperty: 'transform, opacity, color',
@@ -102,7 +102,7 @@ const LabelStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme}) => 
 
 const DescriptionStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme}) => ({
   color: hasError ? theme.colors.alert : theme.colors.gray,
-  fontSize: pxToRem(FontSize.Small)
+  fontSize: FontSize.Small
 }))
 
 export interface TextInputProps {

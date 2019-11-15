@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem, FontSize, BorderWidth, TransitionDuration} from '../style/helpers'
+import {FontSize, BorderWidth, TransitionDuration} from '../style/helpers'
 import {BaseInput, InputType} from './baseInput'
 
 const ToggleInputStyle = cssRuleWithTheme(({theme}) => ({
@@ -13,7 +13,7 @@ const ToggleInputStyle = cssRuleWithTheme(({theme}) => ({
   },
 
   ':checked + span::after': {
-    transform: `translate(${pxToRem(50 - 26)})`,
+    transform: `translate(${50 - 26})`,
     borderStyle: 'solid',
     borderWidth: BorderWidth.Small,
     borderColor: theme.colors.successDark
@@ -35,13 +35,13 @@ const ToggleStyle = cssRuleWithTheme(({theme}) => ({
   position: 'relative',
   cursor: 'pointer',
 
-  width: pxToRem(50),
-  height: pxToRem(26),
+  width: 50,
+  height: 26,
 
   borderStyle: 'solid',
   borderWidth: BorderWidth.Small,
   borderColor: theme.colors.gray,
-  borderRadius: pxToRem(26),
+  borderRadius: 26,
   backgroundColor: theme.colors.light,
 
   transitionProperty: 'background-color, border-color',
@@ -54,11 +54,11 @@ const ToggleStyle = cssRuleWithTheme(({theme}) => ({
     top: `-${BorderWidth.Small}`,
     left: `-${BorderWidth.Small}`,
 
-    width: pxToRem(26),
-    height: pxToRem(26),
+    width: 26,
+    height: 26,
 
-    borderRadius: pxToRem(26),
-    border: `${pxToRem(1)} solid ${theme.colors.gray}`,
+    borderRadius: 26,
+    border: `1px solid ${theme.colors.gray}`,
     backgroundColor: theme.colors.white,
 
     transitionProperty: 'transform',
@@ -80,7 +80,7 @@ const ToggleWrapperStyle = cssRuleWithTheme(() => ({
 const ToggleTextWrapperStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
   flexDirection: 'column',
-  fontSize: pxToRem(FontSize.Medium),
+  fontSize: FontSize.Medium,
   color: theme.colors.dark
 }))
 
@@ -88,7 +88,7 @@ const ToggleLabelStyle = cssRuleWithTheme(({theme}) => ({}))
 
 const ToggleDescriptionStyle = cssRuleWithTheme(({theme}) => ({
   color: theme.colors.gray,
-  fontSize: pxToRem(FontSize.Small)
+  fontSize: FontSize.Small
 }))
 
 export interface ToggleProps {

@@ -1,7 +1,7 @@
 import React, {ReactNode, useState, createContext, useEffect} from 'react'
 import {Icon} from '../atoms/icon'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem, TransitionDuration, Spacing, FontSize, scrollBarStyle} from '../style/helpers'
+import {TransitionDuration, Spacing, FontSize, scrollBarStyle} from '../style/helpers'
 import {BaseButton} from '../atoms/baseButton'
 import {MaterialIconChevronLeft, MaterialIconChevronRight} from '@karma.run/icons'
 
@@ -16,7 +16,7 @@ const NavigationStyle = cssRuleWithTheme<NavigationStyleProps>(({isCollapsed, th
   display: 'flex',
   flexDirection: 'column',
 
-  width: isCollapsed ? pxToRem(navigationWidthCollapsed) : pxToRem(navigationWidth),
+  width: isCollapsed ? navigationWidthCollapsed : navigationWidth,
   height: '100%',
 
   overflow: 'hidden',
@@ -29,8 +29,8 @@ const NavigationStyle = cssRuleWithTheme<NavigationStyleProps>(({isCollapsed, th
 }))
 
 const NavigationItemContentStyle = cssRuleWithTheme<NavigationStyleProps>(({theme}) => ({
-  marginTop: pxToRem(85),
-  marginBottom: pxToRem(Spacing.Large),
+  marginTop: 85,
+  marginBottom: Spacing.Large,
   overflow: 'auto',
 
   ...scrollBarStyle(theme)
@@ -66,8 +66,8 @@ export function Navigation({children}: NavigationProps) {
 const NavigationButtonStyle = cssRuleWithTheme(({theme}) => ({
   alignSelf: 'flex-end',
 
-  padding: pxToRem(18),
-  fontSize: pxToRem(FontSize.Heading2),
+  padding: 18,
+  fontSize: FontSize.Heading2,
   fill: theme.colors.gray,
 
   ':focus': {

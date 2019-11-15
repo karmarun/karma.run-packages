@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import {OverlayMenu, MenuItem} from '../../molecules/overlayMenu'
 import {AddBlockButton} from '../buttons/addBlockButton'
 import {useStyle, cssRule} from '@karma.run/react'
-import {pxToRem, Spacing, ZIndex} from '../../style/helpers'
+import { Spacing, ZIndex} from '../../style/helpers'
 
 const AddBlockInputStyle = cssRule(() => ({
   position: 'relative'
@@ -13,9 +13,9 @@ const MenuWrapperStyle = cssRule(() => ({
   position: 'absolute',
   zIndex: ZIndex.Tooltip,
   left: '50%',
-  top: pxToRem(Spacing.Medium),
+  top: Spacing.Medium,
   transform: 'translateX(-50%)',
-  marginBottom: pxToRem(Spacing.Large)
+  marginBottom: Spacing.Large
 }))
 
 export interface AddBlockInputProps {

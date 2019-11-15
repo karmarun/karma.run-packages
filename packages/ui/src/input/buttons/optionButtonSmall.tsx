@@ -3,7 +3,7 @@ import React from 'react'
 import {BaseButton, ButtonProps} from '../../atoms/baseButton'
 import {IconType, Icon} from '../../atoms/icon'
 import {cssRuleWithTheme} from '../../style/themeContext'
-import {TransitionDuration, FontSize, pxToRem} from '../../style/helpers'
+import {TransitionDuration, FontSize} from '../../style/helpers'
 
 const OptionButtonSmallStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
@@ -13,9 +13,9 @@ const OptionButtonSmallStyle = cssRuleWithTheme(({theme}) => ({
   alignItems: 'center',
   justifyContent: 'center',
 
-  width: pxToRem(20),
-  height: pxToRem(20),
-  fontSize: pxToRem(FontSize.Small),
+  width: 20,
+  height: 20,
+  fontSize: FontSize.Small,
 
   borderRadius: '100%',
 

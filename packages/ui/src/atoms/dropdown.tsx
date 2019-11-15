@@ -1,17 +1,17 @@
 import React from 'react'
 
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem, FontSize, BorderWidth} from '../style/helpers'
+import { FontSize, BorderWidth} from '../style/helpers'
 import {joinClassNames} from '@karma.run/react'
 
 const DropdownContainerStyle = cssRuleWithTheme(({theme}) => ({
   position: 'relative',
-  minHeight: pxToRem(54),
+  minHeight: 54,
 
   ':after': {
     position: 'absolute',
     top: '22px',
-    right: pxToRem(2),
+    right: 2,
     content: '""',
     borderLeft: '0.6rem solid transparent',
     borderRight: '0.6rem solid transparent',
@@ -22,8 +22,8 @@ const DropdownContainerStyle = cssRuleWithTheme(({theme}) => ({
   '> select': {
     backgroundColor: theme.colors.white,
     width: '100%',
-    height: pxToRem(22),
-    fontSize: pxToRem(FontSize.Medium),
+    height: 22,
+    fontSize: FontSize.Medium,
     border: 'none',
     borderBottom: `${BorderWidth.Small} solid`,
     borderColor: theme.colors.gray,
@@ -39,12 +39,12 @@ const DropdownContainerStyle = cssRuleWithTheme(({theme}) => ({
 
 const LabelStyle = cssRuleWithTheme(({theme}) => ({
   color: theme.colors.gray,
-  fontSize: pxToRem(FontSize.Small)
+  fontSize: FontSize.Small
 }))
 
 const DescriptionStyle = cssRuleWithTheme(({theme}) => ({
   color: theme.colors.gray,
-  fontSize: pxToRem(FontSize.Small)
+  fontSize: FontSize.Small
 }))
 
 export interface DropdownProps {

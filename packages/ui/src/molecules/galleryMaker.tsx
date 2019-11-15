@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 import {OptionButtonSmall} from '../input/buttons/optionButtonSmall'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem, Spacing, BorderWidth, FontSize} from '../style/helpers'
+import { Spacing, BorderWidth, FontSize} from '../style/helpers'
 import {MaterialIconKeyboardArrowUp, MaterialIconKeyboardArrowDown} from '@karma.run/icons'
 import {Button} from '../input/buttons/button'
 
@@ -70,13 +70,13 @@ export function GalleryMaker({images, onUpdate, onRemove}: GalleryMakerProps): J
  */
 const GalleryMakerStyle = cssRuleWithTheme(({theme}) => ({
   backgroundColor: theme.colors.dark,
-  padding: pxToRem(Spacing.Small)
+  padding: Spacing.Small
 }))
 
 const GalleryMakerFooterStyle = cssRuleWithTheme(({theme}) => ({
   width: '100%',
   textAlign: 'right',
-  marginTop: pxToRem(Spacing.Small)
+  marginTop: Spacing.Small
 }))
 
 export interface GalleryMakerListProps {
@@ -121,19 +121,19 @@ const GalleryMakerItemStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
   justifyContent: 'space-between',
   width: '100%',
-  minHeight: pxToRem(88),
+  minHeight: 88,
   color: theme.colors.white,
   borderBottom: `${BorderWidth.Small} solid ${theme.colors.white}`
 }))
 
 const GalleryMakerItemImageStyle = cssRuleWithTheme(({theme}) => ({
-  minWidth: pxToRem(200),
+  minWidth: 200,
   display: 'flex',
   alignItems: 'center',
-  fontSize: pxToRem(FontSize.Small),
+  fontSize: FontSize.Small,
 
   '> span': {
-    marginLeft: pxToRem(Spacing.ExtraSmall)
+    marginLeft: Spacing.ExtraSmall
   }
 }))
 
@@ -142,14 +142,14 @@ const GalleryMakerItemOptionStyle = cssRuleWithTheme(({theme}) => ({
   alignItems: 'center',
 
   '> button': {
-    marginRight: pxToRem(Spacing.ExtraSmall)
+    marginRight: Spacing.ExtraSmall
   }
 }))
 
 const GalleryMakerItemMoverStyle = cssRuleWithTheme(({theme}) => ({
   '> button': {
-    marginTop: pxToRem(Spacing.Tiny),
-    marginBottom: pxToRem(Spacing.Tiny)
+    marginTop: Spacing.Tiny,
+    marginBottom: Spacing.Tiny
   }
 }))
 

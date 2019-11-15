@@ -2,10 +2,10 @@ import React from 'react'
 import {toArray} from '@karma.run/utility'
 
 import {cssRuleWithTheme, useThemeStyle, CSSRuleWithTheme} from '../style/themeContext'
-import {pxToRem, FontSize} from '../style/helpers'
+import { FontSize} from '../style/helpers'
 
 export const BaseTextAreaStyle = cssRuleWithTheme(({theme}) => ({
-  fontSize: pxToRem(FontSize.Medium),
+  fontSize: FontSize.Medium,
   width: '100%',
   border: 'none',
 

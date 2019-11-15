@@ -2,7 +2,7 @@ import React, {ReactNode} from 'react'
 import {useStyle, cssRule} from '@karma.run/react'
 import {StoryFn} from '@storybook/addons'
 
-import {pxToRem, Spacing, FontSize} from '../style/helpers'
+import { Spacing, FontSize} from '../style/helpers'
 import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
 
 export interface CenterLayoutStyleProps {
@@ -19,8 +19,8 @@ const CenterLayoutStyle = cssRule({
 })
 
 const CenterLayoutContentStyle = cssRule(({scale}: CenterLayoutStyleProps) => ({
-  padding: pxToRem(20),
-  margin: pxToRem(20),
+  padding: 20,
+  margin: 20,
   width: scale ? `${scale * 100}%` : undefined,
   border: '1px dashed rgba(0,0,0, 0.05)'
 }))
@@ -51,7 +51,7 @@ export interface FontSizeStyleProps {
 }
 
 const FontSizeStyle = cssRule(({fontSize}: FontSizeStyleProps) => ({
-  fontSize: pxToRem(fontSize),
+  fontSize: fontSize,
   width: 'inherit',
   height: 'inherit'
 }))
@@ -76,15 +76,15 @@ const InfoBoxStyle = cssRuleWithTheme(({theme}) => ({
   backgroundColor: theme.colors.light,
   display: 'inline-block',
   textAlign: 'center',
-  minWidth: pxToRem(80),
+  minWidth: 80,
 
-  margin: pxToRem(Spacing.ExtraSmall),
-  padding: pxToRem(Spacing.ExtraSmall)
+  margin: Spacing.ExtraSmall,
+  padding: Spacing.ExtraSmall
 }))
 
 const InfoBoxLabelStyle = cssRuleWithTheme(({theme}) => ({
-  marginTop: pxToRem(Spacing.Tiny),
-  fontSize: pxToRem(FontSize.Small),
+  marginTop: Spacing.Tiny,
+  fontSize: FontSize.Small,
   color: theme.colors.gray
 }))
 

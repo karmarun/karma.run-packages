@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import {Icon, IconScale} from '../atoms/icon'
 import {BaseButton} from '../atoms/baseButton'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {pxToRem, BorderRadius, pxToEm, FontSize, Spacing} from '../style/helpers'
+import {BorderRadius, FontSize, Spacing} from '../style/helpers'
 import {BaseInput, InputType} from '../atoms/baseInput'
 import {MaterialIconClose, MaterialIconKeyboardArrowDown} from '@karma.run/icons'
 
@@ -11,11 +11,11 @@ const SearchBarStyle = cssRuleWithTheme(({theme}) => ({
   border: `1px solid ${theme.colors.grayLight}`,
   borderRadius: BorderRadius.Medium,
   display: 'flex',
-  fontSize: pxToEm(FontSize.Medium),
-  padding: pxToRem(Spacing.ExtraSmall),
+  fontSize: FontSize.Medium,
+  padding: Spacing.ExtraSmall,
 
   '> input': {
-    fontSize: pxToRem(FontSize.Medium)
+    fontSize: FontSize.Medium
   }
 }))
 

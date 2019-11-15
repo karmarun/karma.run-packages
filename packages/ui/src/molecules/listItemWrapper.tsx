@@ -11,7 +11,7 @@ import {
 import {Card} from '../atoms/card'
 import {Icon, IconType} from '../atoms/icon'
 import {OptionButtonSmall} from '../input/buttons/optionButtonSmall'
-import {pxToRem, Spacing} from '../style/helpers'
+import { Spacing} from '../style/helpers'
 import {Box} from '../layout/box'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 
@@ -23,16 +23,16 @@ const ListItemWrapperStyle = cssRule({
 const ListItemWrapperActionStyle = cssRule({
   display: 'flex',
   flexDirection: 'column',
-  width: pxToRem(24),
-  marginRight: pxToRem(Spacing.ExtraSmall)
+  width: 24,
+  marginRight: Spacing.ExtraSmall
 })
 
 const ListItemWrapperAccessoryStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
   flexDirection: 'column',
-  width: pxToRem(24),
-  marginLeft: pxToRem(Spacing.ExtraSmall),
-  fontSize: pxToRem(24),
+  width: 24,
+  marginLeft: Spacing.ExtraSmall,
+  fontSize: 24,
   fill: theme.colors.gray
 }))
 

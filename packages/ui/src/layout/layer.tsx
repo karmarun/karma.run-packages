@@ -61,8 +61,8 @@ export const Layer = forwardRef<HTMLDivElement, LayerProps>(function Layer(
 ) {
   return (
     <LayerElement
-      ref={ref}
       {...props}
+      ref={ref}
       styleProps={{
         top,
         bottom,

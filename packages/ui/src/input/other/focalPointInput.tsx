@@ -1,7 +1,7 @@
 import React, {useRef, useState, useLayoutEffect} from 'react'
 
 import {Icon} from '../../atoms/icon'
-import {pxToRem, FontSize} from '../../style/helpers'
+import { FontSize} from '../../style/helpers'
 import {cssRuleWithTheme, useThemeStyle} from '../../style/themeContext'
 import {MaterialIconCenterFocusStrong} from '@karma.run/icons'
 import {Image} from '../../data/image'
@@ -100,8 +100,8 @@ export function FocalPointInput({
 }
 
 const FocalPointStyle = cssRuleWithTheme(({theme}) => ({
-  width: pxToRem(50),
-  height: pxToRem(50),
+  width: 50,
+  height: 50,
   backgroundColor: 'rgba(0, 0, 0, 0.2)',
 
   borderRadius: '100%',
@@ -112,7 +112,7 @@ const FocalPointStyle = cssRuleWithTheme(({theme}) => ({
   alignItems: 'center',
 
   fill: theme.colors.white,
-  fontSize: pxToRem(FontSize.Heading3),
+  fontSize: FontSize.Heading3,
 
   '&:hover': {
     backgroundColor: 'rgba(0, 0, 0, 0.4)'

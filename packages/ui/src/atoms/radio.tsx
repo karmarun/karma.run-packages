@@ -2,7 +2,7 @@ import React, {ChangeEvent, useContext} from 'react'
 
 import {BaseInput, InputType} from './baseInput'
 
-import {pxToRem, FontSize, Spacing, BorderWidth} from '../style/helpers'
+import { FontSize, Spacing, BorderWidth} from '../style/helpers'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {RadioGroupContext} from './radioGroup'
 
@@ -38,10 +38,10 @@ const RadioStyle = cssRuleWithTheme(({theme}) => ({
   ':checked + span::after': {
     display: 'block',
 
-    top: pxToRem(2),
-    left: pxToRem(2),
-    width: pxToRem(14),
-    height: pxToRem(14),
+    top: 2,
+    left: 2,
+    width: 14,
+    height: 14,
 
     borderRadius: '50%',
     background: theme.colors.action
@@ -55,8 +55,8 @@ const RadioStyle = cssRuleWithTheme(({theme}) => ({
 const CheckMarkStyle = cssRuleWithTheme(({theme}) => ({
   position: 'relative',
 
-  width: pxToRem(20),
-  height: pxToRem(20),
+  width: 20,
+  height: 20,
   borderRadius: '50%',
   backgroundColor: theme.colors.light,
 
@@ -73,8 +73,8 @@ const CheckMarkStyle = cssRuleWithTheme(({theme}) => ({
 
 const LabelStyle = cssRuleWithTheme(({theme}) => ({
   color: theme.colors.dark,
-  fontSize: pxToRem(FontSize.Medium),
-  marginLeft: pxToRem(Spacing.ExtraSmall)
+  fontSize: FontSize.Medium,
+  marginLeft: Spacing.ExtraSmall
 }))
 
 export interface RadioProps {

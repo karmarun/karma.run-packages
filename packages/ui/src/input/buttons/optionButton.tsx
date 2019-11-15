@@ -2,14 +2,14 @@ import React from 'react'
 
 import {BaseButton, ButtonProps} from '../../atoms/baseButton'
 import {IconType, Icon} from '../../atoms/icon'
-import {pxToRem, TransitionDuration, FontSize} from '../../style/helpers'
+import { TransitionDuration, FontSize} from '../../style/helpers'
 import {cssRuleWithTheme} from '../../style/themeContext'
 
 const OptionButtonStyle = cssRuleWithTheme(({theme}) => ({
-  width: pxToRem(40),
-  height: pxToRem(40),
+  width: 40,
+  height: 40,
 
-  fontSize: pxToRem(FontSize.Heading2),
+  fontSize: FontSize.Heading2,
   lineHeight: 1,
 
   border: 'none',

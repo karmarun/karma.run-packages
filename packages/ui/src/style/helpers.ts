@@ -54,14 +54,6 @@ export enum TransitionDuration {
   Slow = '200ms'
 }
 
-export function pxToRem(px: number) {
-  return `${px / 10}rem`
-}
-
-export function pxToEm(px: number) {
-  return `${px / 10}em`
-}
-
 export const tabletMediaQuery = `@media screen and (max-width: ${Breakpoint.Desktop - 1}px)`
 export const mobileMediaQuery = `@media screen and (max-width: ${Breakpoint.Tablet - 1}px)`
 
@@ -84,25 +76,25 @@ export function hexToRgba(hex: string | number, alpha: number) {
 }
 
 export function remify(value?: string | number) {
-  return typeof value === 'string' ? value : value != undefined ? pxToRem(value) : value
+  return typeof value === 'string' ? value : value != undefined ? value : value
 }
 
 export function scrollBarStyle(theme: Theme): CSSStyle {
   return {
     '::-webkit-scrollbar': {
-      width: pxToRem(Spacing.Tiny)
+      width: Spacing.Tiny
     },
 
     '::-webkit-scrollbar-thumb': {
       backgroundColor: theme.colors.gray,
-      borderTopLeftRadius: pxToRem(Spacing.Tiny),
-      borderBottomLeftRadius: pxToRem(Spacing.Tiny)
+      borderTopLeftRadius: Spacing.Tiny,
+      borderBottomLeftRadius: Spacing.Tiny
     },
 
     '::-webkit-scrollbar-track': {
       backgroundColor: theme.colors.grayLight,
-      borderTopLeftRadius: pxToRem(Spacing.Tiny),
-      borderBottomLeftRadius: pxToRem(Spacing.Tiny)
+      borderTopLeftRadius: Spacing.Tiny,
+      borderBottomLeftRadius: Spacing.Tiny
     }
   }
 }

@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import {BaseButton, ButtonProps} from '../atoms/baseButton'
 import {IconType, Icon, IconScale} from '../atoms/icon'
 
-import {pxToRem, Spacing, TransitionDuration, FontSize} from '../style/helpers'
+import {Spacing, TransitionDuration, FontSize} from '../style/helpers'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {NavigationContext} from '../organisms/navigation'
 
@@ -14,10 +14,10 @@ const MenuIconButtonStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
   alignItems: 'center',
 
-  padding: `${pxToRem(12)} ${pxToRem(18)}`,
+  padding: `12px 18px`,
 
   width: '100%',
-  fontSize: pxToRem(FontSize.Medium),
+  fontSize: FontSize.Medium,
   textAlign: 'left',
 
   fill: theme.colors.dark,
@@ -39,7 +39,7 @@ const MenuIconButtonStyle = cssRuleWithTheme(({theme}) => ({
 }))
 
 const LabelStyle = cssRuleWithTheme<MenuIconButtonStyleProps>(({isCollapsed}) => ({
-  marginLeft: pxToRem(Spacing.ExtraSmall),
+  marginLeft: Spacing.ExtraSmall,
   whiteSpace: 'nowrap',
   opacity: isCollapsed ? 0 : 1,
   transitionProperty: 'opacity',

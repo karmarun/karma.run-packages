@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react'
 import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
-import {pxToRem, Spacing} from '../style/helpers'
+import { Spacing} from '../style/helpers'
 
 const NavigationBarStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
@@ -17,7 +17,7 @@ const NavigationBarLeftWrapperStyle = cssRuleWithTheme(({theme}) => ({
 
 const NavigationBarCenterWrapperStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
-  margin: `0 ${pxToRem(Spacing.ExtraSmall)}`
+  margin: `0 ${Spacing.ExtraSmall}`
 }))
 
 const NavigationBarRightWrapperStyle = cssRuleWithTheme(({theme}) => ({

@@ -7,7 +7,7 @@ import {useStyle, cssRule} from '@karma.run/react'
 import {BaseButton} from '../../atoms/baseButton'
 import {IconType, Icon, IconScale} from '../../atoms/icon'
 import {cssRuleWithTheme, useThemeStyle} from '../../style/themeContext'
-import {pxToRem, FontSize, Spacing, TransitionDuration} from '../../style/helpers'
+import { FontSize, Spacing, TransitionDuration} from '../../style/helpers'
 
 const RichTextInputStyle = cssRule(() => ({
   width: '100%',
@@ -54,7 +54,7 @@ const DarkMenuStyle = cssRuleWithTheme<MenuStyleProps>(({focused, theme}) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  marginBottom: pxToRem(Spacing.ExtraSmall),
+  marginBottom: Spacing.ExtraSmall,
   opacity: focused ? 1 : 0.3,
   transitionProperty: 'opacity',
   transitionDuration: TransitionDuration.Fast
@@ -72,9 +72,9 @@ export function EditMenu({focused, children}: EditMenuProps) {
 
 export const EditMenuButtonStyle = cssRuleWithTheme<{isActive: boolean}>(({isActive, theme}) => ({
   fill: isActive ? theme.colors.action : theme.colors.dark,
-  fontSize: pxToRem(FontSize.Medium),
-  paddingLeft: pxToRem(Spacing.Tiny / 2),
-  paddingRight: pxToRem(Spacing.Tiny / 2),
+  fontSize: FontSize.Medium,
+  paddingLeft: Spacing.Tiny / 2,
+  paddingRight: Spacing.Tiny / 2,
   '&:hover': {
     backgroundColor: theme.colors.light
   }

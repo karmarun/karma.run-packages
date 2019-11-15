@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react'
 
-import {pxToRem, FontSize, Spacing} from '../style/helpers'
+import {FontSize, Spacing} from '../style/helpers'
 import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
 import {BaseInput, InputType} from './baseInput'
 
@@ -32,13 +32,13 @@ const CheckboxStyle = cssRuleWithTheme(({theme}) => ({
   ':checked + span::after': {
     display: 'block',
 
-    top: pxToRem(1),
-    left: pxToRem(6),
-    width: pxToRem(6),
-    height: pxToRem(13),
+    top: 1,
+    left: 6,
+    width: 6,
+    height: 13,
 
     border: `solid ${theme.colors.white}`,
-    borderWidth: `0 ${pxToRem(2)} ${pxToRem(2)} 0`,
+    borderWidth: `0 2px 2px 0`,
     transform: 'rotate(42deg)'
   },
 
@@ -55,9 +55,9 @@ const CheckboxStyle = cssRuleWithTheme(({theme}) => ({
 const CheckMarkStyle = cssRuleWithTheme(({theme}) => ({
   position: 'relative',
 
-  width: pxToRem(20),
-  height: pxToRem(20),
-  borderRadius: pxToRem(2),
+  width: 20,
+  height: 20,
+  borderRadius: 2,
   backgroundColor: theme.colors.light,
   border: `1px solid ${theme.colors.grayDark}`,
 
@@ -70,8 +70,8 @@ const CheckMarkStyle = cssRuleWithTheme(({theme}) => ({
 
 const LabelStyle = cssRuleWithTheme(({theme}) => ({
   color: theme.colors.dark,
-  fontSize: pxToRem(FontSize.Medium),
-  marginLeft: pxToRem(Spacing.ExtraSmall)
+  fontSize: FontSize.Medium,
+  marginLeft: Spacing.ExtraSmall
 }))
 
 export interface CheckboxProps {

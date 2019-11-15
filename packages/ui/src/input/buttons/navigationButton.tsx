@@ -1,6 +1,6 @@
 import React, {forwardRef, ButtonHTMLAttributes, AnchorHTMLAttributes} from 'react'
 
-import {pxToRem, Spacing, TransitionDuration, FontSize} from '../../style/helpers'
+import { Spacing, TransitionDuration, FontSize} from '../../style/helpers'
 import {cssRuleWithTheme, themeMiddleware, Theme} from '../../style/themeContext'
 import {Icon, IconScale, IconType} from '../../atoms/icon'
 import {styled} from '@karma.run/react'
@@ -19,15 +19,15 @@ const NavigationButtonStyle = cssRuleWithTheme<NavigationButtonStyleProps>(({dis
   justifyContent: 'center',
   alignItems: 'center',
 
-  minWidth: pxToRem(70),
-  height: pxToRem(60),
+  minWidth: 70,
+  height: 60,
 
   cursor: 'pointer',
-  fontSize: pxToRem(FontSize.Small),
+  fontSize: FontSize.Small,
   fontFamily: 'inherit',
 
-  paddingLeft: pxToRem(Spacing.ExtraSmall),
-  paddingRight: pxToRem(Spacing.ExtraSmall),
+  paddingLeft: Spacing.ExtraSmall,
+  paddingRight: Spacing.ExtraSmall,
 
   fill: disabled ? theme.colors.gray : theme.colors.dark,
   color: disabled ? theme.colors.gray : theme.colors.dark,

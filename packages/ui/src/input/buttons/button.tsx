@@ -4,7 +4,7 @@ import {styled, cssRule} from '@karma.run/react'
 import {themeMiddleware, Theme} from '../../style/themeContext'
 
 import {
-  pxToRem,
+
   FontSize,
   TransitionDuration,
   Spacing,
@@ -97,17 +97,17 @@ const ButtonStyle = cssRule<ButtonStyleProps>(props => {
     alignItems: 'center',
     justifyContent: 'center',
 
-    paddingTop: pxToRem(Spacing.ExtraSmall),
-    paddingBottom: pxToRem(Spacing.ExtraSmall),
+    paddingTop: Spacing.ExtraSmall,
+    paddingBottom: Spacing.ExtraSmall,
 
-    paddingLeft: pxToRem(Spacing.Small),
-    paddingRight: pxToRem(Spacing.Small),
+    paddingLeft: Spacing.Small,
+    paddingRight: Spacing.Small,
 
     cursor: disabled ? 'default' : 'pointer',
-    fontSize: pxToRem(FontSize.Medium),
+    fontSize: FontSize.Medium,
 
     width: fill ? '100%' : undefined,
-    borderRadius: pxToRem(Spacing.ExtraSmall),
+    borderRadius: Spacing.ExtraSmall,
 
     color: textColor,
     fontFamily: 'inherit',
@@ -173,8 +173,8 @@ const LinkButtonWrapper = styled('a', ButtonStyle, themeMiddleware)
 
 const ButtonIcon = styled('span', () => ({
   _className: process.env.NODE_ENV !== 'production' ? 'ButtonIcon' : undefined,
-  marginRight: pxToRem(Spacing.Tiny),
-  marginLeft: pxToRem(-Spacing.Tiny)
+  marginRight: Spacing.Tiny,
+  marginLeft: -Spacing.Tiny
 }))
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(

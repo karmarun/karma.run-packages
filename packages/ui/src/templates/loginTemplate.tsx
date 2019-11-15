@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react'
 import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
-import {pxToRem, Spacing} from '../style/helpers'
+import { Spacing} from '../style/helpers'
 
 const contentMaxWidth = 520
 
@@ -20,12 +20,12 @@ const LoginTemplateContentStyle = cssRuleWithTheme(({theme}) => ({
   justifyContent: 'center',
 
   width: '100%',
-  maxWidth: pxToRem(contentMaxWidth + Spacing.Large),
-  padding: pxToRem(Spacing.Large),
+  maxWidth: contentMaxWidth + Spacing.Large,
+  padding: Spacing.Large,
 
   backgroundColor: theme.colors.white,
   boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.5)',
-  borderRadius: pxToRem(10),
+  borderRadius: 10,
   overflow: 'hidden'
 }))
 

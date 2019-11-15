@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react'
 
-import {pxToRem, FontSize, Spacing, BorderWidth} from '../../style/helpers'
+import { FontSize, Spacing, BorderWidth} from '../../style/helpers'
 import {useThemeStyle, cssRuleWithTheme} from '../../style/themeContext'
 import {Icon, IconScale, IconType} from '../../atoms/icon'
 import {cssRule} from '@karma.run/react'
@@ -15,12 +15,12 @@ const FileDropInputStyle = cssRuleWithTheme<{dragging: boolean; disabled: boolea
     width: '100%',
     height: '100%',
 
-    paddingTop: pxToRem(Spacing.Small),
-    paddingBottom: pxToRem(Spacing.Small),
-    paddingLeft: pxToRem(Spacing.Small),
-    paddingRight: pxToRem(Spacing.Small),
+    paddingTop: Spacing.Small,
+    paddingBottom: Spacing.Small,
+    paddingLeft: Spacing.Small,
+    paddingRight: Spacing.Small,
 
-    borderRadius: pxToRem(3),
+    borderRadius: 3,
 
     borderStyle: 'dashed',
     borderWidth: BorderWidth.Small,
@@ -28,7 +28,7 @@ const FileDropInputStyle = cssRuleWithTheme<{dragging: boolean; disabled: boolea
 
     position: 'relative',
     cursor: disabled ? 'not-allowed' : 'pointer',
-    fontSize: pxToRem(FontSize.Small),
+    fontSize: FontSize.Small,
     textAlign: 'center',
 
     opacity: disabled ? 0.5 : 1,

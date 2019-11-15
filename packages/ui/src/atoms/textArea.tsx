@@ -1,15 +1,15 @@
 import React from 'react'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {joinClassNames} from '@karma.run/react'
-import {pxToRem, FontSize, TransitionDuration, BorderWidth} from '../style/helpers'
+import { FontSize, TransitionDuration, BorderWidth} from '../style/helpers'
 
 export interface TextAreaStyleProps {
   hasError: boolean
 }
 
 const TextAreaContainerStyle = cssRuleWithTheme(({theme}) => ({
-  minHeight: pxToRem(54),
-  paddingTop: pxToRem(16)
+  minHeight: 54,
+  paddingTop: 16
 }))
 
 const TextAreaStyle = cssRuleWithTheme<TextAreaStyleProps>(({hasError, theme}) => ({
@@ -32,7 +32,7 @@ const TextAreaStyle = cssRuleWithTheme<TextAreaStyleProps>(({hasError, theme}) =
     resize: 'none',
 
     fontFamily: 'inherit',
-    fontSize: pxToRem(FontSize.Medium),
+    fontSize: FontSize.Medium,
 
     '::placeholder': {
       color: theme.colors.gray
@@ -59,7 +59,7 @@ const LabelStyle = cssRuleWithTheme<TextAreaStyleProps>(({hasError, theme}) => (
   position: 'absolute',
   top: '-1.6rem',
   left: 0,
-  fontSize: pxToRem(FontSize.Small),
+  fontSize: FontSize.Small,
   opacity: 1,
   transform: 'translateY(0%)',
 
@@ -70,7 +70,7 @@ const LabelStyle = cssRuleWithTheme<TextAreaStyleProps>(({hasError, theme}) => (
 
 const DescriptionStyle = cssRuleWithTheme<TextAreaStyleProps>(({hasError, theme}) => ({
   color: hasError ? theme.colors.alert : theme.colors.gray,
-  fontSize: pxToRem(FontSize.Small)
+  fontSize: FontSize.Small
 }))
 
 export interface TextAreaProps {
