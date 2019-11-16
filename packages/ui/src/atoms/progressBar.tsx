@@ -1,7 +1,7 @@
 import React from 'react'
 import {MaterialIconClose} from '@karma.run/icons'
 
-import {OptionButtonSmall} from '../input/buttons/optionButtonSmall'
+import {IconButton} from '../input/buttons/iconButton'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {BorderRadius, TransitionDuration} from '../style/helpers'
 
@@ -41,7 +41,7 @@ export function ProgressBar({progress, onCancel}: ProgressBarProps) {
       <div className={css(ProgressStyle)}>
         <div className={css(FillerStyle)} />
       </div>
-      {progress}%{onCancel && <OptionButtonSmall icon={MaterialIconClose} onClick={onCancel} />}
+      {progress}%{onCancel && <IconButton icon={MaterialIconClose} onClick={onCancel} />}
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import {OptionButtonSmall} from './optionButtonSmall'
+import {IconButton} from './iconButton'
 import {useThemeStyle, cssRuleWithTheme} from '../../style/themeContext'
 import {MaterialIconAdd} from '@karma.run/icons'
 import {ZIndex} from '../../style/helpers'
@@ -52,7 +52,7 @@ export function AddBlockButton({onClick, active = false, subtle = false}: AddBlo
   return (
     <div className={css(AddBlockButtonStyle)} onClick={() => onClick()}>
       <div className={css(AddBlockButtonWrapperStyle)}>
-        <OptionButtonSmall title="Add Block" icon={MaterialIconAdd} onClick={() => onClick()} />
+        <IconButton title="Add Block" icon={MaterialIconAdd} onClick={() => onClick()} />
       </div>
     </div>
   )

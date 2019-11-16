@@ -1,7 +1,8 @@
 import React, {ReactNode} from 'react'
-import {useThemeStyle, cssRuleWithTheme} from '../../style/themeContext'
-import {OptionButton} from '../buttons/optionButton'
 import {MaterialIconAdd} from '@karma.run/icons'
+
+import {useThemeStyle, cssRuleWithTheme} from '../../style/themeContext'
+import {IconButton} from '../buttons/iconButton'
 
 const PlaceholderStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
@@ -37,7 +38,11 @@ export function PlaceholderInput({children, onAddClick}: PlaceholderInputProps) 
 
   return (
     <div className={css(PlaceholderStyle)}>
-      <OptionButton icon={MaterialIconAdd} onClick={() => onAddClick && onAddClick()} />
+      <IconButton
+        variant="large"
+        icon={MaterialIconAdd}
+        onClick={() => onAddClick && onAddClick()}
+      />
     </div>
   )
 }

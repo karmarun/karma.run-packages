@@ -11,7 +11,7 @@ import {
 
 import {centerLayoutDecorator} from '../.storybook/decorators'
 import {Navigation} from './navigation'
-import {MenuIconButton} from '../atoms/menuIconButton'
+import {MenuButton} from '../input/buttons/menuButton'
 
 export default {
   component: Navigation,
@@ -21,11 +21,11 @@ export default {
 
 export const Standard = () => (
   <Navigation>
-    <MenuIconButton icon={MaterialIconTextFields} label={'Article'} />
-    <MenuIconButton icon={MaterialIconInsertDriveFileOutlined} label={'Pages'} />
-    <MenuIconButton icon={MaterialIconPermMediaOutlined} label={'Media Library'} />
-    <MenuIconButton icon={MaterialIconSpellcheck} label={'Proofreading'} />
-    <MenuIconButton icon={MaterialIconNavigationOutlined} label={'Menu'} />
-    <MenuIconButton icon={MaterialIconPowerSettingsNew} label={'Logout'} />
+    <MenuButton icon={MaterialIconTextFields} label={'Article'} />
+    <MenuButton icon={MaterialIconInsertDriveFileOutlined} label={'Pages'} />
+    <MenuButton icon={MaterialIconPermMediaOutlined} label={'Media Library'} />
+    <MenuButton icon={MaterialIconSpellcheck} label={'Proofreading'} />
+    <MenuButton icon={MaterialIconNavigationOutlined} label={'Menu'} />
+    <MenuButton icon={MaterialIconPowerSettingsNew} label={'Logout'} />
   </Navigation>
 )

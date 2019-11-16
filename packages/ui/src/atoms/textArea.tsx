@@ -1,7 +1,7 @@
 import React from 'react'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 import {joinClassNames} from '@karma.run/react'
-import { FontSize, TransitionDuration, BorderWidth} from '../style/helpers'
+import {FontSize, TransitionDuration, BorderWidth} from '../style/helpers'
 
 export interface TextAreaStyleProps {
   hasError: boolean
@@ -57,7 +57,7 @@ const TextAreaStyle = cssRuleWithTheme<TextAreaStyleProps>(({hasError, theme}) =
 const LabelStyle = cssRuleWithTheme<TextAreaStyleProps>(({hasError, theme}) => ({
   color: hasError ? theme.colors.alert : theme.colors.gray,
   position: 'absolute',
-  top: '-1.6rem',
+  top: '-16px',
   left: 0,
   fontSize: FontSize.Small,
   opacity: 1,

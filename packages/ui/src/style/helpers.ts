@@ -1,4 +1,32 @@
 import {CSSStyle} from '@karma.run/react'
+
+import {
+  FlexDirectionProperty,
+  JustifyContentProperty,
+  JustifySelfProperty,
+  AlignContentProperty,
+  AlignSelfProperty,
+  FlexBasisProperty,
+  GlobalsNumber,
+  FlexWrapProperty,
+  MinWidthProperty,
+  MaxWidthProperty,
+  WidthProperty,
+  HeightProperty,
+  MinHeightProperty,
+  MaxHeightProperty,
+  PaddingProperty,
+  PaddingTopProperty,
+  PaddingBottomProperty,
+  PaddingLeftProperty,
+  PaddingRightProperty,
+  MarginProperty,
+  MarginTopProperty,
+  MarginBottomProperty,
+  MarginLeftProperty,
+  MarginRightProperty
+} from 'csstype'
+
 import {Theme} from './themeContext'
 
 export enum Breakpoint {
@@ -8,6 +36,7 @@ export enum Breakpoint {
 }
 
 export enum ZIndex {
+  Background = -1,
   Default = 0,
   Tooltip = 1,
   NavigationBar = 2,
@@ -35,13 +64,13 @@ export enum FontSize {
 }
 
 export enum BorderWidth {
-  Small = '1px'
+  Small = 1
 }
 
 export enum BorderRadius {
-  Tiny = '0.2rem',
-  Small = '0.5rem',
-  Medium = '1rem'
+  Tiny = 2,
+  Small = 5,
+  Medium = 10
 }
 
 export enum TransitionDurationRaw {
@@ -52,6 +81,11 @@ export enum TransitionDurationRaw {
 export enum TransitionDuration {
   Fast = '100ms',
   Slow = '200ms'
+}
+
+export enum LineHeight {
+  None = 1,
+  Default = 1.375
 }
 
 export const tabletMediaQuery = `@media screen and (max-width: ${Breakpoint.Desktop - 1}px)`
@@ -97,4 +131,92 @@ export function scrollBarStyle(theme: Theme): CSSStyle {
       borderBottomLeftRadius: Spacing.Tiny
     }
   }
+}
+
+export type CSSLength = string | number
+
+export interface WidthProps {
+  readonly width?: WidthProperty<CSSLength>
+  readonly minWidth?: MinWidthProperty<CSSLength>
+  readonly maxWidth?: MaxWidthProperty<CSSLength>
+}
+
+export interface HeightProps {
+  readonly height?: HeightProperty<CSSLength>
+  readonly minHeight?: MinHeightProperty<CSSLength>
+  readonly maxHeight?: MaxHeightProperty<CSSLength>
+}
+
+export interface PaddingProps {
+  readonly padding?: PaddingProperty<CSSLength>
+  readonly paddingTop?: PaddingTopProperty<CSSLength>
+  readonly paddingBottom?: PaddingBottomProperty<CSSLength>
+  readonly paddingLeft?: PaddingLeftProperty<CSSLength>
+  readonly paddingRight?: PaddingRightProperty<CSSLength>
+}
+
+export interface MarginProps {
+  readonly margin?: MarginProperty<CSSLength>
+  readonly marginTop?: MarginTopProperty<CSSLength>
+  readonly marginBottom?: MarginBottomProperty<CSSLength>
+  readonly marginLeft?: MarginLeftProperty<CSSLength>
+  readonly marginRight?: MarginRightProperty<CSSLength>
+}
+
+export interface FlexContainerProps {
+  readonly flexDirection?: FlexDirectionProperty
+  readonly justifyContent?: JustifyContentProperty
+  readonly alignContent?: AlignContentProperty
+  readonly flexWrap?: FlexWrapProperty
+}
+
+export interface FlexChildProps {
+  readonly justifySelf?: JustifySelfProperty
+  readonly alignSelf?: AlignSelfProperty
+  readonly flexBasis?: FlexBasisProperty<string>
+  readonly flexGrow?: GlobalsNumber
+  readonly flexShrink?: GlobalsNumber
+}
+
+export interface StyleProps
+  extends WidthProps,
+    HeightProps,
+    PaddingProps,
+    MarginProps,
+    FlexContainerProps,
+    FlexChildProps {}
+
+export function extractStyleProps<P extends StyleProps>(
+  input: P
+): [MarginProps, Omit<P, keyof StyleProps>] {
+  const {
+    width,
+    minWidth,
+    maxWidth,
+    height,
+    minHeight,
+    maxHeight,
+    padding,
+    paddingTop,
+    paddingBottom,
+    paddingLeft,
+    paddingRight,
+    margin,
+    marginTop,
+    marginBottom,
+    marginLeft,
+    marginRight,
+    flexDirection,
+    justifyContent,
+    alignContent,
+    flexWrap,
+    justifySelf,
+    alignSelf,
+    flexBasis,
+    flexGrow,
+    flexShrink,
+    ...props
+  } = input
+
+  return [{margin, marginTop, marginBottom, marginLeft, marginRight}, props]
 }

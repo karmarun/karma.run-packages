@@ -1,66 +1,29 @@
 import React, {ReactNode, forwardRef, Ref} from 'react'
 
-import {
-  FlexDirectionProperty,
-  JustifyContentProperty,
-  JustifySelfProperty,
-  JustifyItemsProperty,
-  AlignItemsProperty,
-  AlignContentProperty,
-  AlignSelfProperty,
-  FlexBasisProperty,
-  GlobalsNumber,
-  FlexWrapProperty,
-  MinWidthProperty,
-  MaxWidthProperty,
-  WidthProperty,
-  HeightProperty,
-  MinHeightProperty,
-  MaxHeightProperty,
-  OverflowProperty
-} from 'csstype'
-
+import {OverflowProperty} from 'csstype'
 import {margin, padding, cssRule, useStyle} from '@karma.run/react'
 
-export interface BaseBoxProps {
+import {
+  FlexContainerProps,
+  FlexChildProps,
+  WidthProps,
+  HeightProps,
+  PaddingProps,
+  MarginProps
+} from '../style/helpers'
+
+export interface BaseBoxProps
+  extends FlexContainerProps,
+    FlexChildProps,
+    WidthProps,
+    HeightProps,
+    PaddingProps,
+    MarginProps {
   readonly flex?: boolean
   readonly inlineFlex?: boolean
   readonly inline?: boolean
   readonly block?: boolean
   readonly overflow?: OverflowProperty
-
-  readonly flexDirection?: FlexDirectionProperty
-  readonly justifyContent?: JustifyContentProperty
-  readonly justifyItems?: JustifyItemsProperty
-  readonly justifySelf?: JustifySelfProperty
-  readonly alignContent?: AlignContentProperty
-  readonly alignItems?: AlignItemsProperty
-  readonly alignSelf?: AlignSelfProperty
-  readonly flexBasis?: FlexBasisProperty<string>
-  readonly flexGrow?: GlobalsNumber
-  readonly flexShrink?: GlobalsNumber
-  readonly flexWrap?: FlexWrapProperty
-
-  readonly width?: WidthProperty<string | number>
-  readonly minWidth?: MinWidthProperty<string | number>
-  readonly maxWidth?: MaxWidthProperty<string | number>
-
-  readonly height?: HeightProperty<string | number>
-  readonly minHeight?: MinHeightProperty<string | number>
-  readonly maxHeight?: MaxHeightProperty<string | number>
-
-  readonly padding?: number | string
-  readonly paddingTop?: number | string
-  readonly paddingBottom?: number | string
-  readonly paddingLeft?: number | string
-  readonly paddingRight?: number | string
-
-  readonly margin?: number | string
-  readonly marginTop?: number | string
-  readonly marginBottom?: number | string
-  readonly marginLeft?: number | string
-  readonly marginRight?: number | string
-
   readonly element?: keyof JSX.IntrinsicElements
   readonly children?: ReactNode | ((props: {className: string; ref: Ref<any>}) => ReactNode)
 }
@@ -75,15 +38,6 @@ const BoxBaseStyle = cssRule<BoxStyleProps>(
     inline,
     margin: marginValue,
     padding: paddingValue,
-
-    width,
-    minWidth,
-    maxWidth,
-
-    height,
-    minHeight,
-    maxHeight,
-
     marginTop,
     marginBottom,
     marginLeft,
@@ -107,14 +61,6 @@ const BoxBaseStyle = cssRule<BoxStyleProps>(
         : inline
         ? 'inline'
         : undefined,
-
-      width,
-      minWidth,
-      maxWidth,
-
-      height,
-      minHeight,
-      maxHeight,
 
       ...margin(
         marginTop || marginValue,

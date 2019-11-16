@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import {LoginTemplate} from './loginTemplate'
 
 import {TextInput} from '../atoms/textInput'
 import {Button} from '../input/buttons/button'
 import {Box} from '../layout/box'
+import {Spacing} from '../style/helpers'
+import {InputType} from '../atoms/baseInput'
 
 export default {
   component: LoginTemplate,
@@ -12,16 +14,23 @@ export default {
 }
 
 export const Standard = () => {
+  const [username, setUsename] = useState()
+  const [password, setPassword] = useState()
+
   return (
     <LoginTemplate>
-      <Box>
-        <TextInput label="Username" value={''} onChange={() => {}} />
+      <Box marginBottom={Spacing.Small}>
+        <TextInput label="Username" value={username} onChange={e => setUsename(e.target.value)} />
       </Box>
-      <Box>
-        <TextInput label="Password" value={''} onChange={() => {}} />
+      <Box marginBottom={Spacing.Large}>
+        <TextInput
+          label="Password"
+          type={InputType.Password}
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
       </Box>
-
-      <Button label="Login" />
+      <Button label="Login" color="primary" />
     </LoginTemplate>
   )
 }

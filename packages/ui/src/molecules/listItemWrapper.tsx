@@ -10,8 +10,8 @@ import {
 
 import {Card} from '../atoms/card'
 import {Icon, IconType} from '../atoms/icon'
-import {OptionButtonSmall} from '../input/buttons/optionButtonSmall'
-import { Spacing} from '../style/helpers'
+import {IconButton} from '../input/buttons/iconButton'
+import {Spacing} from '../style/helpers'
 import {Box} from '../layout/box'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
 
@@ -63,7 +63,7 @@ export function ListItemWrapper({
   return (
     <div className={css(ListItemWrapperStyle)}>
       <div className={css(ListItemWrapperActionStyle)}>
-        <OptionButtonSmall
+        <IconButton
           title="Delete"
           icon={MaterialIconDeleteOutlined}
           onClick={onDelete}
@@ -71,7 +71,7 @@ export function ListItemWrapper({
         />
         <Box flexGrow={1} />
         <Box marginTop={Spacing.ExtraSmall} marginBottom={Spacing.Tiny}>
-          <OptionButtonSmall
+          <IconButton
             title="Move Up"
             icon={MaterialIconKeyboardArrowUp}
             onClick={onMoveUp}
@@ -79,7 +79,7 @@ export function ListItemWrapper({
           />
         </Box>
         <Box marginBottom={Spacing.ExtraSmall}>
-          <OptionButtonSmall
+          <IconButton
             title="Move Down"
             icon={MaterialIconKeyboardArrowDown}
             onClick={onMoveDown}

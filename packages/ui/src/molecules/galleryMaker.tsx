@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 
-import {OptionButtonSmall} from '../input/buttons/optionButtonSmall'
+import {IconButton} from '../input/buttons/iconButton'
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import { Spacing, BorderWidth, FontSize} from '../style/helpers'
+import {Spacing, BorderWidth, FontSize} from '../style/helpers'
 import {MaterialIconKeyboardArrowUp, MaterialIconKeyboardArrowDown} from '@karma.run/icons'
 import {Button} from '../input/buttons/button'
 
@@ -177,7 +177,7 @@ export function GalleryMakerItem({image, onMoveUp, onMoveDown, onRemove}: Galler
         <div className={css(GalleryMakerItemOptionStyle)}>
           <Button variant="text" label={'Remove'} onClick={() => onRemove()} />
           <div className={css(GalleryMakerItemMoverStyle)}>
-            <OptionButtonSmall
+            <IconButton
               title="Move Up"
               icon={MaterialIconKeyboardArrowUp}
               onClick={() => {
@@ -185,7 +185,7 @@ export function GalleryMakerItem({image, onMoveUp, onMoveDown, onRemove}: Galler
               }}
               disabled={onMoveUp == undefined}
             />
-            <OptionButtonSmall
+            <IconButton
               title="Move Down"
               icon={MaterialIconKeyboardArrowDown}
               onClick={() => {

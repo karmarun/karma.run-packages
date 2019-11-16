@@ -4,7 +4,7 @@ import {IconType, Icon} from './icon'
 import {BaseInput, InputType} from './baseInput'
 
 import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import { FontSize, TransitionDuration, Spacing} from '../style/helpers'
+import {FontSize, TransitionDuration, Spacing} from '../style/helpers'
 import {cssRule} from '@karma.run/react'
 
 interface TextInputStyleProps {
@@ -32,6 +32,8 @@ const IconStyle = cssRule(() => ({
 
 const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(({hasIcon, theme}) => ({
   width: '100%',
+
+  lineHeight: 1.375,
 
   borderBottom: `1px solid ${theme.colors.gray}`,
   transitionProperty: 'border-color',
@@ -90,7 +92,7 @@ const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(({hasIcon, theme}) 
 const LabelStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme}) => ({
   color: hasError ? theme.colors.alert : theme.colors.gray,
   position: 'absolute',
-  top: '-1.6rem',
+  top: '-16px',
   left: 0,
   fontSize: FontSize.Small,
   opacity: 1,
@@ -106,7 +108,7 @@ const DescriptionStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme
 }))
 
 export interface TextInputProps {
-  readonly type?: InputType.Text
+  readonly type?: InputType
   readonly label?: string
   readonly value: string
   readonly description?: string

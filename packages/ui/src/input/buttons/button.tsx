@@ -4,12 +4,15 @@ import {styled, cssRule} from '@karma.run/react'
 import {themeMiddleware, Theme} from '../../style/themeContext'
 
 import {
-
   FontSize,
   TransitionDuration,
   Spacing,
   BorderWidth,
-  hexToRgba
+  hexToRgba,
+  WidthProps,
+  MarginProps,
+  FlexChildProps,
+  extractStyleProps
 } from '../../style/helpers'
 
 import {IconType, Icon} from '../../atoms/icon'
@@ -17,8 +20,7 @@ import {IconType, Icon} from '../../atoms/icon'
 export type ButtonVariant = 'default' | 'outlined' | 'text'
 export type ButtonColor = 'default' | 'primary' | 'secondary'
 
-interface ButtonStyleProps {
-  readonly fill?: boolean
+interface ButtonStyleProps extends WidthProps, MarginProps, FlexChildProps {
   readonly disabled?: boolean
   readonly variant: ButtonVariant
   readonly color: ButtonColor
@@ -82,7 +84,7 @@ function getActiveTextColor(props: ButtonStyleProps) {
 }
 
 const ButtonStyle = cssRule<ButtonStyleProps>(props => {
-  const {disabled, fill, variant, theme} = props
+  const {disabled, variant, theme, ...styleProps} = props
 
   const backgroundColor = getMainColor(props)
   const activeBackgroundColor = getActiveMainColor(props)
@@ -105,8 +107,6 @@ const ButtonStyle = cssRule<ButtonStyleProps>(props => {
 
     cursor: disabled ? 'default' : 'pointer',
     fontSize: FontSize.Medium,
-
-    width: fill ? '100%' : undefined,
     borderRadius: Spacing.ExtraSmall,
 
     color: textColor,
@@ -125,6 +125,8 @@ const ButtonStyle = cssRule<ButtonStyleProps>(props => {
     transitionProperty: 'color background-color box-shadow',
     transitionTimingFunction: 'ease-in',
     transitionDuration: TransitionDuration.Fast,
+
+    ...styleProps,
 
     ':link': {
       color: textColor
@@ -155,10 +157,9 @@ const ButtonStyle = cssRule<ButtonStyleProps>(props => {
   }
 })
 
-export interface BaseButtonProps {
+export interface BaseButtonProps extends WidthProps, MarginProps, FlexChildProps {
   readonly icon?: IconType
   readonly label: string
-  readonly fill?: boolean
   readonly disabled?: boolean
   readonly color?: ButtonColor
   readonly variant?: ButtonVariant
@@ -168,8 +169,8 @@ export interface BaseButtonProps {
 export type ButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLButtonElement>
 export type LinkButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLAnchorElement>
 
-const ButtonWrapper = styled('button', ButtonStyle, themeMiddleware)
-const LinkButtonWrapper = styled('a', ButtonStyle, themeMiddleware)
+const ButtonElement = styled('button', ButtonStyle, themeMiddleware)
+const LinkButtonElement = styled('a', ButtonStyle, themeMiddleware)
 
 const ButtonIcon = styled('span', () => ({
   _className: process.env.NODE_ENV !== 'production' ? 'ButtonIcon' : undefined,
@@ -178,41 +179,45 @@ const ButtonIcon = styled('span', () => ({
 }))
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  {icon, label, fill, disabled, color = 'default', variant = 'default', ...props},
+  {icon, label, disabled, color = 'default', variant = 'default', ...props},
   ref
 ) {
+  const [styleProps, elementProps] = extractStyleProps(props)
+
   return (
-    <ButtonWrapper
+    <ButtonElement
+      {...elementProps}
       ref={ref}
-      styleProps={{fill, disabled, color, variant}}
-      disabled={disabled}
-      {...props}>
+      styleProps={{disabled, color, variant, ...styleProps}}
+      disabled={disabled}>
       {icon && (
         <ButtonIcon>
           <Icon element={icon} block />
         </ButtonIcon>
       )}
       {label}
-    </ButtonWrapper>
+    </ButtonElement>
   )
 })
 
-export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(function PrimaryLinkButton(
-  {icon, label, fill, disabled, color = 'default', variant = 'default', ...props},
+export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(function LinkButton(
+  {icon, label, disabled, color = 'default', variant = 'default', ...props},
   ref
 ) {
+  const [styleProps, elementProps] = extractStyleProps(props)
+
   return (
-    <LinkButtonWrapper
+    <LinkButtonElement
+      {...elementProps}
       ref={ref}
-      styleProps={{fill, disabled, color, variant}}
-      tabIndex={disabled ? -1 : undefined}
-      {...props}>
+      styleProps={{disabled, color, variant, ...styleProps}}
+      tabIndex={disabled ? -1 : elementProps.tabIndex}>
       {icon && (
         <ButtonIcon>
           <Icon element={icon} block />
         </ButtonIcon>
       )}
       {label}
-    </LinkButtonWrapper>
+    </LinkButtonElement>
   )
 })
