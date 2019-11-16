@@ -1,122 +1,130 @@
-import React, {ChangeEvent} from 'react'
+import React, { ChangeEvent } from "react";
 
-import {IconType, Icon} from './icon'
-import {BaseInput, InputType} from './baseInput'
+import { IconType, Icon } from "./icon";
+import { BaseInput, InputType } from "./baseInput";
 
-import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {FontSize, TransitionDuration, Spacing} from '../style/helpers'
-import {cssRule} from '@karma.run/react'
+import { cssRuleWithTheme, useThemeStyle } from "../style/themeContext";
+import { FontSize, TransitionDuration, Spacing } from "../style/helpers";
+import { cssRule } from "@karma.run/react";
 
-interface TextInputStyleProps {
-  readonly hasError: boolean
-  readonly hasIcon: boolean
+export interface TextInputStyleProps {
+  readonly hasError: boolean;
+  readonly hasIcon: boolean;
 }
 
 const TextInputContainerStyle = cssRuleWithTheme(() => ({
   paddingTop: 16
-}))
+}));
 
-const TextInputWrapperStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme}) => ({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
+export const TextInputWrapperStyle = cssRuleWithTheme<TextInputStyleProps>(
+  ({ hasError, theme }) => ({
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
 
-  fontSize: FontSize.Medium,
-  fill: theme.colors.dark
-}))
+    fontSize: FontSize.Medium,
+    fill: theme.colors.dark
+  })
+);
 
 const IconStyle = cssRule(() => ({
-  position: 'absolute',
+  position: "absolute",
   marginRight: Spacing.Tiny
-}))
+}));
 
-const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(({hasIcon, theme}) => ({
-  width: '100%',
+export const TextInputStyle = cssRuleWithTheme<TextInputStyleProps>(
+  ({ hasIcon, theme }) => ({
+    width: "100%",
 
-  lineHeight: 1.375,
+    lineHeight: 1.375,
 
-  borderBottom: `1px solid ${theme.colors.gray}`,
-  transitionProperty: 'border-color',
-  transitionTimingFunction: 'ease-in',
-  transitionDuration: TransitionDuration.Slow,
+    borderBottom: `1px solid ${theme.colors.gray}`,
+    transitionProperty: "border-color",
+    transitionTimingFunction: "ease-in",
+    transitionDuration: TransitionDuration.Slow,
 
-  paddingLeft: hasIcon ? 20 : undefined,
+    paddingLeft: hasIcon ? 20 : undefined,
 
-  '::placeholder': {
-    color: theme.colors.gray
-  },
+    "::placeholder": {
+      color: theme.colors.gray
+    },
 
-  ':focus': {
-    outline: 'none',
-    borderColor: theme.colors.action
-  },
+    ":focus": {
+      outline: "none",
+      borderColor: theme.colors.action
+    },
 
-  ':focus:valid': {
-    borderColor: theme.colors.action
-  },
+    ":focus:valid": {
+      borderColor: theme.colors.action
+    },
 
-  ':focus:valid + span': {
-    color: theme.colors.action
-  },
+    ":focus:valid + span": {
+      color: theme.colors.action
+    },
 
-  ':focus:invalid': {
-    borderColor: theme.colors.alert
-  },
+    ":focus:invalid": {
+      borderColor: theme.colors.alert
+    },
 
-  ':focus:invalid + span': {
-    color: theme.colors.alert
-  },
+    ":focus:invalid + span": {
+      color: theme.colors.alert
+    },
 
-  ':invalid': {
-    borderColor: theme.colors.alert
-  },
+    ":invalid": {
+      borderColor: theme.colors.alert
+    },
 
-  ':disabled': {
-    opacity: 0.5
-  },
+    ":disabled": {
+      opacity: 0.5
+    },
 
-  ':invalid + span': {
-    color: theme.colors.alert
-  },
+    ":invalid + span": {
+      color: theme.colors.alert
+    },
 
-  ':placeholder-shown + span': {
-    opacity: 0,
-    transform: 'translateY(30%)'
-  },
+    ":placeholder-shown + span": {
+      opacity: 0,
+      transform: "translateY(30%)"
+    },
 
-  ':focus + span': {
-    color: theme.colors.action
-  }
-}))
+    ":focus + span": {
+      color: theme.colors.action
+    }
+  })
+);
 
-const LabelStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme}) => ({
-  color: hasError ? theme.colors.alert : theme.colors.gray,
-  position: 'absolute',
-  top: '-16px',
-  left: 0,
-  fontSize: FontSize.Small,
-  opacity: 1,
-  transform: 'translateY(0%)',
-  transitionProperty: 'transform, opacity, color',
-  transitionTimingFunction: 'ease-in-out',
-  transitionDuration: TransitionDuration.Slow
-}))
+export const LabelStyle = cssRuleWithTheme<TextInputStyleProps>(
+  ({ hasError, theme }) => ({
+    color: hasError ? theme.colors.alert : theme.colors.gray,
+    position: "absolute",
+    top: "-16px",
+    left: 0,
+    fontSize: FontSize.Small,
+    opacity: 1,
+    transform: "translateY(0%)",
+    transitionProperty: "transform, opacity, color",
+    transitionTimingFunction: "ease-in-out",
+    transitionDuration: TransitionDuration.Slow
+  })
+);
 
-const DescriptionStyle = cssRuleWithTheme<TextInputStyleProps>(({hasError, theme}) => ({
-  color: hasError ? theme.colors.alert : theme.colors.gray,
-  fontSize: FontSize.Small
-}))
+const DescriptionStyle = cssRuleWithTheme<TextInputStyleProps>(
+  ({ hasError, theme }) => ({
+    color: hasError ? theme.colors.alert : theme.colors.gray,
+    fontSize: FontSize.Small
+  })
+);
 
 export interface TextInputProps {
-  readonly type?: InputType
-  readonly label?: string
-  readonly value: string
-  readonly description?: string
-  readonly errorDescription?: string
-  readonly icon?: IconType
-  readonly disabled?: boolean
+  readonly type?: InputType;
+  readonly label?: string;
+  readonly value: string;
+  readonly description?: string;
+  readonly errorDescription?: string;
+  readonly icon?: IconType;
+  readonly disabled?: boolean;
 
-  onChange(event: ChangeEvent<HTMLInputElement>): void
+  onChange(event: ChangeEvent<HTMLInputElement>): void;
 }
 
 export function TextInput({
@@ -127,8 +135,11 @@ export function TextInput({
   icon,
   ...props
 }: TextInputProps) {
-  const styleProps = {hasError: errorDescription != null, hasIcon: icon != null}
-  const css = useThemeStyle<TextInputStyleProps>(styleProps)
+  const styleProps = {
+    hasError: errorDescription != null,
+    hasIcon: icon != null
+  };
+  const css = useThemeStyle<TextInputStyleProps>(styleProps);
 
   return (
     <div className={css(TextInputContainerStyle)}>
@@ -143,7 +154,9 @@ export function TextInput({
         />
         <span className={css(LabelStyle)}>{label}</span>
       </label>
-      <div className={css(DescriptionStyle)}>{errorDescription || description}</div>
+      <div className={css(DescriptionStyle)}>
+        {errorDescription || description}
+      </div>
     </div>
-  )
+  );
 }
