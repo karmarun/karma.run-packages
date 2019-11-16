@@ -41,8 +41,9 @@ const AddBlockButtonWrapperStyle = cssRuleWithTheme(() => ({
 }))
 
 export interface AddBlockButtonProps {
-  readonly active?: boolean // TODO: Add highlighted prop to OptionButtonSmall
+  readonly active?: boolean
   readonly subtle?: boolean
+
   onClick(): void
 }
 
@@ -52,7 +53,12 @@ export function AddBlockButton({onClick, active = false, subtle = false}: AddBlo
   return (
     <div className={css(AddBlockButtonStyle)} onClick={() => onClick()}>
       <div className={css(AddBlockButtonWrapperStyle)}>
-        <IconButton title="Add Block" icon={MaterialIconAdd} onClick={() => onClick()} />
+        <IconButton
+          title="Add Block"
+          active={active}
+          icon={MaterialIconAdd}
+          onClick={() => onClick()}
+        />
       </div>
     </div>
   )

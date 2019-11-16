@@ -23,6 +23,8 @@ interface IconButtonStyleProps extends MarginProps, FlexChildProps {
 
 const IconButtonStyle = cssRuleWithTheme<IconButtonStyleProps>(
   ({theme, active, disabled, variant, ...props}) => ({
+    _className: process.env.NODE_ENV !== 'production' ? 'IconButton' : undefined,
+
     display: 'flex',
 
     flexShrink: 0,
@@ -70,7 +72,15 @@ const IconButtonStyle = cssRuleWithTheme<IconButtonStyleProps>(
     ':focus': {
       outline: 'none',
       borderColor: theme.colors.action
-    }
+    },
+
+    ...(active
+      ? {
+          borderColor: theme.colors.action,
+          backgroundColor: theme.colors.grayLight,
+          fill: theme.colors.action
+        }
+      : {})
   })
 )
 
@@ -88,7 +98,7 @@ export type IconButtonProps = BaseIconButtonProps & ButtonHTMLAttributes<HTMLBut
 export type LinkIconButtonProps = BaseIconButtonProps & AnchorHTMLAttributes<HTMLAnchorElement>
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(function IconButton(
-  {icon, variant = 'default', disabled, ...props},
+  {icon, variant = 'default', active, disabled, ...props},
   ref
 ) {
   const [marginProps, elementProps] = extractStyleProps(props)
@@ -96,7 +106,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(functio
   return (
     <IconButtonSmallElement
       ref={ref}
-      styleProps={{variant, disabled, ...marginProps}}
+      styleProps={{variant, active, disabled, ...marginProps}}
       disabled={disabled}
       {...elementProps}>
       <Icon element={icon} block />
@@ -105,13 +115,13 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(functio
 })
 
 export const LinkIconButton = forwardRef<HTMLAnchorElement, LinkIconButtonProps>(
-  function LinkIconButton({icon, variant = 'default', disabled, ...props}, ref) {
+  function LinkIconButton({icon, variant = 'default', active, disabled, ...props}, ref) {
     const [marginProps, elementProps] = extractStyleProps(props)
 
     return (
       <LinkIconButtonSmallElement
         ref={ref}
-        styleProps={{variant, disabled, ...marginProps}}
+        styleProps={{variant, active, disabled, ...marginProps}}
         tabIndex={disabled ? -1 : undefined}
         {...elementProps}>
         <Icon element={icon} block />

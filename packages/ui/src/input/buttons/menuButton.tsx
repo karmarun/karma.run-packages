@@ -11,6 +11,8 @@ interface MenuButtonStyleProps {
 }
 
 const MenuButtonStyle = cssRuleWithTheme(({theme}) => ({
+  _className: process.env.NODE_ENV !== 'production' ? 'MenuButton' : undefined,
+
   display: 'flex',
   alignItems: 'center',
 
@@ -39,6 +41,8 @@ const MenuButtonStyle = cssRuleWithTheme(({theme}) => ({
 }))
 
 const LabelStyle = cssRuleWithTheme<MenuButtonStyleProps>(({isCollapsed}) => ({
+  _className: process.env.NODE_ENV !== 'production' ? 'MenuButtonLabel' : undefined,
+
   marginLeft: Spacing.ExtraSmall,
   whiteSpace: 'nowrap',
   opacity: isCollapsed ? 0 : 1,

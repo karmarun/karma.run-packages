@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 
 import {OverlayMenu, MenuItem} from '../../molecules/overlayMenu'
 import {AddBlockButton} from '../buttons/addBlockButton'
 import {useStyle, cssRule} from '@karma.run/react'
-import { Spacing, ZIndex} from '../../style/helpers'
+import {Spacing, ZIndex} from '../../style/helpers'
 
 const AddBlockInputStyle = cssRule(() => ({
   position: 'relative'
@@ -26,15 +26,27 @@ export interface AddBlockInputProps {
 }
 
 export function AddBlockInput({menuItems, subtle, onMenuItemClick}: AddBlockInputProps) {
-  const [isOpen, setOpen] = useState(false)
   const css = useStyle()
+
+  const ref = useRef<HTMLDivElement>(null)
+  const [isOpen, setOpen] = useState(false)
+
+  useEffect(() => {
+    document.addEventListener('mousedown', e => {
+      if (!ref.current) return
+
+      if (!ref.current.contains(e.target as any)) {
+        setOpen(false)
+      }
+    })
+  })
 
   return (
     <div className={css(AddBlockInputStyle)}>
       <AddBlockButton onClick={() => setOpen(!isOpen)} active={isOpen} subtle={subtle} />
 
       {isOpen && (
-        <div className={css(MenuWrapperStyle)}>
+        <div ref={ref} className={css(MenuWrapperStyle)}>
           <OverlayMenu
             menuItems={menuItems}
             onMenuItemClick={item => {

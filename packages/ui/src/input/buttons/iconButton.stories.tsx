@@ -16,6 +16,7 @@ export const Default = () => (
   <>
     <Box flex flexDirection="row">
       <IconButton icon={MaterialIconKeyboardArrowDown} margin={Spacing.Tiny} />
+      <IconButton icon={MaterialIconKeyboardArrowDown} margin={Spacing.Tiny} active />
       <IconButton icon={MaterialIconKeyboardArrowDown} margin={Spacing.Tiny} disabled />
     </Box>
   </>
@@ -25,6 +26,12 @@ export const Large = () => (
   <>
     <Box flex flexDirection="row">
       <IconButton icon={MaterialIconKeyboardArrowDown} margin={Spacing.Tiny} variant="large" />
+      <IconButton
+        icon={MaterialIconKeyboardArrowDown}
+        margin={Spacing.Tiny}
+        variant="large"
+        active
+      />
       <IconButton
         icon={MaterialIconKeyboardArrowDown}
         margin={Spacing.Tiny}

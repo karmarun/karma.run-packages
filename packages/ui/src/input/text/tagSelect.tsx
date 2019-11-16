@@ -11,7 +11,7 @@ import {
 } from '../../atoms/textInput'
 import {BaseInput, InputType} from '../../atoms/baseInput'
 import {cssRule} from '@karma.run/react'
-import {Spacing, pxToRem} from '../../style/helpers'
+import {Spacing} from '../../style/helpers'
 
 const TagSelectStyle = cssRuleWithTheme(({theme}) => ({
   width: '100%',
@@ -27,11 +27,11 @@ const TagSelectStyle = cssRuleWithTheme(({theme}) => ({
 }))
 
 const TagSelectInputLineStyle = cssRule({
-  marginBottom: pxToRem(Spacing.Tiny)
+  marginBottom: Spacing.Tiny
 })
 
 const TagStyle = cssRule({
-  marginRight: pxToRem(Spacing.Tiny)
+  marginRight: Spacing.Tiny
 })
 
 export interface TagSelectProps {

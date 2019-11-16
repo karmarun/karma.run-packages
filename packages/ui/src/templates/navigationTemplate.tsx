@@ -1,7 +1,8 @@
 import React, {ReactNode} from 'react'
 import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
-import { Spacing} from '../style/helpers'
+import {Spacing} from '../style/helpers'
 import {Navigation} from '../organisms/navigation'
+import {padding} from '@karma.run/react'
 
 const contentMaxWidth = 880
 
@@ -26,7 +27,7 @@ const NavigationTemplateContentWrapperStyle = cssRuleWithTheme(() => ({
   width: '100%',
   height: '100%',
 
-  padding: `${Spacing.ExtraLarge} ${Spacing.Large}`
+  ...padding(Spacing.ExtraLarge, Spacing.Large)
 }))
 
 const NavigationTemplateContentStyle = cssRuleWithTheme(() => ({

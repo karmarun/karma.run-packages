@@ -84,7 +84,7 @@ function getActiveTextColor(props: ButtonStyleProps) {
 }
 
 const ButtonStyle = cssRule<ButtonStyleProps>(props => {
-  const {disabled, variant, theme, ...styleProps} = props
+  const {color, variant, disabled, theme, ...styleProps} = props
 
   const backgroundColor = getMainColor(props)
   const activeBackgroundColor = getActiveMainColor(props)

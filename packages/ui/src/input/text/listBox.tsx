@@ -2,8 +2,8 @@ import React from 'react'
 import {GetMenuPropsOptions, GetPropsCommonOptions, GetItemPropsOptions} from 'downshift'
 import {FilterOption} from '../../molecules/searchBar'
 import {Typography} from '../../layout/typography'
-import {Spacing, pxToRem} from '../../style/helpers'
-import {cssRule, useStyle} from '@karma.run/react'
+import {Spacing} from '../../style/helpers'
+import {cssRule, useStyle, padding} from '@karma.run/react'
 
 const ListStyle = cssRule({
   margin: 0,
@@ -13,8 +13,7 @@ const ListStyle = cssRule({
 })
 
 const ListItemStyle = cssRule({
-  //prettier-ignore
-  padding: `${pxToRem(Spacing.Tiny)} ${pxToRem(Spacing.ExtraSmall)} ${pxToRem(Spacing.Tiny)} ${pxToRem(Spacing.ExtraSmall)}`
+  ...padding(Spacing.Tiny, Spacing.ExtraSmall, Spacing.Tiny, Spacing.ExtraSmall)
 })
 
 export interface AutocompleteOptions {

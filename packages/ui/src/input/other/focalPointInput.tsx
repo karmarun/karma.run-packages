@@ -1,7 +1,7 @@
 import React, {useRef, useState, useLayoutEffect} from 'react'
 
 import {Icon} from '../../atoms/icon'
-import { FontSize} from '../../style/helpers'
+import {FontSize} from '../../style/helpers'
 import {cssRuleWithTheme, useThemeStyle} from '../../style/themeContext'
 import {MaterialIconCenterFocusStrong} from '@karma.run/icons'
 import {Image} from '../../data/image'
@@ -83,7 +83,7 @@ export function FocalPointInput({
             <Card>
               <Image src={imageURL} width={imageWidth} height={imageHeight} />
             </Card>
-            <Layer>
+            <Layer top={0} left={0} width="100%" height="100%">
               <DraggableContainer>
                 {focalPoint && (
                   <Draggable point={focalPoint} onChange={onChange} disabled={disabled}>
