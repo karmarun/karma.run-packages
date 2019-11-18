@@ -1153,19 +1153,6 @@
     "@karma.run/utility" "0.0.0"
     "@types/slate" "^0.47.1"
 
-"@karma.run/media@^0.0.0":
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/@karma.run/media/-/media-0.0.0.tgz#0aa4504e1eedb79b10237236ed785618720a8085"
-  integrity sha512-m4Air5/4XXDVnHXb6Fd14KiIEJYZO244l4Ern92+gEzYgWzJAY3QchvKUdweSjwoZg1HlJ2CMwDh7XUELRPaaQ==
-  dependencies:
-    buffer-peek-stream "^1.0.1"
-    fastify "^2.5.0"
-    fastify-multipart "^1.0.1"
-    mmmagic "^0.5.3"
-    nanoid "^2.0.3"
-    pino-pretty "^3.2.0"
-    pump "^3.0.0"
-
 "@karma.run/react@^0.0.17":
   version "0.0.17"
   resolved "https://registry.yarnpkg.com/@karma.run/react/-/react-0.0.17.tgz#c40a1a67d6bb34913c3287ae2fe4a8c6e43ff10f"
@@ -1850,13 +1837,6 @@
     "@types/events" "*"
     "@types/minimatch" "*"
     "@types/node" "*"
-
-"@types/graphql@^14.2.3":
-  version "14.5.0"
-  resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-14.5.0.tgz#a545fb3bc8013a3547cf2f07f5e13a33642b75d6"
-  integrity sha512-MOkzsEp1Jk5bXuAsHsUi6BVv0zCO+7/2PTiZMXWDSsMXvNU6w/PLMQT2vHn8hy2i0JqojPz1Sz6rsFjHtsU0lA==
-  dependencies:
-    graphql "*"
 
 "@types/history@*":
   version "4.7.3"
@@ -5963,7 +5943,7 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.3.tgz#4a12ff1b60376ef09862c2093edd908328be8423"
   integrity sha512-a30VEBm4PEdx1dRB7MFK7BejejvCvBronbLjht+sHuGYj8PHs7M/5Z+rt5lw551vZ7yfTCj4Vuyy3mSJytDWRQ==
 
-graphql@*, graphql@^14.4.2, graphql@^14.5.8:
+graphql@^14.4.2, graphql@^14.5.8:
   version "14.5.8"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.5.8.tgz#504f3d3114cb9a0a3f359bbbcf38d9e5bf6a6b3c"
   integrity sha512-MMwmi0zlVLQKLdGiMfWkgQD7dY/TUKt4L+zgJ/aR0Howebod3aNgP5JkgvAULiR2HPVZaP2VEElqtdidHweLkg==

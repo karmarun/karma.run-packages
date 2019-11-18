@@ -54,6 +54,7 @@ const IconButtonStyle = cssRuleWithTheme<IconButtonStyleProps>(
     transitionDuration: TransitionDuration.Fast,
     transitionTimingFunction: 'ease',
 
+    cursor: 'pointer',
     pointerEvents: disabled ? 'none' : undefined,
 
     ...props,
@@ -102,7 +103,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(functio
   ref
 ) {
   const [marginProps, elementProps] = extractStyleProps(props)
-  console.log(marginProps)
+
   return (
     <IconButtonSmallElement
       ref={ref}

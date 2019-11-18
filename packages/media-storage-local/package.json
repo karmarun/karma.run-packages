@@ -18,6 +18,6 @@
     "sync-package-info": "node ./../../scripts/syncPackageInfo.js ./src/version.ts"
   },
   "peerDependencies": {
-    "@karma.run/media": "^0.0.0"
+    "@karma.run/media": "^0.0.1"
   }
 }

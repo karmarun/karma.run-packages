@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, TextareaHTMLAttributes, ChangeEvent} from 'react'
+import React, {useEffect, useRef, TextareaHTMLAttributes, ChangeEvent, useLayoutEffect} from 'react'
 import {styled} from '@karma.run/react'
 import {themeMiddleware, Theme} from '../../style/themeContext'
 
@@ -55,12 +55,11 @@ export function TypograpyTextArea({
 }: TypographyTextAreaProps) {
   const ref = useRef<HTMLTextAreaElement>(null)
 
-  useEffect(() => {
-    function handleResize() {
-      ref.current!.style.height = 'inherit'
-      ref.current!.style.height = `${ref.current!.scrollHeight}px`
-    }
+  useLayoutEffect(() => {
+    handleResize()
+  }, [])
 
+  useEffect(() => {
     // TODO: Consider using resize observer
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
@@ -71,6 +70,11 @@ export function TypograpyTextArea({
     e.target.style.height = `${e.target.scrollHeight}px`
 
     onChange?.(e)
+  }
+
+  function handleResize() {
+    ref.current!.style.height = 'inherit'
+    ref.current!.style.height = `${ref.current!.scrollHeight}px`
   }
 
   return (
