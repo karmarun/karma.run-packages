@@ -1,8 +1,8 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useRef} from 'react'
 
 import {OverlayMenu, MenuItem} from '../../molecules/overlayMenu'
 import {AddBlockButton} from '../buttons/addBlockButton'
-import {useStyle, cssRule} from '@karma.run/react'
+import {useStyle, cssRule, useClickAwayListener} from '@karma.run/react'
 import {Spacing, ZIndex} from '../../style/helpers'
 
 const AddBlockInputStyle = cssRule(() => ({
@@ -31,14 +31,8 @@ export function AddBlockInput({menuItems, subtle, onMenuItemClick}: AddBlockInpu
   const ref = useRef<HTMLDivElement>(null)
   const [isOpen, setOpen] = useState(false)
 
-  useEffect(() => {
-    document.addEventListener('mousedown', e => {
-      if (!ref.current) return
-
-      if (!ref.current.contains(e.target as any)) {
-        setOpen(false)
-      }
-    })
+  useClickAwayListener(ref, () => {
+    setOpen(false)
   })
 
   return (

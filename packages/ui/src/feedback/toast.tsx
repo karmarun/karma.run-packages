@@ -1,13 +1,12 @@
 import React, {ReactNode, useEffect} from 'react'
 
-import {styled, padding} from '@karma.run/react'
+import {styled} from '@karma.run/react'
 import Transition, {TransitionStatus} from 'react-transition-group/Transition'
 import {createPortal} from 'react-dom'
 
 import {Theme, themeMiddleware} from '../style/themeContext'
 
 import {
-
   Spacing,
   FontSize,
   hexToRgba,
@@ -82,7 +81,7 @@ const ToastContainer = styled(
     transitionDuration: TransitionDuration.Slow,
     transitionTimingFunction: 'linear, cubic-bezier(0.5, 0.5, 0.5, 2)',
 
-    ...padding(Spacing.ExtraSmall)
+    padding: Spacing.ExtraSmall
   }),
   themeMiddleware
 )

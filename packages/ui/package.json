@@ -34,6 +34,7 @@
     "fela-plugin-fallback-value": "^10.6.1",
     "fela-plugin-prefixer": "^10.6.1",
     "fela-plugin-unit": "^10.8.2",
+    "fela-plugin-expand-shorthand": "^11.0.2",
     "downshift": "^3.3.4"
   },
   "devDependencies": {

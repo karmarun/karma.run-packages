@@ -1,7 +1,7 @@
 import React, {ReactNode, forwardRef, Ref} from 'react'
 
 import {OverflowProperty} from 'csstype'
-import {margin, padding, cssRule, useStyle} from '@karma.run/react'
+import {cssRule, useStyle} from '@karma.run/react'
 
 import {
   FlexContainerProps,
@@ -36,16 +36,6 @@ const BoxBaseStyle = cssRule<BoxStyleProps>(
     inlineFlex,
     block,
     inline,
-    margin: marginValue,
-    padding: paddingValue,
-    marginTop,
-    marginBottom,
-    marginLeft,
-    marginRight,
-    paddingTop,
-    paddingBottom,
-    paddingLeft,
-    paddingRight,
 
     ...props
   }) => {
@@ -61,20 +51,6 @@ const BoxBaseStyle = cssRule<BoxStyleProps>(
         : inline
         ? 'inline'
         : undefined,
-
-      ...margin(
-        marginTop || marginValue,
-        marginRight || marginValue,
-        marginBottom || marginValue,
-        marginLeft || marginValue
-      ),
-
-      ...padding(
-        paddingTop || paddingValue,
-        paddingRight || paddingValue,
-        paddingBottom || paddingValue,
-        paddingLeft || paddingValue
-      ),
 
       ...props
     }

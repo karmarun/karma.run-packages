@@ -1,6 +1,6 @@
 import React, {ReactNode, MouseEventHandler} from 'react'
 
-import {cssRule, padding, CSSStyle} from '@karma.run/react'
+import {cssRule, CSSStyle} from '@karma.run/react'
 import {toArray} from '@karma.run/utility'
 
 import {useThemeStyle, CSSRuleWithTheme} from '../style/themeContext'
@@ -38,7 +38,7 @@ export const ButtonResetStyle: CSSStyle = {
   fontSize: 'inherit',
   fontFamily: 'inherit',
 
-  ...padding(0),
+  padding: 0,
 
   borderWidth: '0px',
   borderStyle: 'none',

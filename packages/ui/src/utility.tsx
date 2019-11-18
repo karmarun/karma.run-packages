@@ -6,6 +6,8 @@ import {GlobalStyles} from './style/globalStyles'
 import felaPrefixer from 'fela-plugin-prefixer'
 import felaFallbackValue from 'fela-plugin-fallback-value'
 import felaUnit from 'fela-plugin-unit'
+import felaExpandShorthand from 'fela-plugin-expand-shorthand'
+
 import {tabletMediaQuery, mobileMediaQuery} from './style/helpers'
 
 export enum ElementID {
@@ -22,7 +24,7 @@ export function createStyleRenderer() {
   return createRenderer({
     devMode: process.env.NODE_ENV !== 'production',
     mediaQueryOrder: [tabletMediaQuery, mobileMediaQuery],
-    plugins: [felaPrefixer(), felaFallbackValue(), felaUnit('px')]
+    plugins: [felaExpandShorthand(true), felaPrefixer(), felaFallbackValue(), felaUnit('px')]
   })
 }
 

@@ -24,7 +24,8 @@ import {
   MarginTopProperty,
   MarginBottomProperty,
   MarginLeftProperty,
-  MarginRightProperty
+  MarginRightProperty,
+  AlignItemsProperty
 } from 'csstype'
 
 import {Theme} from './themeContext'
@@ -36,12 +37,12 @@ export enum Breakpoint {
 }
 
 export enum ZIndex {
-  Background = -1,
-  Default = 0,
-  Tooltip = 1,
-  NavigationBar = 2,
-  Modal = 3,
-  Toast = 4
+  Background,
+  Default,
+  Tooltip,
+  NavigationBar,
+  Modal,
+  Toast
 }
 
 export enum Spacing {
@@ -109,10 +110,6 @@ export function hexToRgba(hex: string | number, alpha: number) {
   return `rgba(${red}, ${green}, ${blue}, ${alpha})`
 }
 
-export function remify(value?: string | number) {
-  return typeof value === 'string' ? value : value != undefined ? value : value
-}
-
 export function scrollBarStyle(theme: Theme): CSSStyle {
   return {
     '::-webkit-scrollbar': {
@@ -167,6 +164,7 @@ export interface FlexContainerProps {
   readonly flexDirection?: FlexDirectionProperty
   readonly justifyContent?: JustifyContentProperty
   readonly alignContent?: AlignContentProperty
+  readonly alignItems?: AlignItemsProperty
   readonly flexWrap?: FlexWrapProperty
 }
 
@@ -188,7 +186,7 @@ export interface StyleProps
 
 export function extractStyleProps<P extends StyleProps>(
   input: P
-): [MarginProps, Omit<P, keyof StyleProps>] {
+): [StyleProps, Omit<P, keyof StyleProps>] {
   const {
     width,
     minWidth,
@@ -209,6 +207,7 @@ export function extractStyleProps<P extends StyleProps>(
     flexDirection,
     justifyContent,
     alignContent,
+    alignItems,
     flexWrap,
     justifySelf,
     alignSelf,
@@ -218,5 +217,40 @@ export function extractStyleProps<P extends StyleProps>(
     ...props
   } = input
 
-  return [{margin, marginTop, marginBottom, marginLeft, marginRight}, props]
+  const styleProps: any = {
+    width,
+    minWidth,
+    maxWidth,
+    height,
+    minHeight,
+    maxHeight,
+    padding,
+    paddingTop,
+    paddingBottom,
+    paddingLeft,
+    paddingRight,
+    margin,
+    marginTop,
+    marginBottom,
+    marginLeft,
+    marginRight,
+    flexDirection,
+    justifyContent,
+    alignContent,
+    alignItems,
+    flexWrap,
+    justifySelf,
+    alignSelf,
+    flexBasis,
+    flexGrow,
+    flexShrink
+  }
+
+  for (const key in styleProps) {
+    if (styleProps[key] === undefined) {
+      delete styleProps[key]
+    }
+  }
+
+  return [styleProps, props]
 }

@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react'
 import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
-import { Spacing} from '../style/helpers'
+import {Spacing} from '../style/helpers'
 
 const NavigationBarStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
@@ -12,7 +12,8 @@ const NavigationBarStyle = cssRuleWithTheme(({theme}) => ({
 
 const NavigationBarLeftWrapperStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
-  flex: 1
+  flexGrow: 1,
+  flexBasis: 0
 }))
 
 const NavigationBarCenterWrapperStyle = cssRuleWithTheme(({theme}) => ({
@@ -22,7 +23,8 @@ const NavigationBarCenterWrapperStyle = cssRuleWithTheme(({theme}) => ({
 
 const NavigationBarRightWrapperStyle = cssRuleWithTheme(({theme}) => ({
   display: 'flex',
-  flex: 1,
+  flexGrow: 1,
+  flexBasis: 0,
   justifyContent: 'flex-end'
 }))
 

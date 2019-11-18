@@ -6,7 +6,7 @@ import {MaterialIconHome} from '@karma.run/icons'
 
 export default {
   component: MenuButton,
-  title: 'Input|Buttons/Icon/MenuButton',
+  title: 'Input|Buttons/MenuButton',
   decorators: [centerLayoutDecorator()]
 }
 

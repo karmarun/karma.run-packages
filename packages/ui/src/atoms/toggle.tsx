@@ -13,7 +13,7 @@ const ToggleInputStyle = cssRuleWithTheme(({theme}) => ({
   },
 
   ':checked + span::after': {
-    transform: `translate(${50 - 26})`,
+    transform: `translate(${50 - 26}px)`,
     borderStyle: 'solid',
     borderWidth: BorderWidth.Small,
     borderColor: theme.colors.successDark

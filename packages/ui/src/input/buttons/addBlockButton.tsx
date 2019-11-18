@@ -51,7 +51,7 @@ export function AddBlockButton({onClick, active = false, subtle = false}: AddBlo
   const css = useThemeStyle<AddBlockButtonStyleProps>({active, subtle})
 
   return (
-    <div className={css(AddBlockButtonStyle)} onClick={() => onClick()}>
+    <div className={css(AddBlockButtonStyle)}>
       <div className={css(AddBlockButtonWrapperStyle)}>
         <IconButton
           title="Add Block"

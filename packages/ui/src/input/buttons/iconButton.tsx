@@ -102,7 +102,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(functio
   ref
 ) {
   const [marginProps, elementProps] = extractStyleProps(props)
-
+  console.log(marginProps)
   return (
     <IconButtonSmallElement
       ref={ref}
