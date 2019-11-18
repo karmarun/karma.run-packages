@@ -25,7 +25,7 @@ const MenuButtonStyle = cssRuleWithTheme(({theme}) => ({
   fill: theme.colors.dark,
   color: theme.colors.dark,
 
-  transitionProperty: 'background-color',
+  transitionProperty: 'background-color, fill',
   transitionTimingFunction: 'ease-in',
   transitionDuration: TransitionDuration.Fast,
 

@@ -1,6 +1,6 @@
 import React, {forwardRef, ButtonHTMLAttributes, AnchorHTMLAttributes} from 'react'
 
-import { Spacing, TransitionDuration, FontSize} from '../../style/helpers'
+import {Spacing, TransitionDuration, FontSize} from '../../style/helpers'
 import {cssRuleWithTheme, themeMiddleware, Theme} from '../../style/themeContext'
 import {Icon, IconScale, IconType} from '../../atoms/icon'
 import {styled} from '@karma.run/react'
@@ -38,7 +38,7 @@ const NavigationButtonStyle = cssRuleWithTheme<NavigationButtonStyleProps>(({dis
   borderStyle: 'none',
   backgroundColor: 'transparent',
 
-  transitionProperty: 'fill background-color',
+  transitionProperty: 'fill, background-color',
   transitionTimingFunction: 'ease-in',
   transitionDuration: TransitionDuration.Fast,
 

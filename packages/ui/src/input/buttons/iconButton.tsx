@@ -50,7 +50,7 @@ const IconButtonStyle = cssRuleWithTheme<IconButtonStyleProps>(
       ? theme.colors.action
       : theme.colors.dark,
 
-    transitionProperty: 'background-color border fill',
+    transitionProperty: 'background-color, border-color, fill',
     transitionDuration: TransitionDuration.Fast,
     transitionTimingFunction: 'ease',
 
