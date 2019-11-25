@@ -81,7 +81,8 @@ export enum TransitionDurationRaw {
 
 export enum TransitionDuration {
   Fast = '100ms',
-  Slow = '200ms'
+  Slow = '200ms',
+  ExtraSlow = '500ms'
 }
 
 export enum LineHeight {

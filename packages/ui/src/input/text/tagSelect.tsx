@@ -2,13 +2,8 @@ import React, {useState} from 'react'
 import Downshift, {ControllerStateAndHelpers} from 'downshift'
 import {ListBox, AutocompleteOptions} from './listBox'
 import {useThemeStyle, cssRuleWithTheme} from '../../style/themeContext'
-import {FilterTag} from '../../atoms/filterTag'
-import {
-  TextInputStyleProps,
-  TextInputWrapperStyle,
-  TextInputStyle,
-  LabelStyle
-} from '../../atoms/textInput'
+import {Chip} from '../../data/chip'
+import {TextInputStyleProps, TextInputWrapperStyle, TextInputStyle, LabelStyle} from './textInput'
 import {BaseInput, InputType} from '../../atoms/baseInput'
 import {cssRule} from '@karma.run/react'
 import {Spacing} from '../../style/helpers'
@@ -132,7 +127,7 @@ export function TagSelect({label, placeholder, options, onUpdate}: TagSelectProp
               <label {...downshift.getLabelProps()} className={css(TextInputWrapperStyle)}>
                 {tags.map((tag, index) => (
                   <div key={tag.name} className={css(TagStyle)}>
-                    <FilterTag text={tag.name} onDismiss={() => handleDelete(tag)} />
+                    <Chip text={tag.name} onDismiss={() => handleDelete(tag)} />
                   </div>
                 ))}
                 <BaseInput

@@ -1,6 +1,6 @@
 import React, {memo} from 'react'
 import {BlockProps} from './types'
-import {TextInput} from '../../atoms/textInput'
+import {TextInput} from '../text/textInput'
 
 export const TextInputBlock = memo(function TextField({value, onChange}: BlockProps<string>) {
   return (

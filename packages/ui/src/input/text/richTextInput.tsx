@@ -7,7 +7,7 @@ import {useStyle, cssRule} from '@karma.run/react'
 import {BaseButton} from '../../atoms/baseButton'
 import {IconType, Icon, IconScale} from '../../atoms/icon'
 import {cssRuleWithTheme, useThemeStyle} from '../../style/themeContext'
-import { FontSize, Spacing, TransitionDuration} from '../../style/helpers'
+import {FontSize, Spacing, TransitionDuration, ZIndex} from '../../style/helpers'
 
 const RichTextInputStyle = cssRule(() => ({
   width: '100%',
@@ -50,10 +50,15 @@ export function RichTextMenuPlugin(menuItems: EditMenuButton[]): Plugin {
 
 type MenuStyleProps = Omit<EditMenuProps, 'children'>
 
-const DarkMenuStyle = cssRuleWithTheme<MenuStyleProps>(({focused, theme}) => ({
+const EditMenuStyle = cssRuleWithTheme<MenuStyleProps>(({focused, theme}) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  width: '100%',
+  position: 'sticky',
+  zIndex: ZIndex.Default,
+  top: 0,
+  backgroundColor: theme.colors.white,
   marginBottom: Spacing.ExtraSmall,
   opacity: focused ? 1 : 0.3,
   transitionProperty: 'opacity',
@@ -67,7 +72,7 @@ export interface EditMenuProps {
 
 export function EditMenu({focused, children}: EditMenuProps) {
   const css = useThemeStyle({focused})
-  return <div className={css(DarkMenuStyle)}>{children}</div>
+  return <div className={css(EditMenuStyle)}>{children}</div>
 }
 
 export const EditMenuButtonStyle = cssRuleWithTheme<{isActive: boolean}>(({isActive, theme}) => ({

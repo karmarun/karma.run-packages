@@ -1,13 +1,13 @@
 import React from 'react'
 
 import {Icon} from './icon'
-import {centerLayoutDecorator, fontSizeDecorator} from '../.storybook/decorators'
+import {centerLayoutDecorator} from '../.storybook/decorators'
 import {MaterialIconAdd} from '@karma.run/icons'
 
 export default {
   component: Icon,
   title: 'Atoms|Icon',
-  decorators: [centerLayoutDecorator(), fontSizeDecorator(24)]
+  decorators: [centerLayoutDecorator()]
 }
 
 export const Standard = () => <Icon element={MaterialIconAdd} block />

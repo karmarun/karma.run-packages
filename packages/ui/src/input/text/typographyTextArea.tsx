@@ -7,6 +7,7 @@ import {
   stylesForTypographyVariant,
   TypographyTextAlign
 } from '../../layout/typography'
+import {LineHeight} from '../../style/helpers'
 
 interface InputWrapperProps {
   readonly variant: TypographyVariant
@@ -27,6 +28,8 @@ const TextAreaWrapper = styled(
     borderColor: 'transparent',
 
     fontFamily: 'inherit',
+    lineHeight: LineHeight.Default,
+
     color: theme.colors.dark,
     textAlign: align,
     ...stylesForTypographyVariant(variant),
@@ -66,15 +69,13 @@ export function TypograpyTextArea({
   }, [ref])
 
   function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
-    e.target.style.height = 'inherit'
-    e.target.style.height = `${e.target.scrollHeight}px`
-
+    handleResize()
     onChange?.(e)
   }
 
   function handleResize() {
-    ref.current!.style.height = 'inherit'
-    ref.current!.style.height = `${ref.current!.scrollHeight}px`
+    ref.current!.style.height = 'auto'
+    ref.current!.style.height = `${ref.current!.scrollHeight + 2}px`
   }
 
   return (

@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 import {LoginTemplate} from './loginTemplate'
 
-import {TextInput} from '../atoms/textInput'
+import {TextInput} from '../input/text/textInput'
 import {Button} from '../input/buttons/button'
 import {Box} from '../layout/box'
 import {Spacing} from '../style/helpers'
@@ -25,9 +25,9 @@ export const Standard = () => {
       <Box marginBottom={Spacing.Large}>
         <TextInput
           label="Password"
-          type={InputType.Password}
           value={password}
           onChange={e => setPassword(e.target.value)}
+          password
         />
       </Box>
       <Button label="Login" color="primary" />
