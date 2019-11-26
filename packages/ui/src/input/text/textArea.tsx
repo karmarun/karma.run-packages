@@ -1,4 +1,12 @@
-import React, {InputHTMLAttributes, forwardRef} from 'react'
+import React, {
+  ChangeEvent,
+  forwardRef,
+  TextareaHTMLAttributes,
+  useImperativeHandle,
+  useLayoutEffect,
+  useEffect,
+  useRef
+} from 'react'
 
 import {IconType, Icon} from '../../atoms/icon'
 
@@ -15,24 +23,25 @@ import {
 } from '../../style/helpers'
 import {cssRule, styled} from '@karma.run/react'
 
-interface TextInputStyleProps {
+// TODO: Shares a lot of code with TextInput and TypographicTextArea, try deduplicate some stuff.
+interface TextAreaStyleProps {
   readonly hasError: boolean
   readonly hasIcon: boolean
   readonly theme: Theme
 }
 
-interface TextInputLayoutProps extends MarginProps, WidthProps, FlexChildProps {}
+interface TextAreaLayoutProps extends MarginProps, WidthProps, FlexChildProps {}
 
 const IconStyle = cssRule(() => ({
   position: 'absolute'
 }))
 
-const TextInputWrapper = styled('div', (props: TextInputLayoutProps) => ({
+const TextAreaWrapper = styled('div', (props: TextAreaLayoutProps) => ({
   paddingTop: 16,
   ...props
 }))
 
-const TextInputLabelWrapper = styled(
+const TextAreaLabelWrapper = styled(
   'label',
   ({theme}) => ({
     position: 'relative',
@@ -45,9 +54,9 @@ const TextInputLabelWrapper = styled(
   themeMiddleware
 )
 
-const TextInputLabel = styled(
+const TextAreaLabel = styled(
   'span',
-  ({hasError, theme}: TextInputStyleProps) => ({
+  ({hasError, theme}: TextAreaStyleProps) => ({
     color: hasError ? theme.colors.alert : theme.colors.gray,
     position: 'absolute',
     top: -FontSize.Medium,
@@ -62,9 +71,10 @@ const TextInputLabel = styled(
   themeMiddleware
 )
 
-const TextInputElement = styled(
-  'input',
-  ({hasIcon, theme}: TextInputStyleProps) => ({
+const TextAreaElement = styled(
+  'textarea',
+  ({hasIcon, theme}: TextAreaStyleProps) => ({
+    resize: 'none',
     width: '100%',
 
     fontFamily: 'inherit',
@@ -129,7 +139,7 @@ const TextInputElement = styled(
   themeMiddleware
 )
 
-const TextInputInfo = styled(
+const TextAreaInfo = styled(
   'div',
   ({theme}) => ({
     color: theme.colors.gray,
@@ -139,7 +149,7 @@ const TextInputInfo = styled(
   themeMiddleware
 )
 
-const TextInputError = styled(
+const TexAreaError = styled(
   'div',
   ({theme}) => ({
     color: theme.colors.alert,
@@ -149,33 +159,68 @@ const TextInputError = styled(
   themeMiddleware
 )
 
-export interface TextInputProps
+export interface TextAreaProps
   extends MarginProps,
     WidthProps,
     FlexChildProps,
-    Omit<InputHTMLAttributes<HTMLInputElement>, 'width'> {
+    TextareaHTMLAttributes<HTMLTextAreaElement> {
   readonly label?: string
   readonly description?: string
   readonly errorMessage?: string
   readonly icon?: IconType
 }
 
-export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function TextInput(
-  {label, description, errorMessage, icon, ...props},
-  ref
+const AutoSizeBuffer = 2
+
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function TextInput(
+  {label, description, errorMessage, icon, onChange, rows = 1, ...props},
+  forwardRef
 ) {
+  const ref = useRef<HTMLTextAreaElement>(null)
+
   const styleProps = {hasError: errorMessage != undefined, hasIcon: icon != undefined}
   const [layoutProps, elementProps] = extractStyleProps(props)
 
+  useImperativeHandle(forwardRef, () => ref.current!, [ref.current])
+
+  useLayoutEffect(() => {
+    handleResize()
+  }, [])
+
+  useEffect(() => {
+    // TODO: Consider using resize observer
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [ref])
+
+  function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
+    handleResize()
+    onChange?.(e)
+  }
+
+  function handleResize() {
+    ref.current!.style.overflow = 'hidden'
+    ref.current!.style.height = 'auto'
+    ref.current!.style.height = `${ref.current!.scrollHeight + AutoSizeBuffer}px`
+    ref.current!.style.overflow = ''
+  }
+
   return (
-    <TextInputWrapper styleProps={layoutProps}>
-      <TextInputLabelWrapper>
+    <TextAreaWrapper styleProps={layoutProps}>
+      <TextAreaLabelWrapper>
         {icon && <Icon element={icon} style={IconStyle} />}
-        <TextInputElement ref={ref} placeholder={label} styleProps={styleProps} {...elementProps} />
-        <TextInputLabel styleProps={styleProps}>{label}</TextInputLabel>
-      </TextInputLabelWrapper>
-      {description && <TextInputInfo>{description}</TextInputInfo>}
-      {errorMessage && <TextInputError>{errorMessage}</TextInputError>}
-    </TextInputWrapper>
+        <TextAreaElement
+          ref={ref}
+          placeholder={label}
+          styleProps={styleProps}
+          onChange={handleChange}
+          rows={rows}
+          {...elementProps}
+        />
+        <TextAreaLabel styleProps={styleProps}>{label}</TextAreaLabel>
+      </TextAreaLabelWrapper>
+      {description && <TextAreaInfo>{description}</TextAreaInfo>}
+      {errorMessage && <TexAreaError>{errorMessage}</TexAreaError>}
+    </TextAreaWrapper>
   )
 })

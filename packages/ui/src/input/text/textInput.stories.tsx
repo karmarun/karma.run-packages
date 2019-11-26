@@ -11,34 +11,54 @@ export default {
   decorators: [centerLayoutDecorator(0.3)]
 }
 
-export const Interactive = () => {
-  const [value, setValue] = useState('')
+export const Default = () => {
+  const [stringValue, setStringValue] = useState('Hello World')
+  const [numberValue, setNumberValue] = useState('0')
 
   return (
-    <TextInput
-      label="Label"
-      description="Some description text"
-      value={value}
-      onChange={event => setValue(event.target.value)}
-      marginBottom={Spacing.ExtraSmall}
-    />
+    <>
+      <TextInput
+        label="Required"
+        value={stringValue}
+        onChange={event => setStringValue(event.target.value)}
+        marginBottom={Spacing.Small}
+        required
+      />
+      <TextInput
+        icon={MaterialIconSearch}
+        label="Icon"
+        value={stringValue}
+        onChange={event => setStringValue(event.target.value)}
+        marginBottom={Spacing.Small}
+      />
+      <TextInput
+        label="Description"
+        description="Some description text"
+        value={stringValue}
+        onChange={event => setStringValue(event.target.value)}
+        marginBottom={Spacing.Small}
+      />
+      <TextInput
+        type="password"
+        label="Password"
+        value={stringValue}
+        onChange={event => setStringValue(event.target.value)}
+        marginBottom={Spacing.Small}
+      />
+      <TextInput
+        type="number"
+        label="Number"
+        value={numberValue}
+        onChange={event => setNumberValue(event.target.value)}
+        marginBottom={Spacing.Small}
+      />
+      <TextInput
+        label="Disabled"
+        value={stringValue}
+        onChange={event => setStringValue(event.target.value)}
+        marginBottom={Spacing.Small}
+        disabled
+      />
+    </>
   )
 }
-
-export const WithValue = () => (
-  <TextInput label={'Label'} value={'Value'} description={'Description'} onChange={() => {}} />
-)
-
-export const WithIcon = () => (
-  <TextInput
-    icon={MaterialIconSearch}
-    label="Label"
-    value=""
-    description="Description"
-    onChange={() => {}}
-  />
-)
-
-export const Disabled = () => (
-  <TextInput label={'Label'} value={''} onChange={() => {}} description={'Description'} disabled />
-)
