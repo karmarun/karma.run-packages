@@ -514,7 +514,7 @@ export function route<T extends string, P extends RouteParameter[]>(
       return {
         type,
         params,
-        path: path.reverse(params),
+        path: path.reverse(params, query, hash),
         query,
         hash,
         data: data === undefined ? defaultData : data,
@@ -556,7 +556,7 @@ export function routePath<P extends RouteParameter[]>(
 
     reverse(params: ObjectForParams<P>, query?: Record<string, string>, hash?: string) {
       const queryString = new URLSearchParams(query).toString()
-      const path = toPath(params as object)
+      const path = toPath(params as object) || '/'
 
       return `${path}${queryString ? `?${queryString}` : ''}${hash ? `#${hash}` : ''}`
     },
