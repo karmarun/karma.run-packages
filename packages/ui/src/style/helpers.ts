@@ -25,7 +25,8 @@ import {
   MarginBottomProperty,
   MarginLeftProperty,
   MarginRightProperty,
-  AlignItemsProperty
+  AlignItemsProperty,
+  DisplayProperty
 } from 'csstype'
 
 import {Theme} from './themeContext'
@@ -161,6 +162,10 @@ export interface MarginProps {
   readonly marginRight?: MarginRightProperty<CSSLength>
 }
 
+export interface DisplayProps {
+  readonly display?: DisplayProperty
+}
+
 export interface FlexContainerProps {
   readonly flexDirection?: FlexDirectionProperty
   readonly justifyContent?: JustifyContentProperty
@@ -183,7 +188,8 @@ export interface StyleProps
     PaddingProps,
     MarginProps,
     FlexContainerProps,
-    FlexChildProps {}
+    FlexChildProps,
+    DisplayProps {}
 
 export function extractStyleProps<P extends StyleProps>(
   input: P
@@ -215,6 +221,7 @@ export function extractStyleProps<P extends StyleProps>(
     flexBasis,
     flexGrow,
     flexShrink,
+    display,
     ...props
   } = input
 
@@ -244,7 +251,8 @@ export function extractStyleProps<P extends StyleProps>(
     alignSelf,
     flexBasis,
     flexGrow,
-    flexShrink
+    flexShrink,
+    display
   }
 
   for (const key in styleProps) {

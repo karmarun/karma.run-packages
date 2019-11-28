@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
+import {MaterialIconSearch} from '@karma.run/icons'
 
 import {centerLayoutDecorator} from '../../.storybook/decorators'
 import {TextInput} from './textInput'
-import {MaterialIconSearch} from '@karma.run/icons'
 import {Spacing} from '../../style/helpers'
 
 export default {

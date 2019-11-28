@@ -88,7 +88,8 @@ const TextAreaElement = styled(
     transitionTimingFunction: 'ease-in',
     transitionDuration: TransitionDuration.Slow,
 
-    paddingLeft: hasIcon ? FontSize.Medium + Spacing.Tiny : undefined,
+    padding: 0,
+    paddingLeft: hasIcon ? FontSize.Medium + Spacing.Tiny : 0,
 
     '::placeholder': {
       color: theme.colors.gray
@@ -173,7 +174,7 @@ export interface TextAreaProps
 const AutoSizeBuffer = 2
 
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function TextInput(
-  {label, description, errorMessage, icon, onChange, rows = 1, ...props},
+  {label, description, errorMessage, icon, value, onChange, rows = 1, ...props},
   forwardRef
 ) {
   const ref = useRef<HTMLTextAreaElement>(null)
@@ -185,7 +186,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
 
   useLayoutEffect(() => {
     handleResize()
-  }, [])
+  }, [value])
 
   useEffect(() => {
     // TODO: Consider using resize observer
@@ -214,6 +215,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(function 
           placeholder={label}
           styleProps={styleProps}
           onChange={handleChange}
+          value={value}
           rows={rows}
           {...elementProps}
         />

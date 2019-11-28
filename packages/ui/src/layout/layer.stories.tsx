@@ -26,12 +26,8 @@ export const Standard = () => {
       />
       <Layer top={0} right={0}>
         <Box padding={Spacing.Small} height="100%" justifyContent="flex-end" flex>
-          <Box marginRight={Spacing.Tiny}>
-            <IconButton icon={MaterialIconEdit} />
-          </Box>
-          <Box>
-            <IconButton icon={MaterialIconDelete} />
-          </Box>
+          <IconButton icon={MaterialIconEdit} marginRight={Spacing.Tiny} />
+          <IconButton icon={MaterialIconDelete} />
         </Box>
       </Layer>
     </LayerContainer>

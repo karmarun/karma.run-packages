@@ -77,9 +77,7 @@ export const ChipElement = styled(
 export const ChipImage = styled('img', () => ({
   width: 18,
   height: '100%',
-  objectFit: 'cover',
-  borderTopRightRadius: BorderRadius.Tiny,
-  borderBottomRightRadius: BorderRadius.Tiny
+  objectFit: 'cover'
 }))
 
 export const ChipLabel = styled('span', () => ({

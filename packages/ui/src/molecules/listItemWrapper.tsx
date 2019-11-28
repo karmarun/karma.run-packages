@@ -8,7 +8,7 @@ import {
   MaterialIconKeyboardArrowUp
 } from '@karma.run/icons'
 
-import {Card} from '../atoms/card'
+import {Card} from '../data/card'
 import {Icon, IconType} from '../atoms/icon'
 import {IconButton} from '../input/buttons/iconButton'
 import {Spacing} from '../style/helpers'
@@ -89,7 +89,7 @@ export function ListItemWrapper({
         <Box flexGrow={1} />
       </div>
       <div className={css(ListItemWrapperContentStyle)}>
-        <Card>
+        <Card width="100%">
           <Box padding={Spacing.Small} minHeight="100%">
             {children}
           </Box>

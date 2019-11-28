@@ -1,7 +1,7 @@
 // Atoms
 export * from './atoms/baseButton'
 export * from './atoms/baseInput'
-export * from './atoms/card'
+export * from './data/card'
 export * from './atoms/dropdown'
 export * from './data/chip'
 export * from './input/other/placeholderInput'

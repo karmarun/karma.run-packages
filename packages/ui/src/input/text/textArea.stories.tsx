@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
+import {MaterialIconSearch} from '@karma.run/icons'
 
 import {centerLayoutDecorator} from '../../.storybook/decorators'
 import {TextArea} from './textArea'
+import {Spacing} from '../../style/helpers'
 
 export default {
   component: TextArea,
@@ -10,17 +12,38 @@ export default {
 }
 
 export const Default = () => {
-  const [value, setValue] = useState('')
+  const [stringValue, setStringValue] = useState('Hello World')
 
   return (
-    <TextArea
-      value={value}
-      label={'Label'}
-      placeholder={'Placeholder-Label'}
-      description={'Description Text'}
-      onChange={e => {
-        setValue(e.target.value)
-      }}
-    />
+    <>
+      <TextArea
+        label="Required"
+        value={stringValue}
+        onChange={event => setStringValue(event.target.value)}
+        marginBottom={Spacing.Small}
+        required
+      />
+      <TextArea
+        icon={MaterialIconSearch}
+        label="Icon"
+        value={stringValue}
+        onChange={event => setStringValue(event.target.value)}
+        marginBottom={Spacing.Small}
+      />
+      <TextArea
+        label="Description"
+        description="Some description text"
+        value={stringValue}
+        onChange={event => setStringValue(event.target.value)}
+        marginBottom={Spacing.Small}
+      />
+      <TextArea
+        label="Disabled"
+        value={stringValue}
+        onChange={event => setStringValue(event.target.value)}
+        marginBottom={Spacing.Small}
+        disabled
+      />
+    </>
   )
 }
