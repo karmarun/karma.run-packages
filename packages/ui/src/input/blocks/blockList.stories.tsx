@@ -11,18 +11,15 @@ import {
 import {centerLayoutDecorator} from '../../.storybook/decorators'
 import {BlockList, BlockListValue} from './blockList'
 import {TextInputBlock} from './textInputBlock'
-import {RichTextInputBlock} from './richTextInputBlock'
 
 import {ListField, ListValue} from './listField'
 import {Grid, Column} from '../../layout/grid'
 import {PlaceholderInput} from '../other/placeholderInput'
 import {Box} from '../../layout/box'
-import {Value, Document, Block} from 'slate'
 
-export type RichTextValue = BlockListValue<'richText', Value>
 export type StringValue = BlockListValue<'string', string>
 export type StringArrayValue = BlockListValue<'stringArray', ListValue<string>[]>
-export type WrapperValue = RichTextValue | StringValue | StringArrayValue
+export type WrapperValue = StringValue | StringArrayValue
 
 export default {
   component: BlockList,
@@ -36,13 +33,6 @@ export const Default = () => {
   return (
     <BlockList value={values} onChange={setValues}>
       {{
-        richText: {
-          field: props => <RichTextInputBlock {...props} />,
-          defaultValue: () => Value.create({document: Document.create([Block.create('')])}),
-          label: 'Rich Text',
-          icon: MaterialIconTextFormat
-        },
-
         string: {
           field: props => <TextInputBlock {...props} />,
           defaultValue: '',

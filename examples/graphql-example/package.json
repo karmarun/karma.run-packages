@@ -20,7 +20,7 @@
     "sync-package-info": "exit 0"
   },
   "dependencies": {
-    "@karma.run/graphql": "^0.0.0",
+    "@karma.run/graphql": "*",
     "express-graphql": "^0.9.0",
     "graphql": "^14.4.2"
   },

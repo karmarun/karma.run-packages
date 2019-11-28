@@ -32,7 +32,7 @@ export * from './layout/grid'
 export * from './layout/typography'
 
 // Inputs
-export * from './input/text/richTextInput'
+export * from './input/other/toolbar'
 export * from './input/text/typographicTextArea'
 export * from './input/other/fileDropInput'
 export * from './input/other/focalPointInput'

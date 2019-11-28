@@ -79,8 +79,5 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged --pattern 'packages/**/*.{js,ts,tsx,json}'"
     }
-  },
-  "dependencies": {
-    "@karma.run/ui": "0.0.2"
   }
 }

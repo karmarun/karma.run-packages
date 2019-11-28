@@ -48,6 +48,7 @@ export enum ZIndex {
 
 export enum Spacing {
   None = 0,
+  ExtraTiny = 2,
   Tiny = 5,
   ExtraSmall = 10,
   Small = 20,
