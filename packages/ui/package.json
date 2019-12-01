@@ -57,10 +57,10 @@
     "ts-loader": "^6.1.0",
     "typescript": "^3.7.2",
     "webpack": "^4.35.3",
-    "slate": "^0.50.0",
-    "slate-react": "^0.50.0",
-    "slate-history": "0.50.0",
-    "slate-schema": "0.50.0"
+    "slate": "^0.50.1",
+    "slate-react": "^0.50.2",
+    "slate-history": "^0.50.1",
+    "slate-schema": "^0.50.1"
   },
   "peerDependencies": {
     "react": "^16.10.2",

@@ -1,7 +1,7 @@
+import React, {forwardRef} from 'react'
 import {styled} from '@karma.run/react'
 import {themeMiddleware} from '../style/themeContext'
-
-export const Divider = styled(
+export const DividerElement = styled(
   'div',
   ({theme}) => ({
     _className: process.env.NODE_ENV !== 'production' ? 'Divider' : undefined,
@@ -13,3 +13,9 @@ export const Divider = styled(
   }),
   themeMiddleware
 )
+
+export interface DividerProps {}
+
+export const Divider = forwardRef(() => {
+  return <DividerElement />
+})

@@ -19,7 +19,7 @@ const ToolbarStyle = cssRuleWithTheme<ToolbarStyleProps>(({fadeOut, theme}) => (
   top: 0,
   backgroundColor: theme.colors.white,
   marginBottom: Spacing.ExtraSmall,
-  opacity: fadeOut ? 1 : 0.3,
+  opacity: fadeOut ? 0.3 : 1,
   transitionProperty: 'opacity',
   transitionDuration: TransitionDuration.Fast
 }))

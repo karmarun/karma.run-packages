@@ -5,6 +5,7 @@ import React, {useState, useMemo, useCallback, ReactNode, useEffect} from 'react
 
 import {centerLayoutDecorator} from '../../.storybook/decorators'
 import {Toolbar, ToolbarButton, ToolbarButtonProps} from './toolbar'
+import {Divider} from '../../data/divider'
 import {Typography} from '../../layout/typography'
 
 import {
@@ -49,86 +50,6 @@ enum RichtextMarkType {
   Underline = 'underline',
   Strikethrough = 'strikethrough'
 }
-
-// function hasMark(editor: CoreEditor, value: Value, label: string) {
-//   return value.activeMarks.some(mark => mark.type === label)
-// }
-
-// function hasType(editor: CoreEditor, value: Value, label: string) {
-//   return hasBlock(value, label)
-// }
-
-// function hasBlock(value: Value, label: string) {
-//   return value.blocks.some(block => {
-//     return block.type === label
-//   })
-// }
-
-// function hasInlines(editor: CoreEditor, value: Value, label: string) {
-//   return value.inlines.some(inline => inline.type === label)
-// }
-
-// function isListOfType(editor: CoreEditor, val: Value, label: string) {
-//   const {blocks} = val
-//   const first = blocks.first()
-//   const isListItem = blocks.some(blocks => blocks.type === 'list-item')
-
-//   return editor.value.blocks.some(block => {
-//     if (isListItem) {
-//       const parent = val.document.getClosest(
-//         first.key,
-//         parent => parent.object == 'block' && parent.type == label
-//       )
-
-//       return parent != undefined
-//     }
-//   })
-// }
-
-// function toggleMark(editor: CoreEditor, value: Value, label: string) {
-//   editor.toggleMark(label)
-// }
-
-// function toggleTitle(editor: CoreEditor, value: Value, isH2: boolean) {
-//   const type = isH2 ? RichtextType.H2 : RichtextType.H3
-//   const isActive = hasBlock(value, type)
-//   const isList = hasBlock(value, 'list-item')
-
-//   if (isList) {
-//     editor
-//       .setBlocks(isActive ? DEFAULT_NODE : type)
-//       .unwrapBlock('bulleted-list')
-//       .unwrapBlock('numbered-list')
-//   } else {
-//     editor.setBlocks(isActive ? DEFAULT_NODE : type)
-//   }
-// }
-
-// function toggleList(editor: CoreEditor, value: Value, listType: string) {
-//   // Handle the extra wrapping required for list buttons.
-//   const isList = hasBlock(value, RichtextType.ListItem)
-//   const isType = value.blocks.some(block => {
-//     return !!value.document.getClosest(
-//       block.key,
-//       parent => parent.object == 'block' && parent.type === listType
-//     )
-//   })
-
-//   if (isList && isType) {
-//     editor
-//       .setBlocks(DEFAULT_NODE)
-//       .unwrapBlock(RichtextType.BulletList)
-//       .unwrapBlock(RichtextType.NumberedList)
-//   } else if (isList) {
-//     editor
-//       .unwrapBlock(
-//         listType === RichtextType.BulletList ? RichtextType.NumberedList : RichtextType.BulletList
-//       )
-//       .wrapBlock(listType)
-//   } else {
-//     editor.setBlocks(RichtextType.ListItem).wrapBlock(listType)
-//   }
-// }
 
 // const standardRichTextEditItems = [
 //   {
@@ -252,12 +173,17 @@ const schema: SchemaRule[] = [
     match: 'editor',
     validate: {
       children: [
-        {match: [([node]) => node.type === RichtextBlockType.H1]},
-        {match: [([node]) => node.type === RichtextBlockType.H2]},
-        {match: [([node]) => node.type === RichtextBlockType.H3]},
-        {match: [([node]) => node.type === RichtextBlockType.UnorderedList]},
-        {match: [([node]) => node.type === RichtextBlockType.OrderedList]},
-        {match: [([node]) => node.type === RichtextBlockType.Paragraph]}
+        {
+          match: [
+            ([node]) =>
+              node.type === RichtextBlockType.H1 ||
+              node.type === RichtextBlockType.H2 ||
+              node.type === RichtextBlockType.H3 ||
+              node.type === RichtextBlockType.UnorderedList ||
+              node.type === RichtextBlockType.OrderedList ||
+              node.type === RichtextBlockType.Paragraph
+          ]
+        }
       ]
     },
     normalize: (editor, error) => {
@@ -283,7 +209,7 @@ const schema: SchemaRule[] = [
 
       switch (code) {
         case 'child_invalid':
-          Editor.setNodes(editor, {type: RichtextBlockType.Paragraph}, {at: path})
+          Editor.setNodes(editor, {type: RichtextBlockType.ListItem}, {at: path})
           break
       }
     }
@@ -291,16 +217,18 @@ const schema: SchemaRule[] = [
 ]
 
 export const Default = () => {
+  const [value, setValue] = useState<Node[]>(mockRichTextValue)
+  const [hasFocus, setFocus] = useState(false)
+
   const editor = useMemo(
     () => withSchema(withRichText(withHistory(withReact(createEditor()))), schema),
     []
   )
-  const [value, setValue] = useState<Node[]>(mockRichTextValue)
 
   return (
     <Slate editor={editor} defaultValue={value} onChange={nodes => setValue(nodes)}>
       <>
-        <SlateEditMenu>
+        <Toolbar fadeOut={!hasFocus}>
           <SlateBlockButton icon={MaterialIconLooksOneOutlined} blockType={RichtextBlockType.H1} />
           <SlateBlockButton icon={MaterialIconLooksTwoOutlined} blockType={RichtextBlockType.H2} />
           <SlateBlockButton icon={MaterialIconLooks3Outlined} blockType={RichtextBlockType.H3} />
@@ -312,9 +240,20 @@ export const Default = () => {
             icon={MaterialIconFormatListNumbered}
             blockType={RichtextBlockType.OrderedList}
           />
-        </SlateEditMenu>
+          <SlateMarkButton icon={MaterialIconFormatBold} markType={RichtextMarkType.Bold} />
+          <SlateMarkButton icon={MaterialIconFormatItalic} markType={RichtextMarkType.Italic} />
+          <SlateMarkButton
+            icon={MaterialIconFormatStrikethrough}
+            markType={RichtextMarkType.Strikethrough}
+          />
+          <SlateMarkButton
+            icon={MaterialIconFormatUnderlined}
+            markType={RichtextMarkType.Underline}
+          />
+        </Toolbar>
         <Editable
-          onDOMBeforeInput={undefined}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
           placeholder="Start writing..."
           renderElement={renderElement}
           renderMark={renderMark}
@@ -322,15 +261,6 @@ export const Default = () => {
       </>
     </Slate>
   )
-}
-
-interface SlateEditMenuProps {
-  readonly children?: ReactNode
-}
-
-function SlateEditMenu({children}: SlateEditMenuProps) {
-  const editor = useSlate()
-  return <Toolbar fadeOut={editor.selection != undefined}>{children}</Toolbar>
 }
 
 interface SlateBlockButtonProps extends ToolbarButtonProps {
@@ -352,6 +282,25 @@ function SlateBlockButton({icon, blockType}: SlateBlockButtonProps) {
   )
 }
 
+interface SlateMarkButtonProps extends ToolbarButtonProps {
+  readonly markType: RichtextMarkType
+}
+
+function SlateMarkButton({icon, markType}: SlateMarkButtonProps) {
+  const editor = useSlate()
+
+  return (
+    <ToolbarButton
+      icon={icon}
+      active={isMarkActive(editor, markType)}
+      onMouseDown={e => {
+        e.preventDefault()
+        editor.exec({type: 'toggle_mark', mark: markType})
+      }}
+    />
+  )
+}
+
 function isBlockActive(editor: Editor, type: RichtextBlockType) {
   const {selection} = editor
   if (!selection) return false
@@ -366,7 +315,11 @@ function isMarkActive(editor: Editor, type: RichtextMarkType) {
 }
 
 function withRichText(editor: Editor): Editor {
-  const {exec} = editor
+  const {exec, isInline} = editor
+
+  editor.isInline = node => {
+    return isInline(node)
+  }
 
   editor.exec = command => {
     if (command.type === 'toggle_block') {
