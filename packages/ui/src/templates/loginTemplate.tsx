@@ -31,7 +31,7 @@ const LoginTemplateContentStyle = cssRuleWithTheme(({theme}) => ({
   backgroundColor: theme.colors.white,
   borderRadius: BorderRadius.Medium,
 
-  boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.3)'
+  boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.2)'
 }))
 
 const LoginLogoStyle = cssRule(() => ({

@@ -12,6 +12,7 @@ interface MenuButtonStyleProps {
 const MenuButtonStyle = cssRuleWithTheme(({theme}) => ({
   _className: process.env.NODE_ENV !== 'production' ? 'MenuButton' : undefined,
 
+  overflow: 'hidden',
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',

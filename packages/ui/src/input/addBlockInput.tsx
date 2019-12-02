@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react'
 
-import {OverlayMenu, MenuItem} from '../navigation/overlayMenu'
+import {Menu, MenuItem} from '../navigation/menu'
 import {AddBlockButton} from '../buttons/addBlockButton'
 import {useStyle, cssRule, useClickAwayListener} from '@karma.run/react'
 import {Spacing, ZIndex} from '../style/helpers'
@@ -41,9 +41,9 @@ export function AddBlockInput({menuItems, subtle, onMenuItemClick}: AddBlockInpu
 
       {isOpen && (
         <div ref={ref} className={css(MenuWrapperStyle)}>
-          <OverlayMenu
-            menuItems={menuItems}
-            onMenuItemClick={item => {
+          <Menu
+            items={menuItems}
+            onItemClick={item => {
               setOpen(false)
               onMenuItemClick(item)
             }}

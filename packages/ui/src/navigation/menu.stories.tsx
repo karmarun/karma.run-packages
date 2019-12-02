@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {centerLayoutDecorator} from '../.storybook/decorators'
-import {OverlayMenu} from './overlayMenu'
+import {Menu} from './menu'
 
 import {
   MaterialIconTextFormat,
@@ -15,15 +15,15 @@ import {
 } from '@karma.run/icons'
 
 export default {
-  component: OverlayMenu,
-  title: 'Navigation|OverlayMenu',
+  component: Menu,
+  title: 'Navigation|Menu',
   decorators: [centerLayoutDecorator()]
 }
 
 export const Standard = () => (
-  <OverlayMenu
+  <Menu
     inline={false}
-    menuItems={[
+    items={[
       {id: 'text', icon: MaterialIconTextFormat, label: 'Text'},
       {id: 'image', icon: MaterialIconImage, label: 'Image'},
       {id: 'slideshow', icon: MaterialIconFilter, label: 'Slideshow'},
@@ -31,17 +31,17 @@ export const Standard = () => (
       {id: 'embed', icon: MaterialIconCode, label: 'Embed'},
       {id: 'quote', icon: MaterialIconFormatQuote, label: 'Quote'}
     ]}
-    onMenuItemClick={item => {}}
+    onItemClick={item => {}}
   />
 )
 
 export const Inline = () => (
-  <OverlayMenu
+  <Menu
     inline={true}
-    menuItems={[
+    items={[
       {id: 'copy', icon: MaterialIconFileCopy, label: 'Copy'},
       {id: 'archive', icon: MaterialIconArchive, label: 'Archive'}
     ]}
-    onMenuItemClick={item => {}}
+    onItemClick={item => {}}
   />
 )
