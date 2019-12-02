@@ -11,7 +11,7 @@ import {
 
 import {Text} from '../layout/typography.stories'
 import {NavigationTemplate} from './navigationTemplate'
-import {MenuButton} from '../input/buttons/menuButton'
+import {MenuButton} from '../buttons/menuButton'
 
 export default {
   component: NavigationTemplate,

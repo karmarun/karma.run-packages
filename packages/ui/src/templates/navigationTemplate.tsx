@@ -1,7 +1,7 @@
 import React, {ReactNode} from 'react'
 import {useThemeStyle, cssRuleWithTheme} from '../style/themeContext'
 import {Spacing} from '../style/helpers'
-import {Navigation} from '../organisms/navigation'
+import {Navigation} from '../navigation/navigation'
 
 const contentMaxWidth = 880
 

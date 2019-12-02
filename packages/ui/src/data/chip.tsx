@@ -1,54 +1,18 @@
 import React from 'react'
-import {MaterialIconClose} from '@karma.run/icons'
-
-import {Icon} from '../atoms/icon'
-import {cssRuleWithTheme, useThemeStyle, themeMiddleware} from '../style/themeContext'
-import {BaseButton} from '../atoms/baseButton'
-import {
-  FontSize,
-  Spacing,
-  TransitionDuration,
-  BorderRadius,
-  BorderWidth,
-  LineHeight
-} from '../style/helpers'
 import {styled} from '@karma.run/react'
+
+import {IconElement} from './icon'
 import {Image} from './image'
+import {IconButton} from '../buttons/iconButton'
 
-const FilterTagStyle = cssRuleWithTheme(({theme}) => ({
-  display: 'flex',
-  justifyContent: 'space-between',
-  backgroundColor: theme.colors.dark,
-  fontSize: FontSize.Small,
-  minWidth: 100,
-  height: 30,
-  overflow: 'hidden',
-  borderRadius: '2px',
-  border: `1px solid ${theme.colors.actionDark}`,
-  color: theme.colors.white,
-  lineHeight: 30,
-  paddingLeft: Spacing.Tiny
-}))
-
-const CloseButtonStyle = cssRuleWithTheme(({theme}) => ({
-  fill: theme.colors.white,
-  fontSize: FontSize.Medium,
-
-  transitionProperty: 'fill',
-  transitionTimingFunction: 'ease-in',
-  transitionDuration: TransitionDuration.Fast,
-
-  width: 20,
-
-  ':hover': {
-    fill: theme.colors.actionDark
-  }
-}))
+import {themeMiddleware} from '../style/themeContext'
+import {FontSize, Spacing, BorderRadius, BorderWidth} from '../style/helpers'
 
 export interface FilterTagProps {
   readonly label: string
   readonly imageURL?: string
-  readonly onDelete?: () => void
+  readonly icon?: IconElement
+  readonly onIconClick?: () => void
 }
 
 export const ChipElement = styled(
@@ -60,38 +24,41 @@ export const ChipElement = styled(
     flexDirection: 'row',
     overflow: 'hidden',
 
-    height: 20,
-
     fontSize: FontSize.Small,
     color: theme.colors.dark,
 
     borderRadius: BorderRadius.Tiny,
     borderWidth: BorderWidth.Small,
     borderStyle: 'solid',
-    borderColor: theme.colors.grayLight,
+    borderColor: theme.colors.gray,
     backgroundColor: theme.colors.light
   }),
   themeMiddleware
 )
 
 export const ChipImage = styled('img', () => ({
-  width: 18,
-  height: '100%',
+  width: 26,
+  alignSelf: 'stretch',
   objectFit: 'cover'
 }))
 
 export const ChipLabel = styled('span', () => ({
-  padding: `0 ${Spacing.ExtraSmall}`
+  padding: `${Spacing.Tiny} ${Spacing.ExtraSmall}`
 }))
 
-export function Chip({label, imageURL, onDelete}: FilterTagProps) {
+export function Chip({label, imageURL, icon, onIconClick}: FilterTagProps) {
   return (
     <ChipElement>
-      {imageURL && <ChipImage src={imageURL} />}
+      {imageURL && <Image src={imageURL} width={26} alignSelf="stretch" />}
       <ChipLabel>{label}</ChipLabel>
-      {/* <BaseButton onClick={onDismiss} style={CloseButtonStyle}>
-        <Icon element={MaterialIconClose} />
-      </BaseButton> */}
+      {icon && (
+        <IconButton
+          icon={icon}
+          variant="light"
+          marginLeft={-Spacing.Tiny}
+          onClick={() => onIconClick?.()}
+        />
+      )}
     </ChipElement>
   )
 }

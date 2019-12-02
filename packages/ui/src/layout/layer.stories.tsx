@@ -4,7 +4,7 @@ import {MaterialIconDelete, MaterialIconEdit} from '@karma.run/icons'
 import {centerLayoutDecorator} from '../.storybook/decorators'
 import {LayerContainer, Layer} from './layer'
 import {Image} from '../data/image'
-import {IconButton} from '../input/buttons/iconButton'
+import {IconButton} from '../buttons/iconButton'
 import {Box} from '../layout/box'
 import {Spacing} from '../style/helpers'
 
@@ -25,8 +25,8 @@ export const Standard = () => {
         imageHeight={300}
       />
       <Layer top={0} right={0}>
-        <Box padding={Spacing.Small} height="100%" justifyContent="flex-end" flex>
-          <IconButton icon={MaterialIconEdit} marginRight={Spacing.Tiny} />
+        <Box padding={Spacing.Small} height="100%" justifyContent="flex-end" display="flex">
+          <IconButton icon={MaterialIconEdit} marginRight={Spacing.ExtraSmall} />
           <IconButton icon={MaterialIconDelete} />
         </Box>
       </Layer>

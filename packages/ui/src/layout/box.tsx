@@ -9,7 +9,8 @@ import {
   WidthProps,
   HeightProps,
   PaddingProps,
-  MarginProps
+  MarginProps,
+  DisplayProps
 } from '../style/helpers'
 
 export interface BaseBoxProps
@@ -18,11 +19,8 @@ export interface BaseBoxProps
     WidthProps,
     HeightProps,
     PaddingProps,
-    MarginProps {
-  readonly flex?: boolean
-  readonly inlineFlex?: boolean
-  readonly inline?: boolean
-  readonly block?: boolean
+    MarginProps,
+    DisplayProps {
   readonly overflow?: OverflowProperty
   readonly element?: keyof JSX.IntrinsicElements
   readonly children?: ReactNode | ((props: {className: string; ref: Ref<any>}) => ReactNode)
@@ -30,32 +28,12 @@ export interface BaseBoxProps
 
 type BoxStyleProps = Omit<BaseBoxProps, 'element' | 'children'>
 
-const BoxBaseStyle = cssRule<BoxStyleProps>(
-  ({
-    flex,
-    inlineFlex,
-    block,
-    inline,
-
+const BoxBaseStyle = cssRule<BoxStyleProps>(props => {
+  return {
+    _className: process.env.NODE_ENV !== 'production' ? 'Box' : undefined,
     ...props
-  }) => {
-    return {
-      _className: process.env.NODE_ENV !== 'production' ? 'Box' : undefined,
-
-      display: flex
-        ? 'flex'
-        : inlineFlex
-        ? 'inline-flex'
-        : block
-        ? 'block'
-        : inline
-        ? 'inline'
-        : undefined,
-
-      ...props
-    }
   }
-)
+})
 
 export const Box = forwardRef<any, BaseBoxProps>(function Box(
   {element = 'div', children, ...props},

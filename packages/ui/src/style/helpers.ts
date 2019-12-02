@@ -60,6 +60,7 @@ export enum Spacing {
 export enum FontSize {
   Small = 12,
   Medium = 16,
+  Large = 18,
   Heading3 = 20,
   Heading2 = 24,
   Heading1 = 28,

@@ -2,15 +2,17 @@ import React, {forwardRef, ImgHTMLAttributes, useState} from 'react'
 
 import {styled} from '@karma.run/react'
 import {themeMiddleware, Theme} from '../style/themeContext'
+
 import {
   TransitionDuration,
   MarginProps,
   WidthProps,
   HeightProps,
-  extractStyleProps
+  extractStyleProps,
+  FlexChildProps
 } from '../style/helpers'
 
-interface ImageWrapperProps extends WidthProps, HeightProps, MarginProps {
+interface ImageWrapperProps extends WidthProps, HeightProps, MarginProps, FlexChildProps {
   readonly isLoaded?: boolean
   readonly contain?: boolean
   readonly theme: Theme
@@ -39,6 +41,7 @@ export interface ImageProps
   extends WidthProps,
     HeightProps,
     MarginProps,
+    FlexChildProps,
     Omit<ImgHTMLAttributes<HTMLImageElement>, 'width' | 'height'> {
   readonly contain?: boolean
   readonly imageWidth?: number

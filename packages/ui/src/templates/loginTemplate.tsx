@@ -6,8 +6,6 @@ import {cssRule} from '@karma.run/react'
 const contentMaxWidth = 520
 
 const LoginTemplateStyle = cssRuleWithTheme(({theme}) => ({
-  position: 'relative',
-
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -36,13 +34,8 @@ const LoginTemplateContentStyle = cssRuleWithTheme(({theme}) => ({
   boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.3)'
 }))
 
-const LoginBackgroundStyle = cssRule(() => ({
-  position: 'absolute',
-
-  top: '50%',
-  left: '50%',
-
-  transform: 'translate(-50%)',
+const LoginLogoStyle = cssRule(() => ({
+  marginBottom: Spacing.Small,
   zIndex: ZIndex.Background
 }))
 
@@ -56,8 +49,8 @@ export function LoginTemplate({backgroundChildren, children}: LoginTemplateProps
 
   return (
     <div className={css(LoginTemplateStyle)}>
+      {backgroundChildren && <div className={css(LoginLogoStyle)}>{backgroundChildren}</div>}
       <div className={css(LoginTemplateContentStyle)}>{children}</div>
-      <div className={css(LoginBackgroundStyle)}>{backgroundChildren}</div>
     </div>
   )
 }
