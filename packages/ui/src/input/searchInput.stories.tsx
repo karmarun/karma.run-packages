@@ -6,23 +6,11 @@ import {useState} from '@storybook/addons'
 
 export default {
   component: SearchInput,
-  title: 'Input|SearchBar',
-  decorators: [centerLayoutDecorator()]
+  title: 'Input|SearchInput',
+  decorators: [centerLayoutDecorator(0.3)]
 }
 
 export const Standard = () => {
-  const [searchVal, setSearchVal] = useState('')
-
-  return (
-    <SearchInput
-      filterOptions={[{id: '1', name: 'filter'}]}
-      searchValue={searchVal}
-      onFilterSelected={() => {}}
-      onTextInput={value => {
-        setSearchVal(value)
-      }}
-      onClear={() => {
-        setSearchVal('')
-      }}></SearchInput>
-  )
+  const [value, setValue] = useState('')
+  return <SearchInput placeholder="Search" value={value} onChange={e => setValue(e.target.value)} />
 }

@@ -67,12 +67,14 @@ const TextInputElement = styled(
   ({hasIcon, theme}: TextInputStyleProps) => ({
     width: '100%',
 
+    color: theme.colors.dark,
     fontFamily: 'inherit',
     fontSize: 'inherit',
     lineHeight: LineHeight.Default,
 
     border: 'none',
     borderBottom: `1px solid ${theme.colors.gray}`,
+    backgroundColor: 'transparent',
 
     transitionProperty: 'border-color',
     transitionTimingFunction: 'ease-in',
@@ -110,7 +112,8 @@ const TextInputElement = styled(
     },
 
     ':disabled': {
-      opacity: 0.5
+      opacity: 0.5,
+      borderBottomStyle: 'dashed'
     },
 
     ':invalid + span': {

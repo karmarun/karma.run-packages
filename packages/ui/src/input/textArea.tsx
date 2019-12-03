@@ -77,12 +77,14 @@ const TextAreaElement = styled(
     resize: 'none',
     width: '100%',
 
+    color: theme.colors.dark,
     fontFamily: 'inherit',
     fontSize: 'inherit',
     lineHeight: LineHeight.Default,
 
     border: 'none',
     borderBottom: `1px solid ${theme.colors.gray}`,
+    backgroundColor: 'transparent',
 
     transitionProperty: 'border-color',
     transitionTimingFunction: 'ease-in',
@@ -121,7 +123,8 @@ const TextAreaElement = styled(
     },
 
     ':disabled': {
-      opacity: 0.5
+      opacity: 0.5,
+      borderBottomStyle: 'dashed'
     },
 
     ':invalid + span': {

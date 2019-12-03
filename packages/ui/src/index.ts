@@ -22,7 +22,7 @@ export * from './input/checkbox'
 export * from './input/radio'
 export * from './input/radioGroup'
 export * from './input/searchInput'
-export * from './input/dropdown'
+export * from './input/select'
 export * from './input/placeholderInput'
 
 // Blocks

@@ -5,23 +5,21 @@ import {IconElement} from './icon'
 import {Image} from './image'
 import {IconButton} from '../buttons/iconButton'
 
-import {themeMiddleware} from '../style/themeContext'
-import {FontSize, Spacing, BorderRadius, BorderWidth} from '../style/helpers'
+import {themeMiddleware, Theme} from '../style/themeContext'
+import {FontSize, Spacing, BorderRadius, BorderWidth, MarginProps} from '../style/helpers'
 
-export interface FilterTagProps {
-  readonly label: string
-  readonly imageURL?: string
-  readonly icon?: IconElement
-  readonly onIconClick?: () => void
+interface ChipElementProps extends MarginProps {
+  readonly theme: Theme
 }
 
-export const ChipElement = styled(
+const ChipElement = styled(
   'div',
-  ({theme}) => ({
+  ({theme, ...props}: ChipElementProps) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'fill',
     flexDirection: 'row',
+    flexShrink: 0,
     overflow: 'hidden',
 
     fontSize: FontSize.Small,
@@ -31,24 +29,27 @@ export const ChipElement = styled(
     borderWidth: BorderWidth.Small,
     borderStyle: 'solid',
     borderColor: theme.colors.gray,
-    backgroundColor: theme.colors.light
+    backgroundColor: theme.colors.light,
+
+    ...props
   }),
   themeMiddleware
 )
 
-export const ChipImage = styled('img', () => ({
-  width: 26,
-  alignSelf: 'stretch',
-  objectFit: 'cover'
-}))
-
-export const ChipLabel = styled('span', () => ({
+const ChipLabel = styled('span', () => ({
   padding: `${Spacing.Tiny} ${Spacing.ExtraSmall}`
 }))
 
-export function Chip({label, imageURL, icon, onIconClick}: FilterTagProps) {
+export interface ChipProps extends MarginProps {
+  readonly label: string
+  readonly imageURL?: string
+  readonly icon?: IconElement
+  readonly onIconClick?: () => void
+}
+
+export function Chip({label, imageURL, icon, onIconClick, ...props}: ChipProps) {
   return (
-    <ChipElement>
+    <ChipElement styleProps={props}>
       {imageURL && <Image src={imageURL} width={26} alignSelf="stretch" />}
       <ChipLabel>{label}</ChipLabel>
       {icon && (

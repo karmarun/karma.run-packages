@@ -1,78 +1,60 @@
-import React, {useState} from 'react'
+import React, {forwardRef, InputHTMLAttributes} from 'react'
+import {styled} from '@karma.run/react'
 
-import {Icon, IconScale} from '../data/icon'
-import {cssRuleWithTheme, useThemeStyle} from '../style/themeContext'
-import {BorderRadius, FontSize, Spacing} from '../style/helpers'
-import {MaterialIconClose, MaterialIconKeyboardArrowDown} from '@karma.run/icons'
+import {
+  BorderRadius,
+  BorderWidth,
+  FontSize,
+  Spacing,
+  MarginProps,
+  FlexChildProps,
+  WidthProps,
+  extractStyleProps
+} from '../style/helpers'
 
-const SearchBarStyle = cssRuleWithTheme(({theme}) => ({
-  border: `1px solid ${theme.colors.grayLight}`,
-  borderRadius: BorderRadius.Medium,
-  display: 'flex',
-  fontSize: FontSize.Medium,
-  padding: Spacing.ExtraSmall,
+import {themeMiddleware, Theme} from '../style/themeContext'
 
-  '> input': {
-    fontSize: FontSize.Medium
-  }
-}))
-
-export interface FilterOption {
-  id: string
-  name: string
+interface SearchInputElementProps extends MarginProps, WidthProps, FlexChildProps {
+  readonly theme: Theme
 }
 
-export interface SearchInputProps {
-  readonly filterOptions: FilterOption[]
-  readonly searchValue: string
-  onFilterSelected(id: string): void
-  onTextInput(value: string): void
-  onClear(): void
-}
+const SearchInputElement = styled(
+  'input',
+  ({theme, width, ...props}: SearchInputElementProps) => ({
+    display: 'block',
+    width: width ?? '100%',
 
-export function SearchInput({
-  filterOptions,
-  searchValue,
-  onFilterSelected,
-  onTextInput,
-  onClear
-}: SearchInputProps) {
-  const css = useThemeStyle()
-  const [showOptions, setShowOptions] = useState(false)
+    padding: `${Spacing.ExtraSmall} ${Spacing.Small}`,
 
-  return (
-    <div>
-      <div className={css(SearchBarStyle)}>
-        <div>
-          {'Filters'}
-          <button onClick={e => setShowOptions(!showOptions)}>
-            <Icon element={MaterialIconKeyboardArrowDown} scale={IconScale.Equal} />
-          </button>
-        </div>
-        <input
-          type="text"
-          value={searchValue}
-          onChange={e => onTextInput(e.target.value)}
-          placeholder={'Search'}
-        />
-      </div>
-      {showOptions && (
-        <div>
-          {filterOptions.map((item, index) => (
-            <div key={index} onClick={e => onFilterSelected(item.id)}>
-              {item.name}
-            </div>
-          ))}
-        </div>
-      )}
-      {searchValue.length > 0 && (
-        <div>
-          <button onClick={onClear}>
-            <Icon element={MaterialIconClose} scale={IconScale.Equal} />
-          </button>
-          {'Clear current search query, filters and sorts'}
-        </div>
-      )}
-    </div>
-  )
-}
+    color: theme.colors.dark,
+    fontSize: FontSize.Medium,
+
+    borderRadius: BorderRadius.Medium,
+    borderWidth: BorderWidth.Small,
+    borderColor: theme.colors.gray,
+    borderStyle: 'solid',
+    backgroundColor: theme.colors.white,
+
+    ...props,
+
+    '::placeholder': {
+      color: theme.colors.gray
+    },
+
+    ':focus': {
+      outline: 'none',
+      borderColor: theme.colors.action
+    }
+  }),
+  themeMiddleware
+)
+
+export interface SearchInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {}
+
+export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(function SearchInput(
+  props,
+  ref
+) {
+  const [styleProps, elementProps] = extractStyleProps(props)
+  return <SearchInputElement type="search" ref={ref} {...elementProps} styleProps={styleProps} />
+})

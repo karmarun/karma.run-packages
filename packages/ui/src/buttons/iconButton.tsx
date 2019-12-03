@@ -50,7 +50,7 @@ const IconButtonStyle = cssRuleWithTheme<IconButtonStyleProps>(
       ? theme.colors.grayLight
       : variant === 'large'
       ? theme.colors.action
-      : theme.colors.dark,
+      : theme.colors.grayDark,
 
     transitionProperty: 'background-color, border-color, fill',
     transitionDuration: TransitionDuration.Fast,
