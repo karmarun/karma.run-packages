@@ -18,4 +18,4 @@ export const Default = () => (
   />
 )
 
-export const Placeholder = () => <ImagePlaceholder width={300} height={300} />
+export const Placeholder = () => <ImagePlaceholder width={300} height={200} />

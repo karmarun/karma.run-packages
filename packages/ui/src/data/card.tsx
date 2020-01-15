@@ -26,7 +26,7 @@ interface CardElementProps
     FlexContainerProps,
     DisplayProps,
     OverflowProps {
-  readonly theme: Theme
+  theme: Theme
 }
 
 const CardElement = styled(
@@ -55,7 +55,7 @@ export interface CardProps
     FlexContainerProps,
     DisplayProps,
     OverflowProps {
-  readonly children?: ReactNode
+  children?: ReactNode
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(function Card({children, ...props}, ref) {
