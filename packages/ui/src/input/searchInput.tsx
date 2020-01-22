@@ -24,6 +24,7 @@ const SearchInputElement = styled(
   ({theme, width, ...props}: SearchInputElementProps) => ({
     _className: process.env.NODE_ENV !== 'production' ? 'Radio' : undefined,
 
+    appearance: 'none',
     display: 'block',
     width: width ?? '100%',
 

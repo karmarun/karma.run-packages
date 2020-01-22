@@ -305,9 +305,7 @@ function ListItemWrapper({
       </div>
       <div className={css(ListItemWrapperContentStyle)}>
         <Card width="100%">
-          <Box padding={Spacing.Small} minHeight="100%">
-            {children}
-          </Box>
+          <Box padding={Spacing.Small}>{children}</Box>
         </Card>
       </div>
       <div className={css(ListItemWrapperAccessoryStyle)}>{icon && <Icon element={icon} />}</div>
