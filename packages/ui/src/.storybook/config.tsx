@@ -17,6 +17,7 @@ addDecorator(story => {
 configure(
   [
     require.context('../data', true, /\.stories.tsx?$/),
+    require.context('../display', true, /\.stories.tsx?$/),
     require.context('../buttons', true, /\.stories.tsx?$/),
     require.context('../blocks', true, /\.stories.tsx?$/),
     require.context('../input', true, /\.stories.tsx?$/),
