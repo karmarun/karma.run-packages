@@ -14,7 +14,8 @@ import {
   FlexContainerProps,
   extractStyleProps,
   DisplayProps,
-  OverflowProps
+  OverflowProps,
+  PositionProps
 } from '../style/helpers'
 
 interface CardElementProps
@@ -25,6 +26,7 @@ interface CardElementProps
     FlexChildProps,
     FlexContainerProps,
     DisplayProps,
+    PositionProps,
     OverflowProps {
   theme: Theme
 }
@@ -53,6 +55,7 @@ export interface CardProps
     HeightProps,
     FlexChildProps,
     FlexContainerProps,
+    PositionProps,
     DisplayProps,
     OverflowProps {
   children?: ReactNode

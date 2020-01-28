@@ -47,7 +47,7 @@ export interface ChipProps extends MarginProps {
   label: string
   imageURL?: string
   icon?: IconElement
-  onIconClick: () => void
+  onIconClick?: () => void
 }
 
 export function Chip({label, imageURL, icon, onIconClick, ...props}: ChipProps) {
