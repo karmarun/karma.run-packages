@@ -9,7 +9,8 @@ import {
   PositionProps,
   extractStyleProps,
   PaddingProps,
-  hexToRgba
+  hexToRgba,
+  BlurStrength
 } from '../style/helpers'
 
 interface OverlayWrapperProps extends WidthProps, HeightProps, PaddingProps, PositionProps {
@@ -23,10 +24,10 @@ const OverlayElement = styled(
 
     display: 'block',
     position: position ?? 'absolute',
-    backgroundColor: hexToRgba(theme.colors.black, 0.8),
+    backgroundColor: hexToRgba(theme.colors.black, 0.7),
     color: theme.colors.white,
 
-    backdropFilter: 'blur(2px)',
+    backdropFilter: `blur(${BlurStrength.Strong})`,
 
     ...props
   }),

@@ -17,7 +17,7 @@ export default {
 }
 
 export const Default = () => (
-  <Card position="relative">
+  <Card position="relative" overflow="hidden">
     <Image src={randomImageURL(300, 400)} width={300} height={400} />
     <Overlay bottom={0} width="100%" padding={Spacing.Small}>
       <Typography variant="subtitle1" color="gray">
