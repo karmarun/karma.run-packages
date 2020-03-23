@@ -4,7 +4,7 @@ import {SortableHandle, SortableContainer, SortableElement} from 'react-sortable
 import arrayMove from 'array-move'
 
 import {isFunctionalUpdate} from '@karma.run/react'
-import {MaterialIconDeleteOutlined, MaterialIconMoreVertOutlined} from '@karma.run/icons'
+import {MaterialIconDeleteOutlined, MaterialIconDragIndicator} from '@karma.run/icons'
 import {IconButton} from '../buttons/iconButton'
 import {Box} from '../layout/box'
 import {Spacing} from '../style/helpers'
@@ -27,7 +27,7 @@ export interface ListFieldProps<T = any> extends FieldProps<ListValue<T>[]> {
 
 export interface ListValue<T = any> {
   readonly id: string
-  readonly value: any
+  readonly value: T
 }
 
 export interface ListItemProps<T = any> {
@@ -40,7 +40,7 @@ export interface ListItemProps<T = any> {
 }
 
 const DragHandle = SortableHandle(({disabled}: {disabled?: boolean}) => (
-  <IconButton title="Move" icon={MaterialIconMoreVertOutlined} disabled={disabled} />
+  <IconButton title="Move" icon={MaterialIconDragIndicator} disabled={disabled} />
 ))
 
 const ListItem = SortableElement(
@@ -59,20 +59,20 @@ const ListItem = SortableElement(
     return (
       <Box marginBottom={Spacing.ExtraSmall} display="flex" flexDirection="row">
         <Box marginRight={Spacing.ExtraSmall}>
+          <DragHandle disabled={itemDisabled} />
+        </Box>
+        <Card width="100%">
+          <Box padding={Spacing.ExtraSmall} minHeight="100%">
+            {children({value: value.value, onChange: handleValueChange})}
+          </Box>
+        </Card>
+        <Box marginLeft={Spacing.ExtraSmall}>
           <IconButton
             title="Delete"
             icon={MaterialIconDeleteOutlined}
             onClick={handleRemove}
             disabled={itemDisabled}
           />
-        </Box>
-        <Card width="100%">
-          <Box padding={Spacing.Small} minHeight="100%">
-            {children({value: value.value, onChange: handleValueChange})}
-          </Box>
-        </Card>
-        <Box marginLeft={Spacing.ExtraSmall}>
-          <DragHandle disabled={itemDisabled} />
         </Box>
       </Box>
     )
@@ -111,12 +111,7 @@ const SortableList = SortableContainer(
             {children}
           </ListItem>
         ))}
-        <AddBlockButton
-          onClick={handleAdd}
-          // active={isOpen}
-          // subtle={subtle}
-          disabled={disabled}
-        />
+        <AddBlockButton onClick={handleAdd} disabled={disabled} />
       </Box>
     )
   }

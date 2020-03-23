@@ -11,8 +11,7 @@ export default {
 }
 
 export const Default = () => {
-  const [values, setValues] = useState<ListValue[]>([
-    // const [values, setValues] = useState<ListValue<string>[]>([
+  const [values, setValues] = useState<ListValue<string>[]>([
     {id: '1', value: 'Hello'},
     {id: '2', value: 'World'},
     {id: '3', value: 'Test'}
@@ -24,10 +23,7 @@ export const Default = () => {
         <TextInput
           label="Label"
           value={props.value}
-          // disabled={disabled}
-          onChange={e => {
-            setValues(e.currentTarget.value)
-          }}
+          onChange={e => props.onChange(e.currentTarget.value)}
         />
       )}
     </ListField>
@@ -35,8 +31,7 @@ export const Default = () => {
 }
 
 export const Disabled = () => {
-  const [values, setValues] = useState<ListValue[]>([
-    // const [values, setValues] = useState<ListValue<string>[]>([
+  const [values, setValues] = useState<ListValue<string>[]>([
     {id: '1', value: 'Hello'},
     {id: '2', value: 'World'},
     {id: '3', value: 'Test'}
@@ -48,10 +43,7 @@ export const Disabled = () => {
         <TextInput
           label="Label"
           value={props.value}
-          // disabled={disabled}
-          onChange={e => {
-            setValues(e.currentTarget.value)
-          }}
+          onChange={e => props.onChange(e.currentTarget.value)}
         />
       )}
     </ListField>
