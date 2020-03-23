@@ -14,15 +14,14 @@ import {
 
 import {themeMiddleware, Theme} from '../style/themeContext'
 
-// TODO: Continue here
 interface SearchInputElementProps extends MarginProps, WidthProps, FlexChildProps {
-  readonly theme: Theme
+  theme: Theme
 }
 
 const SearchInputElement = styled(
   'input',
   ({theme, width, ...props}: SearchInputElementProps) => ({
-    _className: process.env.NODE_ENV !== 'production' ? 'Radio' : undefined,
+    _className: process.env.NODE_ENV !== 'production' ? 'SearchInput' : undefined,
 
     appearance: 'none',
     display: 'block',
