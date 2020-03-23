@@ -61,7 +61,7 @@ export default async function startMediaServer(opts: ServerOptions): Promise<() 
   }
 
   const server = fastify({
-    logger: logger ? {prettyPrint: true} : false,
+    logger: logger ? {prettyPrint: true} : {level: 'error'},
     maxParamLength: 300
   })
 
