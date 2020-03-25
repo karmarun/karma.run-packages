@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 
 import {centerLayoutDecorator} from '../.storybook/decorators'
-import {ListField, ListValue} from './listInput'
+import {ListInput, ListValue} from './listInput'
 import {TextInput} from './textInput'
 
 export default {
-  component: ListField,
+  component: ListInput,
   title: 'Input|ListInput',
   decorators: [centerLayoutDecorator()]
 }
@@ -18,7 +18,7 @@ export const Default = () => {
   ])
 
   return (
-    <ListField value={values} onChange={setValues} defaultValue={''}>
+    <ListInput value={values} onChange={setValues} defaultValue={''}>
       {props => (
         <TextInput
           label="Label"
@@ -26,7 +26,7 @@ export const Default = () => {
           onChange={e => props.onChange(e.currentTarget.value)}
         />
       )}
-    </ListField>
+    </ListInput>
   )
 }
 
@@ -38,7 +38,7 @@ export const Disabled = () => {
   ])
 
   return (
-    <ListField value={values} onChange={setValues} defaultValue={''} disabled>
+    <ListInput value={values} onChange={setValues} defaultValue={''} disabled>
       {props => (
         <TextInput
           label="Label"
@@ -46,6 +46,6 @@ export const Disabled = () => {
           onChange={e => props.onChange(e.currentTarget.value)}
         />
       )}
-    </ListField>
+    </ListInput>
   )
 }

@@ -3,11 +3,11 @@ import nanoid from 'nanoid'
 import {SortableHandle, SortableContainer, SortableElement} from 'react-sortable-hoc'
 import arrayMove from 'array-move'
 
-import {isFunctionalUpdate} from '@karma.run/react'
+import {isFunctionalUpdate, cssRule, useStyle} from '@karma.run/react'
 import {MaterialIconDeleteOutlined, MaterialIconDragIndicator} from '@karma.run/icons'
 import {IconButton} from '../buttons/iconButton'
 import {Box} from '../layout/box'
-import {Spacing} from '../style/helpers'
+import {Spacing, ZIndex} from '../style/helpers'
 import {Card} from '../data/card'
 import {AddBlockButton} from '../buttons/addBlockButton'
 
@@ -117,7 +117,11 @@ const SortableList = SortableContainer(
   }
 )
 
-export function ListField<T>({
+const ListItemHelperStyle = cssRule({
+  zIndex: ZIndex.DragHelper
+})
+
+export function ListInput<T>({
   value,
   label,
   defaultValue,
@@ -125,6 +129,7 @@ export function ListField<T>({
   children,
   onChange
 }: ListFieldProps<T>) {
+  const css = useStyle()
   const onSortEnd = ({oldIndex, newIndex}: {oldIndex: number; newIndex: number}) => {
     onChange(arrayMove(value, oldIndex, newIndex))
   }
@@ -133,6 +138,7 @@ export function ListField<T>({
     <Box>
       {label && <label>{label}</label>}
       <SortableList
+        helperClass={css(ListItemHelperStyle)}
         value={value}
         defaultValue={defaultValue}
         disabled={disabled}
