@@ -77,7 +77,8 @@ export default class SharpImageBackend implements ImageBackend {
       return this.handleTransformation(
         metadataStream.pipe(sharp()),
         fileID.transformation,
-        originalSize
+        originalSize,
+        metadata.format
       )
     } catch (err) {
       if (err instanceof MediaError) {
@@ -91,7 +92,8 @@ export default class SharpImageBackend implements ImageBackend {
   private handleTransformation(
     sharpStream: sharp.Sharp,
     transformation: Readonly<Transformation>,
-    originalSize: Size
+    originalSize: Size,
+    originalFormat?: string
   ): sharp.Sharp {
     let width = transformation.width
     let height = transformation.height
@@ -200,7 +202,11 @@ export default class SharpImageBackend implements ImageBackend {
         })
     }
 
-    return sharpStream
+    if (originalFormat && ['png', 'jpeg', 'webp'].includes(originalFormat)) {
+      return sharpStream.toFormat(originalFormat, {quality: transformation.quality})
+    } else {
+      return sharpStream
+    }
   }
 }
 
