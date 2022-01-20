@@ -77,9 +77,9 @@ export function transformationFromString(str: string): Transformation {
       }
 
       case TransformationTokenType.Quality: {
-        const quality = parseFloat(args[0])
+        const quality = parseInt(args[0])
         if (isNaN(quality)) throw ErrorCode.InvalidTransformation
-        transformation.quality = Math.max(0, Math.min(1, quality))
+        transformation.quality = Math.max(0, Math.min(100, quality))
         break
       }
 
@@ -144,6 +144,10 @@ export function transformationToString(transformation: Transformation): string {
     } else {
       tokens.push(`${TransformationTokenType.Focus}_${transformation.focus}`)
     }
+  }
+
+  if (transformation.output) {
+    tokens.push(`${TransformationTokenType.Output}_${transformation.output}`)
   }
 
   return tokens.join(',')

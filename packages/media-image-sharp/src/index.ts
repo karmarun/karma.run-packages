@@ -178,16 +178,16 @@ export default class SharpImageBackend implements ImageBackend {
 
     switch (transformation.output) {
       case 'png':
-        sharpStream.png()
+        sharpStream.png({quality: transformation.quality})
         break
 
       case 'jpg':
       case 'jpeg':
-        sharpStream.jpeg()
+        sharpStream.jpeg({quality: transformation.quality})
         break
 
       case 'webp':
-        sharpStream.webp()
+        sharpStream.webp({quality: transformation.quality})
         break
 
       case undefined:
