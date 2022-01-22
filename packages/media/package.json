@@ -22,7 +22,7 @@
     "fastify": "^2.5.0",
     "fastify-multipart": "^1.0.1",
     "mmmagic": "^0.5.3",
-    "nanoid": "^2.0.3",
+    "nanoid": "^3.1.31",
     "pino-pretty": "^3.2.0",
     "pump": "^3.0.0"
   },
